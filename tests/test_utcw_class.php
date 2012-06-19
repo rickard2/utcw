@@ -11,4 +11,8 @@ class UTCW_Test_Class extends WP_UnitTestCase {
 	{
 		$this->assertTrue( new UTCW( '', '' ) instanceof WP_Widget );
 	}
+
+	function test_config_class_exists() {
+		$this->assertTrue( class_exists( 'UTCW_Config') );
+	}
 }

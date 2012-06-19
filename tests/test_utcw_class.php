@@ -11,8 +11,4 @@ class UTCW_Test_Class extends WP_UnitTestCase {
 	{
 		$this->assertTrue( new UTCW( '', '' ) instanceof WP_Widget );
 	}
-
-	function test_fail() {
-		$this->assertTrue( 1 == 2 );
-	}
 }

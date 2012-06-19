@@ -1,4 +1,4 @@
-<?php if (!defined("ABSPATH")) die();
+<?php if ( ! defined( 'ABSPATH' ) ) die();
 /*
 Plugin Name: Ultimate tag cloud widget
 Plugin URI: http://www.0x539.se/wordpress/ultimate-tag-cloud-widget/

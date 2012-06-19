@@ -2,6 +2,9 @@
 
 	var UTCW = {
 
+		init:function () {
+
+		}
 	};
 
 }());

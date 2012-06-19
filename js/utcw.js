@@ -2,7 +2,7 @@
 
 	var UTCW = {
 
-		init3: function() {
+		init4: function() {
 
 		}
 	};

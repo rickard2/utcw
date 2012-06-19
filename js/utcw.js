@@ -2,9 +2,6 @@
 
 	var UTCW = {
 
-		init: function() {
-
-		}
 	};
 
 }());

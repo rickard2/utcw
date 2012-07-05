@@ -6,12 +6,12 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 
 		$reflection = new ReflectionClass('UTCW_Config');
 		$properties = $reflection->getDefaultProperties();
-		$defaults   = $properties['config'];
+		$options   = $properties['options'];
 
 		$config   = new UTCW_Config(array());
 		$instance = $config->get_instance();
 
-		$this->assertEquals( $defaults, $instance );
+		$this->assertEquals( $options, $instance );
 	}
 
 	function test_config_valid() {
@@ -45,7 +45,7 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 			'hover_bg_color'     => '#123456',
 			'hover_color'        => '#123456',
 			'hover_border_style' => 'groove',
-			'bover_border_width' => 1337,
+			'hover_border_width' => 1337,
 			'hover_border_color' => '#123456',
 			'tag_spacing'        => 1337,
 			'debug'              => true,
@@ -96,7 +96,7 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 			'hover_bg_color'     => 'hover_bg_color',
 			'hover_color'        => 'hover_color',
 			'hover_border_style' => 'hover_border_style',
-			'bover_border_width' => 'bover_border_width',
+			'hover_border_width' => 'hover_border_width',
 			'hover_border_color' => 'hover_border_color',
 			'tag_spacing'        => 'tag_spacing',
 			'debug'              => 'debug',
@@ -114,7 +114,5 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		foreach ( $my_instance as $key => $item ) {
 			$this->assertNotEquals( $item, $instance[ $key ] );
 		}
-
 	}
-
 }

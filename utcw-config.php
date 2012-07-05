@@ -5,11 +5,59 @@
  */
 class UTCW_Config {
 
+	public $title;
+	public $order;
+	public $size_from;
+	public $size_to;
+	public $max;
+	public $taxonomy;
+	public $reverse;
+	public $color;
+	public $letter_spacing;
+	public $word_spacing;
+	public $case;
+	public $case_sensitive;
+	public $minimum;
+	public $tags_list_type;
+	public $show_title;
+	public $link_underline;
+	public $link_bold;
+	public $link_italic;
+	public $link_bg_color;
+	public $link_border_style;
+	public $link_border_width;
+	public $link_border_color;
+	public $hover_underline;
+	public $hover_bold;
+	public $hover_italic;
+	public $hover_bg_color;
+	public $hover_color;
+	public $hover_border_style;
+	public $hover_border_width;
+	public $hover_border_color;
+	public $tag_spacing;
+	public $debug;
+	public $days_old;
+	public $line_height;
+	public $separator;
+	public $prefix;
+	public $suffix;
+	public $show_title_text;
+
+	/*
+	 * Missing:
+	 * authors
+	 * post_type
+	 * color_span_from
+	 * color_span_to
+	 * tags_list
+	 */
+
 	/**
 	 * Config store with default values
 	 * @var array
 	 */
-	protected $config = array(
+	protected $options = array(
 		'title'              => 'Tag Cloud',
 		'order'              => 'name',
 		'size_from'          => 10,
@@ -38,7 +86,7 @@ class UTCW_Config {
 		'hover_bg_color'     => 'transparent',
 		'hover_color'        => 'default',
 		'hover_border_style' => 'none',
-		'bover_border_width' => 0,
+		'hover_border_width' => 0,
 		'hover_border_color' => 'none',
 		'tag_spacing'        => 'auto',
 		'debug'              => false,
@@ -92,10 +140,12 @@ class UTCW_Config {
 	 *
 	 * @param array $input
 	 */
-	function __construct( array $input )
+	public function __construct( array $input )
 	{
 
-		foreach ( $this->config as $key => $item ) {
+		foreach ( $this->options as $key => $default ) {
+			$this->$key = $default;
+
 			if ( isset( $input[ $key ] ) ) {
 				$valid = true;
 
@@ -137,29 +187,27 @@ class UTCW_Config {
 					case 'hover_border_color':
 						$valid = preg_match( '/#([a-f0-9]{6}|[a-f0-9]{3})/i', $input[ $key ] ) > 0;
 						break;
-
-					case 'letter_spacing':
-					case 'word_spacing':
- 					case 'tag_spacing':
- 					case 'line_height':
-						$this->config[ $key ] = intval( $input[ $key ] );
-						break;
 				}
 
 				if ( ! $valid ) {
 					continue;
 				}
 
-				if ( is_string( $this->config[ $key ] ) && strlen( $input[ $key ] ) > 0 ) {
-					$this->config[ $key ] = $input[ $key ];
+				// Special handling of some properties which have string defaults but integer values expected
+				if ( in_array( $key, array( 'letter_spacing', 'word_spacing', 'tag_spacing', 'line_height' ) ) ) {
+					$this->$key = intval( $input[ $key ] );
 				}
 
-				if ( is_integer( $this->config[ $key ] ) && $input[ $key ] >= 0 ) {
-					$this->config[ $key ] = intval( $input[ $key ] );
+				else if ( is_string( $this->options[ $key ] ) && is_string( $input[ $key ] ) && strlen( $input[ $key ] ) > 0 ) {
+					$this->$key = $input[ $key ];
 				}
 
-				if ( is_bool( $this->config[ $key ] ) ) {
-					$this->config[ $key ] = !! $input[ $key ];
+				else if ( is_integer( $this->options[ $key ] ) && $input[ $key ] >= 0 ) {
+					$this->$key = intval( $input[ $key ] );
+				}
+
+				else if ( is_bool( $this->options[ $key ] ) ) {
+					$this->$key = !! $input[ $key ];
 				}
 			}
 		}
@@ -169,8 +217,14 @@ class UTCW_Config {
 	 * Returns the WP_Widget instance
 	 * @return array
 	 */
-	function get_instance()
+	public function get_instance()
 	{
-		return $this->config;
+		$instance = array();
+
+		foreach ( $this->options as $key => $default ) {
+			$instance[ $key ] = $this->$key;
+		}
+
+		return $instance;
 	}
 }

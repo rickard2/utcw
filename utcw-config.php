@@ -3,6 +3,7 @@
 /**
  * Configuration class for the widget.
  * @package utcw
+ * @since   2.0
  */
 class UTCW_Config {
 
@@ -374,7 +375,6 @@ class UTCW_Config {
 	 */
 	public function __construct( array $input )
 	{
-
 		foreach ( $this->options as $key => $default ) {
 			$this->$key = $default;
 

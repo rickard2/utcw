@@ -11,11 +11,15 @@ License: GPLv2
 
 require 'utcw-config.php';
 
+/**
+ * @since 1.0
+ */
 class UTCW extends WP_Widget {
 
 	/**
 	 * Constructor
 	 * @return UTCW
+	 * @since 1.0
 	 */
 	function __construct()
 	{
@@ -30,6 +34,7 @@ class UTCW extends WP_Widget {
 	 * @param array $old_instance
 	 *
 	 * @return array
+	 * @since 1.0
 	 */
 	function update( array $new_instance, array $old_instance )
 	{
@@ -45,6 +50,7 @@ class UTCW extends WP_Widget {
 	 * @param array $instance
 	 *
 	 * @return void|string
+	 * @since 1.0
 	 */
 	function form( array $instance )
 	{

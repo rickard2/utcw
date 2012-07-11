@@ -15,4 +15,8 @@ class UTCW_Test_Class extends WP_UnitTestCase {
 	function test_config_class_exists() {
 		$this->assertTrue( class_exists( 'UTCW_Config') );
 	}
+
+	function test_class_plugin() {
+		$this->assertTrue( class_exists( 'UTCW_Plugin') );
+	}
 }

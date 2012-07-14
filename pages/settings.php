@@ -5,11 +5,14 @@
  * @var array $available_taxonomies
  * @var array $available_post_types
  * @var array $configurations
+ * @var array $terms
  */
 
 ?>
 <button class="utcw-tab-button utcw-active" data-id="<?php echo $this->id ?>"
 		data-tab="<?php echo $this->get_field_id( 'utcw-tab-data' ) ?>"><?php _e( 'Data', 'utcw' ) ?></button>
+<button class="utcw-tab-button" data-id="<?php echo $this->id ?>"
+		data-tab="<?php echo $this->get_field_id( 'utcw-tab-terms' ) ?>"><?php _e( 'Terms', 'utcw' ) ?></button>
 <button class="utcw-tab-button" data-id="<?php echo $this->id ?>"
 		data-tab="<?php echo $this->get_field_id( 'utcw-tab-basic-appearance' ) ?>"><?php _e( 'Basic appearance', 'utcw' ) ?></button>
 <button class="utcw-tab-button" data-id="<?php echo $this->id ?>"
@@ -74,9 +77,9 @@
 		for="<?php echo $this->get_field_id( 'taxonomy' ) ?>"><?php _e( 'Taxonomy:', 'utcw' ) ?></label></strong><br>
 	<select id="<?php echo $this->get_field_id( 'taxonomy' ) ?>"
 			name="<?php echo $this->get_field_name( 'taxonomy' ) ?>">
-		<?php foreach ( $available_taxonomies as $t ) : $data = get_taxonomy( $t ) ?>
+		<?php foreach ( $available_taxonomies as $taxonomy ) :  ?>
 		<option
-			value="<?php echo $t ?>" <?php echo $config->taxonomy == $t ? 'selected="selected"' : ''?>><?php echo $data->labels->name ?></option>
+			value="<?php echo $taxonomy->name ?>" <?php echo $config->taxonomy == $taxonomy->name ? 'selected="selected"' : ''?>><?php echo $taxonomy->labels->name ?></option>
 		<?php endforeach; ?>
 	</select><br>
 	<br>
@@ -107,26 +110,58 @@
 				   title="<?php _e( 'The maximum number of days back to search for posts, zero means every post.', 'utcw' )?>"><?php _e( 'Posts max age:', 'utcw' )?></label></strong>
 	<input type="number" name="<?php echo $this->get_field_name( 'days_old' ) ?>"
 		   id="<?php echo $this->get_field_id( 'days_old' ) ?>" value="<?php echo $config->days_old; ?>"><br>
-	<br>
+</fieldset>
 
-	<a class="utcw-help"
-	   title="<?php _e( 'Choose either include or exclude above and enter a comma separated list of either the names or IDs of the tags you\'d like to include/exclude.', 'utcw' ) ?>">?</a>
+<fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-terms' ) ?>">
+	<legend></legend>
+
+	<?php // todo: help ?>
+
+	<strong><?php _e( 'Selection type', 'utcw' ) ?></strong>
+	<br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'tags_list_type' ) ?>"
 		   id="<?php echo $this->get_field_id( 'tags_list_type_include' ) ?>"
 		   value="include" <?php echo $config->tags_list_type == 'include' ? 'checked="checked" ' : ''; ?>>
 	<label
-		for="<?php echo $this->get_field_id( 'tags_list_type_include' ) ?>"><?php _e( 'Include only ... ', 'utcw' ) ?></label>
+		for="<?php echo $this->get_field_id( 'tags_list_type_include' ) ?>"><?php _e( 'Include only selected terms', 'utcw' ) ?></label>
 	<br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'tags_list_type' ) ?>"
 		   id="<?php echo $this->get_field_id( 'tags_list_type_exclude' ) ?>"
 		   value="exclude" <?php echo $config->tags_list_type == 'exclude' ? 'checked="checked" ' : ''; ?>>
 	<label
-		for="<?php echo $this->get_field_id( 'tags_list_type_exclude' ) ?>"><?php _e( 'Exclude ... ', 'utcw' ) ?></label>
-	<br>
+		for="<?php echo $this->get_field_id( 'tags_list_type_exclude' ) ?>"><?php _e( 'Exclude selected terms', 'utcw' ) ?></label>
 
-	<label for="<?php echo $this->get_field_id( 'tags_list' ) ?>"><?php _e( '... these tags:', 'utcw' ) ?></label><br>
-	<input type="text" name="<?php echo $this->get_field_name( 'tags_list' ) ?>"
-		   id="<?php echo $this->get_field_id( 'tags_list' ) ?>" value="<?php echo implode( ',', $config->tags_list ) ?>"><br>
+	<br>
+	<br>
+	<?php foreach ( $available_taxonomies as $taxonomy ) : ?>
+
+	<div id="<?php echo $taxonomy->name ?>-terms" <?php if ( $taxonomy->name != $config->taxonomy ) echo 'class="hidden"' ?>>
+
+		<strong><?php printf( __( 'Terms for taxonomy %s', 'utcw' ), $taxonomy->labels->name ) ?></strong>
+
+		<?php if ( $terms[ $taxonomy->name ] ) : ?>
+		<ul>
+		<?php foreach ( $terms[ $taxonomy->name ] as $term ) : ?>
+			<li>
+				<label>
+					<input
+						type="checkbox"
+						name="<?php echo $this->get_field_name( 'tags_list' ) ?>[]"
+						value="<?php echo $term->term_id ?>"
+						<?php if ( in_array( $term->term_id, $config->tags_list ) ) echo 'checked="checked"' ?>>
+					<?php echo $term->name ?>
+				</label>
+			</li>
+		<?php endforeach ?>
+		</ul>
+		<?php else : ?>
+			<p><?php printf( __( 'No terms for taxonomy "%s"', 'utcw' ), $taxonomy->label->name ) ?></p>
+		<?php endif ?>
+
+	</div>
+
+	<?php endforeach ?>
+
 </fieldset>
 
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-basic-appearance' ) ?>">
@@ -532,7 +567,6 @@
 
 </fieldset>
 <script type="text/javascript">
-	jQuery( ".utcw-help" ).wTooltip( {style:wTooltipStyle, className:'utcw-tooltip'} );
 	if ( typeof(utcwActiveTab['<?php echo $this->id ?>']) == "undefined" ) {
 		utcwActiveTab['<?php echo $this->id ?>'] = '<?php echo $this->get_field_id( 'utcw-tab-data' ) ?>';
 	} else {

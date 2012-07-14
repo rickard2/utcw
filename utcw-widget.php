@@ -30,7 +30,7 @@ class UTCW extends WP_Widget {
 	 */
 	function update( array $new_instance, array $old_instance )
 	{
-		$config = new UTCW_Config( $new_instance );
+		$config = new UTCW_Config( $new_instance, UTCW_Plugin::get_instance() );
 
 		return $config->get_instance();
 	}
@@ -46,7 +46,7 @@ class UTCW extends WP_Widget {
 	function form( array $instance )
 	{
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$config = new UTCW_Config( $instance );
+		$config = new UTCW_Config( $instance, UTCW_Plugin::get_instance() );
 
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$configurations = get_option( 'utcw_saved_configs' );
@@ -56,7 +56,13 @@ class UTCW extends WP_Widget {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$available_post_types = get_post_types( $args );
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$available_taxonomies = get_taxonomies();
+		$available_taxonomies = get_taxonomies( array(), 'objects' );
+
+		$terms = array();
+
+		foreach ( $available_taxonomies as $taxonomy ) {
+			$terms[ $taxonomy->name ] = get_terms( $taxonomy->name );
+		}
 
 		// Content of the widget settings form
 		require 'pages/settings.php';

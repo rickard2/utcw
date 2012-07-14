@@ -369,12 +369,16 @@ class UTCW_Config {
 	/**
 	 * Loads a configuration and parses the options
 	 *
-	 * @param array $input
+	 * @param array       $input
+	 * @param UTCW_Plugin $utcw
 	 *
 	 * @since 2.0
 	 */
-	public function __construct( array $input )
+	public function __construct( array $input, UTCW_Plugin $utcw )
 	{
+		$this->allowed_post_types = $utcw->get_allowed_post_types();
+		$this->allowed_taxonomies = $utcw->get_allowed_taxonomies();
+
 		foreach ( $this->options as $key => $default ) {
 			$this->$key = $default;
 

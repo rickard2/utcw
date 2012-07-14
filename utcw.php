@@ -17,9 +17,30 @@ require 'utcw-widget.php';
 
 class UTCW_Plugin {
 
-	public function __construct()
+	protected $allowed_taxonomies = array();
+	protected $allowed_post_types = array();
+
+	private static $instance;
+
+	private function __construct()
 	{
 		add_action( 'admin_head-widgets.php', array( $this, 'init_admin_assets' ) );
+		add_action( 'wp_loaded', array( $this, 'wp_loaded' ) );
+	}
+
+	public static function get_instance()
+	{
+		if ( ! self::$instance ) {
+			self::$instance = new self;
+		}
+
+		return self::$instance;
+	}
+
+	function wp_loaded()
+	{
+		$this->allowed_taxonomies = get_taxonomies();
+		$this->allowed_post_types = get_post_types( array( 'public' => true ) );
 	}
 
 	public function init_admin_assets()
@@ -33,6 +54,17 @@ class UTCW_Plugin {
 			wp_enqueue_script( 'utcw', plugins_url( 'ultimate-tag-cloud-widget/js/utcw.min.js' ), array( 'jquery' ), UTCW_VERSION, true );
 		}
 	}
+
+	public function get_allowed_taxonomies()
+	{
+		return $this->allowed_taxonomies;
+	}
+
+	public function get_allowed_post_types()
+	{
+		return $this->allowed_post_types;
+	}
 }
 
-$utcw = new UTCW_Plugin();
+// Instantiates the plugin
+UTCW_Plugin::get_instance();

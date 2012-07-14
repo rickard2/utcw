@@ -2,6 +2,13 @@
 
 class UTCW_Test_Config extends WP_UnitTestCase {
 
+	protected $utcw;
+
+	function setUp()
+	{
+		$this->utcw = UTCW_Plugin::get_instance();
+	}
+
 	function test_config_defaults()
 	{
 
@@ -9,7 +16,7 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$properties = $reflection->getDefaultProperties();
 		$options    = $properties[ 'options' ];
 
-		$config   = new UTCW_Config( array() );
+		$config   = new UTCW_Config( array(), $this->utcw );
 		$instance = $config->get_instance();
 
 		$this->assertEquals( $options, $instance );
@@ -495,98 +502,98 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 	{
 		$attr              = '__unknown';
 		$instance[ $attr ] = 'value';
-		$config            = new UTCW_Config( $instance );
+		$config            = new UTCW_Config( $instance, $this->utcw );
 		$this->assertFalse( isset( $config->$attr ) );
 	}
 
 	private function helper_string_ok( $option, $ok_string = 'test' )
 	{
 		$instance[ $option ] = $ok_string;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_string_fail( $option, $fail_string = '' )
 	{
 		$instance[ $option ] = $fail_string;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertNotEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_int_ok( $option, $ok_int = 10 )
 	{
 		$instance[ $option ] = $ok_int;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_int_fail( $option, $fail_int = 'fail' )
 	{
 		$instance[ $option ] = $fail_int;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertNotEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_bool_ok( $option, $ok_bool = true )
 	{
 		$instance[ $option ] = $ok_bool;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_bool_fail( $option, $fail_bool = 'fail' )
 	{
 		$instance[ $option ] = $fail_bool;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertNotEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_optional_bool_ok( $option, $ok_opt_bool = 'yes' )
 	{
 		$instance[ $option ] = $ok_opt_bool;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_optional_bool_fail( $option, $fail_opt_bool = 'fail' )
 	{
 		$instance[ $option ] = $fail_opt_bool;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertNotEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_int_array_ok( $option, $ok_int_array = array( 1, 2, 3 ) )
 	{
 		$instance[ $option ] = $ok_int_array;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_int_array_fail( $option, $fail_int_array = array( 'fail', 'more fail' ) )
 	{
 		$instance[ $option ] = $fail_int_array;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertNotEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_color_ok( $option, $ok_color = '#bada55' )
 	{
 		$instance[ $option ] = $ok_color;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_color_fail( $option, $fail_color = 'invalid color' )
 	{
 		$instance[ $option ] = $fail_color;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertNotEquals( $config->$option, $instance[ $option ] );
 	}
 
 	private function helper_array_ok( $option, $ok_array = array( 'test' ) )
 	{
 		$instance[ $option ] = $ok_array;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 
 		$result = is_array( $ok_array ) ? $ok_array : explode( ',', $ok_array );
 
@@ -596,7 +603,7 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 	private function helper_array_fail( $option, $fail_array = 'not an array' )
 	{
 		$instance[ $option ] = $fail_array;
-		$config              = new UTCW_Config( $instance );
+		$config              = new UTCW_Config( $instance, $this->utcw );
 		$this->assertNotEquals( $config->$option, $instance[ $option ] );
 	}
 }

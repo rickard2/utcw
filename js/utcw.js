@@ -14,15 +14,16 @@
 		init:function () {
 			$( 'input[id$=-color_none], input[id$=-color_random], input[id$=-color_set], input[id$=-color_span]' ).live( 'click', this.colorClickHandler );
 			$( '.utcw-tab-button' ).live( 'click', this.tabClickHandler );
+			$( 'select[id$=-taxonomy]' ).live( 'change', this.taxonomyChangeHandler );
 
-			$(document).ready( this.initTooltip );
+			$( document ).ready( this.initTooltip );
 		},
 
-		initTooltip: function() {
-			$(".utcw-help").wTooltip({
-				style: this.tooltipStyle,
+		initTooltip:function () {
+			$( ".utcw-help" ).wTooltip( {
+				style:this.tooltipStyle,
 				className:'utcw-tooltip'
-			});
+			} );
 		},
 
 		tabClickHandler:function () {
@@ -57,6 +58,16 @@
 			} else if ( value === 'span' ) {
 				$span_chooser.removeClass( 'utcw-hidden' );
 			}
+		},
+
+		taxonomyChangeHandler:function () {
+
+			var $this = $( this );
+			var taxonomy = $this.find( ':selected' ).val();
+			var $widget = $this.parents( '.widget-content' );
+
+			$widget.find( 'div[id$=-terms]' ).addClass( 'hidden' );
+			$widget.find( '#' + taxonomy + '-terms' ).removeClass( 'hidden' );
 		}
 	};
 

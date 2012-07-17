@@ -566,10 +566,3 @@
 	<?php endif ?>
 
 </fieldset>
-<script type="text/javascript">
-	if ( typeof(utcwActiveTab['<?php echo $this->id ?>']) == "undefined" ) {
-		utcwActiveTab['<?php echo $this->id ?>'] = '<?php echo $this->get_field_id( 'utcw-tab-data' ) ?>';
-	} else {
-		jQuery( "button[data-tab='" + utcwActiveTab['<?php echo $this->id?>'] + "']" ).click();
-	}
-</script>

@@ -7,7 +7,7 @@ module.exports = function ( grunt ) {
 			version:'2.0 alpha',
 			banner:'/*! Ultimate Tag Cloud Widget - v<%= meta.version %> - ' +
 				'<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-				'* http://0x539.se/wordpress/ultimate-tag-cloud-widget/\n' +
+				'* https://0x539.se/wordpress/ultimate-tag-cloud-widget/\n' +
 				'* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
 				'Rickard Andersson; Licensed GPLv2 */'
 		},
@@ -39,7 +39,8 @@ module.exports = function ( grunt ) {
 				browser:true
 			},
 			globals:{
-				jQuery:true
+				jQuery:true,
+				Uri:true
 			}
 		},
 		uglify:{}

@@ -2,7 +2,7 @@
 
 	var UTCW = {
 
-		activeTab:[],
+		activeTab:{},
 		tooltipStyle:{
 			border:"solid 1px #6295fb",
 			background:"#fff",
@@ -17,6 +17,8 @@
 			$( 'select[id$=-taxonomy]' ).live( 'change', this.taxonomyChangeHandler );
 
 			$( document ).ready( this.initTooltip );
+			$( document ).ajaxSuccess( this.ajaxSuccessHandler );
+
 		},
 
 		initTooltip:function () {
@@ -68,6 +70,22 @@
 
 			$widget.find( 'div[id$=-terms]' ).addClass( 'hidden' );
 			$widget.find( '#' + taxonomy + '-terms' ).removeClass( 'hidden' );
+		},
+
+		ajaxSuccessHandler:function ( e, xhr, settings ) {
+
+			var uri = new Uri();
+			var widget_id;
+
+			uri.setQuery( decodeURI( settings.data ) );
+
+			if ( uri.getQueryParamValue( 'action' ) === 'save-widget' && uri.getQueryParamValue( 'id_base' ) === 'utcw' ) {
+				widget_id = uri.getQueryParamValue( 'widget-id' );
+
+				if ( UTCW.activeTab[ widget_id ] ) {
+					$( "button[data-tab='" + UTCW.activeTab[ widget_id ] + "']" ).trigger( 'click' );
+				}
+			}
 		}
 	};
 

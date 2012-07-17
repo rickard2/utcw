@@ -8,6 +8,12 @@ Author: Rickard Andersson
 Author URI: https://www.0x539.se
 License: GPLv2
 */
+/**
+ * @todo Preview
+ * @todo Rendering class
+ * @todo Data provider class
+ * @todo Find plugin compatibility, both PHP, WP and jQuery
+ */
 
 define( 'UTCW_VERSION', '2.0-alpha' );
 define( 'UTCW_DEV', false );
@@ -48,8 +54,9 @@ class UTCW_Plugin {
 		wp_enqueue_style( 'utcw', plugins_url( 'ultimate-tag-cloud-widget/css/style.css' ), array(), UTCW_VERSION );
 
 		if ( UTCW_DEV ) {
+			wp_enqueue_script( 'utcw-lib-jsuri', plugins_url( 'ultimate-tag-cloud-widget/js/lib/jsuri-1.1.1.min.js' ), UTCW_VERSION, true );
 			wp_enqueue_script( 'utcw-lib-tooltip', plugins_url( 'ultimate-tag-cloud-widget/js/lib/tooltip.min.js' ), array( 'jquery' ), UTCW_VERSION, true );
-			wp_enqueue_script( 'utcw', plugins_url( 'ultimate-tag-cloud-widget/js/utcw.js' ), array( 'utcw-lib-tooltip', 'jquery' ), UTCW_VERSION, true );
+			wp_enqueue_script( 'utcw', plugins_url( 'ultimate-tag-cloud-widget/js/utcw.js' ), array( 'utcw-lib-jsuri', 'utcw-lib-tooltip', 'jquery' ), UTCW_VERSION, true );
 		} else {
 			wp_enqueue_script( 'utcw', plugins_url( 'ultimate-tag-cloud-widget/js/utcw.min.js' ), array( 'jquery' ), UTCW_VERSION, true );
 		}

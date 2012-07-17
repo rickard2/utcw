@@ -1,5 +1,28 @@
 (function ( $ ) {
 
+	/*
+	* Compatibility info:
+	* $.live			v1.3
+	* $.ready			v1.0
+	* $.ajaxSuccess		v1.0
+	* $.data			v1.2.3
+	* $.find			v1.0
+	* $.removeClass		v1.0
+	* $.addClass		v1.0
+	* $.parent			v1.0
+	* $.parents			v1.0
+	* $.val				v1.0
+	* $.trigger			v1.0
+	*
+	* jQuery v1.3 required
+	* WordPress 2.8 shipped jQuery 1.3.2 => http://core.trac.wordpress.org/browser/tags/2.8/wp-includes/js/jquery/jquery.js?rev=11550
+	* WordPress 2.7 shipped jQuery 1.2.6 => http://core.trac.wordpress.org/browser/tags/2.7/wp-includes/js/jquery/jquery.js?rev=10186
+	*
+	* Current compatibility WordPress 2.8
+	*
+	* @type {Object}
+	*/
+
 	var UTCW = {
 
 		activeTab:{},

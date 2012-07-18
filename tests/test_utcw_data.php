@@ -80,6 +80,24 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$this->helper_contains( array(), "post_status IN ('publish','private')", 'authenticated' );
 	}
 
+	function test_tags_list_include()
+	{
+		$instance = array(
+			'tags_list_type' => 'include',
+			'tags_list'      => array( 1, 2, 3 ),
+		);
+		$this->helper_contains( $instance, 't.term_id IN (1,2,3)' );
+	}
+
+	function test_tags_list_exclude()
+	{
+		$instance = array(
+			'tags_list_type' => 'exclude',
+			'tags_list'      => array( 1, 2, 3 ),
+		);
+		$this->helper_contains( $instance, 't.term_id NOT IN (1,2,3)' );
+	}
+
 	function helper_contains( $instance, $string, $authenticated = false )
 	{
 		$utcw = $authenticated ? $this->utcw_authenticated : $this->utcw_not_authenticated;

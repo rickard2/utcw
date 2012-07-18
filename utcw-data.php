@@ -50,9 +50,23 @@ class UTCW_Data {
 
 		// Add post status statement, authenticated users are allowed to view tags for private posts
 		if ( $this->config->authenticated ) {
-			$query[] = "AND post_status IN ('publish','private')";
+			$query[ ] = "AND post_status IN ('publish','private')";
 		} else {
-			$query[] = "AND post_status = 'publish'";
+			$query[ ] = "AND post_status = 'publish'";
+		}
+
+		// Add include or exclude statement
+		if ( $this->config->tags_list ) {
+			$tags_list_parameters = array();
+
+			foreach ( $this->config->tags_list as $tag_id ) {
+				$tags_list_parameters[ ] = '%d';
+				$parameters[ ]           = $tag_id;
+			}
+
+			$tags_list_operator = $this->config->tags_list_type == 'include' ? 'IN' : 'NOT IN';
+
+			$query[ ] = 'AND t.term_id ' . $tags_list_operator . ' (' . join( ',', $tags_list_parameters ) . ')';
 		}
 
 		$query = join( "\n", $query );

@@ -71,11 +71,52 @@ class UTCW_Data {
 
 		// Add days old statement
 		if ( $this->config->days_old ) {
-			$query[ ] = "AND post_date > '" . date( 'Y-m-d', strtotime( '-' . $this->config->days_old . ' days' ) ) . "'";
+			$query[ ]      = 'AND post_date > %s';
+			$parameters[ ] = date( 'Y-m-d', strtotime( '-' . $this->config->days_old . ' days' ) );
 		}
+
+		$query[ ] = 'GROUP BY tr.term_taxonomy_id';
+
+		// Add minimum constraint
+		if ( $this->config->minimum > 1 ) {
+			$query[ ]      = 'HAVING count >= %d';
+			$parameters[ ] = $this->config->minimum;
+		}
+
+		// Try to sort the result using SQL if possible
+		$order = $this->config->reverse ? 'DESC' : 'ASC';
+
+		// TODO: Case sensitive sorting
+		switch ( $this->config->order ) {
+			case 'random':
+				$query[ ] = 'ORDER BY RAND() ' . $order;
+				break;
+
+			case 'name':
+				$query[ ] = 'ORDER BY name ' . $order;
+				break;
+
+			case 'slug':
+				$query[ ] = 'ORDER BY slug ' . $order;
+				break;
+
+			case 'id':
+				$query[ ] = 'ORDER BY id ' . $order;
+				break;
+
+			case 'count':
+				$query[ ] = 'ORDER BY count ' . $order;
+				break;
+		}
+
+		// Add limit constraint
+		$query[ ]      = 'LIMIT %d';
+		$parameters[ ] = $this->config->max;
 
 		$query = join( "\n", $query );
 		$query = $this->db->prepare( $query, $parameters );
+
+		// TODO: Order by color
 
 		$result = $this->db->get_results( $query );
 

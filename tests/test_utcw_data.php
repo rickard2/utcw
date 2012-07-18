@@ -98,8 +98,54 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$this->helper_contains( $instance, 't.term_id NOT IN (1,2,3)' );
 	}
 
-	function test_days_old() {
-		$this->helper_contains( array('days_old' => 1), "post_date > '" . date('Y-m-d', strtotime('yesterday')) . "'");
+	function test_days_old()
+	{
+		$this->helper_contains( array( 'days_old' => 1 ), "post_date > '" . date( 'Y-m-d', strtotime( 'yesterday' ) ) . "'" );
+	}
+
+	function test_minimum()
+	{
+		$this->helper_contains( array( 'minimum' => 5 ), 'HAVING count >= 5' );
+	}
+
+	function test_order_name_asc()
+	{
+		$this->helper_contains( array( 'order' => 'name', 'reverse' => false ), 'ORDER BY name ASC' );
+	}
+
+	function test_order_name_desc()
+	{
+		$this->helper_contains( array( 'order' => 'name', 'reverse' => true ), 'ORDER BY name DESC' );
+	}
+
+	function test_order_slug_asc()
+	{
+		$this->helper_contains( array( 'order' => 'slug', 'reverse' => false ), 'ORDER BY slug ASC' );
+	}
+
+	function test_order_slug_desc()
+	{
+		$this->helper_contains( array( 'order' => 'slug', 'reverse' => true ), 'ORDER BY slug DESC' );
+	}
+
+	function test_order_id_asc()
+	{
+		$this->helper_contains( array( 'order' => 'id', 'reverse' => false ), 'ORDER BY id ASC' );
+	}
+
+	function test_order_id_desc()
+	{
+		$this->helper_contains( array( 'order' => 'id', 'reverse' => true ), 'ORDER BY id DESC' );
+	}
+
+	function test_order_count_asc()
+	{
+		$this->helper_contains( array( 'order' => 'count', 'reverse' => false ), 'ORDER BY count ASC' );
+	}
+
+	function test_order_count_desc()
+	{
+		$this->helper_contains( array( 'order' => 'count', 'reverse' => true ), 'ORDER BY count DESC' );
 	}
 
 	function helper_contains( $instance, $string, $authenticated = false )

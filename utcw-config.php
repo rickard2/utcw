@@ -266,6 +266,12 @@ class UTCW_Config {
 	public $authors;
 
 	/**
+	 * @var bool
+	 * @since 2.0
+	 */
+	public $authenticated;
+
+	/**
 	 * Config store with default values
 	 * @var array
 	 * @since 2.0
@@ -378,6 +384,7 @@ class UTCW_Config {
 	{
 		$this->allowed_post_types = $utcw->get_allowed_post_types();
 		$this->allowed_taxonomies = $utcw->get_allowed_taxonomies();
+		$this->authenticated      = $utcw->is_authenticated_user();
 
 		foreach ( $this->options as $key => $default ) {
 			$this->$key = $default;

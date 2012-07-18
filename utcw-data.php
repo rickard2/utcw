@@ -48,6 +48,13 @@ class UTCW_Data {
 
 		$query[ ] = 'AND post_type IN (' . join( ',', $post_type_parameters ) . ')';
 
+		// Add post status statement, authenticated users are allowed to view tags for private posts
+		if ( $this->config->authenticated ) {
+			$query[] = "AND post_status IN ('publish','private')";
+		} else {
+			$query[] = "AND post_status = 'publish'";
+		}
+
 		$query = join( "\n", $query );
 		$query = $this->db->prepare( $query, $parameters );
 

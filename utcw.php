@@ -73,6 +73,10 @@ class UTCW_Plugin {
 	{
 		return $this->allowed_post_types;
 	}
+
+	public function is_authenticated_user() {
+		return is_user_logged_in();
+	}
 }
 
 // Instantiates the plugin

@@ -108,42 +108,50 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$this->helper_contains( array( 'minimum' => 5 ), 'HAVING count >= 5' );
 	}
 
-	function test_order_name_asc()
+	function test_order_name()
 	{
 		$this->helper_contains( array( 'order' => 'name', 'reverse' => false ), 'ORDER BY name ASC' );
 	}
 
-	function test_order_name_desc()
+	function test_order_name_reverse()
 	{
 		$this->helper_contains( array( 'order' => 'name', 'reverse' => true ), 'ORDER BY name DESC' );
 	}
 
-	function test_order_slug_asc()
+	function test_order_name_case_sensitive() {
+		$this->helper_contains( array( 'order' => 'name', 'case_sensitive' => true), 'ORDER BY BINARY name ASC' );
+	}
+
+	function test_order_slug()
 	{
 		$this->helper_contains( array( 'order' => 'slug', 'reverse' => false ), 'ORDER BY slug ASC' );
 	}
 
-	function test_order_slug_desc()
+	function test_order_slug_reverse()
 	{
 		$this->helper_contains( array( 'order' => 'slug', 'reverse' => true ), 'ORDER BY slug DESC' );
 	}
 
-	function test_order_id_asc()
-	{
-		$this->helper_contains( array( 'order' => 'id', 'reverse' => false ), 'ORDER BY id ASC' );
+	function test_order_slug_case_sensitive() {
+		$this->helper_contains( array( 'order' => 'slug', 'case_sensitive' => true), 'ORDER BY BINARY slug ASC');
 	}
 
-	function test_order_id_desc()
+	function test_order_id()
 	{
-		$this->helper_contains( array( 'order' => 'id', 'reverse' => true ), 'ORDER BY id DESC' );
+		$this->helper_contains( array( 'order' => 'id', 'reverse' => false ), 'ORDER BY term_id ASC' );
 	}
 
-	function test_order_count_asc()
+	function test_order_id_reverse()
+	{
+		$this->helper_contains( array( 'order' => 'id', 'reverse' => true ), 'ORDER BY term_id DESC' );
+	}
+
+	function test_order_count()
 	{
 		$this->helper_contains( array( 'order' => 'count', 'reverse' => false ), 'ORDER BY count ASC' );
 	}
 
-	function test_order_count_desc()
+	function test_order_count_reverse()
 	{
 		$this->helper_contains( array( 'order' => 'count', 'reverse' => true ), 'ORDER BY count DESC' );
 	}

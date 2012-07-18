@@ -18,9 +18,9 @@ class UTCW_Data {
 		// Base query with joins
 		$query[ ] = 'SELECT t.term_id, t.name, t.slug, COUNT(tr.term_taxonomy_id) AS `count`';
 		$query[ ] = 'FROM `' . $this->db->posts . '` AS p';
-		$query[ ] = 'LEFT JOIN `' . $this->db->term_relationships . '` AS tr ON tr.object_id = p.ID';
-		$query[ ] = 'LEFT JOIN `' . $this->db->term_taxonomy . '` AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id';
-		$query[ ] = 'LEFT JOIN `' . $this->db->terms . '` AS t ON t.term_id = tt.term_id';
+		$query[ ] = 'JOIN `' . $this->db->term_relationships . '` AS tr ON tr.object_id = p.ID';
+		$query[ ] = 'JOIN `' . $this->db->term_taxonomy . '` AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id';
+		$query[ ] = 'JOIN `' . $this->db->terms . '` AS t ON t.term_id = tt.term_id';
 
 		// Add taxonomy statement
 		$query[ ]      = 'WHERE tt.taxonomy = %s';
@@ -84,7 +84,8 @@ class UTCW_Data {
 		}
 
 		// Try to sort the result using SQL if possible
-		$order = $this->config->reverse ? 'DESC' : 'ASC';
+		$order  = $this->config->reverse ? 'DESC' : 'ASC';
+		$binary = $this->config->case_sensitive ? 'BINARY ' : '';
 
 		// TODO: Case sensitive sorting
 		switch ( $this->config->order ) {
@@ -93,15 +94,15 @@ class UTCW_Data {
 				break;
 
 			case 'name':
-				$query[ ] = 'ORDER BY name ' . $order;
+				$query[ ] = 'ORDER BY ' . $binary . 'name ' . $order;
 				break;
 
 			case 'slug':
-				$query[ ] = 'ORDER BY slug ' . $order;
+				$query[ ] = 'ORDER BY ' . $binary . 'slug ' . $order;
 				break;
 
 			case 'id':
-				$query[ ] = 'ORDER BY id ' . $order;
+				$query[ ] = 'ORDER BY term_id ' . $order;
 				break;
 
 			case 'count':

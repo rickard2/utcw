@@ -13,6 +13,8 @@ License: GPLv2
  * @todo Rendering class
  * @todo Data provider class
  * @todo Find plugin compatibility, both PHP, WP and jQuery
+ * @todo Shortcode
+ * @todo Function for plugin / theme authors
  */
 
 define( 'UTCW_VERSION', '2.0-alpha' );

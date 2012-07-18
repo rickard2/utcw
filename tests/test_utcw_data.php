@@ -98,6 +98,10 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$this->helper_contains( $instance, 't.term_id NOT IN (1,2,3)' );
 	}
 
+	function test_days_old() {
+		$this->helper_contains( array('days_old' => 1), "post_date > '" . date('Y-m-d', strtotime('yesterday')) . "'");
+	}
+
 	function helper_contains( $instance, $string, $authenticated = false )
 	{
 		$utcw = $authenticated ? $this->utcw_authenticated : $this->utcw_not_authenticated;

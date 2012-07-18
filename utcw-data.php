@@ -69,6 +69,11 @@ class UTCW_Data {
 			$query[ ] = 'AND t.term_id ' . $tags_list_operator . ' (' . join( ',', $tags_list_parameters ) . ')';
 		}
 
+		// Add days old statement
+		if ( $this->config->days_old ) {
+			$query[ ] = "AND post_date > '" . date( 'Y-m-d', strtotime( '-' . $this->config->days_old . ' days' ) ) . "'";
+		}
+
 		$query = join( "\n", $query );
 		$query = $this->db->prepare( $query, $parameters );
 

@@ -11,6 +11,9 @@ class UTCW_Data {
 		$this->db     = $db;
 	}
 
+	/**
+	 * @return UTCW_Term[]
+	 */
 	function get_terms()
 	{
 		$query = array();
@@ -116,18 +119,79 @@ class UTCW_Data {
 		$query = join( "\n", $query );
 		$query = $this->db->prepare( $query, $parameters );
 
-		// TODO: Add sizes
 		// TODO: Add coloring
 		// TODO: Order by color
 
 		$result = $this->db->get_results( $query );
 		$terms  = array();
 
+		$min_count = PHP_INT_MAX;
+		$max_count = 0;
+
 		foreach ( $result as $item ) {
+			if ( $item->count < $min_count ) {
+				$min_count = $item->count;
+			}
+
+			if ( $item->count > $max_count ) {
+				$max_count = $item->count;
+			}
+
 			$item->taxonomy = $this->config->taxonomy;
 			$terms[ ]       = new UTCW_Term( $item );
 		}
 
+		$font_step = $this->calc_step( $min_count, $max_count, $this->config->size_from, $this->config->size_to );
+
+		foreach ( $terms as $term ) {
+			$term->size = $this->calc_size( $this->config->size_from, $term->count, $min_count, $font_step );
+		}
+
 		return $terms;
+	}
+
+	/**
+	 * @param int $size_from
+	 * @param int $count
+	 * @param int $min_count
+	 * @param int $font_step
+	 *
+	 * @return mixed
+	 * @since 2.0
+	 */
+	private function calc_size( $size_from, $count, $min_count, $font_step )
+	{
+		return $size_from + ( ( $count - $min_count ) * $font_step );
+	}
+
+	/**
+	 * Used to calculate how step size in spanning values
+	 * Thank you wordpress for this
+	 *
+	 * @param integer $min
+	 * @param integer $max
+	 * @param integer $from
+	 * @param integer $to
+	 *
+	 * @return integer
+	 * @since 1.0
+	 */
+	private function calc_step( $min, $max, $from, $to )
+	{
+		$spread = $max - $min;
+
+		if ( $spread <= 0 ) {
+			$spread = 1;
+		}
+
+		$font_spread = $to - $from;
+
+		if ( $font_spread < 0 ) {
+			$font_spread = 1;
+		}
+
+		$step = $font_spread / $spread;
+
+		return $step;
 	}
 }

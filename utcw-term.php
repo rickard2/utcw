@@ -9,6 +9,7 @@ class UTCW_Term {
 	public $link;
 	public $color;
 	public $taxonomy;
+	public $size;
 
 	function __construct( stdClass $input, $term_link_callback = 'get_term_link' )
 	{

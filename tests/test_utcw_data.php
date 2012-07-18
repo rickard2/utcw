@@ -31,7 +31,10 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 
 	function getUTCWMock()
 	{
-		$mock = $this->getMock( 'UTCW_Plugin', array( 'get_allowed_taxonomies', 'get_allowed_post_types', 'is_authenticated_user' ), array(), '', false );
+		$mock = $this->getMock( 'UTCW_Plugin', array(
+													'get_allowed_taxonomies', 'get_allowed_post_types',
+													'is_authenticated_user'
+											   ), array(), '', false );
 
 		$mock->expects( $this->any() )
 			->method( 'get_allowed_taxonomies' )
@@ -51,32 +54,32 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 
 	function test_taxonomy()
 	{
-		$this->helper_contains( array( 'taxonomy' => 'category' ), "taxonomy = 'category'" );
+		$this->helper_query_contains( array( 'taxonomy' => 'category' ), "taxonomy = 'category'" );
 	}
 
 	function test_author()
 	{
-		$this->helper_contains( array( 'authors' => array( 1, 2, 3 ) ), 'post_author IN (1,2,3)' );
+		$this->helper_query_contains( array( 'authors' => array( 1, 2, 3 ) ), 'post_author IN (1,2,3)' );
 	}
 
 	function test_single_post_type()
 	{
-		$this->helper_contains( array( 'post_type' => 'post' ), "post_type IN ('post')" );
+		$this->helper_query_contains( array( 'post_type' => 'post' ), "post_type IN ('post')" );
 	}
 
 	function test_multiple_post_types()
 	{
-		$this->helper_contains( array( 'post_type' => array( 'post', 'page' ) ), "post_type IN ('post','page')" );
+		$this->helper_query_contains( array( 'post_type' => array( 'post', 'page' ) ), "post_type IN ('post','page')" );
 	}
 
 	function test_post_status_not_authenticated()
 	{
-		$this->helper_contains( array(), "post_status = 'publish'" );
+		$this->helper_query_contains( array(), "post_status = 'publish'" );
 	}
 
 	function test_post_status_authenticated()
 	{
-		$this->helper_contains( array(), "post_status IN ('publish','private')", 'authenticated' );
+		$this->helper_query_contains( array(), "post_status IN ('publish','private')", 'authenticated' );
 	}
 
 	function test_tags_list_include()
@@ -85,7 +88,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 			'tags_list_type' => 'include',
 			'tags_list'      => array( 1, 2, 3 ),
 		);
-		$this->helper_contains( $instance, 't.term_id IN (1,2,3)' );
+		$this->helper_query_contains( $instance, 't.term_id IN (1,2,3)' );
 	}
 
 	function test_tags_list_exclude()
@@ -94,68 +97,102 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 			'tags_list_type' => 'exclude',
 			'tags_list'      => array( 1, 2, 3 ),
 		);
-		$this->helper_contains( $instance, 't.term_id NOT IN (1,2,3)' );
+		$this->helper_query_contains( $instance, 't.term_id NOT IN (1,2,3)' );
 	}
 
 	function test_days_old()
 	{
-		$this->helper_contains( array( 'days_old' => 1 ), "post_date > '" . date( 'Y-m-d', strtotime( 'yesterday' ) ) . "'" );
+		$this->helper_query_contains( array( 'days_old' => 1 ), "post_date > '" . date( 'Y-m-d', strtotime( 'yesterday' ) ) . "'" );
 	}
 
 	function test_minimum()
 	{
-		$this->helper_contains( array( 'minimum' => 5 ), 'HAVING count >= 5' );
+		$this->helper_query_contains( array( 'minimum' => 5 ), 'HAVING count >= 5' );
 	}
 
 	function test_order_name()
 	{
-		$this->helper_contains( array( 'order' => 'name', 'reverse' => false ), 'ORDER BY name ASC' );
+		$this->helper_query_contains( array( 'order' => 'name', 'reverse' => false ), 'ORDER BY name ASC' );
 	}
 
 	function test_order_name_reverse()
 	{
-		$this->helper_contains( array( 'order' => 'name', 'reverse' => true ), 'ORDER BY name DESC' );
+		$this->helper_query_contains( array( 'order' => 'name', 'reverse' => true ), 'ORDER BY name DESC' );
 	}
 
-	function test_order_name_case_sensitive() {
-		$this->helper_contains( array( 'order' => 'name', 'case_sensitive' => true), 'ORDER BY BINARY name ASC' );
+	function test_order_name_case_sensitive()
+	{
+		$this->helper_query_contains( array(
+										   'order'        => 'name', 'case_sensitive' => true
+									  ), 'ORDER BY BINARY name ASC' );
 	}
 
 	function test_order_slug()
 	{
-		$this->helper_contains( array( 'order' => 'slug', 'reverse' => false ), 'ORDER BY slug ASC' );
+		$this->helper_query_contains( array( 'order' => 'slug', 'reverse' => false ), 'ORDER BY slug ASC' );
 	}
 
 	function test_order_slug_reverse()
 	{
-		$this->helper_contains( array( 'order' => 'slug', 'reverse' => true ), 'ORDER BY slug DESC' );
+		$this->helper_query_contains( array( 'order' => 'slug', 'reverse' => true ), 'ORDER BY slug DESC' );
 	}
 
-	function test_order_slug_case_sensitive() {
-		$this->helper_contains( array( 'order' => 'slug', 'case_sensitive' => true), 'ORDER BY BINARY slug ASC');
+	function test_order_slug_case_sensitive()
+	{
+		$this->helper_query_contains( array(
+										   'order'        => 'slug', 'case_sensitive' => true
+									  ), 'ORDER BY BINARY slug ASC' );
 	}
 
 	function test_order_id()
 	{
-		$this->helper_contains( array( 'order' => 'id', 'reverse' => false ), 'ORDER BY term_id ASC' );
+		$this->helper_query_contains( array( 'order' => 'id', 'reverse' => false ), 'ORDER BY term_id ASC' );
 	}
 
 	function test_order_id_reverse()
 	{
-		$this->helper_contains( array( 'order' => 'id', 'reverse' => true ), 'ORDER BY term_id DESC' );
+		$this->helper_query_contains( array( 'order' => 'id', 'reverse' => true ), 'ORDER BY term_id DESC' );
 	}
 
 	function test_order_count()
 	{
-		$this->helper_contains( array( 'order' => 'count', 'reverse' => false ), 'ORDER BY count ASC' );
+		$this->helper_query_contains( array( 'order' => 'count', 'reverse' => false ), 'ORDER BY count ASC' );
 	}
 
 	function test_order_count_reverse()
 	{
-		$this->helper_contains( array( 'order' => 'count', 'reverse' => true ), 'ORDER BY count DESC' );
+		$this->helper_query_contains( array( 'order' => 'count', 'reverse' => true ), 'ORDER BY count DESC' );
 	}
 
-	function helper_contains( $instance, $string, $authenticated = false )
+	/**
+	 * @param array $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_size( $query_terms )
+	{
+		$instance = array(
+			'size_from' => 1,
+			'size_to'   => 10,
+		);
+
+		$config = new UTCW_Config( $instance, $this->utcw_authenticated );
+		$db     = $this->getWPDBMock();
+
+		$db->expects( $this->once() )
+			->method( 'get_results' )
+			->will( $this->returnValue( $query_terms ) );
+
+		$data  = new UTCW_Data( $config, $db );
+		$terms = $data->get_terms();
+
+		foreach ( $terms as $term ) {
+			$this->assertLessThanOrEqual( 10, $term->size );
+			$this->assertGreaterThanOrEqual( 1, $term->size );
+		}
+	}
+
+	function helper_query_contains( $instance, $string, $authenticated = false )
 	{
 		$utcw = $authenticated ? $this->utcw_authenticated : $this->utcw_not_authenticated;
 
@@ -169,5 +206,23 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 
 		$data = new UTCW_Data( $config, $db );
 		$data->get_terms();
+	}
+
+	function terms()
+	{
+		$terms = array();
+
+		for ( $x = 0; $x < 10; $x ++ ) {
+			$term = new stdClass;
+
+			$term->term_id = $x;
+			$term->name    = 'Test term ' . $x;
+			$term->slug    = 'term-' . $x;
+			$term->count   = $x * 10;
+
+			$terms[ ] = $term;
+		}
+
+		return array( array( $terms ) );
 	}
 }

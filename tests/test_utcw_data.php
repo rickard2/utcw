@@ -16,7 +16,6 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 
 	function setUp()
 	{
-
 		$this->utcw_not_authenticated = $this->getUTCWMock();
 
 		$this->utcw_not_authenticated->expects( $this->any() )
@@ -165,6 +164,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 
 		$db->expects( $this->once() )
 			->method( 'get_results' )
+			->will( $this->returnValue( array() ) )
 			->with( $this->stringContains( $string ) );
 
 		$data = new UTCW_Data( $config, $db );

@@ -87,7 +87,6 @@ class UTCW_Data {
 		$order  = $this->config->reverse ? 'DESC' : 'ASC';
 		$binary = $this->config->case_sensitive ? 'BINARY ' : '';
 
-		// TODO: Case sensitive sorting
 		switch ( $this->config->order ) {
 			case 'random':
 				$query[ ] = 'ORDER BY RAND() ' . $order;
@@ -117,10 +116,18 @@ class UTCW_Data {
 		$query = join( "\n", $query );
 		$query = $this->db->prepare( $query, $parameters );
 
+		// TODO: Add sizes
+		// TODO: Add coloring
 		// TODO: Order by color
 
 		$result = $this->db->get_results( $query );
+		$terms  = array();
 
-		return $result;
+		foreach ( $result as $item ) {
+			$item->taxonomy = $this->config->taxonomy;
+			$terms[ ]       = new UTCW_Term( $item );
+		}
+
+		return $terms;
 	}
 }

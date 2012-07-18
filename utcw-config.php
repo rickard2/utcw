@@ -432,7 +432,7 @@ class UTCW_Config {
 					case 'hover_border_color':
 					case 'color_span_to':
 					case 'color_span_from':
-						$valid = preg_match( '/#([a-f0-9]{6}|[a-f0-9]{3})/i', $input[ $key ] ) > 0;
+						$valid = preg_match( UTCW_HEX_COLOR_REGEX, $input[ $key ] ) > 0;
 						break;
 
 					case 'taxonomy':

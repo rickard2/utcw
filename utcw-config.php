@@ -260,7 +260,7 @@ class UTCW_Config {
 	public $color_span_from;
 
 	/**
-	 * @var string
+	 * @var array
 	 * @since 2.0
 	 */
 	public $authors;
@@ -437,7 +437,7 @@ class UTCW_Config {
 							$input[ $key ] = explode( ',', $input[ $key ] );
 						}
 
-						$valid = count( array_intersect( $this->allowed_post_types, $input[ $key ] ) ) == count( $input[ $key ] );
+						$valid = $input[ $key ] && count( array_intersect( $this->allowed_post_types, $input[ $key ] ) ) == count( $input[ $key ] );
 						break;
 
 					case 'authors':

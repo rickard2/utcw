@@ -20,6 +20,8 @@ define( 'UTCW_DEV', false );
 
 require 'utcw-config.php';
 require 'utcw-widget.php';
+require 'utcw-data.php';
+require 'utcw-render.php';
 
 class UTCW_Plugin {
 

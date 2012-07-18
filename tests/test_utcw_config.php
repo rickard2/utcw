@@ -11,7 +11,6 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 
 	function test_config_defaults()
 	{
-
 		$reflection = new ReflectionClass( 'UTCW_Config' );
 		$properties = $reflection->getDefaultProperties();
 		$options    = $properties[ 'options' ];
@@ -466,6 +465,11 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 	{
 		// TODO: this test should include multiple values but without dynamic fetching of post types there's only one valid value
 		$this->helper_array_ok( 'post_type', 'post' );
+	}
+
+	function test_post_type_empty_not_ok()
+	{
+		$this->helper_array_fail( 'post_type', array() );
 	}
 
 	function test_color_span_from_ok()

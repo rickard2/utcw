@@ -502,6 +502,28 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->helper_int_array_fail( 'tags_list' );
 	}
 
+	function test_color_set_ok()
+	{
+		$this->helper_array_ok( 'color_set', array( '#bada55', '#fff', '#000', '#123456', '#fafafa' ), array('#bada55', '#ffffff', '#000000','#123456','#fafafa') );
+	}
+
+	function test_color_set_fail()
+	{
+		$this->helper_array_fail( 'color_set', array( '#badaxx', 'not a color', 123456, '#fbfa' ) );
+	}
+
+	function test_color_set_csv_ok()
+	{
+		$this->helper_array_ok( 'color_set', '#bada55,#fff,#000,#123456,#fafafa', array('#bada55', '#ffffff', '#000000','#123456','#fafafa') );
+	}
+
+	function test_color_set_expands()
+	{
+		$instance[ 'color_set' ] = array( '#fff', '#fba' );
+		$config                  = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( array( '#ffffff', '#ffbbaa' ), $config->color_set );
+	}
+
 	function test_unknown_attribute()
 	{
 		$attr              = '__unknown';
@@ -594,14 +616,18 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->assertNotEquals( $config->$option, $instance[ $option ] );
 	}
 
-	private function helper_array_ok( $option, $ok_array = array( 'test' ) )
+	private function helper_array_ok( $option, $ok_array = array( 'test' ), $expected = false )
 	{
+		if ( $expected === false ) {
+			$expected = $ok_array;
+		}
+
+		$expected = is_array( $expected ) ? $expected : explode( ',', $expected );
+
 		$instance[ $option ] = $ok_array;
 		$config              = new UTCW_Config( $instance, $this->utcw );
 
-		$result = is_array( $ok_array ) ? $ok_array : explode( ',', $ok_array );
-
-		$this->assertEquals( $config->$option, $result );
+		$this->assertEquals( $config->$option, $expected );
 	}
 
 	private function helper_array_fail( $option, $fail_array = 'not an array' )

@@ -266,6 +266,12 @@ class UTCW_Config {
 	public $authors;
 
 	/**
+	 * @var array
+	 * @since 2.0
+	 */
+	public $color_set;
+
+	/**
 	 * @var bool
 	 * @since 2.0
 	 */
@@ -320,6 +326,7 @@ class UTCW_Config {
 		'color_span_to'      => '',
 		'color_span_from'    => '',
 		'authors'            => array(),
+		'color_set'          => array(),
 	);
 
 	/**
@@ -435,6 +442,14 @@ class UTCW_Config {
 						$valid = preg_match( UTCW_HEX_COLOR_REGEX, $input[ $key ] ) > 0;
 						break;
 
+					case 'color_set':
+						if ( ! is_array( $input[ $key ] ) ) {
+							$input[ $key ] = explode( ',', $input[ $key ] );
+						}
+
+						$valid = $input[ $key ] && array_filter( $input[ $key ], create_function( '$item', 'return preg_match( UTCW_HEX_COLOR_REGEX, $item );' ) ) == $input[ $key ];
+						break;
+
 					case 'taxonomy':
 						$valid = in_array( $input[ $key ], $this->allowed_taxonomies );
 						break;
@@ -461,8 +476,19 @@ class UTCW_Config {
 					continue;
 				}
 
-				// Special handling of some properties which have string defaults but integer values expected
-				if ( in_array( $key, array( 'letter_spacing', 'word_spacing', 'tag_spacing', 'line_height' ) ) ) {
+				// Special handling of the color_set config attribute which needs to be expanded to full 6 digit hexadecimal values
+				if ( $key == 'color_set' ) {
+					foreach ( $input[ $key ] as $cs_key => $color ) {
+						if ( strlen( $color ) == 4 ) {
+							$red                      = substr( $color, 1, 1 );
+							$green                    = substr( $color, 2, 1 );
+							$blue                     = substr( $color, 3, 1 );
+							$input[ $key ][ $cs_key ] = sprintf( '#%s%s%s%s%s%s', $red, $red, $green, $green, $blue, $blue );
+						}
+					}
+					$this->$key = $input[ $key ];
+				} // Special handling of some properties which have string defaults but integer values expected
+				else if ( in_array( $key, array( 'letter_spacing', 'word_spacing', 'tag_spacing', 'line_height' ) ) ) {
 					$this->$key = intval( $input[ $key ] );
 				} else if ( is_string( $this->options[ $key ] ) && is_string( $input[ $key ] ) && strlen( $input[ $key ] ) > 0 ) {
 					$this->$key = $input[ $key ];

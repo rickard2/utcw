@@ -116,15 +116,15 @@ class UTCW_Data {
 		$query[ ]      = 'LIMIT %d';
 		$parameters[ ] = $this->config->max;
 
+		// Build query
 		$query = join( "\n", $query );
 		$query = $this->db->prepare( $query, $parameters );
 
-		// TODO: Add coloring
-		// TODO: Order by color
-
+		// Fetch terms from DB
 		$result = $this->db->get_results( $query );
 		$terms  = array();
 
+		// Calculate sizes
 		$min_count = PHP_INT_MAX;
 		$max_count = 0;
 
@@ -147,7 +147,61 @@ class UTCW_Data {
 			$term->size = $this->calc_size( $this->config->size_from, $term->count, $min_count, $font_step );
 		}
 
+		// TODO: Order by color
+		// Set colors
+		switch ( $this->config->color ) {
+			case 'random':
+				foreach ( $terms as $term ) {
+					$term->color = sprintf( '#%x%x%x', rand() % 255, rand() % 255, rand() % 255 );
+				}
+				break;
+
+			case 'set':
+				if ( $this->config->color_set ) {
+					foreach ( $terms as $term ) {
+						$term->color = $this->config->color_set[ array_rand( $this->config->color_set ) ];
+					}
+				}
+				break;
+
+			case 'span':
+				if ( $this->config->color_span_from && $this->config->color_span_to ) {
+					preg_match_all( '/[0-9a-f]{2}/i', $this->config->color_span_from, $cf_rgb_matches );
+					list( $red_from, $green_from, $blue_from ) = array_map( 'hexdec', $cf_rgb_matches[ 0 ] );
+
+					preg_match_all( '/[0-9a-f]{2}/i', $this->config->color_span_to, $ct_rgb_matches );
+					list( $red_to, $green_to, $blue_to ) = array_map( 'hexdec', $cf_rgb_matches[ 0 ] );
+
+					$colors             = new stdClass;
+					$colors->red_from   = $red_from;
+					$colors->red_to     = $red_to;
+					$colors->green_from = $green_from;
+					$colors->green_to   = $green_to;
+					$colors->blue_from  = $blue_from;
+					$colors->blue_to    = $blue_to;
+
+					foreach ( $terms as $term ) {
+						$term->color = $this->calc_color( $min_count, $max_count, $colors, $term->count );
+					}
+				}
+		}
+
 		return $terms;
+	}
+
+	function calc_color( $min_count, $max_count, stdClass $colors, $count )
+	{
+		$red_step   = $this->calc_step( $min_count, $max_count, $colors->red_from, $colors->red_to );
+		$green_step = $this->calc_step( $min_count, $max_count, $colors->green_from, $colors->green_to );
+		$blue_step  = $this->calc_step( $min_count, $max_count, $colors->blue_from, $colors->blue_to );
+
+		$red   = $this->calc_size( $colors->red_from, $count, $min_count, $red_step );
+		$green = $this->calc_size( $colors->green_from, $count, $min_count, $green_step );
+		$blue  = $this->calc_size( $colors->blue_from, $count, $min_count, $blue_step );
+
+		$color = sprintf( '#%x%x%x', $red, $green, $blue );
+
+		return $color;
 	}
 
 	/**

@@ -176,6 +176,164 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 			'size_to'   => 10,
 		);
 
+		$terms = $this->helper_get_terms( $instance, $query_terms );
+
+		foreach ( $terms as $term ) {
+			$this->assertLessThanOrEqual( 10, $term->size );
+			$this->assertGreaterThanOrEqual( 1, $term->size );
+		}
+	}
+
+	/**
+	 * @param array $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_color_random( $query_terms )
+	{
+		$terms = $this->helper_get_terms( array( 'color' => 'random' ), $query_terms );
+
+		foreach ( $terms as $term ) {
+			$this->assertNotEmpty( $term->color );
+		}
+	}
+
+	/**
+	 * @param array $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_color_set( $query_terms )
+	{
+		$color_set = array( '#fafafa', '#bada55', '#123456' );
+
+		$instance = array(
+			'color'     => 'set',
+			'color_set' => $color_set,
+		);
+
+		$terms = $this->helper_get_terms( $instance, $query_terms );
+
+		foreach ( $terms as $term ) {
+			$this->assertContains( $term->color, $color_set );
+		}
+	}
+
+	/**
+	 * @param array $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_color_span_smallest_first( $query_terms )
+	{
+		$instance = array(
+			'color'           => 'span',
+			'color_span_from' => '#222222',
+			'color_span_to'   => '#333333',
+		);
+
+		$colors = new stdClass;
+
+		$colors->red_from = $colors->green_from = $colors->blue_from = 0x22;
+		$colors->red_to   = $colors->green_to = $colors->blue_to = 0x33;
+
+		$this->helper_test_color_span( $instance, $colors, $query_terms );
+	}
+
+	/**
+	 * @param array $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_color_span_biggest_first( $query_terms )
+	{
+		$instance = array(
+			'color'           => 'span',
+			'color_span_from' => '#333333',
+			'color_span_to'   => '#222222',
+		);
+
+		$colors = new stdClass;
+
+		$colors->red_from = $colors->green_from = $colors->blue_from = 0x22;
+		$colors->red_to   = $colors->green_to = $colors->blue_to = 0x33;
+
+		$this->helper_test_color_span( $instance, $colors, $query_terms );
+	}
+
+	/**
+	 * @param array $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_color_span_letters( $query_terms )
+	{
+		$instance = array(
+			'color'           => 'span',
+			'color_span_from' => '#bbbbbb',
+			'color_span_to'   => '#dddddd',
+		);
+
+		$colors = new stdClass;
+
+		$colors->red_from = $colors->green_from = $colors->blue_from = 0xbb;
+		$colors->red_to   = $colors->green_to = $colors->blue_to = 0xdd;
+
+		$this->helper_test_color_span( $instance, $colors, $query_terms );
+	}
+
+	/**
+	 * @param array $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_color_span( $query_terms )
+	{
+		$instance = array(
+			'color'           => 'span',
+			'color_span_from' => '#D010EB',
+			'color_span_to'   => '#999999',
+		);
+
+		$colors = new stdClass;
+
+		$colors->red_from   = 0x99;
+		$colors->green_from = 0x10;
+		$colors->blue_from  = 0x99;
+
+		$colors->red_to   = 0xd0;
+		$colors->green_to = 0x99;
+		$colors->blue_to  = 0xeb;
+
+		$this->helper_test_color_span( $instance, $colors, $query_terms );
+	}
+
+	function helper_test_color_span( $instance, $colors, $query_terms )
+	{
+
+		$terms = $this->helper_get_terms( $instance, $query_terms );
+
+		foreach ( $terms as $term ) {
+
+			$matches = preg_match_all( "/[0-9a-f]{2}/i", $term->color, $rgb_matches );
+
+			$this->assertEquals( 3, $matches, 'Term color should always be in six digit hexadecimal value colors' );
+
+			list( $red, $green, $blue ) = array_map( 'hexdec', $rgb_matches[ 0 ] );
+
+			$this->assertLessThanOrEqual( $colors->red_to, $red );
+			$this->assertGreaterThanOrEqual( $colors->red_from, $red );
+
+			$this->assertLessThanOrEqual( $colors->green_to, $green );
+			$this->assertGreaterThanOrEqual( $colors->green_from, $green );
+
+			$this->assertLessThanOrEqual( $colors->blue_to, $blue );
+			$this->assertGreaterThanOrEqual( $colors->blue_from, $blue );
+		}
+	}
+
+	function helper_get_terms( $instance, $query_terms )
+	{
 		$config = new UTCW_Config( $instance, $this->utcw_authenticated );
 		$db     = $this->getWPDBMock();
 
@@ -183,13 +341,8 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 			->method( 'get_results' )
 			->will( $this->returnValue( $query_terms ) );
 
-		$data  = new UTCW_Data( $config, $db );
-		$terms = $data->get_terms();
-
-		foreach ( $terms as $term ) {
-			$this->assertLessThanOrEqual( 10, $term->size );
-			$this->assertGreaterThanOrEqual( 1, $term->size );
-		}
+		$data = new UTCW_Data( $config, $db );
+		return $data->get_terms();
 	}
 
 	function helper_query_contains( $instance, $string, $authenticated = false )

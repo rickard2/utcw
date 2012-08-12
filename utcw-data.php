@@ -147,7 +147,6 @@ class UTCW_Data {
 			$term->size = $this->calc_size( $this->config->size_from, $term->count, $min_count, $font_step );
 		}
 
-		// TODO: Order by color
 		// Set colors
 		switch ( $this->config->color ) {
 			case 'random':
@@ -186,10 +185,32 @@ class UTCW_Data {
 				}
 		}
 
+		// Last order by color if selected, this is the only order which can't be done in the DB
+		if ( $this->config->order == 'color' ) {
+			// Change the argument order to change the sort order
+			$sort_fn_arguments = $this->config->reverse ? '$b,$a' : '$a,$b';
+
+			// There's no difference in sortin case sensitive or case in-sensitive since
+			// the colors are always lower case and internally generated
+
+			$sort_fn = create_function( $sort_fn_arguments, 'return strcmp( $a->color, $b->color );' );
+
+			usort( $terms, $sort_fn );
+		}
+
 		return $terms;
 	}
 
-	function calc_color( $min_count, $max_count, stdClass $colors, $count )
+	/**
+	 * @param int      $min_count
+	 * @param int      $max_count
+	 * @param stdClass $colors
+	 * @param int      $count
+	 *
+	 * @return string
+	 * @since 2.0
+	 */
+	private function calc_color( $min_count, $max_count, stdClass $colors, $count )
 	{
 		$red_step   = $this->calc_step( $min_count, $max_count, $colors->red_from, $colors->red_to );
 		$green_step = $this->calc_step( $min_count, $max_count, $colors->green_from, $colors->green_to );

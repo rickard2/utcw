@@ -165,6 +165,51 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	}
 
 	/**
+	 * @param $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_order_color( $query_terms )
+	{
+		$instance = array(
+			'order'   => 'color',
+			'reverse' => false,
+			'color'   => 'random'
+		);
+
+		$terms = $this->helper_get_terms( $instance, $query_terms );
+
+		$previous = array_shift( $terms );
+
+		foreach ( $terms as $term ) {
+			$this->assertGreaterThanOrEqual( 0, strcmp( $term->color, $previous->color ) );
+			$previous = $term;
+		}
+	}
+
+	/**
+	 * @param $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_order_color_reverse( $query_terms )
+	{
+		$instance = array(
+			'order'   => 'color',
+			'reverse' => true,
+			'color'   => 'random'
+		);
+
+		$terms    = $this->helper_get_terms( $instance, $query_terms );
+		$previous = array_shift( $terms );
+
+		foreach ( $terms as $term ) {
+			$this->assertLessThanOrEqual( 0, strcmp( $term->color, $previous->color ) );
+			$previous = $term;
+		}
+	}
+
+	/**
 	 * @param array $query_terms
 	 *
 	 * @dataProvider terms

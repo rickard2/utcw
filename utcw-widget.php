@@ -9,6 +9,11 @@
 class UTCW extends WP_Widget {
 
 	/**
+	 * @var UTCW_Plugin
+	 */
+	private $plugin;
+
+	/**
 	 * Constructor
 	 * @return UTCW
 	 * @since 1.0
@@ -17,6 +22,8 @@ class UTCW extends WP_Widget {
 	{
 		$options = array( 'description' => __( 'Highly configurable tag cloud', 'utcw' ) );
 		parent::WP_Widget( false, __( 'Ultimate Tag Cloud', 'utcw' ), $options );
+
+		$this->plugin = UTCW_Plugin::get_instance();
 	}
 
 	/**
@@ -30,8 +37,7 @@ class UTCW extends WP_Widget {
 	 */
 	function update( array $new_instance, array $old_instance )
 	{
-		$config = new UTCW_Config( $new_instance, UTCW_Plugin::get_instance() );
-
+		$config = new UTCW_Config( $new_instance, $this->plugin );
 		return $config->get_instance();
 	}
 
@@ -46,23 +52,17 @@ class UTCW extends WP_Widget {
 	function form( array $instance )
 	{
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$config = new UTCW_Config( $instance, UTCW_Plugin::get_instance() );
-
+		$config = new UTCW_Config( $instance, $this->plugin );
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$configurations = get_option( 'utcw_saved_configs' );
-
-		$args = array( 'public' => true );
-
+		$configurations = $this->plugin->get_configurations();
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$available_post_types = get_post_types( $args );
+		$available_post_types = $this->plugin->get_allowed_post_types();
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$available_taxonomies = get_taxonomies( array(), 'objects' );
-
-		$terms = array();
-
-		foreach ( $available_taxonomies as $taxonomy ) {
-			$terms[ $taxonomy->name ] = get_terms( $taxonomy->name );
-		}
+		$available_taxonomies = $this->plugin->get_allowed_taxonomies_objects();
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$users = $this->plugin->get_users();
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$terms = $this->plugin->get_terms();
 
 		// Content of the widget settings form
 		require 'pages/settings.php';
@@ -79,26 +79,10 @@ class UTCW extends WP_Widget {
 	{
 		global $wpdb;
 
-		$config = new UTCW_Config( $instance, UTCW_Plugin::get_instance() );
+		$config = new UTCW_Config( $instance, $this->plugin );
 		$data   = new UTCW_Data( $config, $wpdb );
+		$render = new UTCW_Render( $config, $data );
 
-		$terms = $data->get_terms();
-	}
-
-	/**
-	 * Returns the users on this blog
-	 * @return array
-	 */
-	function get_users()
-	{
-		global $wp_version;
-
-		if ( (float)$wp_version < 3.1 ) {
-			return get_users_of_blog();
-		} else {
-			return get_users();
-		}
+		$render->render( $args );
 	}
 }
-
-add_action( 'widgets_init', create_function( '', 'return register_widget("UTCW");' ) );

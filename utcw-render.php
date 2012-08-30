@@ -4,9 +4,10 @@ class UTCW_Render {
 
 	private $data;
 
-	public function __construct( UTCW_Data $data )
+	public function __construct( UTCW_Config $config, UTCW_Data $data )
 	{
-		$this->data = $data;
+		$this->data   = $data;
+		$this->config = $config;
 	}
 
 	public function render()
@@ -14,7 +15,8 @@ class UTCW_Render {
 		echo $this->get_cloud();
 	}
 
-	public function get_cloud() {
-
+	public function get_cloud()
+	{
+		return 'Placeholder';
 	}
 }

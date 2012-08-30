@@ -6,6 +6,7 @@
  * @var array $available_post_types
  * @var array $configurations
  * @var array $terms
+ * @var array $users
  */
 
 ?>
@@ -27,7 +28,7 @@
 	<a class="utcw-help"
 	   title="<?php _e( 'Only posts from the selected authors will be used when calculating the tag cloud.', 'utcw' ) ?>">?</a>
 	<strong><?php _e( 'Authors:', 'utcw' ) ?></strong><br>
-	<?php foreach ( $this->get_users() as $user ) : ?>
+	<?php foreach ( $users as $user ) : ?>
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'authors' ) ?>[]"
 		   id="<?php echo $this->get_field_id( 'author_' . $user->ID ) ?>"
 		   value="<?php echo $user->ID?>" <?php echo  in_array( $user->ID, $config->authors, true ) ? 'checked="checked"' : ''; ?>>

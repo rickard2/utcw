@@ -11,11 +11,8 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 
 	function test_config_defaults()
 	{
-		$reflection = new ReflectionClass( 'UTCW_Config' );
-		$properties = $reflection->getDefaultProperties();
-		$options    = $properties[ 'options' ];
-
 		$config   = new UTCW_Config( array(), $this->utcw );
+		$options  = $config->get_defaults();
 		$instance = $config->get_instance();
 
 		$this->assertEquals( $options, $instance );
@@ -136,14 +133,14 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->helper_int_fail( 'word_spacing' );
 	}
 
-	function test_case_ok()
+	function test_text_transform_ok()
 	{
-		$this->helper_string_ok( 'case', 'capitalize' );
+		$this->helper_string_ok( 'text_transform', 'capitalize' );
 	}
 
 	function test_case_fail()
 	{
-		$this->helper_string_fail( 'case', 'invalid case' );
+		$this->helper_string_fail( 'text_transform', 'invalid text_transform' );
 	}
 
 	function test_case_sensitive_ok()
@@ -504,7 +501,13 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 
 	function test_color_set_ok()
 	{
-		$this->helper_array_ok( 'color_set', array( '#bada55', '#fff', '#000', '#123456', '#fafafa' ), array('#bada55', '#ffffff', '#000000','#123456','#fafafa') );
+		$this->helper_array_ok( 'color_set', array( '#bada55', '#fff', '#000', '#123456', '#fafafa' ), array(
+																											'#bada55',
+																											'#ffffff',
+																											'#000000',
+																											'#123456',
+																											'#fafafa'
+																									   ) );
 	}
 
 	function test_color_set_fail()
@@ -514,7 +517,10 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 
 	function test_color_set_csv_ok()
 	{
-		$this->helper_array_ok( 'color_set', '#bada55,#fff,#000,#123456,#fafafa', array('#bada55', '#ffffff', '#000000','#123456','#fafafa') );
+		$this->helper_array_ok( 'color_set', '#bada55,#fff,#000,#123456,#fafafa', array(
+																					   '#bada55', '#ffffff', '#000000',
+																					   '#123456', '#fafafa'
+																				  ) );
 	}
 
 	function test_color_set_expands()

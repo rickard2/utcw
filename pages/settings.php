@@ -282,23 +282,23 @@
 	<a class="utcw-help"
 	   title="<?php _e( 'The tags can be transformed in a number of different ways. lowercase, UPPERCASE or Capitalized.', 'utcw' )?>">?</a>
 	<strong><?php _e( 'Transform tags:', 'utcw' ) ?></strong><br>
-	<input type="radio" name="<?php echo $this->get_field_name( 'case' ) ?>"
+	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_off' ) ?>"
-		   value="off" <?php echo $config->case == 'off' ? 'checked="checked"' : ''; ?>>
+		   value="off" <?php echo $config->text_transform == 'off' ? 'checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'text_transform_off' ) ?>"><?php _e( 'Off', 'utcw' ) ?></label><br>
-	<input type="radio" name="<?php echo $this->get_field_name( 'case' ) ?>"
+	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_lowercase' ) ?>"
-		   value="lowercase" <?php echo $config->case == 'lowercase' ? ' checked="checked"' : ''; ?>>
+		   value="lowercase" <?php echo $config->text_transform == 'lowercase' ? ' checked="checked"' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'text_transform_lowercase' ) ?>"><?php _e( 'To lowercase', 'utcw' ) ?></label><br>
-	<input type="radio" name="<?php echo $this->get_field_name( 'case' ) ?>"
+	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_uppercase' ) ?>"
-		   value="uppercase" <?php echo $config->case == 'uppercase' ? ' checked="checked"' : ''; ?>>
+		   value="uppercase" <?php echo $config->text_transform == 'uppercase' ? ' checked="checked"' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'text_transform_uppercase' ) ?>"><?php _e( 'To uppercase', 'utcw' ) ?></label><br>
-	<input type="radio" name="<?php echo $this->get_field_name( 'case' ) ?>"
+	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_capitalize' ) ?>"
-		   value="capitalize" <?php echo $config->case == 'capitalize' ? ' checked="checked"' : ''; ?>>
+		   value="capitalize" <?php echo $config->text_transform == 'capitalize' ? ' checked="checked"' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'text_transform_capitalize' ) ?>"><?php _e( 'Capitalize', 'utcw' ) ?></label><br>
 	<br>

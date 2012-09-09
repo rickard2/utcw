@@ -12,8 +12,6 @@ License: GPLv2
  * @todo Preview
  * @todo Rendering class
  * @todo Find plugin compatibility, both PHP, WP and jQuery
- * @todo Shortcode
- * @todo Function for plugin / theme authors
  */
 
 define( 'UTCW_VERSION', '2.0-alpha' );
@@ -70,14 +68,6 @@ class UTCW_Plugin {
 		$render = new UTCW_Render( $config, $data );
 
 		return $render->get_cloud();
-	}
-
-	/**
-	 * @todo Create dynamic asset version
-	 */
-	function init_assets()
-	{
-		wp_register_style( 'utcw', plugins_url( 'ultimate-tag-cloud-widget/utcw-css.php' ), array() );
 	}
 
 	public function init_admin_assets()

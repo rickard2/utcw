@@ -71,7 +71,7 @@ class UTCW_Config {
 	 * @var string
 	 * @since 2.0
 	 */
-	public $case;
+	public $text_transform;
 
 	/**
 	 * @var bool
@@ -293,7 +293,7 @@ class UTCW_Config {
 		'color'              => 'none',
 		'letter_spacing'     => 'normal',
 		'word_spacing'       => 'normal',
-		'case'               => 'off',
+		'text_transform'     => 'none',
 		'case_sensitive'     => false,
 		'minimum'            => 1,
 		'tags_list_type'     => 'exclude',
@@ -357,7 +357,7 @@ class UTCW_Config {
 	 * @var array
 	 * @since 2.0
 	 */
-	protected $allowed_cases = array( 'lowercase', 'uppercase', 'capitalize', 'off' );
+	protected $allowed_text_transforms = array( 'lowercase', 'uppercase', 'capitalize' );
 
 	/**
 	 * @var array
@@ -404,8 +404,8 @@ class UTCW_Config {
 						$valid = in_array( $input[ $key ], $this->allowed_orders );
 						break;
 
-					case 'case':
-						$valid = in_array( $input[ $key ], $this->allowed_cases );
+					case 'text_transform':
+						$valid = in_array( $input[ $key ], $this->allowed_text_transforms );
 						break;
 
 					case 'tags_list_type':
@@ -539,5 +539,15 @@ class UTCW_Config {
 		}
 
 		return $instance;
+	}
+
+	/**
+	 * Returns the default values for all the configuration options
+	 * @return array
+	 * @since 2.0
+	 */
+	public function get_defaults()
+	{
+		return $this->options;
 	}
 }

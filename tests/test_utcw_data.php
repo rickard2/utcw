@@ -1,13 +1,5 @@
 <?php
 
-class testWPDB extends wpdb {
-
-	function prepare( $query, $arguments )
-	{
-		$query = str_replace( '%s', "'%s'", $query );
-		return vsprintf( $query, $arguments );
-	}
-}
 
 class UTCW_Test_Data extends WP_UnitTestCase {
 

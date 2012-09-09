@@ -562,7 +562,7 @@ class UTCW_Config {
 	{
 		$instance = array();
 
-		foreach ( $this->options as $key => $default ) {
+		foreach ( array_keys( $this->options ) as $key ) {
 			$instance[ $key ] = $this->$key;
 		}
 

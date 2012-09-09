@@ -169,7 +169,7 @@ class UTCW_Data {
 					list( $red_from, $green_from, $blue_from ) = array_map( 'hexdec', $cf_rgb_matches[ 0 ] );
 
 					preg_match_all( '/[0-9a-f]{2}/i', $this->config->color_span_to, $ct_rgb_matches );
-					list( $red_to, $green_to, $blue_to ) = array_map( 'hexdec', $cf_rgb_matches[ 0 ] );
+					list( $red_to, $green_to, $blue_to ) = array_map( 'hexdec', $ct_rgb_matches[ 0 ] );
 
 					$colors             = new stdClass;
 					$colors->red_from   = $red_from;
@@ -253,19 +253,9 @@ class UTCW_Data {
 	 */
 	private function calc_step( $min, $max, $from, $to )
 	{
-		$spread = $max - $min;
-
-		if ( $spread <= 0 ) {
-			$spread = 1;
-		}
-
+		$spread      = $max - $min;
 		$font_spread = $to - $from;
-
-		if ( $font_spread < 0 ) {
-			$font_spread = 1;
-		}
-
-		$step = $font_spread / $spread;
+		$step        = $font_spread / $spread;
 
 		return $step;
 	}

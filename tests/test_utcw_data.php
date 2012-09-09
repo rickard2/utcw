@@ -292,8 +292,8 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 
 		$colors = new stdClass;
 
-		$colors->red_from = $colors->green_from = $colors->blue_from = 0x22;
-		$colors->red_to   = $colors->green_to = $colors->blue_to = 0x33;
+		$colors->red_from = $colors->green_from = $colors->blue_from = 0x33;
+		$colors->red_to   = $colors->green_to = $colors->blue_to = 0x22;
 
 		$this->helper_test_color_span( $instance, $colors, $query_terms );
 	}
@@ -334,20 +334,19 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 
 		$colors = new stdClass;
 
-		$colors->red_from   = 0x99;
+		$colors->red_from   = 0xd0;
 		$colors->green_from = 0x10;
-		$colors->blue_from  = 0x99;
+		$colors->blue_from  = 0xeb;
 
-		$colors->red_to   = 0xd0;
+		$colors->red_to   = 0x99;
 		$colors->green_to = 0x99;
-		$colors->blue_to  = 0xeb;
+		$colors->blue_to  = 0x99;
 
 		$this->helper_test_color_span( $instance, $colors, $query_terms );
 	}
 
 	function helper_test_color_span( $instance, $colors, $query_terms )
 	{
-
 		$terms = $this->helper_get_terms( $instance, $query_terms );
 
 		foreach ( $terms as $term ) {
@@ -358,14 +357,23 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 
 			list( $red, $green, $blue ) = array_map( 'hexdec', $rgb_matches[ 0 ] );
 
-			$this->assertLessThanOrEqual( $colors->red_to, $red );
-			$this->assertGreaterThanOrEqual( $colors->red_from, $red );
+			$red_from = min( $colors->red_to, $colors->red_from );
+			$red_to   = max( $colors->red_to, $colors->red_from );
 
-			$this->assertLessThanOrEqual( $colors->green_to, $green );
-			$this->assertGreaterThanOrEqual( $colors->green_from, $green );
+			$this->assertLessThanOrEqual( $red_to, $red );
+			$this->assertGreaterThanOrEqual( $red_from, $red );
 
-			$this->assertLessThanOrEqual( $colors->blue_to, $blue );
-			$this->assertGreaterThanOrEqual( $colors->blue_from, $blue );
+			$green_from = min( $colors->green_to, $colors->green_from );
+			$green_to   = max( $colors->green_to, $colors->green_from );
+
+			$this->assertLessThanOrEqual( $green_to, $green );
+			$this->assertGreaterThanOrEqual( $green_from, $green );
+
+			$blue_from = min( $colors->blue_to, $colors->blue_from );
+			$blue_to   = max( $colors->blue_to, $colors->blue_from );
+
+			$this->assertLessThanOrEqual( $blue_to, $blue );
+			$this->assertGreaterThanOrEqual( $blue_from, $blue );
 		}
 	}
 
@@ -402,7 +410,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	{
 		$terms = array();
 
-		for ( $x = 0; $x < 10; $x ++ ) {
+		for ( $x = 1; $x < 11; $x ++ ) {
 			$term = new stdClass;
 
 			$term->term_id = $x;

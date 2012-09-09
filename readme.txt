@@ -233,6 +233,9 @@ TODO: Rewrite theme integration page
 == Breaking changes in version 2.0 ==
 
 * Tags lists with named tags will not work in version 2.0, only tags lists with IDs.
+* The configuration option for text case has been renamed from case to text_transform
+* The styles for links aren't marked as !important in the CSS longer, this might change the cloud presentation in some cases
+* The shortcode and theme integration function call no longer accepts the widget arguments before_widget, after_widget, before_title and after_title
 
 == Thanks == 
 

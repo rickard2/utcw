@@ -79,10 +79,12 @@ class UTCW extends WP_Widget {
 	{
 		global $wpdb;
 
-		$config = new UTCW_Config( $instance, $this->plugin );
+		$input = array_merge( $args, $instance );
+
+		$config = new UTCW_Config( $input, $this->plugin );
 		$data   = new UTCW_Data( $config, $wpdb );
 		$render = new UTCW_Render( $config, $data );
 
-		$render->render( $args );
+		$render->render();
 	}
 }

@@ -523,6 +523,26 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 																				  ) );
 	}
 
+	function test_before_widget()
+	{
+		$this->helper_string_ok( 'before_widget' );
+	}
+
+	function test_after_widget()
+	{
+		$this->helper_string_ok( 'after_widget' );
+	}
+
+	function test_before_title()
+	{
+		$this->helper_string_ok( 'before_title' );
+	}
+
+	function test_after_title()
+	{
+		$this->helper_string_ok( 'after_title' );
+	}
+
 	function test_color_set_expands()
 	{
 		$instance[ 'color_set' ] = array( '#fff', '#fba' );

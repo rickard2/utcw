@@ -278,6 +278,30 @@ class UTCW_Config {
 	public $authenticated;
 
 	/**
+	 * @var string
+	 * @since 2.0
+	 */
+	public $before_widget;
+
+	/**
+	 * @var string
+	 * @since 2.0
+	 */
+	public $after_widget;
+
+	/**
+	 * @var string
+	 * @since 2.0
+	 */
+	public $before_title;
+
+	/**
+	 * @var string
+	 * @since 2.0
+	 */
+	public $after_title;
+
+	/**
 	 * Config store with default values
 	 * @var array
 	 * @since 2.0
@@ -327,6 +351,10 @@ class UTCW_Config {
 		'color_span_from'    => '',
 		'authors'            => array(),
 		'color_set'          => array(),
+		'before_widget'      => '',
+		'after_widget'       => '',
+		'before_title'       => '',
+		'after_title'        => '',
 	);
 
 	/**

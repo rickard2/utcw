@@ -12,6 +12,7 @@ License: GPLv2
  * @todo Preview
  * @todo Rendering class
  * @todo Find plugin compatibility, both PHP, WP and jQuery
+ * @todo phpdocs
  */
 
 define( 'UTCW_VERSION', '2.0-alpha' );
@@ -35,7 +36,6 @@ class UTCW_Plugin {
 	{
 		add_action( 'admin_head-widgets.php', array( $this, 'init_admin_assets' ) );
 		add_action( 'wp_loaded', array( $this, 'wp_loaded' ) );
-		add_action( 'init', array( $this, 'init_assets' ) );
 		add_action( 'widgets_init', create_function( '', 'return register_widget("UTCW");' ) );
 		add_shortcode( 'utcw', array( $this, 'utcw_shortcode' ) );
 	}

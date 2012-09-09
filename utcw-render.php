@@ -17,6 +17,6 @@ class UTCW_Render {
 
 	public function get_cloud()
 	{
-		return 'Placeholder';
+		return '<div>Placeholder</div>';
 	}
 }

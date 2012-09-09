@@ -39,6 +39,7 @@ class UTCW_Plugin {
 		add_action( 'wp_loaded', array( $this, 'wp_loaded' ) );
 		add_action( 'init', array( $this, 'init_assets' ) );
 		add_action( 'widgets_init', create_function( '', 'return register_widget("UTCW");' ) );
+		add_shortcode( 'utcw', array( $this, 'utcw_shortcode' ) );
 	}
 
 	/**
@@ -60,6 +61,17 @@ class UTCW_Plugin {
 		$this->allowed_post_types = get_post_types( array( 'public' => true ) );
 	}
 
+	function utcw_shortcode( $args )
+	{
+		global $wpdb;
+
+		$config = new UTCW_Config( $args, $this );
+		$data   = new UTCW_Data( $config, $wpdb );
+		$render = new UTCW_Render( $config, $data );
+
+		return $render->get_cloud();
+	}
+
 	/**
 	 * @todo Create dynamic asset version
 	 */
@@ -75,7 +87,17 @@ class UTCW_Plugin {
 		if ( UTCW_DEV ) {
 			wp_enqueue_script( 'utcw-lib-jsuri', plugins_url( 'ultimate-tag-cloud-widget/js/lib/jsuri-1.1.1.min.js' ), UTCW_VERSION, true );
 			wp_enqueue_script( 'utcw-lib-tooltip', plugins_url( 'ultimate-tag-cloud-widget/js/lib/tooltip.min.js' ), array( 'jquery' ), UTCW_VERSION, true );
-			wp_enqueue_script( 'utcw', plugins_url( 'ultimate-tag-cloud-widget/js/utcw.js' ), array( 'utcw-lib-jsuri', 'utcw-lib-tooltip', 'jquery' ), UTCW_VERSION, true );
+			wp_enqueue_script(
+							'utcw',
+							plugins_url( 'ultimate-tag-cloud-widget/js/utcw.js' ),
+							array(
+								 'utcw-lib-jsuri',
+								 'utcw-lib-tooltip',
+								 'jquery',
+							),
+							UTCW_VERSION,
+							true
+			);
 		} else {
 			wp_enqueue_script( 'utcw', plugins_url( 'ultimate-tag-cloud-widget/js/utcw.min.js' ), array( 'jquery' ), UTCW_VERSION, true );
 		}
@@ -91,7 +113,8 @@ class UTCW_Plugin {
 		return get_taxonomies( array(), 'objects' );
 	}
 
-	public function get_terms() {
+	public function get_terms()
+	{
 		$terms = array();
 
 		foreach ( $this->get_allowed_taxonomies() as $taxonomy ) {
@@ -134,3 +157,16 @@ class UTCW_Plugin {
 
 // Instantiates the plugin
 UTCW_Plugin::get_instance();
+
+/**
+ * Function for theme integration
+ *
+ * @param array $args
+ *
+ * @since ?
+ */
+function do_utcw( $args )
+{
+	$plugin = UTCW_Plugin::get_instance();
+	echo $plugin->utcw_shortcode( $args );
+}

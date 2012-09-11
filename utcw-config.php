@@ -498,6 +498,14 @@ class UTCW_Config {
 
 						$valid = $this->is_array_numeric( $input[ $key ] );
 						break;
+
+					case 'size_from':
+						$valid = isset( $input[ 'size_to' ] ) && $input[ 'size_from' ] <= $input[ 'size_to' ];
+						break;
+
+					case 'size_to':
+						$valid = isset( $input[ 'size_from' ] ) && $input[ 'size_to' ] >= $input[ 'size_from' ];
+						break;
 				}
 
 				if ( ! $valid ) {

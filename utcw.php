@@ -12,6 +12,8 @@ License: GPLv2
  * @todo Preview
  * @todo Find plugin compatibility, both PHP, WP and jQuery
  * @todo phpdocs
+ * @todo Save/load configuration
+ * @todo Debug output
  */
 
 define( 'UTCW_VERSION', '2.0-alpha' );

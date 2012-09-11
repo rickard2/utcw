@@ -254,6 +254,10 @@ class UTCW_Data {
 	 */
 	private function calc_step( $min, $max, $from, $to )
 	{
+		if ( $min === $max ) {
+			return 0;
+		}
+
 		$spread      = $max - $min;
 		$font_spread = $to - $from;
 		$step        = $font_spread / $spread;

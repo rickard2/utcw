@@ -514,6 +514,10 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->helper_int_array_fail( 'tags_list' );
 	}
 
+	function test_tags_list_taxonomy() {
+		//$this->assertTrue( 'test written', 'Write test that checks that the tags_list constraint checks the type of the terms in tags_list against the selected taxonomy');
+	}
+
 	function test_color_set_ok()
 	{
 		$this->helper_array_ok( 'color_set', array( '#bada55', '#fff', '#000', '#123456', '#fafafa' ), array(

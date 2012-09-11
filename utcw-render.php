@@ -85,6 +85,10 @@ class UTCW_Render {
 
 		$markup[ ] = '</div>';
 
+		if ( $this->config->debug ) {
+			$markup[ ] = sprintf( "<!-- Ultimate Tag Cloud Debug information:\n%s -->", print_r( $this->data, true ) );
+		}
+
 		if ( $this->config->after_widget ) {
 			$markup[ ] = $this->config->after_widget;
 		}
@@ -97,7 +101,7 @@ class UTCW_Render {
 		$main_styles = array();
 
 		if ( ! $this->has_default_value( 'text_transform' ) ) {
-			$main_styles[ ] = sprintf( 'text-transform:%spx', $this->config->text_transform );
+			$main_styles[ ] = sprintf( 'text-transform:%s', $this->config->text_transform );
 		}
 
 		if ( ! $this->has_default_value( 'letter_spacing' ) ) {
@@ -137,10 +141,12 @@ class UTCW_Render {
 				$link_styles[ ] = sprintf( 'border-color:%s', $this->config->link_border_color );
 			}
 
+
 			if ( ! $this->has_default_value( 'link_border_width' ) ) {
 				$link_styles[ ] = sprintf( 'border-width:%spx', $this->config->link_border_width );
 			}
 		}
+
 
 		if ( ! $this->has_default_value( 'tag_spacing' ) ) {
 			$link_styles[ ] = sprintf( 'margin-right:%spx', $this->config->tag_spacing );
@@ -168,6 +174,7 @@ class UTCW_Render {
 			$hover_styles[ ] = sprintf( 'background-color:%s', $this->config->hover_bg_color );
 		}
 
+
 		if ( ! $this->has_default_value( 'hover_border_style' ) && ! $this->has_default_value( 'hover_border_color' ) && ! $this->has_default_value( 'hover_border_width' ) ) {
 			$hover_styles[ ] = sprintf( 'border:%s %spx %s', $this->config->hover_border_style, $this->config->hover_border_width, $this->config->hover_border_color );
 		} else {
@@ -182,6 +189,10 @@ class UTCW_Render {
 			if ( ! $this->has_default_value( 'hover_border_width' ) ) {
 				$hover_styles[ ] = sprintf( 'border-width:%spx', $this->config->hover_border_width );
 			}
+		}
+
+		if ( ! $this->has_default_value( 'hover_color' ) ) {
+			$hover_styles[ ] = sprintf( 'color:%s', $this->config->hover_color );
 		}
 
 		$styles = array();

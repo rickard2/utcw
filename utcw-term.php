@@ -11,7 +11,7 @@ class UTCW_Term {
 	public $taxonomy;
 	public $size;
 
-	function __construct( stdClass $input, $term_link_callback = 'get_term_link' )
+	function __construct( stdClass $input, UTCW_Plugin $utcw )
 	{
 
 		if ( isset( $input->term_id ) && filter_var( $input->term_id, FILTER_VALIDATE_INT ) ) {
@@ -38,8 +38,8 @@ class UTCW_Term {
 			$this->taxonomy = $input->taxonomy;
 		}
 
-		if ( $term_link_callback && $this->term_id && $this->taxonomy ) {
-			$this->link = call_user_func( $term_link_callback, $this->term_id, $this->taxonomy );
+		if ( $this->term_id && $this->taxonomy ) {
+			$this->link = $utcw->get_term_link( $this->term_id, $this->taxonomy );
 		}
 	}
 }

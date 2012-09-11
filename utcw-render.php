@@ -62,6 +62,27 @@ class UTCW_Render {
 			}
 		}
 
+		$terms = array();
+
+		foreach ( $this->data->get_terms() as $term ) {
+			$color = $term->color ? ';color:' . $term->color : '';
+			$title = $this->config->show_title ? sprintf( ' title="' . _n( '%s topic', '%s topics', $term->count ) . '"', $term->count ) : '';
+
+			$terms[ ] = sprintf(
+							'%s<a class="tag-link-%s" href="%s" style="font-size:%spx%s"%s>%s</a>%s',
+							$this->config->prefix,
+							$term->term_id,
+							$term->link,
+							$term->size,
+							$color,
+							$title,
+							$term->name,
+							$this->config->suffix
+			);
+		}
+
+		$markup[ ] = join( $this->config->separator, $terms );
+
 		$markup[ ] = '</div>';
 
 		if ( $this->config->after_widget ) {
@@ -147,7 +168,6 @@ class UTCW_Render {
 			$hover_styles[ ] = sprintf( 'background-color:%s', $this->config->hover_bg_color );
 		}
 
-
 		if ( ! $this->has_default_value( 'hover_border_style' ) && ! $this->has_default_value( 'hover_border_color' ) && ! $this->has_default_value( 'hover_border_width' ) ) {
 			$hover_styles[ ] = sprintf( 'border:%s %spx %s', $this->config->hover_border_style, $this->config->hover_border_width, $this->config->hover_border_color );
 		} else {
@@ -173,7 +193,6 @@ class UTCW_Render {
 		if ( $link_styles ) {
 			$styles[ ] = sprintf( '.utcw-%s a{%s}', $this->id, join( ';', $link_styles ) );
 		}
-
 
 		if ( $hover_styles ) {
 			$styles[ ] = sprintf( '.utcw-%s a:hover{%s}', $this->id, join( ';', $hover_styles ) );

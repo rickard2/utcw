@@ -5,10 +5,11 @@ class UTCW_Data {
 	protected $config;
 	protected $db;
 
-	function __construct( UTCW_Config $config, wpdb $db )
+	function __construct( UTCW_Config $config, UTCW_Plugin $utcw, wpdb $db )
 	{
 		$this->config = $config;
 		$this->db     = $db;
+		$this->utcw   = $utcw;
 	}
 
 	/**
@@ -138,7 +139,7 @@ class UTCW_Data {
 			}
 
 			$item->taxonomy = $this->config->taxonomy;
-			$terms[ ]       = new UTCW_Term( $item );
+			$terms[ ]       = new UTCW_Term( $item, $this->utcw );
 		}
 
 		$font_step = $this->calc_step( $min_count, $max_count, $this->config->size_from, $this->config->size_to );

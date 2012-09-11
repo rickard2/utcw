@@ -3,45 +3,13 @@
 
 class UTCW_Test_Data extends WP_UnitTestCase {
 
-	protected $utcw_not_authenticated;
-	protected $utcw_authenticated;
+	/**
+	 * @var MockFactory
+	 */
+	private $mockFactory;
 
-	function setUp()
-	{
-		$this->utcw_not_authenticated = $this->getUTCWMock();
-
-		$this->utcw_not_authenticated->expects( $this->any() )
-			->method( 'is_authenticated_user' )
-			->will( $this->returnValue( false ) );
-
-		$this->utcw_authenticated = $this->getUTCWMock();
-
-		$this->utcw_authenticated->expects( $this->any() )
-			->method( 'is_authenticated_user' )
-			->will( $this->returnValue( true ) );
-	}
-
-	function getUTCWMock()
-	{
-		$mock = $this->getMock( 'UTCW_Plugin', array(
-													'get_allowed_taxonomies', 'get_allowed_post_types',
-													'is_authenticated_user'
-											   ), array(), '', false );
-
-		$mock->expects( $this->any() )
-			->method( 'get_allowed_taxonomies' )
-			->will( $this->returnValue( array( 'post_tag', 'category' ) ) );
-
-		$mock->expects( $this->any() )
-			->method( 'get_allowed_post_types' )
-			->will( $this->returnValue( array( 'post', 'page' ) ) );
-
-		return $mock;
-	}
-
-	function getWPDBMock()
-	{
-		return $this->getMock( 'testWPDB', array( 'get_results' ), array(), '', false );
+	function setUp() {
+		$this->mockFactory = new MockFactory( $this );
 	}
 
 	function test_taxonomy()
@@ -379,48 +347,28 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 
 	function helper_get_terms( $instance, $query_terms )
 	{
-		$config = new UTCW_Config( $instance, $this->utcw_authenticated );
-		$db     = $this->getWPDBMock();
-
-		$db->expects( $this->once() )
-			->method( 'get_results' )
-			->will( $this->returnValue( $query_terms ) );
-
-		$data = new UTCW_Data( $config, $db );
-		return $data->get_terms();
+		$dp = new DataProvider( $this );
+		return $dp->get_terms( $instance, $query_terms );
 	}
 
 	function helper_query_contains( $instance, $string, $authenticated = false )
 	{
-		$utcw = $authenticated ? $this->utcw_authenticated : $this->utcw_not_authenticated;
+		$utcw = $authenticated ? $this->mockFactory->getUTCWAuthenticated() : $this->mockFactory->getUTCWNotAuthenticated();
 
 		$config = new UTCW_Config( $instance, $utcw );
-		$db     = $this->getWPDBMock();
+		$db     = $this->mockFactory->getWPDBMock();
 
 		$db->expects( $this->once() )
 			->method( 'get_results' )
 			->will( $this->returnValue( array() ) )
 			->with( $this->stringContains( $string ) );
 
-		$data = new UTCW_Data( $config, $db );
+		$data = new UTCW_Data( $config, $utcw, $db );
 		$data->get_terms();
 	}
 
-	function terms()
-	{
-		$terms = array();
-
-		for ( $x = 1; $x < 11; $x ++ ) {
-			$term = new stdClass;
-
-			$term->term_id = $x;
-			$term->name    = 'Test term ' . $x;
-			$term->slug    = 'term-' . $x;
-			$term->count   = $x * 10;
-
-			$terms[ ] = $term;
-		}
-
-		return array( array( $terms ) );
+	function terms() {
+		$dp = new DataProvider( $this );
+		return $dp->termsProvider();
 	}
 }

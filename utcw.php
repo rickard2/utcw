@@ -10,7 +10,6 @@ License: GPLv2
 */
 /**
  * @todo Preview
- * @todo Rendering class
  * @todo Find plugin compatibility, both PHP, WP and jQuery
  * @todo phpdocs
  */
@@ -64,7 +63,7 @@ class UTCW_Plugin {
 		global $wpdb;
 
 		$config = new UTCW_Config( $args, $this );
-		$data   = new UTCW_Data( $config, $wpdb );
+		$data   = new UTCW_Data( $config, $this, $wpdb );
 		$render = new UTCW_Render( $config, $data );
 
 		return $render->get_cloud();
@@ -81,7 +80,7 @@ class UTCW_Plugin {
 							'utcw',
 							plugins_url( 'ultimate-tag-cloud-widget/js/utcw.js' ),
 							array(
-								 'utcw-lib-jsuri',
+					 			'utcw-lib-jsuri',
 								 'utcw-lib-tooltip',
 								 'jquery',
 							),
@@ -142,6 +141,13 @@ class UTCW_Plugin {
 	public function is_authenticated_user()
 	{
 		return is_user_logged_in();
+	}
+
+	public function get_term_link( $term_id, $taxonomy )
+	{
+		$link = get_term_link( $term_id, $taxonomy );
+
+		return ! is_wp_error( $link ) ? $link : '';
 	}
 }
 

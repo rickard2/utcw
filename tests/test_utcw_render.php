@@ -2,16 +2,19 @@
 
 class UTCW_Test_Render extends WP_UnitTestCase {
 
-	function getWPDBMock()
+	/**
+	 * @var DataProvider
+	 */
+	private $dataProvider;
+
+	function setUp()
 	{
-		return $this->getMock( 'testWPDB', array( 'get_results' ), array(), '', false );
+		$this->dataProvider = new DataProvider( $this );
 	}
 
-	function getRenderer( $input = array() )
+	function getRenderer( $input = array(), $query_terms = array() )
 	{
-		$config = new UTCW_Config( $input, UTCW_Plugin::get_instance() );
-		$data   = new UTCW_Data( $config, $this->getWPDBMock() );
-		return new UTCW_Render( $config, $data );
+		return $this->dataProvider->get_renderer( $input, $query_terms );
 	}
 
 	function test_output_contains_wrapper()
@@ -209,15 +212,146 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 		);
 	}
 
-	function helper_contains( $config, $string )
+	/**
+	 * @dataProvider terms
+	 */
+	function test_separator( $terms )
 	{
-		$render = $this->getRenderer( $config );
-		$this->assertContains( $string, $render->get_cloud() );
+		$instance = array( 'separator' => 'SEPARATOR' );
+
+		$expected = count( $terms ) - 1;
+
+		$this->helper_substr_count( $instance, 'SEPARATOR', $terms, $expected );
 	}
 
-	function helper_not_contains( $config, $string )
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_prefix( $terms )
+	{
+		$instance = array( 'prefix' => 'PREFIX' );
+		$this->helper_substr_count( $instance, 'PREFIX', $terms, count( $terms ) );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_suffix( $terms )
+	{
+		$instance = array( 'suffix' => 'SUFFIX' );
+		$this->helper_substr_count( $instance, 'SUFFIX', $terms, count( $terms ) );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_prefix_separator_suffix_placement( $terms )
+	{
+		$instance = array(
+			'prefix'    => 'PREFIX',
+			'separator' => 'SEPARATOR',
+			'suffix'    => 'SUFFIX',
+		);
+
+		$renderer = $this->getRenderer( $instance, $terms );
+		$this->assertEquals( 9, preg_match_all( '/PREFIX<a[^>]+>Test term [0-9]+<\/a>SUFFIXSEPARATOR/', $renderer->get_cloud(), $dummy ) );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_show_title_shows_title( $terms )
+	{
+		$instance = array( 'show_title' => true );
+		$renderer = $this->getRenderer( $instance, $terms );
+		$this->assertRegExp( '/title="[0-9]+ topics?"/', $renderer->get_cloud() );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_hide_title_hides_title( $terms )
+	{
+		$instance = array( 'show_title' => false );
+		$renderer = $this->getRenderer( $instance, $terms );
+		$this->assertNotRegExp( '/title="[0-9]+ topics?"/', $renderer->get_cloud() );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_output_links_contains_class( $terms )
+	{
+		$renderer = $this->getRenderer( array(), $terms );
+		$this->assertRegexp( '/class="tag-link-[0-9]+"/', $renderer->get_cloud() );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_output_contains_color( $terms )
+	{
+		$renderer = $this->getRenderer( array( 'color' => 'random' ), $terms );
+		$this->assertRegexp( '/;color:#[0-9a-f]{6}"/', $renderer->get_cloud() );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_output_contains_size( $terms )
+	{
+		$renderer = $this->getRenderer( array(), $terms );
+		$this->assertRegExp( '/style="font-size:[0-9.]+px"/', $renderer->get_cloud() );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_output_contains_href( $terms )
+	{
+		$renderer = $this->getRenderer( array(), $terms );
+		$this->assertRegexp( '/href="http:\/\/example.com\/"/', $renderer->get_cloud() );
+	}
+
+	function terms()
+	{
+		$dp = new DataProvider( $this );
+		return $dp->termsProvider();
+	}
+
+	function helper_substr_count( $config, $needle, $terms, $expected )
+	{
+		$renderer = $this->getRenderer( $config, $terms );
+		$this->assertEquals( $expected, substr_count( $renderer->get_cloud(), $needle ) );
+	}
+
+	function helper_contains( $config, $needle )
 	{
 		$render = $this->getRenderer( $config );
-		$this->assertNotContains( $string, $render->get_cloud() );
+		$this->assertContains( $needle, $render->get_cloud() );
+	}
+
+	function helper_not_contains( $config, $needle )
+	{
+		$render = $this->getRenderer( $config );
+		$this->assertNotContains( $needle, $render->get_cloud() );
 	}
 }

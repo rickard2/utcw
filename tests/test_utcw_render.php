@@ -130,8 +130,9 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 		$this->helper_contains( array( 'hover_border_color' => '#bada55' ), 'a:hover{border-color:#bada55' );
 	}
 
-	function test_hover_color() {
-		$this->helper_contains( array( 'hover_color' => '#bada55'), 'a:hover{color:#bada55' );
+	function test_hover_color()
+	{
+		$this->helper_contains( array( 'hover_color' => '#bada55' ), 'a:hover{color:#bada55' );
 	}
 
 	function test_hover_border_shorthand()
@@ -322,6 +323,11 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	{
 		$renderer = $this->getRenderer( array(), $terms );
 		$this->assertRegExp( '/style="font-size:[0-9.]+px"/', $renderer->get_cloud() );
+	}
+
+	function test_debug()
+	{
+		$this->helper_contains( array( 'debug' => true ), '<!-- Ultimate Tag Cloud Debug information' );
 	}
 
 	/**

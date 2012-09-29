@@ -33,8 +33,7 @@ class UTCW_Plugin {
 
 	private static $instance;
 
-	private function __construct()
-	{
+	private function __construct() {
 		add_action( 'admin_head-widgets.php', array( $this, 'init_admin_assets' ) );
 		add_action( 'wp_loaded', array( $this, 'wp_loaded' ) );
 		add_action( 'widgets_init', create_function( '', 'return register_widget("UTCW");' ) );
@@ -45,8 +44,7 @@ class UTCW_Plugin {
 	 * @static
 	 * @return UTCW_Plugin
 	 */
-	public static function get_instance()
-	{
+	public static function get_instance() {
 		if ( ! self::$instance ) {
 			self::$instance = new self;
 		}
@@ -54,14 +52,12 @@ class UTCW_Plugin {
 		return self::$instance;
 	}
 
-	function wp_loaded()
-	{
+	function wp_loaded() {
 		$this->allowed_taxonomies = get_taxonomies();
 		$this->allowed_post_types = get_post_types( array( 'public' => true ) );
 	}
 
-	function utcw_shortcode( $args )
-	{
+	function utcw_shortcode( $args ) {
 		global $wpdb;
 
 		$config = new UTCW_Config( $args, $this );
@@ -71,41 +67,27 @@ class UTCW_Plugin {
 		return $render->get_cloud();
 	}
 
-	public function init_admin_assets()
-	{
+	public function init_admin_assets() {
 		wp_enqueue_style( 'utcw-admin', plugins_url( 'ultimate-tag-cloud-widget/css/style.css' ), array(), UTCW_VERSION );
 
 		if ( UTCW_DEV ) {
 			wp_enqueue_script( 'utcw-lib-jsuri', plugins_url( 'ultimate-tag-cloud-widget/js/lib/jsuri-1.1.1.min.js' ), UTCW_VERSION, true );
 			wp_enqueue_script( 'utcw-lib-tooltip', plugins_url( 'ultimate-tag-cloud-widget/js/lib/tooltip.min.js' ), array( 'jquery' ), UTCW_VERSION, true );
-			wp_enqueue_script(
-							'utcw',
-							plugins_url( 'ultimate-tag-cloud-widget/js/utcw.js' ),
-							array(
-					 			'utcw-lib-jsuri',
-								 'utcw-lib-tooltip',
-								 'jquery',
-							),
-							UTCW_VERSION,
-							true
-			);
+			wp_enqueue_script( 'utcw',plugins_url( 'ultimate-tag-cloud-widget/js/utcw.js' ),array( 'utcw-lib-jsuri', 'utcw-lib-tooltip', 'jquery' ), UTCW_VERSION, true );
 		} else {
 			wp_enqueue_script( 'utcw', plugins_url( 'ultimate-tag-cloud-widget/js/utcw.min.js' ), array( 'jquery' ), UTCW_VERSION, true );
 		}
 	}
 
-	public function get_allowed_taxonomies()
-	{
+	public function get_allowed_taxonomies() {
 		return $this->allowed_taxonomies;
 	}
 
-	public function get_allowed_taxonomies_objects()
-	{
+	public function get_allowed_taxonomies_objects() {
 		return get_taxonomies( array(), 'objects' );
 	}
 
-	public function get_terms()
-	{
+	public function get_terms() {
 		$terms = array();
 
 		foreach ( $this->get_allowed_taxonomies() as $taxonomy ) {
@@ -115,8 +97,7 @@ class UTCW_Plugin {
 		return $terms;
 	}
 
-	public function get_allowed_post_types()
-	{
+	public function get_allowed_post_types() {
 		return $this->allowed_post_types;
 	}
 
@@ -124,8 +105,7 @@ class UTCW_Plugin {
 	 * Returns the users on this blog
 	 * @return array
 	 */
-	function get_users()
-	{
+	function get_users() {
 		global $wp_version;
 
 		if ( (float)$wp_version < 3.1 ) {
@@ -135,21 +115,31 @@ class UTCW_Plugin {
 		}
 	}
 
-	function get_configurations()
-	{
+	function get_configurations() {
 		return get_option( 'utcw_saved_configs', array() );
 	}
 
-	public function is_authenticated_user()
-	{
+	public function is_authenticated_user() {
 		return is_user_logged_in();
 	}
 
-	public function get_term_link( $term_id, $taxonomy )
-	{
+	public function get_term_link( $term_id, $taxonomy ) {
 		$link = get_term_link( $term_id, $taxonomy );
 
 		return ! is_wp_error( $link ) ? $link : '';
+	}
+
+	/**
+	 * Check if the term exist for taxonomy
+	 *
+	 * @param $term_id
+	 * @param $taxonomy
+	 *
+	 * @return bool
+	 * @since 2.0
+	 */
+	public function check_term_taxonomy( $term_id, $taxonomy ) {
+		return ! ! get_term( $term_id, $taxonomy );
 	}
 }
 
@@ -163,8 +153,7 @@ UTCW_Plugin::get_instance();
  *
  * @since ?
  */
-function do_utcw( $args )
-{
+function do_utcw( $args ) {
 	$plugin = UTCW_Plugin::get_instance();
 	echo $plugin->utcw_shortcode( $args );
 }

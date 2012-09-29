@@ -12,38 +12,31 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$this->mockFactory = new MockFactory( $this );
 	}
 
-	function test_taxonomy()
-	{
+	function test_taxonomy() {
 		$this->helper_query_contains( array( 'taxonomy' => 'category' ), "taxonomy = 'category'" );
 	}
 
-	function test_author()
-	{
+	function test_author() {
 		$this->helper_query_contains( array( 'authors' => array( 1, 2, 3 ) ), 'post_author IN (1,2,3)' );
 	}
 
-	function test_single_post_type()
-	{
+	function test_single_post_type() {
 		$this->helper_query_contains( array( 'post_type' => 'post' ), "post_type IN ('post')" );
 	}
 
-	function test_multiple_post_types()
-	{
+	function test_multiple_post_types() {
 		$this->helper_query_contains( array( 'post_type' => array( 'post', 'page' ) ), "post_type IN ('post','page')" );
 	}
 
-	function test_post_status_not_authenticated()
-	{
+	function test_post_status_not_authenticated() {
 		$this->helper_query_contains( array(), "post_status = 'publish'" );
 	}
 
-	function test_post_status_authenticated()
-	{
+	function test_post_status_authenticated() {
 		$this->helper_query_contains( array(), "post_status IN ('publish','private')", 'authenticated' );
 	}
 
-	function test_tags_list_include()
-	{
+	function test_tags_list_include() {
 		$instance = array(
 			'tags_list_type' => 'include',
 			'tags_list'      => array( 1, 2, 3 ),
@@ -51,8 +44,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$this->helper_query_contains( $instance, 't.term_id IN (1,2,3)' );
 	}
 
-	function test_tags_list_exclude()
-	{
+	function test_tags_list_exclude() {
 		$instance = array(
 			'tags_list_type' => 'exclude',
 			'tags_list'      => array( 1, 2, 3 ),
@@ -60,67 +52,80 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$this->helper_query_contains( $instance, 't.term_id NOT IN (1,2,3)' );
 	}
 
-	function test_days_old()
-	{
+	function test_tags_list_taxonomy() {
+
+		$utcw = $this->mockFactory->getUTCWMock();
+
+		$utcw->expects( $this->any() )
+			->method( 'check_term_taxonomy' )
+			->will( $this->returnValue( false ) );
+
+		$instance = array(
+			'tags_list_type' => 'include',
+			'tags_list'      => array( 1, 2, 3, 4, 5 ),
+		);
+
+		$db = $this->mockFactory->getWPDBMock();
+
+		$db->expects( $this->once() )
+			->method( 'get_results' )
+			->will( $this->returnValue( array() ) )
+			->with( new PHPUnit_Framework_Constraint_Not( $this->stringContains( 't.term_id IN (' ) ) );
+
+		$config = new UTCW_Config( $instance, $utcw );
+		$data   = new UTCW_Data( $config, $utcw, $db );
+		$data->get_terms();
+	}
+
+	function test_days_old() {
 		$this->helper_query_contains( array( 'days_old' => 1 ), "post_date > '" . date( 'Y-m-d', strtotime( 'yesterday' ) ) . "'" );
 	}
 
-	function test_minimum()
-	{
+	function test_minimum() {
 		$this->helper_query_contains( array( 'minimum' => 5 ), 'HAVING count >= 5' );
 	}
 
-	function test_order_name()
-	{
+	function test_order_name() {
 		$this->helper_query_contains( array( 'order' => 'name', 'reverse' => false ), 'ORDER BY name ASC' );
 	}
 
-	function test_order_name_reverse()
-	{
+	function test_order_name_reverse() {
 		$this->helper_query_contains( array( 'order' => 'name', 'reverse' => true ), 'ORDER BY name DESC' );
 	}
 
-	function test_order_name_case_sensitive()
-	{
+	function test_order_name_case_sensitive() {
 		$this->helper_query_contains( array(
 										   'order'        => 'name', 'case_sensitive' => true
 									  ), 'ORDER BY BINARY name ASC' );
 	}
 
-	function test_order_slug()
-	{
+	function test_order_slug() {
 		$this->helper_query_contains( array( 'order' => 'slug', 'reverse' => false ), 'ORDER BY slug ASC' );
 	}
 
-	function test_order_slug_reverse()
-	{
+	function test_order_slug_reverse() {
 		$this->helper_query_contains( array( 'order' => 'slug', 'reverse' => true ), 'ORDER BY slug DESC' );
 	}
 
-	function test_order_slug_case_sensitive()
-	{
+	function test_order_slug_case_sensitive() {
 		$this->helper_query_contains( array(
 										   'order'        => 'slug', 'case_sensitive' => true
 									  ), 'ORDER BY BINARY slug ASC' );
 	}
 
-	function test_order_id()
-	{
+	function test_order_id() {
 		$this->helper_query_contains( array( 'order' => 'id', 'reverse' => false ), 'ORDER BY term_id ASC' );
 	}
 
-	function test_order_id_reverse()
-	{
+	function test_order_id_reverse() {
 		$this->helper_query_contains( array( 'order' => 'id', 'reverse' => true ), 'ORDER BY term_id DESC' );
 	}
 
-	function test_order_count()
-	{
+	function test_order_count() {
 		$this->helper_query_contains( array( 'order' => 'count', 'reverse' => false ), 'ORDER BY count ASC' );
 	}
 
-	function test_order_count_reverse()
-	{
+	function test_order_count_reverse() {
 		$this->helper_query_contains( array( 'order' => 'count', 'reverse' => true ), 'ORDER BY count DESC' );
 	}
 
@@ -129,8 +134,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	 *
 	 * @dataProvider terms
 	 */
-	function test_order_color( $query_terms )
-	{
+	function test_order_color( $query_terms ) {
 		$instance = array(
 			'order'   => 'color',
 			'reverse' => false,
@@ -152,8 +156,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	 *
 	 * @dataProvider terms
 	 */
-	function test_order_color_reverse( $query_terms )
-	{
+	function test_order_color_reverse( $query_terms ) {
 		$instance = array(
 			'order'   => 'color',
 			'reverse' => true,
@@ -174,8 +177,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	 *
 	 * @dataProvider terms
 	 */
-	function test_size( $query_terms )
-	{
+	function test_size( $query_terms ) {
 		$instance = array(
 			'size_from' => 1,
 			'size_to'   => 10,
@@ -194,8 +196,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	 *
 	 * @dataProvider terms
 	 */
-	function test_color_random( $query_terms )
-	{
+	function test_color_random( $query_terms ) {
 		$terms = $this->helper_get_terms( array( 'color' => 'random' ), $query_terms );
 
 		foreach ( $terms as $term ) {
@@ -208,8 +209,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	 *
 	 * @dataProvider terms
 	 */
-	function test_color_set( $query_terms )
-	{
+	function test_color_set( $query_terms ) {
 		$color_set = array( '#fafafa', '#bada55', '#123456' );
 
 		$instance = array(
@@ -229,8 +229,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	 *
 	 * @dataProvider terms
 	 */
-	function test_color_span_smallest_first( $query_terms )
-	{
+	function test_color_span_smallest_first( $query_terms ) {
 		$instance = array(
 			'color'           => 'span',
 			'color_span_from' => '#222222',
@@ -250,8 +249,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	 *
 	 * @dataProvider terms
 	 */
-	function test_color_span_biggest_first( $query_terms )
-	{
+	function test_color_span_biggest_first( $query_terms ) {
 		$instance = array(
 			'color'           => 'span',
 			'color_span_from' => '#333333',
@@ -271,8 +269,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	 *
 	 * @dataProvider terms
 	 */
-	function test_color_span_letters( $query_terms )
-	{
+	function test_color_span_letters( $query_terms ) {
 		$instance = array(
 			'color'           => 'span',
 			'color_span_from' => '#bbbbbb',
@@ -292,8 +289,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	 *
 	 * @dataProvider terms
 	 */
-	function test_color_span( $query_terms )
-	{
+	function test_color_span( $query_terms ) {
 		$instance = array(
 			'color'           => 'span',
 			'color_span_from' => '#D010EB',
@@ -313,8 +309,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$this->helper_test_color_span( $instance, $colors, $query_terms );
 	}
 
-	function helper_test_color_span( $instance, $colors, $query_terms )
-	{
+	function helper_test_color_span( $instance, $colors, $query_terms ) {
 		$terms = $this->helper_get_terms( $instance, $query_terms );
 
 		foreach ( $terms as $term ) {
@@ -345,15 +340,18 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		}
 	}
 
-	function helper_get_terms( $instance, $query_terms )
-	{
+	function helper_get_terms( $instance, $query_terms ) {
 		$dp = new DataProvider( $this );
 		return $dp->get_terms( $instance, $query_terms );
 	}
 
-	function helper_query_contains( $instance, $string, $authenticated = false )
-	{
+	function helper_query_contains( $instance, $string, $authenticated = false ) {
 		$utcw = $authenticated ? $this->mockFactory->getUTCWAuthenticated() : $this->mockFactory->getUTCWNotAuthenticated();
+
+		$utcw->expects( $this->any() )
+			->method( 'check_term_taxonomy' )
+			->will( $this->returnValue( true ) )
+			->with( $this->anything(), $this->stringContains( 'post_tag' ) );
 
 		$config = new UTCW_Config( $instance, $utcw );
 		$db     = $this->mockFactory->getWPDBMock();

@@ -4,9 +4,9 @@ class UTCW_Data {
 
 	protected $config;
 	protected $db;
+	protected $utcw;
 
-	function __construct( UTCW_Config $config, UTCW_Plugin $utcw, wpdb $db )
-	{
+	function __construct( UTCW_Config $config, UTCW_Plugin $utcw, wpdb $db ) {
 		$this->config = $config;
 		$this->db     = $db;
 		$this->utcw   = $utcw;
@@ -15,8 +15,7 @@ class UTCW_Data {
 	/**
 	 * @return UTCW_Term[]
 	 */
-	function get_terms()
-	{
+	function get_terms() {
 		$query = array();
 
 		// Base query with joins
@@ -64,13 +63,16 @@ class UTCW_Data {
 			$tags_list_parameters = array();
 
 			foreach ( $this->config->tags_list as $tag_id ) {
-				$tags_list_parameters[ ] = '%d';
-				$parameters[ ]           = $tag_id;
+				if ( $this->utcw->check_term_taxonomy( $tag_id, $this->config->taxonomy ) ) {
+					$tags_list_parameters[ ] = '%d';
+					$parameters[ ]           = $tag_id;
+				}
 			}
 
-			$tags_list_operator = $this->config->tags_list_type == 'include' ? 'IN' : 'NOT IN';
-
-			$query[ ] = 'AND t.term_id ' . $tags_list_operator . ' (' . join( ',', $tags_list_parameters ) . ')';
+			if ( $tags_list_parameters ) {
+				$tags_list_operator = $this->config->tags_list_type == 'include' ? 'IN' : 'NOT IN';
+				$query[ ]           = 'AND t.term_id ' . $tags_list_operator . ' (' . join( ',', $tags_list_parameters ) . ')';
+			}
 		}
 
 		// Add days old statement
@@ -211,8 +213,7 @@ class UTCW_Data {
 	 * @return string
 	 * @since 2.0
 	 */
-	private function calc_color( $min_count, $max_count, stdClass $colors, $count )
-	{
+	private function calc_color( $min_count, $max_count, stdClass $colors, $count ) {
 		$red_step   = $this->calc_step( $min_count, $max_count, $colors->red_from, $colors->red_to );
 		$green_step = $this->calc_step( $min_count, $max_count, $colors->green_from, $colors->green_to );
 		$blue_step  = $this->calc_step( $min_count, $max_count, $colors->blue_from, $colors->blue_to );
@@ -235,8 +236,7 @@ class UTCW_Data {
 	 * @return mixed
 	 * @since 2.0
 	 */
-	private function calc_size( $size_from, $count, $min_count, $font_step )
-	{
+	private function calc_size( $size_from, $count, $min_count, $font_step ) {
 		return $size_from + ( ( $count - $min_count ) * $font_step );
 	}
 
@@ -252,8 +252,7 @@ class UTCW_Data {
 	 * @return integer
 	 * @since 1.0
 	 */
-	private function calc_step( $min, $max, $from, $to )
-	{
+	private function calc_step( $min, $max, $from, $to ) {
 		if ( $min === $max ) {
 			return 0;
 		}

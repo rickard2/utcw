@@ -8,18 +8,26 @@
 class UTCW_Config {
 
 	/**
+	 * Title text of the widget.
+	 * Default value: Tag cloud
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $title;
 
 	/**
+	 * How the result should be ordered
+	 * Default value: name
+	 * Valid values: random, name, slug, id, color, count
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $order;
 
 	/**
+	 * The smallest possible size
 	 * @var int
 	 * @since 2.0
 	 */
@@ -415,8 +423,7 @@ class UTCW_Config {
 	 *
 	 * @since 2.0
 	 */
-	public function __construct( array $input, UTCW_Plugin $utcw )
-	{
+	public function __construct( array $input, UTCW_Plugin $utcw ) {
 		$this->allowed_post_types = $utcw->get_allowed_post_types();
 		$this->allowed_taxonomies = $utcw->get_allowed_taxonomies();
 		$this->authenticated      = $utcw->is_authenticated_user();
@@ -548,8 +555,7 @@ class UTCW_Config {
 	 *
 	 * @since 2.0
 	 */
-	private function is_array_numeric( array $array )
-	{
+	private function is_array_numeric( array $array ) {
 		foreach ( $array as $item ) {
 			if ( ! is_numeric( $item ) ) {
 				return false;
@@ -566,8 +572,7 @@ class UTCW_Config {
 	 *
 	 * @since  2.0
 	 */
-	public function get_instance()
-	{
+	public function get_instance() {
 		$instance = array();
 
 		foreach ( array_keys( $this->options ) as $key ) {
@@ -582,8 +587,7 @@ class UTCW_Config {
 	 * @return array
 	 * @since 2.0
 	 */
-	public function get_defaults()
-	{
+	public function get_defaults() {
 		return $this->options;
 	}
 }

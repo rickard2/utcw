@@ -20,11 +20,11 @@ define( 'UTCW_VERSION', '2.0-alpha' );
 define( 'UTCW_DEV', false );
 define( 'UTCW_HEX_COLOR_REGEX', '/#([a-f0-9]{6}|[a-f0-9]{3})/i' );
 
-require 'utcw-config.php';
-require 'utcw-widget.php';
-require 'utcw-data.php';
-require 'utcw-render.php';
-require 'utcw-term.php';
+require_once 'utcw-config.php';
+require_once 'utcw-widget.php';
+require_once 'utcw-data.php';
+require_once 'utcw-render.php';
+require_once 'utcw-term.php';
 
 class UTCW_Plugin {
 

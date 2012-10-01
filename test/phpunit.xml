@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+		bootstrap="./init.php"
+		backupGlobals="false"
+		colors="true"
+		convertErrorsToExceptions="true"
+		convertNoticesToExceptions="true"
+		convertWarningsToExceptions="true">
+
+	<testsuites>
+		<testsuite name="Ultimate Tag Cloud Widget Test Suite">
+			<directory suffix=".php">../tests/</directory>
+		</testsuite>
+	</testsuites>
+
+</phpunit>

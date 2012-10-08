@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -8,11 +8,14 @@
  * @subpackage main
  * @since      2.0
  */
+if ( ! defined( 'ABSPATH' ) ) die();
 
 /**
  * Widget class for WordPress integration
  *
- * @since 1.0
+ * @since      1.0
+ * @package    utcw
+ * @subpackage main
  */
 class UTCW extends WP_Widget {
 

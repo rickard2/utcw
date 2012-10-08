@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -8,11 +8,14 @@
  * @subpackage main
  * @since      2.0
  */
+if ( ! defined( 'ABSPATH' ) ) die();
 
 /**
  * Class for rendering the cloud
  *
- * @since 2.0
+ * @since      2.0
+ * @package    utcw
+ * @subpackage main
  */
 class UTCW_Render {
 
@@ -196,6 +199,7 @@ class UTCW_Render {
 		if ( ! $this->has_default_value( 'tag_spacing' ) ) {
 			$link_styles[ ] = sprintf( 'margin-right:%spx', $this->config->tag_spacing );
 		}
+
 
 		if ( ! $this->has_default_value( 'line_height' ) ) {
 			$link_styles[ ] = sprintf( 'line-height:%spx', $this->config->line_height );

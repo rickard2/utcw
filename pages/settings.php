@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -15,6 +15,7 @@
  * @var array $users
  * @var UTCW $this
  */
+if ( ! defined( 'ABSPATH' ) ) die();
 
 ?>
 <button class="utcw-tab-button utcw-active" data-id="<?php echo $this->id ?>"

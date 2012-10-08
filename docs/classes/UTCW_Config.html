@@ -1,0 +1,1118 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \UTCW_Config</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/utcw.html"><i class="icon-folder-open"></i> utcw</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">5</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Loads a configuration instance array and parses the options"><span class="description">Loads a configuration instance array and parses the options</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_get_defaults" title="get_defaults :: Returns the default values for all the configuration options"><span class="description">Returns the default values for all the configuration options</span><pre>get_defaults()</pre></a></li>
+<li class="method public "><a href="#method_get_instance" title="get_instance :: Returns an array of current configuration"><span class="description">Returns an array of current configuration</span><pre>get_instance()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul><li class="method private "><a href="#method_is_array_numeric" title="is_array_numeric :: Checks if every item in the array is numeric"><span class="description">Checks if every item in the array is numeric</span><pre>is_array_numeric()</pre></a></li></ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul>
+<li class="property public "><a href="#property_after_title" title="$after_title :: Text to display after the widget title."><span class="description">Text to display after the widget title.</span><pre>$after_title</pre></a></li>
+<li class="property public "><a href="#property_after_widget" title="$after_widget :: Text to display after the widget."><span class="description">Text to display after the widget.</span><pre>$after_widget</pre></a></li>
+<li class="property public "><a href="#property_authors" title="$authors :: Which authors to include posts from."><span class="description">Which authors to include posts from.</span><pre>$authors</pre></a></li>
+<li class="property public "><a href="#property_before_title" title="$before_title :: Text to display before the widget title."><span class="description">Text to display before the widget title.</span><pre>$before_title</pre></a></li>
+<li class="property public "><a href="#property_before_widget" title="$before_widget :: Text to display before the widget."><span class="description">Text to display before the widget.</span><pre>$before_widget</pre></a></li>
+<li class="property public "><a href="#property_case_sensitive" title="$case_sensitive :: If sorting should be applied case sensitive
+Default: false"><span class="description">If sorting should be applied case sensitive
+Default: false</span><pre>$case_sensitive</pre></a></li>
+<li class="property public "><a href="#property_color" title="$color :: Which coloring strategy to use
+Default: none
+Valid values: none, random, set, span"><span class="description">Which coloring strategy to use
+Default: none
+Valid values: none, random, set, span</span><pre>$color</pre></a></li>
+<li class="property public "><a href="#property_color_set" title="$color_set :: A set of colors to randomly select from when coloring the tags
+Default: [] (an empty array)"><span class="description">A set of colors to randomly select from when coloring the tags
+Default: [] (an empty array)</span><pre>$color_set</pre></a></li>
+<li class="property public "><a href="#property_color_span_from" title="$color_span_from :: Which color value to end at in color calculation."><span class="description">Which color value to end at in color calculation.</span><pre>$color_span_from</pre></a></li>
+<li class="property public "><a href="#property_color_span_to" title="$color_span_to :: Which color value to start from in color calculation."><span class="description">Which color value to start from in color calculation.</span><pre>$color_span_to</pre></a></li>
+<li class="property public "><a href="#property_days_old" title="$days_old :: How many days old a post needs to be to be included in tag size calculation
+Default: 0"><span class="description">How many days old a post needs to be to be included in tag size calculation
+Default: 0</span><pre>$days_old</pre></a></li>
+<li class="property public "><a href="#property_debug" title="$debug :: If debug output should be included
+Default: false"><span class="description">If debug output should be included
+Default: false</span><pre>$debug</pre></a></li>
+<li class="property public "><a href="#property_hover_bg_color" title="$hover_bg_color :: Background color for links in their hover state
+Default: transparent
+Valid values: A hexadecimal color"><span class="description">Background color for links in their hover state
+Default: transparent
+Valid values: A hexadecimal color</span><pre>$hover_bg_color</pre></a></li>
+<li class="property public "><a href="#property_hover_bold" title="$hover_bold :: If links should be styled as bold in their hover state
+Default: default
+Valid values: yes, no, default"><span class="description">If links should be styled as bold in their hover state
+Default: default
+Valid values: yes, no, default</span><pre>$hover_bold</pre></a></li>
+<li class="property public "><a href="#property_hover_border_color" title="$hover_border_color :: Border color for links in their hover state
+Default: none
+Valid values: A hexadecimal color"><span class="description">Border color for links in their hover state
+Default: none
+Valid values: A hexadecimal color</span><pre>$hover_border_color</pre></a></li>
+<li class="property public "><a href="#property_hover_border_style" title="$hover_border_style :: Border style for links in their hover state
+Default: none
+Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset"><span class="description">Border style for links in their hover state
+Default: none
+Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset</span><pre>$hover_border_style</pre></a></li>
+<li class="property public "><a href="#property_hover_border_width" title="$hover_border_width :: Border width for links in their hover state
+Default: 0"><span class="description">Border width for links in their hover state
+Default: 0</span><pre>$hover_border_width</pre></a></li>
+<li class="property public "><a href="#property_hover_color" title="$hover_color :: Text color for links in their hover state
+Default: default
+Valid values: A hexadecimal color"><span class="description">Text color for links in their hover state
+Default: default
+Valid values: A hexadecimal color</span><pre>$hover_color</pre></a></li>
+<li class="property public "><a href="#property_hover_italic" title="$hover_italic :: If links should be styled as italic in their hover state
+Default: default
+Valid values: yes, no, default"><span class="description">If links should be styled as italic in their hover state
+Default: default
+Valid values: yes, no, default</span><pre>$hover_italic</pre></a></li>
+<li class="property public "><a href="#property_hover_underline" title="$hover_underline :: If links should be decorated with underline decoration in their hover state
+Default: default
+Valid values: yes, no, default"><span class="description">If links should be decorated with underline decoration in their hover state
+Default: default
+Valid values: yes, no, default</span><pre>$hover_underline</pre></a></li>
+<li class="property public "><a href="#property_letter_spacing" title="$letter_spacing :: CSS letter-spacing value (in pixels)
+Default: normal"><span class="description">CSS letter-spacing value (in pixels)
+Default: normal</span><pre>$letter_spacing</pre></a></li>
+<li class="property public "><a href="#property_line_height" title="$line_height :: CSS line-height for the tags
+Default: inherit"><span class="description">CSS line-height for the tags
+Default: inherit</span><pre>$line_height</pre></a></li>
+<li class="property public "><a href="#property_link_bg_color" title="$link_bg_color :: Background color for links
+Default: transparent
+Valid values: A hexadecimal color"><span class="description">Background color for links
+Default: transparent
+Valid values: A hexadecimal color</span><pre>$link_bg_color</pre></a></li>
+<li class="property public "><a href="#property_link_bold" title="$link_bold :: If links should be styled as bold
+Default: default
+Valid values: yes, no, default"><span class="description">If links should be styled as bold
+Default: default
+Valid values: yes, no, default</span><pre>$link_bold</pre></a></li>
+<li class="property public "><a href="#property_link_border_color" title="$link_border_color :: Border color for links
+Default: none
+Valid values: A hexadecimal color"><span class="description">Border color for links
+Default: none
+Valid values: A hexadecimal color</span><pre>$link_border_color</pre></a></li>
+<li class="property public "><a href="#property_link_border_style" title="$link_border_style :: Border style for links
+Default: none
+Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset"><span class="description">Border style for links
+Default: none
+Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset</span><pre>$link_border_style</pre></a></li>
+<li class="property public "><a href="#property_link_border_width" title="$link_border_width :: Border width for links
+Default: 0"><span class="description">Border width for links
+Default: 0</span><pre>$link_border_width</pre></a></li>
+<li class="property public "><a href="#property_link_italic" title="$link_italic :: If links should be styled as italic
+Default: default
+Valid values: yes, no, default"><span class="description">If links should be styled as italic
+Default: default
+Valid values: yes, no, default</span><pre>$link_italic</pre></a></li>
+<li class="property public "><a href="#property_link_underline" title="$link_underline :: If links should be styled with underline decoration
+Default: default
+Valid values: yes, no, default"><span class="description">If links should be styled with underline decoration
+Default: default
+Valid values: yes, no, default</span><pre>$link_underline</pre></a></li>
+<li class="property public "><a href="#property_max" title="$max :: Maximum number of tags to display
+Default: 45"><span class="description">Maximum number of tags to display
+Default: 45</span><pre>$max</pre></a></li>
+<li class="property public "><a href="#property_minimum" title="$minimum :: How many posts a term needs to have to be shown in the cloud
+Default: 1"><span class="description">How many posts a term needs to have to be shown in the cloud
+Default: 1</span><pre>$minimum</pre></a></li>
+<li class="property public "><a href="#property_order" title="$order :: How the result should be ordered
+Default value: name
+Valid values: random, name, slug, id, color, count"><span class="description">How the result should be ordered
+Default value: name
+Valid values: random, name, slug, id, color, count</span><pre>$order</pre></a></li>
+<li class="property public "><a href="#property_post_type" title="$post_type :: An array of post type names to to include posts from in tag size calculation
+Default: [ post ]"><span class="description">An array of post type names to to include posts from in tag size calculation
+Default: [ post ]</span><pre>$post_type</pre></a></li>
+<li class="property public "><a href="#property_prefix" title="$prefix :: Prefix before each tag
+Default: (empty string)"><span class="description">Prefix before each tag
+Default: (empty string)</span><pre>$prefix</pre></a></li>
+<li class="property public "><a href="#property_reverse" title="$reverse :: If the order of tags should be shown in reverse order
+Default: false"><span class="description">If the order of tags should be shown in reverse order
+Default: false</span><pre>$reverse</pre></a></li>
+<li class="property public "><a href="#property_separator" title="$separator :: Separator between tags
+Default:  (a space character)"><span class="description">Separator between tags
+Default:  (a space character)</span><pre>$separator</pre></a></li>
+<li class="property public "><a href="#property_show_title" title="$show_title :: If the title attribute should be added to links in the cloud
+Default: true"><span class="description">If the title attribute should be added to links in the cloud
+Default: true</span><pre>$show_title</pre></a></li>
+<li class="property public "><a href="#property_show_title_text" title="$show_title_text :: If the widget title should be shown
+Default: true"><span class="description">If the widget title should be shown
+Default: true</span><pre>$show_title_text</pre></a></li>
+<li class="property public "><a href="#property_size_from" title="$size_from :: The smallest possible size
+Default: 10"><span class="description">The smallest possible size
+Default: 10</span><pre>$size_from</pre></a></li>
+<li class="property public "><a href="#property_size_to" title="$size_to :: The greatest possible size
+Default: 30"><span class="description">The greatest possible size
+Default: 30</span><pre>$size_to</pre></a></li>
+<li class="property public "><a href="#property_suffix" title="$suffix :: Suffix after each tag
+Default: (empty string)"><span class="description">Suffix after each tag
+Default: (empty string)</span><pre>$suffix</pre></a></li>
+<li class="property public "><a href="#property_tag_spacing" title="$tag_spacing :: CSS margin between tags
+Default: auto"><span class="description">CSS margin between tags
+Default: auto</span><pre>$tag_spacing</pre></a></li>
+<li class="property public "><a href="#property_tags_list" title="$tags_list :: A list of term IDs to be included or excluded."><span class="description">A list of term IDs to be included or excluded.</span><pre>$tags_list</pre></a></li>
+<li class="property public "><a href="#property_tags_list_type" title="$tags_list_type :: How the $tags_list should be used
+Default: exclude
+Valid values: exclude, include"><span class="description">How the $tags_list should be used
+Default: exclude
+Valid values: exclude, include</span><pre>$tags_list_type</pre></a></li>
+<li class="property public "><a href="#property_taxonomy" title="$taxonomy :: Which taxonomy to show tags from
+Default: post_tag"><span class="description">Which taxonomy to show tags from
+Default: post_tag</span><pre>$taxonomy</pre></a></li>
+<li class="property public "><a href="#property_text_transform" title="$text_transform :: CSS text-transform value
+Default: none
+Valid values: lowercase, uppercase, capitalize"><span class="description">CSS text-transform value
+Default: none
+Valid values: lowercase, uppercase, capitalize</span><pre>$text_transform</pre></a></li>
+<li class="property public "><a href="#property_title" title="$title :: Title text of the widget."><span class="description">Title text of the widget.</span><pre>$title</pre></a></li>
+<li class="property public "><a href="#property_word_spacing" title="$word_spacing :: CSS word-spacing value (in pixels)
+Default: normal"><span class="description">CSS word-spacing value (in pixels)
+Default: normal</span><pre>$word_spacing</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected "><a href="#property_allowed_border_styles" title="$allowed_border_styles :: Which CSS border-style valeus are allowed"><span class="description">Which CSS border-style valeus are allowed</span><pre>$allowed_border_styles</pre></a></li>
+<li class="property protected "><a href="#property_allowed_colors" title="$allowed_colors :: Which coloring strategies are allowed"><span class="description">Which coloring strategies are allowed</span><pre>$allowed_colors</pre></a></li>
+<li class="property protected "><a href="#property_allowed_optional_booleans" title="$allowed_optional_booleans :: Which values are allowed for optional booleans."><span class="description">Which values are allowed for optional booleans.</span><pre>$allowed_optional_booleans</pre></a></li>
+<li class="property protected "><a href="#property_allowed_orders" title="$allowed_orders :: Which ordering strategies are allowed"><span class="description">Which ordering strategies are allowed</span><pre>$allowed_orders</pre></a></li>
+<li class="property protected "><a href="#property_allowed_post_types" title="$allowed_post_types :: Which post types are allowed."><span class="description">Which post types are allowed.</span><pre>$allowed_post_types</pre></a></li>
+<li class="property protected "><a href="#property_allowed_tags_list_types" title="$allowed_tags_list_types :: Which tags_list_type values are allowed"><span class="description">Which tags_list_type values are allowed</span><pre>$allowed_tags_list_types</pre></a></li>
+<li class="property protected "><a href="#property_allowed_taxonomies" title="$allowed_taxonomies :: Which taxonomies are allowed."><span class="description">Which taxonomies are allowed.</span><pre>$allowed_taxonomies</pre></a></li>
+<li class="property protected "><a href="#property_allowed_text_transforms" title="$allowed_text_transforms :: Which CSS text-transform values are allowed"><span class="description">Which CSS text-transform values are allowed</span><pre>$allowed_text_transforms</pre></a></li>
+<li class="property protected "><a href="#property_options" title="$options :: Config store with default values"><span class="description">Config store with default values</span><pre>$options</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\UTCW_Config"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/UTCW_Config.html">UTCW_Config</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Configuration class for the widget.</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>2.0</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/utcw.main.html">utcw</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>main</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Loads a configuration instance array and parses the options</h2>
+<pre>__construct(array $input, \UTCW_Plugin $utcw) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$input</h4>
+<code>array</code><p>Array of key => value pairs of settings and values</p>
+</div>
+<div class="subelement argument">
+<h4>$utcw</h4>
+<code><a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></code><p>Reference to the main plugin instance</p></div>
+</div></div>
+</div>
+<a id="method_get_defaults"></a><div class="element clickable method public method_get_defaults" data-toggle="collapse" data-target=".method_get_defaults .collapse">
+<h2>Returns the default values for all the configuration options</h2>
+<pre>get_defaults() : array</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>static</th>
+<td></td>
+</tr>
+<tr>
+<th>since</th>
+<td>2.0</td>
+</tr>
+</table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_get_instance"></a><div class="element clickable method public method_get_instance" data-toggle="collapse" data-target=".method_get_instance .collapse">
+<h2>Returns an array of current configuration</h2>
+<pre>get_instance() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_is_array_numeric"></a><div class="element clickable method private method_is_array_numeric" data-toggle="collapse" data-target=".method_is_array_numeric .collapse">
+<h2>Checks if every item in the array is numeric</h2>
+<pre>is_array_numeric(array $array) : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$array</h4>
+<code>array</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_after_title"> </a><div class="element clickable property public property_after_title" data-toggle="collapse" data-target=".property_after_title .collapse">
+<h2>Text to display after the widget title.</h2>
+<pre>$after_title : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The default value for this setting will probably be determined by the theme
+Default: (an empty string)</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_after_widget"> </a><div class="element clickable property public property_after_widget" data-toggle="collapse" data-target=".property_after_widget .collapse">
+<h2>Text to display after the widget.</h2>
+<pre>$after_widget : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The default value for this setting will probably be determined by the theme
+Default: (an empty string)</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_authors"> </a><div class="element clickable property public property_authors" data-toggle="collapse" data-target=".property_authors .collapse">
+<h2>Which authors to include posts from.</h2>
+<pre>$authors : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>An empty array will include all authors
+Default: [] (an empty array)</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_before_title"> </a><div class="element clickable property public property_before_title" data-toggle="collapse" data-target=".property_before_title .collapse">
+<h2>Text to display before the widget title.</h2>
+<pre>$before_title : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The default value for this setting will probably be determined by the theme
+Default: (an empty string)</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_before_widget"> </a><div class="element clickable property public property_before_widget" data-toggle="collapse" data-target=".property_before_widget .collapse">
+<h2>Text to display before the widget.</h2>
+<pre>$before_widget : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The default value for this setting will probably be determined by the theme
+Default: (an empty string)</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_case_sensitive"> </a><div class="element clickable property public property_case_sensitive" data-toggle="collapse" data-target=".property_case_sensitive .collapse">
+<h2>If sorting should be applied case sensitive
+Default: false</h2>
+<pre>$case_sensitive : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_color"> </a><div class="element clickable property public property_color" data-toggle="collapse" data-target=".property_color .collapse">
+<h2>Which coloring strategy to use
+Default: none
+Valid values: none, random, set, span</h2>
+<pre>$color : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_color_set"> </a><div class="element clickable property public property_color_set" data-toggle="collapse" data-target=".property_color_set .collapse">
+<h2>A set of colors to randomly select from when coloring the tags
+Default: [] (an empty array)</h2>
+<pre>$color_set : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_color_span_from"> </a><div class="element clickable property public property_color_span_from" data-toggle="collapse" data-target=".property_color_span_from .collapse">
+<h2>Which color value to end at in color calculation.</h2>
+<pre>$color_span_from : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is the color that the biggest tag will get.
+Default: (an empty string)</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_color_span_to"> </a><div class="element clickable property public property_color_span_to" data-toggle="collapse" data-target=".property_color_span_to .collapse">
+<h2>Which color value to start from in color calculation.</h2>
+<pre>$color_span_to : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>This is the color that the smallest tag will get.
+Default: (an empty string)</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_days_old"> </a><div class="element clickable property public property_days_old" data-toggle="collapse" data-target=".property_days_old .collapse">
+<h2>How many days old a post needs to be to be included in tag size calculation
+Default: 0</h2>
+<pre>$days_old : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_debug"> </a><div class="element clickable property public property_debug" data-toggle="collapse" data-target=".property_debug .collapse">
+<h2>If debug output should be included
+Default: false</h2>
+<pre>$debug : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_hover_bg_color"> </a><div class="element clickable property public property_hover_bg_color" data-toggle="collapse" data-target=".property_hover_bg_color .collapse">
+<h2>Background color for links in their hover state
+Default: transparent
+Valid values: A hexadecimal color</h2>
+<pre>$hover_bg_color : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_hover_bold"> </a><div class="element clickable property public property_hover_bold" data-toggle="collapse" data-target=".property_hover_bold .collapse">
+<h2>If links should be styled as bold in their hover state
+Default: default
+Valid values: yes, no, default</h2>
+<pre>$hover_bold : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_hover_border_color"> </a><div class="element clickable property public property_hover_border_color" data-toggle="collapse" data-target=".property_hover_border_color .collapse">
+<h2>Border color for links in their hover state
+Default: none
+Valid values: A hexadecimal color</h2>
+<pre>$hover_border_color : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_hover_border_style"> </a><div class="element clickable property public property_hover_border_style" data-toggle="collapse" data-target=".property_hover_border_style .collapse">
+<h2>Border style for links in their hover state
+Default: none
+Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset</h2>
+<pre>$hover_border_style : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_hover_border_width"> </a><div class="element clickable property public property_hover_border_width" data-toggle="collapse" data-target=".property_hover_border_width .collapse">
+<h2>Border width for links in their hover state
+Default: 0</h2>
+<pre>$hover_border_width : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_hover_color"> </a><div class="element clickable property public property_hover_color" data-toggle="collapse" data-target=".property_hover_color .collapse">
+<h2>Text color for links in their hover state
+Default: default
+Valid values: A hexadecimal color</h2>
+<pre>$hover_color : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_hover_italic"> </a><div class="element clickable property public property_hover_italic" data-toggle="collapse" data-target=".property_hover_italic .collapse">
+<h2>If links should be styled as italic in their hover state
+Default: default
+Valid values: yes, no, default</h2>
+<pre>$hover_italic : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_hover_underline"> </a><div class="element clickable property public property_hover_underline" data-toggle="collapse" data-target=".property_hover_underline .collapse">
+<h2>If links should be decorated with underline decoration in their hover state
+Default: default
+Valid values: yes, no, default</h2>
+<pre>$hover_underline : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_letter_spacing"> </a><div class="element clickable property public property_letter_spacing" data-toggle="collapse" data-target=".property_letter_spacing .collapse">
+<h2>CSS letter-spacing value (in pixels)
+Default: normal</h2>
+<pre>$letter_spacing : int | string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_line_height"> </a><div class="element clickable property public property_line_height" data-toggle="collapse" data-target=".property_line_height .collapse">
+<h2>CSS line-height for the tags
+Default: inherit</h2>
+<pre>$line_height : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_link_bg_color"> </a><div class="element clickable property public property_link_bg_color" data-toggle="collapse" data-target=".property_link_bg_color .collapse">
+<h2>Background color for links
+Default: transparent
+Valid values: A hexadecimal color</h2>
+<pre>$link_bg_color : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_link_bold"> </a><div class="element clickable property public property_link_bold" data-toggle="collapse" data-target=".property_link_bold .collapse">
+<h2>If links should be styled as bold
+Default: default
+Valid values: yes, no, default</h2>
+<pre>$link_bold : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_link_border_color"> </a><div class="element clickable property public property_link_border_color" data-toggle="collapse" data-target=".property_link_border_color .collapse">
+<h2>Border color for links
+Default: none
+Valid values: A hexadecimal color</h2>
+<pre>$link_border_color : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_link_border_style"> </a><div class="element clickable property public property_link_border_style" data-toggle="collapse" data-target=".property_link_border_style .collapse">
+<h2>Border style for links
+Default: none
+Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset</h2>
+<pre>$link_border_style : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_link_border_width"> </a><div class="element clickable property public property_link_border_width" data-toggle="collapse" data-target=".property_link_border_width .collapse">
+<h2>Border width for links
+Default: 0</h2>
+<pre>$link_border_width : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_link_italic"> </a><div class="element clickable property public property_link_italic" data-toggle="collapse" data-target=".property_link_italic .collapse">
+<h2>If links should be styled as italic
+Default: default
+Valid values: yes, no, default</h2>
+<pre>$link_italic : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_link_underline"> </a><div class="element clickable property public property_link_underline" data-toggle="collapse" data-target=".property_link_underline .collapse">
+<h2>If links should be styled with underline decoration
+Default: default
+Valid values: yes, no, default</h2>
+<pre>$link_underline : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_max"> </a><div class="element clickable property public property_max" data-toggle="collapse" data-target=".property_max .collapse">
+<h2>Maximum number of tags to display
+Default: 45</h2>
+<pre>$max : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_minimum"> </a><div class="element clickable property public property_minimum" data-toggle="collapse" data-target=".property_minimum .collapse">
+<h2>How many posts a term needs to have to be shown in the cloud
+Default: 1</h2>
+<pre>$minimum : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_order"> </a><div class="element clickable property public property_order" data-toggle="collapse" data-target=".property_order .collapse">
+<h2>How the result should be ordered
+Default value: name
+Valid values: random, name, slug, id, color, count</h2>
+<pre>$order : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_post_type"> </a><div class="element clickable property public property_post_type" data-toggle="collapse" data-target=".property_post_type .collapse">
+<h2>An array of post type names to to include posts from in tag size calculation
+Default: [ post ]</h2>
+<pre>$post_type : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_prefix"> </a><div class="element clickable property public property_prefix" data-toggle="collapse" data-target=".property_prefix .collapse">
+<h2>Prefix before each tag
+Default: (empty string)</h2>
+<pre>$prefix : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_reverse"> </a><div class="element clickable property public property_reverse" data-toggle="collapse" data-target=".property_reverse .collapse">
+<h2>If the order of tags should be shown in reverse order
+Default: false</h2>
+<pre>$reverse : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_separator"> </a><div class="element clickable property public property_separator" data-toggle="collapse" data-target=".property_separator .collapse">
+<h2>Separator between tags
+Default:  (a space character)</h2>
+<pre>$separator : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_show_title"> </a><div class="element clickable property public property_show_title" data-toggle="collapse" data-target=".property_show_title .collapse">
+<h2>If the title attribute should be added to links in the cloud
+Default: true</h2>
+<pre>$show_title : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_show_title_text"> </a><div class="element clickable property public property_show_title_text" data-toggle="collapse" data-target=".property_show_title_text .collapse">
+<h2>If the widget title should be shown
+Default: true</h2>
+<pre>$show_title_text : bool</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_size_from"> </a><div class="element clickable property public property_size_from" data-toggle="collapse" data-target=".property_size_from .collapse">
+<h2>The smallest possible size
+Default: 10</h2>
+<pre>$size_from : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_size_to"> </a><div class="element clickable property public property_size_to" data-toggle="collapse" data-target=".property_size_to .collapse">
+<h2>The greatest possible size
+Default: 30</h2>
+<pre>$size_to : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_suffix"> </a><div class="element clickable property public property_suffix" data-toggle="collapse" data-target=".property_suffix .collapse">
+<h2>Suffix after each tag
+Default: (empty string)</h2>
+<pre>$suffix : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_tag_spacing"> </a><div class="element clickable property public property_tag_spacing" data-toggle="collapse" data-target=".property_tag_spacing .collapse">
+<h2>CSS margin between tags
+Default: auto</h2>
+<pre>$tag_spacing : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_tags_list"> </a><div class="element clickable property public property_tags_list" data-toggle="collapse" data-target=".property_tags_list .collapse">
+<h2>A list of term IDs to be included or excluded.</h2>
+<pre>$tags_list : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Inclusion or exclusion is determined by $tags_list_type
+Default: [] (an empty array)</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_tags_list_type"> </a><div class="element clickable property public property_tags_list_type" data-toggle="collapse" data-target=".property_tags_list_type .collapse">
+<h2>How the $tags_list should be used
+Default: exclude
+Valid values: exclude, include</h2>
+<pre>$tags_list_type : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_taxonomy"> </a><div class="element clickable property public property_taxonomy" data-toggle="collapse" data-target=".property_taxonomy .collapse">
+<h2>Which taxonomy to show tags from
+Default: post_tag</h2>
+<pre>$taxonomy : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_text_transform"> </a><div class="element clickable property public property_text_transform" data-toggle="collapse" data-target=".property_text_transform .collapse">
+<h2>CSS text-transform value
+Default: none
+Valid values: lowercase, uppercase, capitalize</h2>
+<pre>$text_transform : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_title"> </a><div class="element clickable property public property_title" data-toggle="collapse" data-target=".property_title .collapse">
+<h2>Title text of the widget.</h2>
+<pre>$title : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Default value: Tag cloud</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_word_spacing"> </a><div class="element clickable property public property_word_spacing" data-toggle="collapse" data-target=".property_word_spacing .collapse">
+<h2>CSS word-spacing value (in pixels)
+Default: normal</h2>
+<pre>$word_spacing : int | string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_allowed_border_styles"> </a><div class="element clickable property protected property_allowed_border_styles" data-toggle="collapse" data-target=".property_allowed_border_styles .collapse">
+<h2>Which CSS border-style valeus are allowed</h2>
+<pre>$allowed_border_styles : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_allowed_colors"> </a><div class="element clickable property protected property_allowed_colors" data-toggle="collapse" data-target=".property_allowed_colors .collapse">
+<h2>Which coloring strategies are allowed</h2>
+<pre>$allowed_colors : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_allowed_optional_booleans"> </a><div class="element clickable property protected property_allowed_optional_booleans" data-toggle="collapse" data-target=".property_allowed_optional_booleans .collapse">
+<h2>Which values are allowed for optional booleans.</h2>
+<pre>$allowed_optional_booleans : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>These are values which can be true, false or fallback to theme default (where applicable)</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_allowed_orders"> </a><div class="element clickable property protected property_allowed_orders" data-toggle="collapse" data-target=".property_allowed_orders .collapse">
+<h2>Which ordering strategies are allowed</h2>
+<pre>$allowed_orders : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_allowed_post_types"> </a><div class="element clickable property protected property_allowed_post_types" data-toggle="collapse" data-target=".property_allowed_post_types .collapse">
+<h2>Which post types are allowed.</h2>
+<pre>$allowed_post_types : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Will be set dynamically at load</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_allowed_tags_list_types"> </a><div class="element clickable property protected property_allowed_tags_list_types" data-toggle="collapse" data-target=".property_allowed_tags_list_types .collapse">
+<h2>Which tags_list_type values are allowed</h2>
+<pre>$allowed_tags_list_types : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_allowed_taxonomies"> </a><div class="element clickable property protected property_allowed_taxonomies" data-toggle="collapse" data-target=".property_allowed_taxonomies .collapse">
+<h2>Which taxonomies are allowed.</h2>
+<pre>$allowed_taxonomies : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Will be set dynamically at load</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_allowed_text_transforms"> </a><div class="element clickable property protected property_allowed_text_transforms" data-toggle="collapse" data-target=".property_allowed_text_transforms .collapse">
+<h2>Which CSS text-transform values are allowed</h2>
+<pre>$allowed_text_transforms : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.0</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_options"> </a><div class="element clickable property protected property_options" data-toggle="collapse" data-target=".property_options .collapse">
+<h2>Config store with default values</h2>
+<pre>$options : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>static</th>
+<td></td>
+</tr>
+<tr>
+<th>since</th>
+<td>2.0</td>
+</tr>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
+            generated on 2012-10-08T23:14:46+02:00.<br></footer></div>
+</div>
+</body>
+</html>

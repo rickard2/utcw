@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
 /*
 Plugin Name: Ultimate tag cloud widget
 Plugin URI: https://www.0x539.se/wordpress/ultimate-tag-cloud-widget/
@@ -20,6 +20,7 @@ License: GPLv2
  * @todo       Find plugin compatibility, both PHP, WP and jQuery
  * @todo       README
  */
+if ( ! defined( 'ABSPATH' ) ) die();
 
 /**
  * Current version number
@@ -62,7 +63,9 @@ require_once 'utcw-term.php';
 /**
  * Class for general plugin integration with WordPress
  *
- * @since 2.0
+ * @since      2.0
+ * @package    utcw
+ * @subpackage main
  */
 class UTCW_Plugin {
 

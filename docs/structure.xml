@@ -1,0 +1,1967 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a10" title="">
+  <file path="pages/settings.php" hash="57f3bd1980f0f34deb4f3bccbf32b7c7" package="utcw\pages">
+    <docblock line="2">
+      <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.0"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="pages"/>
+      <tag line="2" name="var" description="" type="\UTCW_Config">
+        <type by_reference="false">\UTCW_Config</type>
+      </tag>
+      <tag line="2" name="var" description="" type="array">
+        <type by_reference="false">array</type>
+      </tag>
+      <tag line="2" name="var" description="" type="array">
+        <type by_reference="false">array</type>
+      </tag>
+      <tag line="2" name="var" description="" type="array">
+        <type by_reference="false">array</type>
+      </tag>
+      <tag line="2" name="var" description="" type="array">
+        <type by_reference="false">array</type>
+      </tag>
+      <tag line="2" name="var" description="" type="array">
+        <type by_reference="false">array</type>
+      </tag>
+      <tag line="2" name="var" description="" type="\UTCW">
+        <type by_reference="false">\UTCW</type>
+      </tag>
+    </docblock>
+  </file>
+  <file path="utcw-config.php" hash="4c15acf9443a3887517917929dc9c69d" package="utcw\main">
+    <docblock line="2">
+      <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.0"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="main"/>
+      <tag line="2" name="since" description="2.0"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="20" package="utcw\main">
+      <extends/>
+      <name>UTCW_Config</name>
+      <full_name>\UTCW_Config</full_name>
+      <docblock line="13">
+        <description><![CDATA[Configuration class for the widget.]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="since" description="2.0"/>
+        <tag line="13" name="package" description="utcw"/>
+        <tag line="13" name="subpackage" description="main"/>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="29" namespace="global" package="Default">
+        <name>$title</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[Title text of the widget.]]></description>
+          <long-description><![CDATA[<p>Default value: Tag cloud</p>]]></long-description>
+          <tag line="22" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="22" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="39" namespace="global" package="Default">
+        <name>$order</name>
+        <default><![CDATA[]]></default>
+        <docblock line="31">
+          <description><![CDATA[How the result should be ordered
+Default value: name
+Valid values: random, name, slug, id, color, count]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="31" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="31" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="48" namespace="global" package="Default">
+        <name>$size_from</name>
+        <default><![CDATA[]]></default>
+        <docblock line="41">
+          <description><![CDATA[The smallest possible size
+Default: 10]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="41" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="41" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="57" namespace="global" package="Default">
+        <name>$size_to</name>
+        <default><![CDATA[]]></default>
+        <docblock line="50">
+          <description><![CDATA[The greatest possible size
+Default: 30]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="50" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="50" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="66" namespace="global" package="Default">
+        <name>$max</name>
+        <default><![CDATA[]]></default>
+        <docblock line="59">
+          <description><![CDATA[Maximum number of tags to display
+Default: 45]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="59" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="59" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="75" namespace="global" package="Default">
+        <name>$taxonomy</name>
+        <default><![CDATA[]]></default>
+        <docblock line="68">
+          <description><![CDATA[Which taxonomy to show tags from
+Default: post_tag]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="68" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="68" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="84" namespace="global" package="Default">
+        <name>$reverse</name>
+        <default><![CDATA[]]></default>
+        <docblock line="77">
+          <description><![CDATA[If the order of tags should be shown in reverse order
+Default: false]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="77" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="77" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="94" namespace="global" package="Default">
+        <name>$color</name>
+        <default><![CDATA[]]></default>
+        <docblock line="86">
+          <description><![CDATA[Which coloring strategy to use
+Default: none
+Valid values: none, random, set, span]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="86" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="86" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="103" namespace="global" package="Default">
+        <name>$letter_spacing</name>
+        <default><![CDATA[]]></default>
+        <docblock line="96">
+          <description><![CDATA[CSS letter-spacing value (in pixels)
+Default: normal]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="96" name="var" description="" type="int|string">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="96" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="112" namespace="global" package="Default">
+        <name>$word_spacing</name>
+        <default><![CDATA[]]></default>
+        <docblock line="105">
+          <description><![CDATA[CSS word-spacing value (in pixels)
+Default: normal]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="105" name="var" description="" type="int|string">
+            <type by_reference="false">int</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="105" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="122" namespace="global" package="Default">
+        <name>$text_transform</name>
+        <default><![CDATA[]]></default>
+        <docblock line="114">
+          <description><![CDATA[CSS text-transform value
+Default: none
+Valid values: lowercase, uppercase, capitalize]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="114" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="114" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="131" namespace="global" package="Default">
+        <name>$case_sensitive</name>
+        <default><![CDATA[]]></default>
+        <docblock line="124">
+          <description><![CDATA[If sorting should be applied case sensitive
+Default: false]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="124" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="124" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="140" namespace="global" package="Default">
+        <name>$minimum</name>
+        <default><![CDATA[]]></default>
+        <docblock line="133">
+          <description><![CDATA[How many posts a term needs to have to be shown in the cloud
+Default: 1]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="133" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="133" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="150" namespace="global" package="Default">
+        <name>$tags_list_type</name>
+        <default><![CDATA[]]></default>
+        <docblock line="142">
+          <description><![CDATA[How the $tags_list should be used
+Default: exclude
+Valid values: exclude, include]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="142" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="142" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="159" namespace="global" package="Default">
+        <name>$show_title</name>
+        <default><![CDATA[]]></default>
+        <docblock line="152">
+          <description><![CDATA[If the title attribute should be added to links in the cloud
+Default: true]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="152" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="152" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="169" namespace="global" package="Default">
+        <name>$link_underline</name>
+        <default><![CDATA[]]></default>
+        <docblock line="161">
+          <description><![CDATA[If links should be styled with underline decoration
+Default: default
+Valid values: yes, no, default]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="161" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="161" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="179" namespace="global" package="Default">
+        <name>$link_bold</name>
+        <default><![CDATA[]]></default>
+        <docblock line="171">
+          <description><![CDATA[If links should be styled as bold
+Default: default
+Valid values: yes, no, default]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="171" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="171" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="189" namespace="global" package="Default">
+        <name>$link_italic</name>
+        <default><![CDATA[]]></default>
+        <docblock line="181">
+          <description><![CDATA[If links should be styled as italic
+Default: default
+Valid values: yes, no, default]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="181" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="181" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="199" namespace="global" package="Default">
+        <name>$link_bg_color</name>
+        <default><![CDATA[]]></default>
+        <docblock line="191">
+          <description><![CDATA[Background color for links
+Default: transparent
+Valid values: A hexadecimal color]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="191" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="191" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="209" namespace="global" package="Default">
+        <name>$link_border_style</name>
+        <default><![CDATA[]]></default>
+        <docblock line="201">
+          <description><![CDATA[Border style for links
+Default: none
+Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="201" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="201" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="218" namespace="global" package="Default">
+        <name>$link_border_width</name>
+        <default><![CDATA[]]></default>
+        <docblock line="211">
+          <description><![CDATA[Border width for links
+Default: 0]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="211" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="211" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="228" namespace="global" package="Default">
+        <name>$link_border_color</name>
+        <default><![CDATA[]]></default>
+        <docblock line="220">
+          <description><![CDATA[Border color for links
+Default: none
+Valid values: A hexadecimal color]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="220" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="220" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="238" namespace="global" package="Default">
+        <name>$hover_underline</name>
+        <default><![CDATA[]]></default>
+        <docblock line="230">
+          <description><![CDATA[If links should be decorated with underline decoration in their hover state
+Default: default
+Valid values: yes, no, default]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="230" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="230" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="248" namespace="global" package="Default">
+        <name>$hover_bold</name>
+        <default><![CDATA[]]></default>
+        <docblock line="240">
+          <description><![CDATA[If links should be styled as bold in their hover state
+Default: default
+Valid values: yes, no, default]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="240" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="240" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="258" namespace="global" package="Default">
+        <name>$hover_italic</name>
+        <default><![CDATA[]]></default>
+        <docblock line="250">
+          <description><![CDATA[If links should be styled as italic in their hover state
+Default: default
+Valid values: yes, no, default]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="250" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="250" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="268" namespace="global" package="Default">
+        <name>$hover_bg_color</name>
+        <default><![CDATA[]]></default>
+        <docblock line="260">
+          <description><![CDATA[Background color for links in their hover state
+Default: transparent
+Valid values: A hexadecimal color]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="260" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="260" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="278" namespace="global" package="Default">
+        <name>$hover_color</name>
+        <default><![CDATA[]]></default>
+        <docblock line="270">
+          <description><![CDATA[Text color for links in their hover state
+Default: default
+Valid values: A hexadecimal color]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="270" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="270" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="288" namespace="global" package="Default">
+        <name>$hover_border_style</name>
+        <default><![CDATA[]]></default>
+        <docblock line="280">
+          <description><![CDATA[Border style for links in their hover state
+Default: none
+Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="280" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="280" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="297" namespace="global" package="Default">
+        <name>$hover_border_width</name>
+        <default><![CDATA[]]></default>
+        <docblock line="290">
+          <description><![CDATA[Border width for links in their hover state
+Default: 0]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="290" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="290" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="307" namespace="global" package="Default">
+        <name>$hover_border_color</name>
+        <default><![CDATA[]]></default>
+        <docblock line="299">
+          <description><![CDATA[Border color for links in their hover state
+Default: none
+Valid values: A hexadecimal color]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="299" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="299" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="316" namespace="global" package="Default">
+        <name>$tag_spacing</name>
+        <default><![CDATA[]]></default>
+        <docblock line="309">
+          <description><![CDATA[CSS margin between tags
+Default: auto]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="309" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="309" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="325" namespace="global" package="Default">
+        <name>$debug</name>
+        <default><![CDATA[]]></default>
+        <docblock line="318">
+          <description><![CDATA[If debug output should be included
+Default: false]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="318" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="318" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="334" namespace="global" package="Default">
+        <name>$days_old</name>
+        <default><![CDATA[]]></default>
+        <docblock line="327">
+          <description><![CDATA[How many days old a post needs to be to be included in tag size calculation
+Default: 0]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="327" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="327" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="343" namespace="global" package="Default">
+        <name>$line_height</name>
+        <default><![CDATA[]]></default>
+        <docblock line="336">
+          <description><![CDATA[CSS line-height for the tags
+Default: inherit]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="336" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="336" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="352" namespace="global" package="Default">
+        <name>$separator</name>
+        <default><![CDATA[]]></default>
+        <docblock line="345">
+          <description><![CDATA[Separator between tags
+Default:  (a space character)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="345" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="345" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="361" namespace="global" package="Default">
+        <name>$prefix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="354">
+          <description><![CDATA[Prefix before each tag
+Default: (empty string)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="354" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="354" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="370" namespace="global" package="Default">
+        <name>$suffix</name>
+        <default><![CDATA[]]></default>
+        <docblock line="363">
+          <description><![CDATA[Suffix after each tag
+Default: (empty string)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="363" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="363" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="379" namespace="global" package="Default">
+        <name>$show_title_text</name>
+        <default><![CDATA[]]></default>
+        <docblock line="372">
+          <description><![CDATA[If the widget title should be shown
+Default: true]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="372" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="372" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="388" namespace="global" package="Default">
+        <name>$post_type</name>
+        <default><![CDATA[]]></default>
+        <docblock line="381">
+          <description><![CDATA[An array of post type names to to include posts from in tag size calculation
+Default: [ post ]]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="381" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="381" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="397" namespace="global" package="Default">
+        <name>$tags_list</name>
+        <default><![CDATA[]]></default>
+        <docblock line="390">
+          <description><![CDATA[A list of term IDs to be included or excluded.]]></description>
+          <long-description><![CDATA[<p>Inclusion or exclusion is determined by $tags_list_type
+Default: [] (an empty array)</p>]]></long-description>
+          <tag line="390" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="390" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="406" namespace="global" package="Default">
+        <name>$color_span_to</name>
+        <default><![CDATA[]]></default>
+        <docblock line="399">
+          <description><![CDATA[Which color value to start from in color calculation.]]></description>
+          <long-description><![CDATA[<p>This is the color that the smallest tag will get.
+Default: (an empty string)</p>]]></long-description>
+          <tag line="399" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="399" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="415" namespace="global" package="Default">
+        <name>$color_span_from</name>
+        <default><![CDATA[]]></default>
+        <docblock line="408">
+          <description><![CDATA[Which color value to end at in color calculation.]]></description>
+          <long-description><![CDATA[<p>This is the color that the biggest tag will get.
+Default: (an empty string)</p>]]></long-description>
+          <tag line="408" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="408" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="424" namespace="global" package="Default">
+        <name>$authors</name>
+        <default><![CDATA[]]></default>
+        <docblock line="417">
+          <description><![CDATA[Which authors to include posts from.]]></description>
+          <long-description><![CDATA[<p>An empty array will include all authors
+Default: [] (an empty array)</p>]]></long-description>
+          <tag line="417" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="417" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="433" namespace="global" package="Default">
+        <name>$color_set</name>
+        <default><![CDATA[]]></default>
+        <docblock line="426">
+          <description><![CDATA[A set of colors to randomly select from when coloring the tags
+Default: [] (an empty array)]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="426" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="426" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="442" namespace="global" package="Default">
+        <name>$authenticated</name>
+        <default><![CDATA[]]></default>
+        <docblock line="435">
+          <description><![CDATA[If the current user is authenticated.]]></description>
+          <long-description><![CDATA[<p>Will be set internally</p>]]></long-description>
+          <tag line="435" name="internal" description=""/>
+          <tag line="435" name="var" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="435" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="451" namespace="global" package="Default">
+        <name>$before_widget</name>
+        <default><![CDATA[]]></default>
+        <docblock line="444">
+          <description><![CDATA[Text to display before the widget.]]></description>
+          <long-description><![CDATA[<p>The default value for this setting will probably be determined by the theme
+Default: (an empty string)</p>]]></long-description>
+          <tag line="444" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="444" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="460" namespace="global" package="Default">
+        <name>$after_widget</name>
+        <default><![CDATA[]]></default>
+        <docblock line="453">
+          <description><![CDATA[Text to display after the widget.]]></description>
+          <long-description><![CDATA[<p>The default value for this setting will probably be determined by the theme
+Default: (an empty string)</p>]]></long-description>
+          <tag line="453" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="453" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="469" namespace="global" package="Default">
+        <name>$before_title</name>
+        <default><![CDATA[]]></default>
+        <docblock line="462">
+          <description><![CDATA[Text to display before the widget title.]]></description>
+          <long-description><![CDATA[<p>The default value for this setting will probably be determined by the theme
+Default: (an empty string)</p>]]></long-description>
+          <tag line="462" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="462" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="478" namespace="global" package="Default">
+        <name>$after_title</name>
+        <default><![CDATA[]]></default>
+        <docblock line="471">
+          <description><![CDATA[Text to display after the widget title.]]></description>
+          <long-description><![CDATA[<p>The default value for this setting will probably be determined by the theme
+Default: (an empty string)</p>]]></long-description>
+          <tag line="471" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="471" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="protected" line="487" namespace="global" package="Default">
+        <name>$options</name>
+        <default><![CDATA[array('title' => 'Tag Cloud', 'order' => 'name', 'size_from' => 10, 'size_to' => 30, 'max' => 45, 'taxonomy' => 'post_tag', 'reverse' => false, 'color' => 'none', 'letter_spacing' => 'normal', 'word_spacing' => 'normal', 'text_transform' => 'none', 'case_sensitive' => false, 'minimum' => 1, 'tags_list_type' => 'exclude', 'show_title' => true, 'link_underline' => 'default', 'link_bold' => 'default', 'link_italic' => 'default', 'link_bg_color' => 'transparent', 'link_border_style' => 'none', 'link_border_width' => 0, 'link_border_color' => 'none', 'hover_underline' => 'default', 'hover_bold' => 'default', 'hover_italic' => 'default', 'hover_bg_color' => 'transparent', 'hover_color' => 'default', 'hover_border_style' => 'none', 'hover_border_width' => 0, 'hover_border_color' => 'none', 'tag_spacing' => 'auto', 'debug' => false, 'days_old' => 0, 'line_height' => 'inherit', 'separator' => ' ', 'prefix' => '', 'suffix' => '', 'show_title_text' => true, 'post_type' => array('post'), 'tags_list' => array(), 'color_span_to' => '', 'color_span_from' => '', 'authors' => array(), 'color_set' => array(), 'before_widget' => '', 'after_widget' => '', 'before_title' => '', 'after_title' => '')]]></default>
+        <docblock line="480">
+          <description><![CDATA[Config store with default values]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="480" name="static" description=""/>
+          <tag line="480" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="480" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="544" namespace="global" package="Default">
+        <name>$allowed_orders</name>
+        <default><![CDATA[array('random', 'name', 'slug', 'id', 'color', 'count')]]></default>
+        <docblock line="538">
+          <description><![CDATA[Which ordering strategies are allowed]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="538" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="538" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="552" namespace="global" package="Default">
+        <name>$allowed_taxonomies</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="546">
+          <description><![CDATA[Which taxonomies are allowed.]]></description>
+          <long-description><![CDATA[<p>Will be set dynamically at load</p>]]></long-description>
+          <tag line="546" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="546" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="560" namespace="global" package="Default">
+        <name>$allowed_post_types</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="554">
+          <description><![CDATA[Which post types are allowed.]]></description>
+          <long-description><![CDATA[<p>Will be set dynamically at load</p>]]></long-description>
+          <tag line="554" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="554" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="568" namespace="global" package="Default">
+        <name>$allowed_colors</name>
+        <default><![CDATA[array('none', 'random', 'set', 'span')]]></default>
+        <docblock line="562">
+          <description><![CDATA[Which coloring strategies are allowed]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="562" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="562" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="576" namespace="global" package="Default">
+        <name>$allowed_text_transforms</name>
+        <default><![CDATA[array('lowercase', 'uppercase', 'capitalize')]]></default>
+        <docblock line="570">
+          <description><![CDATA[Which CSS text-transform values are allowed]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="570" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="570" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="584" namespace="global" package="Default">
+        <name>$allowed_tags_list_types</name>
+        <default><![CDATA[array('exclude', 'include')]]></default>
+        <docblock line="578">
+          <description><![CDATA[Which tags_list_type values are allowed]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="578" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="578" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="592" namespace="global" package="Default">
+        <name>$allowed_optional_booleans</name>
+        <default><![CDATA[array('yes', 'no', 'default')]]></default>
+        <docblock line="586">
+          <description><![CDATA[Which values are allowed for optional booleans.]]></description>
+          <long-description><![CDATA[<p>These are values which can be true, false or fallback to theme default (where applicable)</p>]]></long-description>
+          <tag line="586" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="586" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="600" namespace="global" package="Default">
+        <name>$allowed_border_styles</name>
+        <default><![CDATA[array('none', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset')]]></default>
+        <docblock line="594">
+          <description><![CDATA[Which CSS border-style valeus are allowed]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="594" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="594" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="612" package="utcw\main">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="604">
+          <description><![CDATA[Loads a configuration instance array and parses the options]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="604" name="param" description="Array of key =&gt; value pairs of settings and values" type="array" variable="$input">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="604" name="param" description="Reference to the main plugin instance" type="\UTCW_Plugin" variable="$utcw">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="604" name="since" description="2.0"/>
+        </docblock>
+        <argument line="612">
+          <name>$input</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="612">
+          <name>$utcw</name>
+          <default><![CDATA[]]></default>
+          <type>\UTCW_Plugin</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="743" package="utcw\main">
+        <name>is_array_numeric</name>
+        <full_name>is_array_numeric</full_name>
+        <docblock line="735">
+          <description><![CDATA[Checks if every item in the array is numeric]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="735" name="param" description="" type="array" variable="$array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="735" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="735" name="since" description="2.0"/>
+        </docblock>
+        <argument line="743">
+          <name>$array</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="759" package="utcw\main">
+        <name>get_instance</name>
+        <full_name>get_instance</full_name>
+        <docblock line="753">
+          <description><![CDATA[Returns an array of current configuration]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="753" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="753" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="776" package="utcw\main">
+        <name>get_defaults</name>
+        <full_name>get_defaults</full_name>
+        <docblock line="769">
+          <description><![CDATA[Returns the default values for all the configuration options]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="769" name="static" description=""/>
+          <tag line="769" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="769" name="since" description="2.0"/>
+        </docblock>
+      </method>
+    </class>
+    <markers>
+      <todo line="655">Allow more flexibility in color setting, like rgb/rgba/hsl/hsla and named colors</todo>
+    </markers>
+  </file>
+  <file path="utcw-data.php" hash="8d140e05d7c144aa9667cd0a7035d41a" package="utcw\main">
+    <docblock line="2">
+      <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.0"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="main"/>
+      <tag line="2" name="since" description="2.0"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="20" package="utcw\main">
+      <extends/>
+      <name>UTCW_Data</name>
+      <full_name>\UTCW_Data</full_name>
+      <docblock line="13">
+        <description><![CDATA[Class for loading data for the cloud]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="since" description="2.0"/>
+        <tag line="13" name="package" description="utcw"/>
+        <tag line="13" name="subpackage" description="main"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="28" namespace="global" package="Default">
+        <name>$config</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[Reference to the current configuration]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="\UTCW_Config">
+            <type by_reference="false">\UTCW_Config</type>
+          </tag>
+          <tag line="22" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="36" namespace="global" package="Default">
+        <name>$db</name>
+        <default><![CDATA[]]></default>
+        <docblock line="30">
+          <description><![CDATA[Reference to WPDB object]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="var" description="" type="\wpdb">
+            <type by_reference="false">\wpdb</type>
+          </tag>
+          <tag line="30" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="44" namespace="global" package="Default">
+        <name>$utcw</name>
+        <default><![CDATA[]]></default>
+        <docblock line="38">
+          <description><![CDATA[Reference to main plugin instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="var" description="" type="\UTCW_Plugin">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="38" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="55" package="utcw\main">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="46">
+          <description><![CDATA[Creates a new instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="46" name="param" description="Current configuration" type="\UTCW_Config" variable="$config">
+            <type by_reference="false">\UTCW_Config</type>
+          </tag>
+          <tag line="46" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$utcw">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="46" name="param" description="WordPress DB instance" type="\wpdb" variable="$db">
+            <type by_reference="false">\wpdb</type>
+          </tag>
+          <tag line="46" name="since" description="2.0"/>
+        </docblock>
+        <argument line="55">
+          <name>$config</name>
+          <default><![CDATA[]]></default>
+          <type>\UTCW_Config</type>
+        </argument>
+        <argument line="55">
+          <name>$utcw</name>
+          <default><![CDATA[]]></default>
+          <type>\UTCW_Plugin</type>
+        </argument>
+        <argument line="55">
+          <name>$db</name>
+          <default><![CDATA[]]></default>
+          <type>\wpdb</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="67" package="utcw\main">
+        <name>get_terms</name>
+        <full_name>get_terms</full_name>
+        <docblock line="61">
+          <description><![CDATA[Loads terms based on current configuration]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="61" name="return" description="" type="\UTCW_Term[]">
+            <type by_reference="false">\UTCW_Term[]</type>
+          </tag>
+          <tag line="61" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="267" package="utcw\main">
+        <name>calc_color</name>
+        <full_name>calc_color</full_name>
+        <docblock line="256">
+          <description><![CDATA[Calculate term color]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="256" name="param" description="Min count of all the terms" type="int" variable="$min_count">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="256" name="param" description="Max count of all the terms" type="int" variable="$max_count">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="256" name="param" description="Object with red/green/blue_from/to properties" type="\stdClass" variable="$colors">
+            <type by_reference="false">\stdClass</type>
+          </tag>
+          <tag line="256" name="param" description="Count of current term" type="int" variable="$count">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="256" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="256" name="since" description="2.0"/>
+        </docblock>
+        <argument line="267">
+          <name>$min_count</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="267">
+          <name>$max_count</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="267">
+          <name>$colors</name>
+          <default><![CDATA[]]></default>
+          <type>\stdClass</type>
+        </argument>
+        <argument line="267">
+          <name>$count</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="292" package="utcw\main">
+        <name>calc_size</name>
+        <full_name>calc_size</full_name>
+        <docblock line="281">
+          <description><![CDATA[Calculate term size]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="281" name="param" description="Configured min size" type="int" variable="$size_from">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="281" name="param" description="Current count" type="int" variable="$count">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="281" name="param" description="Configured max count" type="int" variable="$min_count">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="281" name="param" description="Calculated step" type="int" variable="$font_step">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="281" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="281" name="since" description="2.0"/>
+        </docblock>
+        <argument line="292">
+          <name>$size_from</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="292">
+          <name>$count</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="292">
+          <name>$min_count</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="292">
+          <name>$font_step</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="307" package="utcw\main">
+        <name>calc_step</name>
+        <full_name>calc_step</full_name>
+        <docblock line="296">
+          <description><![CDATA[Calculate step size]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="296" name="param" description="Minimum count" type="int" variable="$min">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="296" name="param" description="Maximum count" type="int" variable="$max">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="296" name="param" description="Minimum size" type="int" variable="$from">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="296" name="param" description="Maximum size" type="int" variable="$to">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="296" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="296" name="since" description="2.0"/>
+        </docblock>
+        <argument line="307">
+          <name>$min</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="307">
+          <name>$max</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="307">
+          <name>$from</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="307">
+          <name>$to</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="utcw-render.php" hash="5dd11c0616e8498fb0a9943f4f88db6f" package="utcw\main">
+    <docblock line="2">
+      <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.0"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="main"/>
+      <tag line="2" name="since" description="2.0"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="20" package="utcw\main">
+      <extends/>
+      <name>UTCW_Render</name>
+      <full_name>\UTCW_Render</full_name>
+      <docblock line="13">
+        <description><![CDATA[Class for rendering the cloud]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="since" description="2.0"/>
+        <tag line="13" name="package" description="utcw"/>
+        <tag line="13" name="subpackage" description="main"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="28" namespace="global" package="Default">
+        <name>$data</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[Reference to the Data class which contains the data to be rendered]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="\UTCW_Data">
+            <type by_reference="false">\UTCW_Data</type>
+          </tag>
+          <tag line="22" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="36" namespace="global" package="Default">
+        <name>$config</name>
+        <default><![CDATA[]]></default>
+        <docblock line="30">
+          <description><![CDATA[Reference to the current configuration]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="var" description="" type="\UTCW_Config">
+            <type by_reference="false">\UTCW_Config</type>
+          </tag>
+          <tag line="30" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="44" namespace="global" package="Default">
+        <name>$id</name>
+        <default><![CDATA[]]></default>
+        <docblock line="38">
+          <description><![CDATA[Unique ID for this widget configuration]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="38" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="52" namespace="global" package="Default">
+        <name>$css</name>
+        <default><![CDATA['']]></default>
+        <docblock line="46">
+          <description><![CDATA[CSS styles for this widget instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="46" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="46" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="62" package="utcw\main">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="54">
+          <description><![CDATA[Creates a new instance of the renderer]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="54" name="param" description="Configuration" type="\UTCW_Config" variable="$config">
+            <type by_reference="false">\UTCW_Config</type>
+          </tag>
+          <tag line="54" name="param" description="Term data" type="\UTCW_Data" variable="$data">
+            <type by_reference="false">\UTCW_Data</type>
+          </tag>
+          <tag line="54" name="since" description="2.0"/>
+        </docblock>
+        <argument line="62">
+          <name>$config</name>
+          <default><![CDATA[]]></default>
+          <type>\UTCW_Config</type>
+        </argument>
+        <argument line="62">
+          <name>$data</name>
+          <default><![CDATA[]]></default>
+          <type>\UTCW_Data</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="75" package="utcw\main">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="70">
+          <description><![CDATA[Renders the cloud as output]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="70" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="85" package="utcw\main">
+        <name>get_cloud</name>
+        <full_name>get_cloud</full_name>
+        <docblock line="79">
+          <description><![CDATA[Returns the cloud as a string]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="79" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="79" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="150" package="utcw\main">
+        <name>build_css</name>
+        <full_name>build_css</full_name>
+        <docblock line="145">
+          <description><![CDATA[Builds the CSS needed to properly style the cloud]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="145" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="274" package="utcw\main">
+        <name>has_default_value</name>
+        <full_name>has_default_value</full_name>
+        <docblock line="266">
+          <description><![CDATA[Checks if option still has the default value]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="266" name="param" description="" type="string" variable="$option">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="266" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="266" name="since" description="2.0"/>
+        </docblock>
+        <argument line="274">
+          <name>$option</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="103">Move to a call to UTCW_Plugin to make it testable</todo>
+    </markers>
+  </file>
+  <file path="utcw-term.php" hash="10d1c7b2f3e2e95baca50f5496ef3936" package="utcw\main">
+    <docblock line="2">
+      <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.0"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="main"/>
+      <tag line="2" name="since" description="2.0"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="20" package="utcw\main">
+      <extends/>
+      <name>UTCW_Term</name>
+      <full_name>\UTCW_Term</full_name>
+      <docblock line="13">
+        <description><![CDATA[Class to represent a term]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="since" description="2.0"/>
+        <tag line="13" name="package" description="utcw"/>
+        <tag line="13" name="subpackage" description="main"/>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="28" namespace="global" package="Default">
+        <name>$term_id</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[Term ID]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="22" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="36" namespace="global" package="Default">
+        <name>$count</name>
+        <default><![CDATA[]]></default>
+        <docblock line="30">
+          <description><![CDATA[Number of posts]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="var" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="30" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="44" namespace="global" package="Default">
+        <name>$slug</name>
+        <default><![CDATA[]]></default>
+        <docblock line="38">
+          <description><![CDATA[Term slug]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="38" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="38" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="52" namespace="global" package="Default">
+        <name>$name</name>
+        <default><![CDATA[]]></default>
+        <docblock line="46">
+          <description><![CDATA[Term name]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="46" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="46" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="60" namespace="global" package="Default">
+        <name>$link</name>
+        <default><![CDATA[]]></default>
+        <docblock line="54">
+          <description><![CDATA[Term link]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="54" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="54" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="68" namespace="global" package="Default">
+        <name>$color</name>
+        <default><![CDATA[]]></default>
+        <docblock line="62">
+          <description><![CDATA[Term color]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="62" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="76" namespace="global" package="Default">
+        <name>$taxonomy</name>
+        <default><![CDATA[]]></default>
+        <docblock line="70">
+          <description><![CDATA[Term taxonomy]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="70" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="public" line="84" namespace="global" package="Default">
+        <name>$size</name>
+        <default><![CDATA[]]></default>
+        <docblock line="78">
+          <description><![CDATA[Term size]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="78" name="var" description="" type="float">
+            <type by_reference="false">float</type>
+          </tag>
+          <tag line="78" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="94" package="utcw\main">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="86">
+          <description><![CDATA[Creates a new term]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="86" name="param" description="Object with properties term_id, count, slug, name, color and taxonomy" type="\stdClass" variable="$input">
+            <type by_reference="false">\stdClass</type>
+          </tag>
+          <tag line="86" name="param" description="Reference to the plugin instance" type="\UTCW_Plugin" variable="$utcw">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="86" name="since" description="2.0"/>
+        </docblock>
+        <argument line="94">
+          <name>$input</name>
+          <default><![CDATA[]]></default>
+          <type>\stdClass</type>
+        </argument>
+        <argument line="94">
+          <name>$utcw</name>
+          <default><![CDATA[]]></default>
+          <type>\UTCW_Plugin</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="utcw-widget.php" hash="0b38caa391966aa6142d51f9adbfaa5d" package="utcw\main">
+    <docblock line="2">
+      <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.0"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="main"/>
+      <tag line="2" name="since" description="2.0"/>
+    </docblock>
+    <include line="97" type="Require" package="Default">
+      <name>pages/settings.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="20" package="utcw\main">
+      <extends>\WP_Widget</extends>
+      <name>UTCW</name>
+      <full_name>\UTCW</full_name>
+      <docblock line="13">
+        <description><![CDATA[Widget class for WordPress integration]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="13" name="since" description="1.0"/>
+        <tag line="13" name="package" description="utcw"/>
+        <tag line="13" name="subpackage" description="main"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="28" namespace="global" package="Default">
+        <name>$plugin</name>
+        <default><![CDATA[]]></default>
+        <docblock line="22">
+          <description><![CDATA[Reference to the main plugin instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="22" name="var" description="" type="\UTCW_Plugin">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="22" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="38" package="utcw\main">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="30">
+          <description><![CDATA[Constructor]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="param" description="Optional. Plugin instance for dependency injection" type="\UTCW_Plugin" variable="$utcw">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="30" name="return" description="" type="\UTCW">
+            <type by_reference="false">\UTCW</type>
+          </tag>
+          <tag line="30" name="since" description="1.0"/>
+        </docblock>
+        <argument line="38">
+          <name>$utcw</name>
+          <default><![CDATA[null]]></default>
+          <type>\UTCW_Plugin</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="54" package="utcw\main">
+        <name>update</name>
+        <full_name>update</full_name>
+        <docblock line="45">
+          <description><![CDATA[Action handler for the form in the admin panel]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="45" name="param" description="" type="array" variable="$new_instance">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="45" name="param" description="" type="array" variable="$old_instance">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="45" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="45" name="since" description="1.0"/>
+        </docblock>
+        <argument line="54">
+          <name>$new_instance</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="54">
+          <name>$old_instance</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="82" package="utcw\main">
+        <name>form</name>
+        <full_name>form</full_name>
+        <docblock line="74">
+          <description><![CDATA[Function for handling the widget control in admin panel]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="74" name="param" description="" type="array" variable="$instance">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="74" name="return" description="" type="void|string">
+            <type by_reference="false">void</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="74" name="since" description="1.0"/>
+        </docblock>
+        <argument line="82">
+          <name>$instance</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="107" package="utcw\main">
+        <name>widget</name>
+        <full_name>widget</full_name>
+        <docblock line="100">
+          <description><![CDATA[Function for rendering the widget]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="100" name="param" description="" type="array" variable="$args">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="100" name="param" description="" type="array" variable="$instance">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="107">
+          <name>$args</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="107">
+          <name>$instance</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="utcw.php" hash="9dcc0347f91501126b6974ca4b0c310d" package="utcw\main">
+    <docblock line="11">
+      <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
+      <long-description><![CDATA[]]></long-description>
+      <tag line="11" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="11" name="version" description="2.0"/>
+      <tag line="11" name="license" description="GPLv2"/>
+      <tag line="11" name="package" description="utcw"/>
+      <tag line="11" name="subpackage" description="main"/>
+      <tag line="11" name="since" description="2.0"/>
+      <tag line="11" name="todo" description="Find plugin compatibility, both PHP, WP and jQuery"/>
+      <tag line="11" name="todo" description="README"/>
+    </docblock>
+    <include line="57" type="Require Once" package="Default">
+      <name>utcw-config.php</name>
+    </include>
+    <include line="58" type="Require Once" package="Default">
+      <name>utcw-widget.php</name>
+    </include>
+    <include line="59" type="Require Once" package="Default">
+      <name>utcw-data.php</name>
+    </include>
+    <include line="60" type="Require Once" package="Default">
+      <name>utcw-render.php</name>
+    </include>
+    <include line="61" type="Require Once" package="Default">
+      <name>utcw-term.php</name>
+    </include>
+    <constant namespace="global" line="31" package="utcw\main">
+      <name>UTCW_VERSION</name>
+      <full_name>\UTCW_VERSION</full_name>
+      <value><![CDATA[]]></value>
+      <docblock line="25">
+        <description><![CDATA[Current version number]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="25" name="var" description="" type="string">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="25" name="since" description="2.0"/>
+      </docblock>
+    </constant>
+    <constant namespace="global" line="39" package="utcw\main">
+      <name>UTCW_DEV</name>
+      <full_name>\UTCW_DEV</full_name>
+      <value><![CDATA[false]]></value>
+      <docblock line="33">
+        <description><![CDATA[If development mode is currently enabled]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="33" name="var" description="" type="bool">
+          <type by_reference="false">bool</type>
+        </tag>
+        <tag line="33" name="since" description="2.0"/>
+      </docblock>
+    </constant>
+    <constant namespace="global" line="47" package="utcw\main">
+      <name>UTCW_HEX_COLOR_REGEX</name>
+      <full_name>\UTCW_HEX_COLOR_REGEX</full_name>
+      <value><![CDATA[]]></value>
+      <docblock line="41">
+        <description><![CDATA[Regular expression for matching hexadecimal colors]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="41" name="var" description="" type="string">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="41" name="since" description="2.0"/>
+      </docblock>
+    </constant>
+    <constant namespace="global" line="55" package="utcw\main">
+      <name>UTCW_HEX_COLOR_FORMAT</name>
+      <full_name>\UTCW_HEX_COLOR_FORMAT</full_name>
+      <value><![CDATA[]]></value>
+      <docblock line="49">
+        <description><![CDATA[printf format for rendering hexadecimal colors]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="49" name="var" description="" type="string">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="49" name="since" description="2.0"/>
+      </docblock>
+    </constant>
+    <function namespace="global" line="327" package="utcw\main">
+      <name>do_utcw</name>
+      <full_name>\do_utcw</full_name>
+      <docblock line="320">
+        <description><![CDATA[Function for theme integration]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="320" name="param" description="" type="array" variable="$args">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="320" name="since" description="1.3"/>
+      </docblock>
+      <argument line="327">
+        <name>$args</name>
+        <default><![CDATA[]]></default>
+        <type>array</type>
+      </argument>
+    </function>
+    <class final="false" abstract="false" namespace="global" line="70" package="utcw\main">
+      <extends/>
+      <name>UTCW_Plugin</name>
+      <full_name>\UTCW_Plugin</full_name>
+      <docblock line="63">
+        <description><![CDATA[Class for general plugin integration with WordPress]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="63" name="since" description="2.0"/>
+        <tag line="63" name="package" description="utcw"/>
+        <tag line="63" name="subpackage" description="main"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="78" namespace="global" package="Default">
+        <name>$allowed_taxonomies</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="72">
+          <description><![CDATA[An array of which taxonomies are available]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="72" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="72" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="86" namespace="global" package="Default">
+        <name>$allowed_post_types</name>
+        <default><![CDATA[array()]]></default>
+        <docblock line="80">
+          <description><![CDATA[An array of which post types are available]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="80" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="80" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="private" line="94" namespace="global" package="Default">
+        <name>$instance</name>
+        <default><![CDATA[]]></default>
+        <docblock line="88">
+          <description><![CDATA[Singleton instance]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="88" name="var" description="" type="\UTCW_Plugin">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="88" name="since" description="2.0"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="102" package="utcw\main">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="96">
+          <description><![CDATA[Initializes the WordPress hooks needed]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="96" name="todo" description="Add tests that these hooks are set"/>
+          <tag line="96" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="116" package="utcw\main">
+        <name>get_instance</name>
+        <full_name>get_instance</full_name>
+        <docblock line="109">
+          <description><![CDATA[Returns an instance of the plugin]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="109" name="static" description=""/>
+          <tag line="109" name="return" description="" type="\UTCW_Plugin">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="109" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="130" package="utcw\main">
+        <name>wp_loaded</name>
+        <full_name>wp_loaded</full_name>
+        <docblock line="124">
+          <description><![CDATA[Action handler for 'wp_loaded' hook
+Loads taxonomies and post types]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="124" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="143" package="utcw\main">
+        <name>utcw_shortcode</name>
+        <full_name>utcw_shortcode</full_name>
+        <docblock line="135">
+          <description><![CDATA[Shortcode handler for 'utcw' hook]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="135" name="param" description="" type="array" variable="$args">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="135" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="135" name="since" description="2.0"/>
+        </docblock>
+        <argument line="143">
+          <name>$args</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="159" package="utcw\main">
+        <name>init_admin_assets</name>
+        <full_name>init_admin_assets</full_name>
+        <docblock line="153">
+          <description><![CDATA[Action handler for 'admin_head-widgets.php' hook
+Loads assets needed by the administration interface]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="153" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="178" package="utcw\main">
+        <name>get_allowed_taxonomies</name>
+        <full_name>get_allowed_taxonomies</full_name>
+        <docblock line="172">
+          <description><![CDATA[Returns an array with the names of allowed taxonomies]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="172" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="172" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="188" package="utcw\main">
+        <name>get_allowed_taxonomies_objects</name>
+        <full_name>get_allowed_taxonomies_objects</full_name>
+        <docblock line="182">
+          <description><![CDATA[Returns allowed taxonomies as objects]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="182" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="182" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="198" package="utcw\main">
+        <name>get_terms</name>
+        <full_name>get_terms</full_name>
+        <docblock line="192">
+          <description><![CDATA[Returns an array with taxonomy as key and an array of term objects for each taxonomy.]]></description>
+          <long-description><![CDATA[<p>Like:</p>]]></long-description>
+          <tag line="192" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="192" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="214" package="utcw\main">
+        <name>get_allowed_post_types</name>
+        <full_name>get_allowed_post_types</full_name>
+        <docblock line="208">
+          <description><![CDATA[Returns an array with the names of allowed post types]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="208" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="208" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="224" package="utcw\main">
+        <name>get_users</name>
+        <full_name>get_users</full_name>
+        <docblock line="218">
+          <description><![CDATA[Returns the users on this blog]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="218" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="218" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="243" package="utcw\main">
+        <name>save_configuration</name>
+        <full_name>save_configuration</full_name>
+        <docblock line="234">
+          <description><![CDATA[Saves the configuration]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="234" name="param" description="Name of configuration" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="234" name="param" description="Exported configuration from UTCW_Config" type="array" variable="$config">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="234" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="234" name="since" description="2.0"/>
+        </docblock>
+        <argument line="243">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="243">
+          <name>$config</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="258" package="utcw\main">
+        <name>load_configuration</name>
+        <full_name>load_configuration</full_name>
+        <docblock line="250">
+          <description><![CDATA[Loads saved configuration]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="250" name="param" description="Name of configuration" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="250" name="return" description="Returns an instance array on success and boolean false on failure" type="array|bool">
+            <type by_reference="false">array</type>
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="250" name="since" description="2.0"/>
+        </docblock>
+        <argument line="258">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="274" package="utcw\main">
+        <name>get_configurations</name>
+        <full_name>get_configurations</full_name>
+        <docblock line="268">
+          <description><![CDATA[Get saved configurations]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="268" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="268" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="284" package="utcw\main">
+        <name>is_authenticated_user</name>
+        <full_name>is_authenticated_user</full_name>
+        <docblock line="278">
+          <description><![CDATA[Returns boolean true if the current page request is for an authenticated user]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="278" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="278" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="297" package="utcw\main">
+        <name>get_term_link</name>
+        <full_name>get_term_link</full_name>
+        <docblock line="288">
+          <description><![CDATA[Returns an absolute URI to the archive page for the term]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="288" name="param" description="Term ID" type="int" variable="$term_id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="288" name="param" description="Taxonomy name" type="string" variable="$taxonomy">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="288" name="return" description="Returns URI on success and empty string on failure" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="288" name="since" description="2.0"/>
+        </docblock>
+        <argument line="297">
+          <name>$term_id</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="297">
+          <name>$taxonomy</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="312" package="utcw\main">
+        <name>check_term_taxonomy</name>
+        <full_name>check_term_taxonomy</full_name>
+        <docblock line="303">
+          <description><![CDATA[Check if the term exist for taxonomy]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="303" name="param" description="Term ID" type="int" variable="$term_id">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="303" name="param" description="Taxonomy name" type="string" variable="$taxonomy">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="303" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="303" name="since" description="2.0"/>
+        </docblock>
+        <argument line="312">
+          <name>$term_id</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="312">
+          <name>$taxonomy</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="utcw" full_name="utcw">
+    <package name="main" full_name="utcw\main"/>
+    <package name="pages" full_name="utcw\pages"/>
+  </package>
+  <namespace name="global" full_name="global"/>
+  <marker count="5">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

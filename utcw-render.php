@@ -110,8 +110,7 @@ class UTCW_Render {
 				$markup[ ] = $this->config->before_title;
 			}
 
-			// TODO: Move to a call to UTCW_Plugin to make it testable
-			$markup[ ] = apply_filters( 'widget_title', $this->config->title );
+			$markup[ ] = $this->plugin->apply_filters( 'widget_title', $this->config->title );
 
 			if ( $this->config->after_title ) {
 				$markup[ ] = $this->config->after_title;
@@ -231,6 +230,7 @@ class UTCW_Render {
 		if ( ! $this->has_default_value( 'hover_bg_color' ) ) {
 			$hover_styles[ ] = sprintf( 'background-color:%s', $this->config->hover_bg_color );
 		}
+
 
 		if ( ! $this->has_default_value( 'hover_border_style' ) && ! $this->has_default_value( 'hover_border_color' ) && ! $this->has_default_value( 'hover_border_width' ) ) {
 			$hover_styles[ ] = sprintf( 'border:%s %spx %s', $this->config->hover_border_style, $this->config->hover_border_width, $this->config->hover_border_color );

@@ -51,9 +51,9 @@ class MockFactory {
 		return $this->utcw_authenticated;
 	}
 
-	function getUTCWMock() {
-		$mock = $this->testCase->getMock(
-			'UTCW_Plugin',
+	function getUTCWMock( array $additional_methods = array() ) {
+
+		$methods = array_merge(
 			array(
 				 'get_allowed_taxonomies',
 				 'get_allowed_post_types',
@@ -61,6 +61,12 @@ class MockFactory {
 				 'get_term_link',
 				 'check_term_taxonomy',
 			),
+			$additional_methods
+		);
+
+		$mock = $this->testCase->getMock(
+			'UTCW_Plugin',
+			$methods,
 			array(),
 			'',
 			false
@@ -126,8 +132,13 @@ class DataProvider {
 		return $data->get_terms();
 	}
 
-	function get_renderer( array $instance, array $query_terms ) {
-		return new UTCW_Render( $this->get_config( $instance ), $this->get_data_object( $instance, $query_terms ), $this->mockFactory->getUTCWNotAuthenticated() );
+	function get_renderer( array $instance, array $query_terms, $utcw = null ) {
+
+		if ( ! $utcw ) {
+			$utcw = $this->mockFactory->getUTCWNotAuthenticated();
+		}
+
+		return new UTCW_Render( $this->get_config( $instance ), $this->get_data_object( $instance, $query_terms ), $utcw );
 	}
 
 	function get_config( array $instance ) {

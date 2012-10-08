@@ -312,6 +312,19 @@ class UTCW_Plugin {
 	public function check_term_taxonomy( $term_id, $taxonomy ) {
 		return ! ! get_term( $term_id, $taxonomy );
 	}
+
+	/**
+	 * Apply filters
+	 *
+	 * @param string $tag
+	 * @param mixed  $value
+	 *
+	 * @return mixed|void
+	 * @since 2.0
+	 */
+	public function apply_filters( $tag, $value ) {
+		return apply_filters( $tag, $value );
+	}
 }
 
 // Instantiates the plugin

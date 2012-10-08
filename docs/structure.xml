@@ -1130,7 +1130,7 @@ Default: (an empty string)</p>]]></long-description>
       </method>
     </class>
   </file>
-  <file path="utcw-render.php" hash="f747e305d7f2993ae2a02c262c8e03d2" package="utcw\main">
+  <file path="utcw-render.php" hash="7dc0fbc6021556c7adbc7f89baa3d847" package="utcw\main">
     <docblock line="2">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1266,13 +1266,13 @@ Default: (an empty string)</p>]]></long-description>
           <tag line="89" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="160" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="159" package="utcw\main">
         <name>build_css</name>
         <full_name>build_css</full_name>
-        <docblock line="155">
+        <docblock line="154">
           <description><![CDATA[Builds the CSS needed to properly style the cloud]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="155" name="since" description="2.0"/>
+          <tag line="154" name="since" description="2.0"/>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="282" package="utcw\main">
@@ -1296,9 +1296,6 @@ Default: (an empty string)</p>]]></long-description>
         </argument>
       </method>
     </class>
-    <markers>
-      <todo line="113">Move to a call to UTCW_Plugin to make it testable</todo>
-    </markers>
   </file>
   <file path="utcw-term.php" hash="18fc46e96d14512dcc7475243fbf483b" package="utcw\main">
     <docblock line="2">
@@ -1577,7 +1574,7 @@ Default: (an empty string)</p>]]></long-description>
       </method>
     </class>
   </file>
-  <file path="utcw.php" hash="1042479e28f2dbb189591156ed6d0e5a" package="utcw\main">
+  <file path="utcw.php" hash="f5231ca6588c25777a6c063c95ae0681" package="utcw\main">
     <docblock line="11">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1657,18 +1654,18 @@ Default: (an empty string)</p>]]></long-description>
         <tag line="49" name="since" description="2.0"/>
       </docblock>
     </constant>
-    <function namespace="global" line="327" package="utcw\main">
+    <function namespace="global" line="340" package="utcw\main">
       <name>do_utcw</name>
       <full_name>\do_utcw</full_name>
-      <docblock line="320">
+      <docblock line="333">
         <description><![CDATA[Function for theme integration]]></description>
         <long-description><![CDATA[]]></long-description>
-        <tag line="320" name="param" description="" type="array" variable="$args">
+        <tag line="333" name="param" description="" type="array" variable="$args">
           <type by_reference="false">array</type>
         </tag>
-        <tag line="320" name="since" description="1.3"/>
+        <tag line="333" name="since" description="1.3"/>
       </docblock>
-      <argument line="327">
+      <argument line="340">
         <name>$args</name>
         <default><![CDATA[]]></default>
         <type>array</type>
@@ -1973,6 +1970,35 @@ Loads assets needed by the administration interface]]></description>
           <type/>
         </argument>
       </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="325" package="utcw\main">
+        <name>apply_filters</name>
+        <full_name>apply_filters</full_name>
+        <docblock line="316">
+          <description><![CDATA[Apply filters]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="316" name="param" description="" type="string" variable="$tag">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="316" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="316" name="return" description="" type="mixed|void">
+            <type by_reference="false">mixed</type>
+            <type by_reference="false">void</type>
+          </tag>
+          <tag line="316" name="since" description="2.0"/>
+        </docblock>
+        <argument line="325">
+          <name>$tag</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="325">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
     </class>
   </file>
   <package name="Default" full_name="Default"/>
@@ -1981,7 +2007,7 @@ Loads assets needed by the administration interface]]></description>
     <package name="pages" full_name="utcw\pages"/>
   </package>
   <namespace name="global" full_name="global"/>
-  <marker count="5">todo</marker>
+  <marker count="4">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>
 </project>

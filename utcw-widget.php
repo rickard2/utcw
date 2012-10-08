@@ -38,6 +38,16 @@ class UTCW extends WP_Widget {
 	 * @since 1.0
 	 */
 	function update( array $new_instance, array $old_instance ) {
+
+		// Overwrite the form values with the saved configuration
+		if ( isset( $new_instance[ 'load_config' ] ) && isset( $new_instance[ 'load_config_name' ] ) && $new_instance[ 'load_config_name' ] ) {
+			$loaded_configuration = $this->plugin->load_configuration( $new_instance[ 'load_config_name' ] );
+
+			if ( $loaded_configuration ) {
+				$new_instance = $loaded_configuration;
+			}
+		}
+
 		$config = new UTCW_Config( $new_instance, $this->plugin );
 
 		if ( isset( $new_instance[ 'save_config' ] ) && isset( $new_instance[ 'save_config_name' ] ) && $new_instance[ 'save_config_name' ] ) {

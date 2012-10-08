@@ -141,7 +141,7 @@
 
 		<strong><?php printf( __( 'Terms for taxonomy %s', 'utcw' ), $taxonomy->labels->name ) ?></strong>
 
-		<?php if ( $terms[ $taxonomy->name ] ) : ?>
+		<?php if ( isset( $terms[ $taxonomy->name ] ) ) : ?>
 		<ul>
 		<?php foreach ( $terms[ $taxonomy->name ] as $term ) : ?>
 			<li>
@@ -157,7 +157,7 @@
 		<?php endforeach ?>
 		</ul>
 		<?php else : ?>
-			<p><?php printf( __( 'No terms for taxonomy "%s"', 'utcw' ), $taxonomy->label->name ) ?></p>
+			<p><?php printf( __( 'No terms for taxonomy "%s"', 'utcw' ), $taxonomy->labels->name ) ?></p>
 		<?php endif ?>
 
 	</div>

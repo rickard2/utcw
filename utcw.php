@@ -9,10 +9,8 @@ Author URI: https://www.0x539.se
 License: GPLv2
 */
 /**
- * @todo Preview
  * @todo Find plugin compatibility, both PHP, WP and jQuery
  * @todo phpdocs
- * @todo Save/load configuration
  */
 
 define( 'UTCW_VERSION', '2.0-alpha' );
@@ -119,6 +117,16 @@ class UTCW_Plugin {
 		$configs[ $name ] = $config;
 
 		return update_option( 'utcw_saved_configs', $configs );
+	}
+
+	function load_configuration( $name ) {
+		$configs = $this->get_configurations();
+
+		if ( isset( $configs[ $name ] ) ) {
+			return $configs[ $name ];
+		}
+
+		return false;
 	}
 
 	function get_configurations() {

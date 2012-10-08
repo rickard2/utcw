@@ -1,11 +1,54 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) die();
+/**
+ * Ultimate Tag Cloud Widget
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.0
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage main
+ * @since      2.0
+ */
 
+/**
+ * Class for loading data for the cloud
+ *
+ * @since 2.0
+ */
 class UTCW_Data {
 
+	/**
+	 * Reference to the current configuration
+	 *
+	 * @var UTCW_Config
+	 * @since 2.0
+	 */
 	protected $config;
+
+	/**
+	 * Reference to WPDB object
+	 *
+	 * @var wpdb
+	 * @since 2.0
+	 */
 	protected $db;
+
+	/**
+	 * Reference to main plugin instance
+	 *
+	 * @var UTCW_Plugin
+	 * @since 2.0
+	 */
 	protected $utcw;
 
+	/**
+	 * Creates a new instance
+	 *
+	 * @param UTCW_Config $config Current configuration
+	 * @param UTCW_Plugin $utcw   Main plugin instance
+	 * @param wpdb        $db     WordPress DB instance
+	 *
+	 * @since 2.0
+	 */
 	function __construct( UTCW_Config $config, UTCW_Plugin $utcw, wpdb $db ) {
 		$this->config = $config;
 		$this->db     = $db;
@@ -13,7 +56,10 @@ class UTCW_Data {
 	}
 
 	/**
+	 * Loads terms based on current configuration
+	 *
 	 * @return UTCW_Term[]
+	 * @since 2.0
 	 */
 	function get_terms() {
 		$query = array();
@@ -205,10 +251,12 @@ class UTCW_Data {
 	}
 
 	/**
-	 * @param int      $min_count
-	 * @param int      $max_count
-	 * @param stdClass $colors
-	 * @param int      $count
+	 * Calculate term color
+	 *
+	 * @param int      $min_count Min count of all the terms
+	 * @param int      $max_count Max count of all the terms
+	 * @param stdClass $colors    Object with red/green/blue_from/to properties
+	 * @param int      $count     Count of current term
 	 *
 	 * @return string
 	 * @since 2.0
@@ -228,12 +276,14 @@ class UTCW_Data {
 	}
 
 	/**
-	 * @param int $size_from
-	 * @param int $count
-	 * @param int $min_count
-	 * @param int $font_step
+	 * Calculate term size
 	 *
-	 * @return mixed
+	 * @param int $size_from Configured min size
+	 * @param int $count     Current count
+	 * @param int $min_count Configured max count
+	 * @param int $font_step Calculated step
+	 *
+	 * @return int
 	 * @since 2.0
 	 */
 	private function calc_size( $size_from, $count, $min_count, $font_step ) {
@@ -241,16 +291,15 @@ class UTCW_Data {
 	}
 
 	/**
-	 * Used to calculate how step size in spanning values
-	 * Thank you wordpress for this
+	 * Calculate step size
 	 *
-	 * @param integer $min
-	 * @param integer $max
-	 * @param integer $from
-	 * @param integer $to
+	 * @param int $min  Minimum count
+	 * @param int $max  Maximum count
+	 * @param int $from Minimum size
+	 * @param int $to   Maximum size
 	 *
-	 * @return integer
-	 * @since 1.0
+	 * @return int
+	 * @since 2.0
 	 */
 	private function calc_step( $min, $max, $from, $to ) {
 		if ( $min === $max ) {

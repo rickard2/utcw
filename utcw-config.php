@@ -1,4 +1,13 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) die();
+/**
+ * Ultimate Tag Cloud Widget
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.0
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage main
+ * @since      2.0
+ */
 
 /**
  * Configuration class for the widget.
@@ -28,282 +37,438 @@ class UTCW_Config {
 
 	/**
 	 * The smallest possible size
+	 * Default: 10
+	 *
 	 * @var int
 	 * @since 2.0
 	 */
 	public $size_from;
 
 	/**
+	 * The greatest possible size
+	 * Default: 30
+	 *
 	 * @var int
 	 * @since 2.0
 	 */
 	public $size_to;
 
 	/**
+	 * Maximum number of tags to display
+	 * Default: 45
+	 *
 	 * @var int
 	 * @since 2.0
 	 */
 	public $max;
 
 	/**
+	 * Which taxonomy to show tags from
+	 * Default: post_tag
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $taxonomy;
 
 	/**
+	 * If the order of tags should be shown in reverse order
+	 * Default: false
+	 *
 	 * @var bool
 	 * @since 2.0
 	 */
 	public $reverse;
 
 	/**
+	 * Which coloring strategy to use
+	 * Default: none
+	 * Valid values: none, random, set, span
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $color;
 
 	/**
-	 * @var int
+	 * CSS letter-spacing value (in pixels)
+	 * Default: normal
+	 *
+	 * @var int|string
 	 * @since 2.0
 	 */
 	public $letter_spacing;
 
 	/**
-	 * @var int
+	 * CSS word-spacing value (in pixels)
+	 * Default: normal
+	 *
+	 * @var int|string
 	 * @since 2.0
 	 */
 	public $word_spacing;
 
 	/**
+	 * CSS text-transform value
+	 * Default: none
+	 * Valid values: lowercase, uppercase, capitalize
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $text_transform;
 
 	/**
+	 * If sorting should be applied case sensitive
+	 * Default: false
+	 *
 	 * @var bool
 	 * @since 2.0
 	 */
 	public $case_sensitive;
 
 	/**
+	 * How many posts a term needs to have to be shown in the cloud
+	 * Default: 1
+	 *
 	 * @var int
 	 * @since 2.0
 	 */
 	public $minimum;
 
 	/**
+	 * How the $tags_list should be used
+	 * Default: exclude
+	 * Valid values: exclude, include
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $tags_list_type;
 
 	/**
+	 * If the title attribute should be added to links in the cloud
+	 * Default: true
+	 *
 	 * @var bool
 	 * @since 2.0
 	 */
 	public $show_title;
 
 	/**
+	 * If links should be styled with underline decoration
+	 * Default: default
+	 * Valid values: yes, no, default
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $link_underline;
 
 	/**
+	 * If links should be styled as bold
+	 * Default: default
+	 * Valid values: yes, no, default
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $link_bold;
 
 	/**
+	 * If links should be styled as italic
+	 * Default: default
+	 * Valid values: yes, no, default
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $link_italic;
 
 	/**
+	 * Background color for links
+	 * Default: transparent
+	 * Valid values: A hexadecimal color
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $link_bg_color;
 
 	/**
+	 * Border style for links
+	 * Default: none
+	 * Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $link_border_style;
 
 	/**
+	 * Border width for links
+	 * Default: 0
+	 *
 	 * @var int
 	 * @since 2.0
 	 */
 	public $link_border_width;
 
 	/**
+	 * Border color for links
+	 * Default: none
+	 * Valid values: A hexadecimal color
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $link_border_color;
 
 	/**
+	 * If links should be decorated with underline decoration in their hover state
+	 * Default: default
+	 * Valid values: yes, no, default
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $hover_underline;
 
 	/**
+	 * If links should be styled as bold in their hover state
+	 * Default: default
+	 * Valid values: yes, no, default
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $hover_bold;
 
 	/**
+	 * If links should be styled as italic in their hover state
+	 * Default: default
+	 * Valid values: yes, no, default
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $hover_italic;
 
 	/**
+	 * Background color for links in their hover state
+	 * Default: transparent
+	 * Valid values: A hexadecimal color
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $hover_bg_color;
 
 	/**
+	 * Text color for links in their hover state
+	 * Default: default
+	 * Valid values: A hexadecimal color
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $hover_color;
 
 	/**
+	 * Border style for links in their hover state
+	 * Default: none
+	 * Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $hover_border_style;
 
 	/**
+	 * Border width for links in their hover state
+	 * Default: 0
+	 *
 	 * @var int
 	 * @since 2.0
 	 */
 	public $hover_border_width;
 
 	/**
+	 * Border color for links in their hover state
+	 * Default: none
+	 * Valid values: A hexadecimal color
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $hover_border_color;
 
 	/**
+	 * CSS margin between tags
+	 * Default: auto
+	 *
 	 * @var int
 	 * @since 2.0
 	 */
 	public $tag_spacing;
 
 	/**
+	 * If debug output should be included
+	 * Default: false
+	 *
 	 * @var bool
 	 * @since 2.0
 	 */
 	public $debug;
 
 	/**
+	 * How many days old a post needs to be to be included in tag size calculation
+	 * Default: 0
+	 *
 	 * @var int
 	 * @since 2.0
 	 */
 	public $days_old;
 
 	/**
+	 * CSS line-height for the tags
+	 * Default: inherit
+	 *
 	 * @var int
 	 * @since 2.0
 	 */
 	public $line_height;
 
 	/**
+	 * Separator between tags
+	 * Default:  (a space character)
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $separator;
 
 	/**
+	 * Prefix before each tag
+	 * Default: (empty string)
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $prefix;
 
 	/**
+	 * Suffix after each tag
+	 * Default: (empty string)
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $suffix;
 
 	/**
+	 * If the widget title should be shown
+	 * Default: true
+	 *
 	 * @var bool
 	 * @since 2.0
 	 */
 	public $show_title_text;
 
 	/**
+	 * An array of post type names to to include posts from in tag size calculation
+	 * Default: [ post ]
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
 	public $post_type;
 
 	/**
+	 * A list of term IDs to be included or excluded. Inclusion or exclusion is determined by $tags_list_type
+	 * Default: [] (an empty array)
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
 	public $tags_list;
 
 	/**
+	 * Which color value to start from in color calculation. This is the color that the smallest tag will get.
+	 * Default: (an empty string)
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $color_span_to;
 
 	/**
+	 * Which color value to end at in color calculation. This is the color that the biggest tag will get.
+	 * Default: (an empty string)
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $color_span_from;
 
 	/**
+	 * Which authors to include posts from. An empty array will include all authors
+	 * Default: [] (an empty array)
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
 	public $authors;
 
 	/**
+	 * A set of colors to randomly select from when coloring the tags
+	 * Default: [] (an empty array)
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
 	public $color_set;
 
 	/**
+	 * If the current user is authenticated. Will be set internally
+	 *
+	 * @internal
 	 * @var bool
 	 * @since 2.0
 	 */
 	public $authenticated;
 
 	/**
+	 * Text to display before the widget. The default value for this setting will probably be determined by the theme
+	 * Default: (an empty string)
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $before_widget;
 
 	/**
+	 * Text to display after the widget. The default value for this setting will probably be determined by the theme
+	 * Default: (an empty string)
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $after_widget;
 
 	/**
+	 * Text to display before the widget title. The default value for this setting will probably be determined by the theme
+	 * Default: (an empty string)
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
 	public $before_title;
 
 	/**
+	 * Text to display after the widget title. The default value for this setting will probably be determined by the theme
+	 * Default: (an empty string)
+	 *
 	 * @var string
 	 * @since 2.0
 	 */
@@ -311,6 +476,8 @@ class UTCW_Config {
 
 	/**
 	 * Config store with default values
+	 *
+	 * @static
 	 * @var array
 	 * @since 2.0
 	 */
@@ -366,48 +533,64 @@ class UTCW_Config {
 	);
 
 	/**
+	 * Which ordering strategies are allowed
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
 	protected $allowed_orders = array( 'random', 'name', 'slug', 'id', 'color', 'count' );
 
 	/**
+	 * Which taxonomies are allowed. Will be set dynamically at load
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
-	protected $allowed_taxonomies = array(); // Will be set dynamically at load
+	protected $allowed_taxonomies = array();
 
 	/**
+	 * Which post types are allowed. Will be set dynamically at load
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
-	protected $allowed_post_types = array(); // Will be set dynamically at load
+	protected $allowed_post_types = array();
 
 	/**
+	 * Which coloring strategies are allowed
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
 	protected $allowed_colors = array( 'none', 'random', 'set', 'span' );
 
 	/**
+	 * Which CSS text-transform values are allowed
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
 	protected $allowed_text_transforms = array( 'lowercase', 'uppercase', 'capitalize' );
 
 	/**
+	 * Which tags_list_type values are allowed
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
 	protected $allowed_tags_list_types = array( 'exclude', 'include' );
 
 	/**
+	 * Which values are allowed for optional booleans. These are values which can be true, false or fallback to theme default (where applicable)
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
 	protected $allowed_optional_booleans = array( 'yes', 'no', 'default' );
 
 	/**
+	 * Which CSS border-style valeus are allowed
+	 *
 	 * @var array
 	 * @since 2.0
 	 */
@@ -416,10 +599,10 @@ class UTCW_Config {
 	);
 
 	/**
-	 * Loads a configuration and parses the options
+	 * Loads a configuration instance array and parses the options
 	 *
-	 * @param array       $input
-	 * @param UTCW_Plugin $utcw
+	 * @param array       $input Array of key => value pairs of settings and values
+	 * @param UTCW_Plugin $utcw  Reference to the main plugin instance
 	 *
 	 * @since 2.0
 	 */
@@ -552,7 +735,6 @@ class UTCW_Config {
 	 * @param array $array
 	 *
 	 * @return bool
-	 *
 	 * @since 2.0
 	 */
 	private function is_array_numeric( array $array ) {
@@ -566,10 +748,9 @@ class UTCW_Config {
 	}
 
 	/**
-	 * Returns the WP_Widget instance
+	 * Returns an array of current configuration
 	 *
 	 * @return array
-	 *
 	 * @since  2.0
 	 */
 	public function get_instance() {
@@ -584,6 +765,8 @@ class UTCW_Config {
 
 	/**
 	 * Returns the default values for all the configuration options
+	 *
+	 * @static
 	 * @return array
 	 * @since 2.0
 	 */

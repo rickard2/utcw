@@ -1,29 +1,62 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) die();
+/**
+ * Ultimate Tag Cloud Widget
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.0
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage main
+ * @since      2.0
+ */
 
+/**
+ * Class for rendering the cloud
+ *
+ * @since 2.0
+ */
 class UTCW_Render {
 
 	/**
+	 * Reference to the Data class which contains the data to be rendered
+	 *
 	 * @var UTCW_Data
+	 * @since 2.0
 	 */
 	private $data;
 
 	/**
+	 * Reference to the current configuration
+	 *
 	 * @var UTCW_Config
+	 * @since 2.0
 	 */
 	private $config;
 
 	/**
+	 * Unique ID for this widget configuration
+	 *
 	 * @var int
+	 * @since 2.0
 	 */
 	private $id;
 
 	/**
+	 * CSS styles for this widget instance
+	 *
 	 * @var string
+	 * @since 2.0
 	 */
 	private $css = '';
 
-	public function __construct( UTCW_Config $config, UTCW_Data $data )
-	{
+	/**
+	 * Creates a new instance of the renderer
+	 *
+	 * @param UTCW_Config $config Configuration
+	 * @param UTCW_Data   $data   Term data
+	 *
+	 * @since 2.0
+	 */
+	public function __construct( UTCW_Config $config, UTCW_Data $data ) {
 		$this->data   = $data;
 		$this->config = $config;
 		$this->id     = base_convert( crc32( serialize( $config ) ), 10, 27 );
@@ -31,13 +64,22 @@ class UTCW_Render {
 		$this->build_css();
 	}
 
-	public function render()
-	{
+	/**
+	 * Renders the cloud as output
+	 *
+	 * @since 2.0
+	 */
+	public function render() {
 		echo $this->get_cloud();
 	}
 
-	public function get_cloud()
-	{
+	/**
+	 * Returns the cloud as a string
+	 *
+	 * @return string
+	 * @since 2.0
+	 */
+	public function get_cloud() {
 		$markup = array();
 
 		if ( $this->css ) {
@@ -55,6 +97,7 @@ class UTCW_Render {
 				$markup[ ] = $this->config->before_title;
 			}
 
+			// TODO: Move to a call to UTCW_Plugin to make it testable
 			$markup[ ] = apply_filters( 'widget_title', $this->config->title );
 
 			if ( $this->config->after_title ) {
@@ -96,8 +139,12 @@ class UTCW_Render {
 		return join( '', $markup );
 	}
 
-	private function build_css()
-	{
+	/**
+	 * Builds the CSS needed to properly style the cloud
+	 *
+	 * @since 2.0
+	 */
+	private function build_css() {
 		$main_styles = array();
 
 		if ( ! $this->has_default_value( 'text_transform' ) ) {
@@ -141,12 +188,10 @@ class UTCW_Render {
 				$link_styles[ ] = sprintf( 'border-color:%s', $this->config->link_border_color );
 			}
 
-
 			if ( ! $this->has_default_value( 'link_border_width' ) ) {
 				$link_styles[ ] = sprintf( 'border-width:%spx', $this->config->link_border_width );
 			}
 		}
-
 
 		if ( ! $this->has_default_value( 'tag_spacing' ) ) {
 			$link_styles[ ] = sprintf( 'margin-right:%spx', $this->config->tag_spacing );
@@ -174,7 +219,6 @@ class UTCW_Render {
 			$hover_styles[ ] = sprintf( 'background-color:%s', $this->config->hover_bg_color );
 		}
 
-
 		if ( ! $this->has_default_value( 'hover_border_style' ) && ! $this->has_default_value( 'hover_border_color' ) && ! $this->has_default_value( 'hover_border_width' ) ) {
 			$hover_styles[ ] = sprintf( 'border:%s %spx %s', $this->config->hover_border_style, $this->config->hover_border_width, $this->config->hover_border_color );
 		} else {
@@ -185,6 +229,7 @@ class UTCW_Render {
 			if ( ! $this->has_default_value( 'hover_border_color' ) ) {
 				$hover_styles[ ] = sprintf( 'border-color:%s', $this->config->hover_border_color );
 			}
+
 
 			if ( ! $this->has_default_value( 'hover_border_width' ) ) {
 				$hover_styles[ ] = sprintf( 'border-width:%spx', $this->config->hover_border_width );
@@ -214,8 +259,15 @@ class UTCW_Render {
 		}
 	}
 
-	private function has_default_value( $option )
-	{
+	/**
+	 * Checks if option still has the default value
+	 *
+	 * @param string $option
+	 *
+	 * @return bool
+	 * @since 2.0
+	 */
+	private function has_default_value( $option ) {
 		$defaults = $this->config->get_defaults();
 		return $this->config->$option === $defaults[ $option ];
 	}

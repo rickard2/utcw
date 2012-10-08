@@ -1,22 +1,33 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) die();
 /**
- * @todo Documentation
+ * Ultimate Tag Cloud Widget
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.0
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage main
+ * @since      2.0
  */
 
 /**
+ * Widget class for WordPress integration
+ *
  * @since 1.0
  */
 class UTCW extends WP_Widget {
 
 	/**
+	 * Reference to the main plugin instance
+	 *
 	 * @var UTCW_Plugin
+	 * @since 2.0
 	 */
 	private $plugin;
 
 	/**
 	 * Constructor
 	 *
-	 * @param UTCW_Plugin $utcw
+	 * @param UTCW_Plugin $utcw  Optional. Plugin instance for dependency injection
 	 *
 	 * @return UTCW
 	 * @since 1.0

@@ -1,4 +1,12 @@
-<?php
+<?php if ( ! defined( 'ABSPATH' ) ) die();
+/**
+ * Ultimate Tag Cloud Widget
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.0
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage test
+ */
 
 class UTCW_Test_Render extends WP_UnitTestCase {
 

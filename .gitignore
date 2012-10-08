@@ -2,3 +2,4 @@
 .sass-cache
 */.sass-cache
 test/unittests-config.php
+.DS_Store

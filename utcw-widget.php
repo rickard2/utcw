@@ -15,15 +15,17 @@ class UTCW extends WP_Widget {
 
 	/**
 	 * Constructor
+	 *
+	 * @param UTCW_Plugin $utcw
+	 *
 	 * @return UTCW
 	 * @since 1.0
 	 */
-	function __construct()
-	{
+	function __construct( UTCW_Plugin $utcw = null ) {
 		$options = array( 'description' => __( 'Highly configurable tag cloud', 'utcw' ) );
 		parent::WP_Widget( false, __( 'Ultimate Tag Cloud', 'utcw' ), $options );
 
-		$this->plugin = UTCW_Plugin::get_instance();
+		$this->plugin = $utcw ? $utcw : UTCW_Plugin::get_instance();
 	}
 
 	/**
@@ -35,9 +37,13 @@ class UTCW extends WP_Widget {
 	 * @return array
 	 * @since 1.0
 	 */
-	function update( array $new_instance, array $old_instance )
-	{
+	function update( array $new_instance, array $old_instance ) {
 		$config = new UTCW_Config( $new_instance, $this->plugin );
+
+		if ( isset( $new_instance[ 'save_config' ] ) && isset( $new_instance[ 'save_config_name' ] ) && $new_instance[ 'save_config_name' ] ) {
+			$this->plugin->save_configuration( $new_instance[ 'save_config_name' ], $config->get_instance() );
+		}
+
 		return $config->get_instance();
 	}
 
@@ -49,8 +55,7 @@ class UTCW extends WP_Widget {
 	 * @return void|string
 	 * @since 1.0
 	 */
-	function form( array $instance )
-	{
+	function form( array $instance ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$config = new UTCW_Config( $instance, $this->plugin );
 		/** @noinspection PhpUnusedLocalVariableInspection */
@@ -75,8 +80,7 @@ class UTCW extends WP_Widget {
 	 *
 	 * @param array $instance
 	 */
-	function widget( array $args, array $instance )
-	{
+	function widget( array $args, array $instance ) {
 		global $wpdb;
 
 		$input = array_merge( $args, $instance );

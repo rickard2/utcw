@@ -314,7 +314,7 @@ class UTCW_Config {
 	 * @var array
 	 * @since 2.0
 	 */
-	protected $options = array(
+	static protected $options = array(
 		'title'              => 'Tag Cloud',
 		'order'              => 'name',
 		'size_from'          => 10,
@@ -428,7 +428,7 @@ class UTCW_Config {
 		$this->allowed_taxonomies = $utcw->get_allowed_taxonomies();
 		$this->authenticated      = $utcw->is_authenticated_user();
 
-		foreach ( $this->options as $key => $default ) {
+		foreach ( self::$options as $key => $default ) {
 			$this->$key = $default;
 
 			if ( isset( $input[ $key ] ) ) {
@@ -533,13 +533,13 @@ class UTCW_Config {
 				} // Special handling of some properties which have string defaults but integer values expected
 				else if ( in_array( $key, array( 'letter_spacing', 'word_spacing', 'tag_spacing', 'line_height' ) ) ) {
 					$this->$key = intval( $input[ $key ] );
-				} else if ( is_string( $this->options[ $key ] ) && is_string( $input[ $key ] ) && strlen( $input[ $key ] ) > 0 ) {
+				} else if ( is_string( self::$options[ $key ] ) && is_string( $input[ $key ] ) && strlen( $input[ $key ] ) > 0 ) {
 					$this->$key = $input[ $key ];
-				} else if ( is_integer( $this->options[ $key ] ) && $input[ $key ] > 0 ) {
+				} else if ( is_integer( self::$options[ $key ] ) && $input[ $key ] > 0 ) {
 					$this->$key = intval( $input[ $key ] );
-				} else if ( is_bool( $this->options[ $key ] ) ) {
+				} else if ( is_bool( self::$options[ $key ] ) ) {
 					$this->$key = ! ! $input[ $key ];
-				} else if ( is_array( $this->options[ $key ] ) ) {
+				} else if ( is_array( self::$options[ $key ] ) ) {
 					$this->$key = is_array( $input[ $key ] ) ? $input[ $key ] : explode( ',', $input[ $key ] );
 				}
 			}
@@ -575,7 +575,7 @@ class UTCW_Config {
 	public function get_instance() {
 		$instance = array();
 
-		foreach ( array_keys( $this->options ) as $key ) {
+		foreach ( array_keys( self::$options ) as $key ) {
 			$instance[ $key ] = $this->$key;
 		}
 
@@ -587,7 +587,7 @@ class UTCW_Config {
 	 * @return array
 	 * @since 2.0
 	 */
-	public function get_defaults() {
-		return $this->options;
+	public static function get_defaults() {
+		return self::$options;
 	}
 }

@@ -13,7 +13,6 @@ License: GPLv2
  * @todo Find plugin compatibility, both PHP, WP and jQuery
  * @todo phpdocs
  * @todo Save/load configuration
- * @todo Debug output
  */
 
 define( 'UTCW_VERSION', '2.0-alpha' );
@@ -113,6 +112,13 @@ class UTCW_Plugin {
 		} else {
 			return get_users();
 		}
+	}
+
+	function save_configuration( $name, $config ) {
+		$configs = $this->get_configurations();
+		$configs[ $name ] = $config;
+
+		return update_option( 'utcw_saved_configs', $configs );
 	}
 
 	function get_configurations() {

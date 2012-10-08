@@ -7,6 +7,7 @@
  * @var array $configurations
  * @var array $terms
  * @var array $users
+ * @var UTCW $this
  */
 
 ?>
@@ -328,7 +329,7 @@
 	<a class="utcw-help"
 	   title="<?php _e( 'The normal styles will apply to the tags when the user is <b>not</b> hovering the link.', 'utcw' )?>">?</a>
 
-	<h3>Normal styles</h3>
+	<h3><?php _e( 'Normal styles', 'utcw' ) ?></h3>
 	<a class="utcw-help"
 	   title="<?php _e( 'Yes or no will force the tag setting for the <u>underline</u> style, theme default will let the blog theme decide.', 'utcw' ) ?>">?</a>
 	<strong><?php _e( 'Underline', 'utcw' ) ?></strong><br>

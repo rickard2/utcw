@@ -41,21 +41,21 @@ class UTCW_Data {
 	 * @var UTCW_Plugin
 	 * @since 2.0
 	 */
-	protected $utcw;
+	protected $plugin;
 
 	/**
 	 * Creates a new instance
 	 *
-	 * @param UTCW_Config $config Current configuration
-	 * @param UTCW_Plugin $utcw   Main plugin instance
-	 * @param wpdb        $db     WordPress DB instance
+	 * @param UTCW_Config $config   Current configuration
+	 * @param UTCW_Plugin $plugin   Main plugin instance
+	 * @param wpdb        $db       WordPress DB instance
 	 *
 	 * @since 2.0
 	 */
-	function __construct( UTCW_Config $config, UTCW_Plugin $utcw, wpdb $db ) {
+	function __construct( UTCW_Config $config, UTCW_Plugin $plugin, wpdb $db ) {
 		$this->config = $config;
 		$this->db     = $db;
-		$this->utcw   = $utcw;
+		$this->plugin = $plugin;
 	}
 
 	/**
@@ -112,7 +112,7 @@ class UTCW_Data {
 			$tags_list_parameters = array();
 
 			foreach ( $this->config->tags_list as $tag_id ) {
-				if ( $this->utcw->check_term_taxonomy( $tag_id, $this->config->taxonomy ) ) {
+				if ( $this->plugin->check_term_taxonomy( $tag_id, $this->config->taxonomy ) ) {
 					$tags_list_parameters[ ] = '%d';
 					$parameters[ ]           = $tag_id;
 				}
@@ -190,7 +190,7 @@ class UTCW_Data {
 			}
 
 			$item->taxonomy = $this->config->taxonomy;
-			$terms[ ]       = new UTCW_Term( $item, $this->utcw );
+			$terms[ ]       = new UTCW_Term( $item, $this->plugin );
 		}
 
 		$font_step = $this->calc_step( $min_count, $max_count, $this->config->size_from, $this->config->size_to );

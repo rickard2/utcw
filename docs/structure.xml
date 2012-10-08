@@ -32,7 +32,7 @@
       </tag>
     </docblock>
   </file>
-  <file path="utcw-config.php" hash="4c15acf9443a3887517917929dc9c69d" package="utcw\main">
+  <file path="utcw-config.php" hash="efd53b54e903d011ad035355d9bab06e" package="utcw\main">
     <docblock line="2">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -827,7 +827,7 @@ Default: (an empty string)</p>]]></long-description>
           <tag line="604" name="param" description="Array of key =&gt; value pairs of settings and values" type="array" variable="$input">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="604" name="param" description="Reference to the main plugin instance" type="\UTCW_Plugin" variable="$utcw">
+          <tag line="604" name="param" description="Reference to the main plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
           <tag line="604" name="since" description="2.0"/>
@@ -838,7 +838,7 @@ Default: (an empty string)</p>]]></long-description>
           <type>array</type>
         </argument>
         <argument line="612">
-          <name>$utcw</name>
+          <name>$plugin</name>
           <default><![CDATA[]]></default>
           <type>\UTCW_Plugin</type>
         </argument>
@@ -893,7 +893,7 @@ Default: (an empty string)</p>]]></long-description>
       <todo line="655">Allow more flexibility in color setting, like rgb/rgba/hsl/hsla and named colors</todo>
     </markers>
   </file>
-  <file path="utcw-data.php" hash="8d140e05d7c144aa9667cd0a7035d41a" package="utcw\main">
+  <file path="utcw-data.php" hash="c162c022b5d2253ccde105f4a98287fd" package="utcw\main">
     <docblock line="2">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -940,7 +940,7 @@ Default: (an empty string)</p>]]></long-description>
         </docblock>
       </property>
       <property final="false" static="false" visibility="protected" line="44" namespace="global" package="Default">
-        <name>$utcw</name>
+        <name>$plugin</name>
         <default><![CDATA[]]></default>
         <docblock line="38">
           <description><![CDATA[Reference to main plugin instance]]></description>
@@ -960,7 +960,7 @@ Default: (an empty string)</p>]]></long-description>
           <tag line="46" name="param" description="Current configuration" type="\UTCW_Config" variable="$config">
             <type by_reference="false">\UTCW_Config</type>
           </tag>
-          <tag line="46" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$utcw">
+          <tag line="46" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
           <tag line="46" name="param" description="WordPress DB instance" type="\wpdb" variable="$db">
@@ -974,7 +974,7 @@ Default: (an empty string)</p>]]></long-description>
           <type>\UTCW_Config</type>
         </argument>
         <argument line="55">
-          <name>$utcw</name>
+          <name>$plugin</name>
           <default><![CDATA[]]></default>
           <type>\UTCW_Plugin</type>
         </argument>
@@ -1300,7 +1300,7 @@ Default: (an empty string)</p>]]></long-description>
       <todo line="113">Move to a call to UTCW_Plugin to make it testable</todo>
     </markers>
   </file>
-  <file path="utcw-term.php" hash="10d1c7b2f3e2e95baca50f5496ef3936" package="utcw\main">
+  <file path="utcw-term.php" hash="18fc46e96d14512dcc7475243fbf483b" package="utcw\main">
     <docblock line="2">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1427,7 +1427,7 @@ Default: (an empty string)</p>]]></long-description>
           <tag line="86" name="param" description="Object with properties term_id, count, slug, name, color and taxonomy" type="\stdClass" variable="$input">
             <type by_reference="false">\stdClass</type>
           </tag>
-          <tag line="86" name="param" description="Reference to the plugin instance" type="\UTCW_Plugin" variable="$utcw">
+          <tag line="86" name="param" description="Reference to the plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
           <tag line="86" name="since" description="2.0"/>
@@ -1438,14 +1438,14 @@ Default: (an empty string)</p>]]></long-description>
           <type>\stdClass</type>
         </argument>
         <argument line="94">
-          <name>$utcw</name>
+          <name>$plugin</name>
           <default><![CDATA[]]></default>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
     </class>
   </file>
-  <file path="utcw-widget.php" hash="0b0c91b734b599ac2e026aa77f5abf29" package="utcw\main">
+  <file path="utcw-widget.php" hash="7b43f6065dae0ff7a33cdb031030e125" package="utcw\main">
     <docblock line="2">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1488,7 +1488,7 @@ Default: (an empty string)</p>]]></long-description>
         <docblock line="30">
           <description><![CDATA[Constructor]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="30" name="param" description="Optional. Plugin instance for dependency injection" type="\UTCW_Plugin" variable="$utcw">
+          <tag line="30" name="param" description="Optional. Plugin instance for dependency injection" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
           <tag line="30" name="return" description="" type="\UTCW">
@@ -1497,7 +1497,7 @@ Default: (an empty string)</p>]]></long-description>
           <tag line="30" name="since" description="1.0"/>
         </docblock>
         <argument line="38">
-          <name>$utcw</name>
+          <name>$plugin</name>
           <default><![CDATA[null]]></default>
           <type>\UTCW_Plugin</type>
         </argument>

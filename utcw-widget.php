@@ -30,16 +30,16 @@ class UTCW extends WP_Widget {
 	/**
 	 * Constructor
 	 *
-	 * @param UTCW_Plugin $utcw  Optional. Plugin instance for dependency injection
+	 * @param UTCW_Plugin $plugin  Optional. Plugin instance for dependency injection
 	 *
 	 * @return UTCW
 	 * @since 1.0
 	 */
-	function __construct( UTCW_Plugin $utcw = null ) {
+	function __construct( UTCW_Plugin $plugin = null ) {
 		$options = array( 'description' => __( 'Highly configurable tag cloud', 'utcw' ) );
 		parent::WP_Widget( false, __( 'Ultimate Tag Cloud', 'utcw' ), $options );
 
-		$this->plugin = $utcw ? $utcw : UTCW_Plugin::get_instance();
+		$this->plugin = $plugin ? $plugin : UTCW_Plugin::get_instance();
 	}
 
 	/**

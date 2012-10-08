@@ -604,15 +604,15 @@ class UTCW_Config {
 	/**
 	 * Loads a configuration instance array and parses the options
 	 *
-	 * @param array       $input Array of key => value pairs of settings and values
-	 * @param UTCW_Plugin $utcw  Reference to the main plugin instance
+	 * @param array       $input   Array of key => value pairs of settings and values
+	 * @param UTCW_Plugin $plugin  Reference to the main plugin instance
 	 *
 	 * @since 2.0
 	 */
-	public function __construct( array $input, UTCW_Plugin $utcw ) {
-		$this->allowed_post_types = $utcw->get_allowed_post_types();
-		$this->allowed_taxonomies = $utcw->get_allowed_taxonomies();
-		$this->authenticated      = $utcw->is_authenticated_user();
+	public function __construct( array $input, UTCW_Plugin $plugin ) {
+		$this->allowed_post_types = $plugin->get_allowed_post_types();
+		$this->allowed_taxonomies = $plugin->get_allowed_taxonomies();
+		$this->authenticated      = $plugin->is_authenticated_user();
 
 		foreach ( self::$options as $key => $default ) {
 			$this->$key = $default;

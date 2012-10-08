@@ -1130,7 +1130,7 @@ Default: (an empty string)</p>]]></long-description>
       </method>
     </class>
   </file>
-  <file path="utcw-render.php" hash="5dd11c0616e8498fb0a9943f4f88db6f" package="utcw\main">
+  <file path="utcw-render.php" hash="f747e305d7f2993ae2a02c262c8e03d2" package="utcw\main">
     <docblock line="2">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1177,99 +1177,119 @@ Default: (an empty string)</p>]]></long-description>
         </docblock>
       </property>
       <property final="false" static="false" visibility="private" line="44" namespace="global" package="Default">
-        <name>$id</name>
+        <name>$plugin</name>
         <default><![CDATA[]]></default>
         <docblock line="38">
-          <description><![CDATA[Unique ID for this widget configuration]]></description>
+          <description><![CDATA[Reference to the main plugin instance]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="38" name="var" description="" type="int">
-            <type by_reference="false">int</type>
+          <tag line="38" name="var" description="" type="\UTCW_Plugin">
+            <type by_reference="false">\UTCW_Plugin</type>
           </tag>
           <tag line="38" name="since" description="2.0"/>
         </docblock>
       </property>
       <property final="false" static="false" visibility="private" line="52" namespace="global" package="Default">
-        <name>$css</name>
-        <default><![CDATA['']]></default>
+        <name>$id</name>
+        <default><![CDATA[]]></default>
         <docblock line="46">
-          <description><![CDATA[CSS styles for this widget instance]]></description>
+          <description><![CDATA[Unique ID for this widget configuration]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="46" name="var" description="" type="string">
-            <type by_reference="false">string</type>
+          <tag line="46" name="var" description="" type="int">
+            <type by_reference="false">int</type>
           </tag>
           <tag line="46" name="since" description="2.0"/>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="62" package="utcw\main">
-        <name>__construct</name>
-        <full_name>__construct</full_name>
+      <property final="false" static="false" visibility="private" line="60" namespace="global" package="Default">
+        <name>$css</name>
+        <default><![CDATA['']]></default>
         <docblock line="54">
-          <description><![CDATA[Creates a new instance of the renderer]]></description>
+          <description><![CDATA[CSS styles for this widget instance]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="54" name="param" description="Configuration" type="\UTCW_Config" variable="$config">
-            <type by_reference="false">\UTCW_Config</type>
-          </tag>
-          <tag line="54" name="param" description="Term data" type="\UTCW_Data" variable="$data">
-            <type by_reference="false">\UTCW_Data</type>
+          <tag line="54" name="var" description="" type="string">
+            <type by_reference="false">string</type>
           </tag>
           <tag line="54" name="since" description="2.0"/>
         </docblock>
-        <argument line="62">
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="71" package="utcw\main">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="62">
+          <description><![CDATA[Creates a new instance of the renderer]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="62" name="param" description="Configuration" type="\UTCW_Config" variable="$config">
+            <type by_reference="false">\UTCW_Config</type>
+          </tag>
+          <tag line="62" name="param" description="Term data" type="\UTCW_Data" variable="$data">
+            <type by_reference="false">\UTCW_Data</type>
+          </tag>
+          <tag line="62" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="62" name="since" description="2.0"/>
+        </docblock>
+        <argument line="71">
           <name>$config</name>
           <default><![CDATA[]]></default>
           <type>\UTCW_Config</type>
         </argument>
-        <argument line="62">
+        <argument line="71">
           <name>$data</name>
           <default><![CDATA[]]></default>
           <type>\UTCW_Data</type>
         </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="75" package="utcw\main">
-        <name>render</name>
-        <full_name>render</full_name>
-        <docblock line="70">
-          <description><![CDATA[Renders the cloud as output]]></description>
-          <long-description><![CDATA[]]></long-description>
-          <tag line="70" name="since" description="2.0"/>
-        </docblock>
+        <argument line="71">
+          <name>$plugin</name>
+          <default><![CDATA[]]></default>
+          <type>\UTCW_Plugin</type>
+        </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="85" package="utcw\main">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="80">
+          <description><![CDATA[Renders the cloud as output]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="80" name="since" description="2.0"/>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="95" package="utcw\main">
         <name>get_cloud</name>
         <full_name>get_cloud</full_name>
-        <docblock line="79">
+        <docblock line="89">
           <description><![CDATA[Returns the cloud as a string]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="79" name="return" description="" type="string">
+          <tag line="89" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="79" name="since" description="2.0"/>
+          <tag line="89" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="150" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="160" package="utcw\main">
         <name>build_css</name>
         <full_name>build_css</full_name>
-        <docblock line="145">
+        <docblock line="155">
           <description><![CDATA[Builds the CSS needed to properly style the cloud]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="145" name="since" description="2.0"/>
+          <tag line="155" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="274" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="282" package="utcw\main">
         <name>has_default_value</name>
         <full_name>has_default_value</full_name>
-        <docblock line="266">
+        <docblock line="274">
           <description><![CDATA[Checks if option still has the default value]]></description>
           <long-description><![CDATA[]]></long-description>
-          <tag line="266" name="param" description="" type="string" variable="$option">
+          <tag line="274" name="param" description="" type="string" variable="$option">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="266" name="return" description="" type="bool">
+          <tag line="274" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="266" name="since" description="2.0"/>
+          <tag line="274" name="since" description="2.0"/>
         </docblock>
-        <argument line="274">
+        <argument line="282">
           <name>$option</name>
           <default><![CDATA[]]></default>
           <type/>
@@ -1277,7 +1297,7 @@ Default: (an empty string)</p>]]></long-description>
       </method>
     </class>
     <markers>
-      <todo line="103">Move to a call to UTCW_Plugin to make it testable</todo>
+      <todo line="113">Move to a call to UTCW_Plugin to make it testable</todo>
     </markers>
   </file>
   <file path="utcw-term.php" hash="10d1c7b2f3e2e95baca50f5496ef3936" package="utcw\main">
@@ -1425,7 +1445,7 @@ Default: (an empty string)</p>]]></long-description>
       </method>
     </class>
   </file>
-  <file path="utcw-widget.php" hash="0b38caa391966aa6142d51f9adbfaa5d" package="utcw\main">
+  <file path="utcw-widget.php" hash="0b0c91b734b599ac2e026aa77f5abf29" package="utcw\main">
     <docblock line="2">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
       <long-description><![CDATA[]]></long-description>
@@ -1557,7 +1577,7 @@ Default: (an empty string)</p>]]></long-description>
       </method>
     </class>
   </file>
-  <file path="utcw.php" hash="9dcc0347f91501126b6974ca4b0c310d" package="utcw\main">
+  <file path="utcw.php" hash="1042479e28f2dbb189591156ed6d0e5a" package="utcw\main">
     <docblock line="11">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>
       <long-description><![CDATA[]]></long-description>

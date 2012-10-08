@@ -127,7 +127,7 @@ class DataProvider {
 	}
 
 	function get_renderer( array $instance, array $query_terms ) {
-		return new UTCW_Render( $this->get_config( $instance ), $this->get_data_object( $instance, $query_terms ) );
+		return new UTCW_Render( $this->get_config( $instance ), $this->get_data_object( $instance, $query_terms ), $this->mockFactory->getUTCWNotAuthenticated() );
 	}
 
 	function get_config( array $instance ) {

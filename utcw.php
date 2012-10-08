@@ -145,7 +145,7 @@ class UTCW_Plugin {
 
 		$config = new UTCW_Config( $args, $this );
 		$data   = new UTCW_Data( $config, $this, $wpdb );
-		$render = new UTCW_Render( $config, $data );
+		$render = new UTCW_Render( $config, $data, $this );
 
 		return $render->get_cloud();
 	}

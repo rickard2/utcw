@@ -36,6 +36,14 @@ class UTCW_Render {
 	private $config;
 
 	/**
+	 * Reference to the main plugin instance
+	 *
+	 * @var UTCW_Plugin
+	 * @since 2.0
+	 */
+	private $plugin;
+
+	/**
 	 * Unique ID for this widget configuration
 	 *
 	 * @var int
@@ -56,12 +64,14 @@ class UTCW_Render {
 	 *
 	 * @param UTCW_Config $config Configuration
 	 * @param UTCW_Data   $data   Term data
+	 * @param UTCW_Plugin $plugin Main plugin instance
 	 *
 	 * @since 2.0
 	 */
-	public function __construct( UTCW_Config $config, UTCW_Data $data ) {
+	public function __construct( UTCW_Config $config, UTCW_Data $data, UTCW_Plugin $plugin ) {
 		$this->data   = $data;
 		$this->config = $config;
+		$this->plugin = $plugin;
 		$this->id     = base_convert( crc32( serialize( $config ) ), 10, 27 );
 
 		$this->build_css();
@@ -200,7 +210,6 @@ class UTCW_Render {
 			$link_styles[ ] = sprintf( 'margin-right:%spx', $this->config->tag_spacing );
 		}
 
-
 		if ( ! $this->has_default_value( 'line_height' ) ) {
 			$link_styles[ ] = sprintf( 'line-height:%spx', $this->config->line_height );
 		}
@@ -233,7 +242,6 @@ class UTCW_Render {
 			if ( ! $this->has_default_value( 'hover_border_color' ) ) {
 				$hover_styles[ ] = sprintf( 'border-color:%s', $this->config->hover_border_color );
 			}
-
 
 			if ( ! $this->has_default_value( 'hover_border_width' ) ) {
 				$hover_styles[ ] = sprintf( 'border-width:%spx', $this->config->hover_border_width );

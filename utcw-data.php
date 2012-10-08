@@ -154,7 +154,7 @@ class UTCW_Data {
 		switch ( $this->config->color ) {
 			case 'random':
 				foreach ( $terms as $term ) {
-					$term->color = sprintf( '#%x%x%x', rand() % 255, rand() % 255, rand() % 255 );
+					$term->color = sprintf( UTCW_HEX_COLOR_FORMAT, rand() % 255, rand() % 255, rand() % 255 );
 				}
 				break;
 
@@ -222,7 +222,7 @@ class UTCW_Data {
 		$green = $this->calc_size( $colors->green_from, $count, $min_count, $green_step );
 		$blue  = $this->calc_size( $colors->blue_from, $count, $min_count, $blue_step );
 
-		$color = sprintf( '#%x%x%x', $red, $green, $blue );
+		$color = sprintf( UTCW_HEX_COLOR_FORMAT, $red, $green, $blue );
 
 		return $color;
 	}

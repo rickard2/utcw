@@ -16,6 +16,7 @@ License: GPLv2
 define( 'UTCW_VERSION', '2.0-alpha' );
 define( 'UTCW_DEV', false );
 define( 'UTCW_HEX_COLOR_REGEX', '/#([a-f0-9]{6}|[a-f0-9]{3})/i' );
+define( 'UTCW_HEX_COLOR_FORMAT', '#%02x%02x%02x' );
 
 require_once 'utcw-config.php';
 require_once 'utcw-widget.php';

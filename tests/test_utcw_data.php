@@ -309,6 +309,60 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$this->helper_test_color_span( $instance, $colors, $query_terms );
 	}
 
+	/**
+	 * @param array $query_terms
+	 *
+	 * @dataProvider terms
+	 *
+	 * @link https://github.com/rickard2/utcw/issues/2
+	 * @link https://0x539.se/wordpress/ultimate-tag-cloud-widget/#comment-567130628
+	 */
+	function test_color_span_inverse( $query_terms ) {
+
+		$instance = array(
+			'color'           => 'span',
+			'color_span_from' => '#00ffff',
+			'color_span_to'   => '#ff0000',
+		);
+
+		$colors = new stdClass;
+
+		$colors->red_from   = 0x00;
+		$colors->green_from = 0xff;
+		$colors->blue_from  = 0xff;
+
+		$colors->red_to   = 0xff;
+		$colors->green_to = 0x00;
+		$colors->blue_to  = 0x00;
+
+		$this->helper_test_color_span( $instance, $colors, $query_terms );
+	}
+
+	/**
+	 * @param array $query_terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_color_span_below_ten( $query_terms ) {
+		$instance = array(
+			'color'           => 'span',
+			'color_span_from' => '#010101',
+			'color_span_to'   => '#020202',
+		);
+
+		$colors = new stdClass;
+
+		$colors->red_from   = 0x01;
+		$colors->green_from = 0x01;
+		$colors->blue_from  = 0x01;
+
+		$colors->red_to   = 0x02;
+		$colors->green_to = 0x02;
+		$colors->blue_to  = 0x02;
+
+		$this->helper_test_color_span( $instance, $colors, $query_terms );
+	}
+
 	function helper_test_color_span( $instance, $colors, $query_terms ) {
 		$terms = $this->helper_get_terms( $instance, $query_terms );
 

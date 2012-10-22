@@ -124,8 +124,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-terms' ) ?>">
 	<legend></legend>
 
-	<?php // todo: help ?>
-
+    <a class="utcw-help" title="<?php _e( 'This setting controls how the tag cloud should handle the selected terms. If the selected terms below should be the only ones included, or if the selected terms should be the ones being excluded from the result.', 'utcw' ) ?>">?</a>
 	<strong><?php _e( 'Selection type', 'utcw' ) ?></strong>
 	<br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'tags_list_type' ) ?>"
@@ -142,6 +141,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 
 	<br>
 	<br>
+	<a class="utcw-help" title="<?php _e( 'Which tags to include or exclude', 'utcw' ) ?>">?</a>
 	<?php foreach ( $available_taxonomies as $taxonomy ) : ?>
 
 	<div id="<?php echo $taxonomy->name ?>-terms" <?php if ( $taxonomy->name != $config->taxonomy ) echo 'class="hidden"' ?>>
@@ -394,7 +394,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	   title="<?php _e( 'This setting will change the background color of <b>the link only</b>, not the whole cloud. The color has to be specified in hexadeximal format, like ffffff for white, 0000ff for blue or 000000 for black.', 'utcw' ) ?>">?</a>
 	<strong><label
 		for="<?php echo $this->get_field_id( 'link_bg_color' ) ?>"><?php _e( 'Background color (hex value):', 'utcw' ) ?></label></strong><br>
-	<input type="text" name="<?php echo $this->get_field_name( 'link_bg_color' ) ?>"
+	<input type="color" name="<?php echo $this->get_field_name( 'link_bg_color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_bg_color' ) ?>" value="<?php echo $config->link_bg_color ?>"><br>
 	<br>
 
@@ -437,7 +437,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<a class="utcw-help"
 	   title="<?php _e( 'The hover effects will only affect the style of the tag when the user hovers the tag. For details about each settings see the section above.', 'utcw' )?>">?</a>
 
-	<h3>Hover effects</h3>
+	<h3><?php _e( 'Hover effects', 'utcw' ) ?></h3>
 	<strong><?php _e( 'Underline', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_underline' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_underline_yes' ) ?>"
@@ -485,15 +485,15 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<br>
 	<strong><label
 		for="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>"><?php _e( 'Background color (hex value):', 'utcw' ) ?></label></strong><br>
-	<input type="text" name="<?php echo $this->get_field_name( 'hover_bg_color' ) ?>"
+	<input type="color" name="<?php echo $this->get_field_name( 'hover_bg_color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>" value="<?php echo $config->hover_bg_color ?>"><br>
 	<br>
 	<strong><label
-		for="<?php echo $this->get_field_id( 'hover_color' ) ?>"><?php _e( 'Font color (hex value):', 'utcw' ) ?></label></strong>
-	<input type="text" name="<?php echo $this->get_field_name( 'hover_color' ) ?>"
+		for="<?php echo $this->get_field_id( 'hover_color' ) ?>"><?php _e( 'Font color (hex value):', 'utcw' ) ?></label></strong><br>
+	<input type="color" name="<?php echo $this->get_field_name( 'hover_color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_color' ) ?>" value="<?php echo $config->hover_color ?>"><br>
-	<strong><?php _e( 'Border', 'utcw' ) ?></strong><br>
-	<br>
+    <br>
+    <strong><?php _e( 'Border', 'utcw' ) ?></strong><br>
 	<label for="<?php echo $this->get_field_id( 'hover_border_style' ) ?>"><?php _e( 'Style: ', 'utcw' ) ?></label><br>
 	<select name="<?php echo $this->get_field_name( 'hover_border_style' ) ?>"
 			id="<?php echo $this->get_field_id( 'hover_border_style' ) ?>">

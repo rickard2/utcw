@@ -1,5 +1,7 @@
 (function ( $ ) {
 
+	"use strict";
+
 	/*
 	* Compatibility info:
 	* $.live			v1.3
@@ -23,16 +25,17 @@
 	* @type {Object}
 	*/
 
+	var tooltipStyle = {
+		border:"solid 1px #6295fb",
+		background:"#fff",
+		color:"#000",
+		padding:"5px",
+		zIndex:1E3
+	};
+
 	var UTCW = {
 
 		activeTab:{},
-		tooltipStyle:{
-			border:"solid 1px #6295fb",
-			background:"#fff",
-			color:"#000",
-			padding:"5px",
-			zIndex:1E3
-		},
 
 		init:function () {
 			$( 'input[id$=-color_none], input[id$=-color_random], input[id$=-color_set], input[id$=-color_span]' ).live( 'click', this.colorClickHandler );
@@ -46,7 +49,7 @@
 
 		initTooltip:function () {
 			$( ".utcw-help" ).wTooltip( {
-				style:this.tooltipStyle,
+				style:tooltipStyle,
 				className:'utcw-tooltip'
 			} );
 		},
@@ -96,17 +99,21 @@
 		},
 
 		ajaxSuccessHandler:function ( e, xhr, settings ) {
+			UTCW.setCurrentTab.apply( UTCW, [ settings.data ] );
+			UTCW.initTooltip.apply( UTCW );
+		},
 
+		setCurrentTab:function ( url ) {
 			var uri = new Uri();
 			var widget_id;
 
-			uri.setQuery( decodeURI( settings.data ) );
+			uri.setQuery( decodeURI( url ) );
 
 			if ( uri.getQueryParamValue( 'action' ) === 'save-widget' && uri.getQueryParamValue( 'id_base' ) === 'utcw' ) {
 				widget_id = uri.getQueryParamValue( 'widget-id' );
 
-				if ( UTCW.activeTab[ widget_id ] ) {
-					$( "button[data-tab='" + UTCW.activeTab[ widget_id ] + "']" ).trigger( 'click' );
+				if ( this.activeTab[ widget_id ] ) {
+					$( "button[data-tab='" + this.activeTab[ widget_id ] + "']" ).trigger( 'click' );
 				}
 			}
 		}

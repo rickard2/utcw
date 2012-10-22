@@ -13,33 +13,41 @@ read VERSION
 
 echo "Ok, building version $VERSION ... "
 
-TMP=`date | md5`
-mkdir -v /tmp/$TMP
+# Checkout SVN repo
+mkdir build
+svn co http://plugins.svn.wordpress.org/ultimate-tag-cloud-widget/tags build/tags
+
+# Create new tag
+mkdir build/tags/$VERSION
 
 # Base files 
-cp -Rv dist/* /tmp/$TMP
+cp -Rv dist/* build/tags/$VERSION/
 
 # CSS 
-mkdir -v /tmp/$TMP/css
-cp -v css/*.css /tmp/$TMP/css
+mkdir -v build/tags/$VERSION/css
+cp -v css/*.css build/tags/$VERSION/css
 
 # JS
-mkdir -v /tmp/$TMP/js
-cp -v js/*.min.js /tmp/$TMP/js
+mkdir -v build/tags/$VERSION/js
+cp -v js/*.min.js build/tags/$VERSION/js
 
 # Pages
-cp -Rv pages /tmp/$TMP
+cp -Rv pages build/tags/$VERSION/
 
 # PHP files
-cp -v *php /tmp/$TMP
+cp -v *php build/tags/$VERSION/
 
-# Tag it 
-svn copy /tmp/$TMP http://plugins.svn.wordpress.org/ultimate-tag-cloud-widget/tags/$VERSION -m "Tagged version $VERSION"
+# Add and commit
+svn add build/tags/$VERSION
 
-# Remove it 
-rm -rfv /tmp/$TMP
+cd build/tags
+svn ci -m "Tagged version $VERSION"
 
-# Git tag it 
-git tag -a $VERSION -m "Tagged version $VERSION"
+# Cleanup
+cd ../..
+rm -rf build
+
+# Git tag it
+# git tag -a $VERSION -m "Tagged version $VERSION"
 
 echo "All done! Remember to update stable tag in SVN repo"

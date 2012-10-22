@@ -394,7 +394,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	   title="<?php _e( 'This setting will change the background color of <b>the link only</b>, not the whole cloud. The color has to be specified in hexadeximal format, like ffffff for white, 0000ff for blue or 000000 for black.', 'utcw' ) ?>">?</a>
 	<strong><label
 		for="<?php echo $this->get_field_id( 'link_bg_color' ) ?>"><?php _e( 'Background color (hex value):', 'utcw' ) ?></label></strong><br>
-	<input type="color" name="<?php echo $this->get_field_name( 'link_bg_color' ) ?>"
+	<input type="text" name="<?php echo $this->get_field_name( 'link_bg_color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_bg_color' ) ?>" value="<?php echo $config->link_bg_color ?>"><br>
 	<br>
 
@@ -431,7 +431,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<br>
 	<label
 		for="<?php echo $this->get_field_id( 'link_border_color' ) ?>"><?php _e( 'Color (hex value): ', 'utcw' ) ?></label><br>
-	<input type="color" name="<?php echo $this->get_field_name( 'link_border_color' ) ?>"
+	<input type="text" name="<?php echo $this->get_field_name( 'link_border_color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_border_color' ) ?>" value="<?php echo $config->link_border_color ?>"><br>
 
 	<a class="utcw-help"
@@ -485,12 +485,12 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<br>
 	<strong><label
 		for="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>"><?php _e( 'Background color (hex value):', 'utcw' ) ?></label></strong><br>
-	<input type="color" name="<?php echo $this->get_field_name( 'hover_bg_color' ) ?>"
+	<input type="text" name="<?php echo $this->get_field_name( 'hover_bg_color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>" value="<?php echo $config->hover_bg_color ?>"><br>
 	<br>
 	<strong><label
 		for="<?php echo $this->get_field_id( 'hover_color' ) ?>"><?php _e( 'Font color (hex value):', 'utcw' ) ?></label></strong><br>
-	<input type="color" name="<?php echo $this->get_field_name( 'hover_color' ) ?>"
+	<input type="text" name="<?php echo $this->get_field_name( 'hover_color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_color' ) ?>" value="<?php echo $config->hover_color ?>"><br>
     <br>
     <strong><?php _e( 'Border', 'utcw' ) ?></strong><br>
@@ -524,7 +524,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<br>
 	<label
 		for="<?php echo $this->get_field_id( 'hover_border_color' ) ?>"><?php _e( 'Color (hex value): ', 'utcw' ) ?></label><br>
-	<input type="color" name="<?php echo $this->get_field_name( 'hover_border_color' ) ?>"
+	<input type="text" name="<?php echo $this->get_field_name( 'hover_border_color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_border_color' ) ?>" value="<?php echo $config->hover_border_color ?>"><br>
 </fieldset>
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-advanced' ) ?>">

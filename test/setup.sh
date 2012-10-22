@@ -19,9 +19,6 @@ tar --strip-components=1 -zxmf /tmp/wordpress.tar.gz -C $WP_CORE_DIR
 # Grab testing framework
 svn co --quiet --ignore-externals http://unit-tests.svn.wordpress.org/trunk/ $WP_TESTS_DIR
 
-# Grab Travis-CI specific config file
-wget -nv -O $WP_TESTS_DIR/wp-tests-config.php https://raw.github.com/benbalter/wordpress-plugin-tests/setup/wp-tests-config.php
-
 # Put various components in proper folders
 plugin_slug=$(basename $(pwd))
 plugin_dir=$WP_CORE_DIR/wp-content/plugins/$plugin_slug
@@ -32,3 +29,6 @@ mv $plugin_slug $plugin_dir
 
 #put shell in plugin folder
 cd $plugin_dir
+
+# Install config for travis
+cp test/unittests-config.php.travis test/unittests-config.php

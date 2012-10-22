@@ -699,6 +699,13 @@ class UTCW_Config {
 					case 'size_to':
 						$valid = isset( $input[ 'size_from' ] ) && $input[ 'size_to' ] >= $input[ 'size_from' ];
 						break;
+
+					case 'letter_spacing':
+					case 'word_spacing':
+					case 'tag_spacing':
+					case 'line_height':
+						$valid = is_numeric( $input[ $key ] );
+						break;
 				}
 
 				if ( ! $valid ) {

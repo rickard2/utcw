@@ -134,8 +134,24 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->helper_int_fail( 'letter_spacing' );
 	}
 
+	function test_letter_spacing_empty_default() {
+		$defaults = UTCW_Config::get_defaults();
+
+		$instance = array( 'letter_spacing' => '' );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( $defaults[ 'letter_spacing' ], $config->letter_spacing, 'Setting letter_spacing to an empty value should return the default value' );
+	}
+
 	function test_word_spacing_ok() {
 		$this->helper_int_ok( 'word_spacing' );
+	}
+
+	function test_word_spacing_empty_default() {
+		$defaults = UTCW_Config::get_defaults();
+
+		$instance = array( 'word_spacing' => '' );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( $defaults[ 'word_spacing' ], $config->word_spacing, 'Setting word_spacing to an empty value should return the default value' );
 	}
 
 	function test_word_spacing_fail() {
@@ -322,6 +338,14 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->helper_int_fail( 'tag_spacing' );
 	}
 
+	function test_tag_spacing_empty_default() {
+		$defaults = UTCW_Config::get_defaults();
+
+		$instance = array( 'tag_spacing' => '' );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( $defaults[ 'tag_spacing' ], $config->tag_spacing, 'Setting tag_spacing to an empty value should return the default value' );
+	}
+
 	function test_debug_ok() {
 		$this->helper_bool_ok( 'debug' );
 	}
@@ -348,6 +372,14 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 
 	function test_line_height_fail() {
 		$this->helper_int_fail( 'line_height' );
+	}
+
+	function test_line_height_empty_default() {
+		$defaults = UTCW_Config::get_defaults();
+
+		$instance = array( 'line_height' => '' );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( $defaults[ 'line_height' ], $config->line_height, 'Setting line_height to an empty value should return the default value' );
 	}
 
 	function test_separator_ok() {

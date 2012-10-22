@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project version="2.0.0a10" title="">
+<project version="2.0.0a10" title="Ultimate Tag Cloud Widget">
   <file path="pages/settings.php" hash="57f3bd1980f0f34deb4f3bccbf32b7c7" package="utcw\pages">
     <docblock line="2">
       <description><![CDATA[Ultimate Tag Cloud Widget]]></description>

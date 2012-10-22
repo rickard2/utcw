@@ -31,12 +31,12 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 
 	function test_title_is_outside_of_wrapper() {
 		$render = $this->getRenderer( array( 'title' => 'Hello World' ) );
-		$this->assertRegExp( '/^Hello World<div class="widget_tag_cloud/', $render->get_cloud() );
+		$this->assertRegExp( '/Hello World<div class="widget_tag_cloud/', $render->get_cloud() );
 	}
 
 	function test_title_is_inside_widget() {
 		$render = $this->getRenderer( array( 'before_widget' => 'BEFORE_WIDGET', 'title' => 'Hello World' ) );
-		$this->assertRegExp( '/^BEFORE_WIDGETHello World/', $render->get_cloud() );
+		$this->assertRegExp( '/BEFORE_WIDGETHello World/', $render->get_cloud() );
 	}
 
 	function test_output_contains_wrapper() {
@@ -48,10 +48,6 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 		$this->helper_contains( array( 'before_widget' => 'BEFORE_WIDGET', 'title' => 'title' ), 'BEFORE_WIDGETtitle<div class="' );
 	}
 
-	function test_defaults_outputs_no_css() {
-		$this->helper_not_contains( array(), '<style' );
-	}
-
 	function test_return_value_and_output_is_equal() {
 		$render = $this->getRenderer();
 		$this->expectOutputString( $render->get_cloud() );
@@ -59,7 +55,11 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	}
 
 	function test_output_contains_css() {
-		$this->helper_contains( array( 'text_transform' => 'capitalize' ), '<style type="text/css">' );
+		$this->helper_contains( array(), '<style type="text/css">' );
+	}
+
+	function test_output_contains_word_wrap() {
+		$this->helper_contains( array(), 'word-wrap:break-word' );
 	}
 
 	function test_text_transform() {

@@ -46,7 +46,7 @@ class UTCW_Test_Bugs extends WP_UnitTestCase {
 		$args     = array( 'before_widget' => 'Hello World' );
 		$instance = array( 'before_widget' => 'Goodbye World' );
 
-		$this->expectOutputRegex( '/^Hello World/' );
+		$this->expectOutputRegex( '/Hello World/' );
 
 		$widget->widget( $args, $instance );
 	}

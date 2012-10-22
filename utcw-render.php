@@ -157,7 +157,7 @@ class UTCW_Render {
 	 * @since 2.0
 	 */
 	private function build_css() {
-		$main_styles = array();
+		$main_styles = array( 'word-wrap:break-word' );
 
 		if ( ! $this->has_default_value( 'text_transform' ) ) {
 			$main_styles[ ] = sprintf( 'text-transform:%s', $this->config->text_transform );

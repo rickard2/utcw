@@ -10,4 +10,4 @@ License: GPLv2
 */
 
 // Legacy file for compatibility with verison 1.x
-require 'utcw.php';
+require_once 'utcw.php';

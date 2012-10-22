@@ -3,7 +3,7 @@
 Plugin Name: Ultimate tag cloud widget
 Plugin URI: https://www.0x539.se/wordpress/ultimate-tag-cloud-widget/
 Description: This plugin aims to be the most configurable tag cloud widget out there, able to suit all your weird tag cloud needs.
-Version: 2.0 alpha
+Version: 2.0 beta1
 Author: Rickard Andersson
 Author URI: https://www.0x539.se
 License: GPLv2
@@ -16,9 +16,6 @@ License: GPLv2
  * @package    utcw
  * @subpackage main
  * @since      2.0
- *
- * @todo       Find plugin compatibility, both PHP, WP and jQuery
- * @todo       README
  */
 if ( ! defined( 'ABSPATH' ) ) die();
 
@@ -28,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
  * @var string
  * @since 2.0
  */
-define( 'UTCW_VERSION', '2.0-alpha' );
+define( 'UTCW_VERSION', '2.0-beta1' );
 
 /**
  * If development mode is currently enabled

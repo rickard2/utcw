@@ -1,16 +1,25 @@
 === Ultimate Tag Cloud Widget ===
 Contributors: exz
 Tags: widget, tags, configurable, tag cloud
-Requires at least: ?
-Tested up to: ?
-Stable tag: ?
+Requires at least: 3.0
+Tested up to: 3.5 beta2
+Stable tag: 1.3.17
 Donate link: https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget
+License: GPLv2 or later
 
 This plugin aims to be the most configurable tag cloud widget out there, able to suit all your weird tag cloud needs.
 
 == Description ==
 
-TODO: Write new description
+This is the highly configurable tag cloud widget, the main features for this plugin is:
+
+- All, single author or multiple authors per cloud
+- Select which taxonomies or post types to show tags for
+- Rules for which posts to include when fetching tags
+- Inclusion/exclusion functions
+- A bunch of ordering, coloring and styling options
+
+This plugin is under active development and my goal is to try to help everyone who have issues or suggestions for this plugin. If you find bugs or have feature requests please use [GitHub issues](https://github.com/rickard2/utcw/issues), if you need support please use the [WordPress forums](http://wordpress.org/support/plugin/ultimate-tag-cloud-widget). You're also always welcome to contact me by e-mail or Google Talk; rickard at 0x539.se
 
 == Installation ==
 
@@ -23,219 +32,72 @@ This is the same procedure as with all ordinary plugins.
 
 All the configuration options is set individually in every instance. Some default values are set if you're unsure on how to configure it. 
 
-If your theme doesn't use widgets, you can still use it in your theme by calling the function do_utcw(). See "Other Notes" for more information.
+If your theme doesn't use widgets, you can still use it in your theme by calling the function `do_utcw()` or by using the shortcode `[do_utcw]`. See [Other Notes](http://wordpress.org/extend/plugins/ultimate-tag-cloud-widget/other_notes/#Theme-integration-/-Shortcode) for more information.
 
 == Frequently Asked Questions ==
 
-TODO: Write up proper FAQ
+If you have questions, please post them in the forums.
 
 == Screenshots ==
 
-TODO: Add new screenshots
+1. This shows my widget with the default settings on the default wordpress theme.
+2. This is a more colorful example with random colors and all tags in uppercase. I'd like to actually see someone use it like this.
+3. Maybe a more realistic usage of the widget with spanning colors and capitalized tags.
+4. The settings page of the widget
 
 == Changelog ==
 
 = 2.0 =
-* TODO: Write changelog
 
-= 1.3.16 =
-* Bug fix; fixes problem with saving "Random from preset values" setting
+* New plugin structure
+* Minor changes to the administration interface
 
-= 1.3.15 =
-* Bux fix; removed jquery 1.7.x dependent functions
+The changelog history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/CHANGELOG.md)
 
-= 1.3.14 =
-* Bug fix; tag cloud showed up empty after update from 1.3.12
-
-= 1.3.13 =
-* Added setting to hide the title of the widget
-* Custom post type support, replaces page tagging feature
-* Internal optimizations and improved code quality
-
-= 1.3.12 =
-* Fixed bug which made the default "data" tab disappear when adding the widget to a sidebar
-* Added setting for link hover font color
-* Added option to save or load configuration
-
-= 1.3.11 =
-* Proper namespacing of the CSS classes to prevent interference with other plugins
-
-= 1.3.10 = 
-
-* Fixed shortcode problem where the content would appear at the top of a post/page instead of where the shortcode was placed.
-* Fixed shortcode problem where you couldn't possibly enter some values as array types, now accepting a comma separated list for $tags_list, $color_set and $authors
-* Updated spelling error in the documentation which caused some confusion
-
-= 1.3.9 = 
-
-* Added shortcode [utcw]
-
-= 1.3.8 = 
-
-* Improved the tabbed settings when using multiple tag clouds
-* Improved the tabbed settings so that the same tab is reloaded after saving the settings
-* Updated screenshot 
-* Bugfix; The help texts now also shows after saving the settings
-* Added a setting for separator, prefix and suffix
-
-= 1.3.7 =
-
-* Added more detailed descriptions of all the settings
-* Added the tabs for the sections in the widget settings
-* Switched from deprecated function get_users_of_blog() to get_users() for WP 3.1+
-
-= 1.3.6 = 
-
-* Added a setting for row spacing
-* Added a setting for post age 
-
-= 1.3.5 = 
-
-* Now also showing private posts when signed in. 
-
-= 1.3.4 = 
-
-* Added support for [page tagging](http://wordpress.org/extend/plugins/page-tagger/) (thanks again Andreas Bogavcic)
-* Added a setting for including debug information to help troubleshooting 
-
-= 1.3.3 = 
-
-* Added new styling options upon requests from the forum
-* Testing out the new HTML5 input type "number" in the settings form
-
-= 1.3.2 = 
-
-* Fixed bug in the SQL query making the plugin also count posts that isn't published
-* Added a new option to set the minimum amount of posts a tag should have to be included
-
-= 1.3.1 = 
-
-* Added Swedish translation
-* Minor internationalization changes
-
-= 1.3 = 
-
-* As requested, support for calling a function to display the widget was added. Se other notes for information on how to use it.  
-* Javascript changes in order to fix problems with the options page in WP 3.1 beta 1
-
-= 1.2 = 
-
-* Removed all the PHP short tags
-* Can now sort by name, slug, id or color (!) case sensitive or case insensitive
-* Exclude now takes either tag name or id 
-
-= 1.1 = 
-
-* Fixed bug with options page 
-* Improved link generation to create correct tag links  
-
-= 1.0 =
-
-* Initial release 
+The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
 
 = 2.0 =
 
-* New plugin architecture and a big rewrite of the plugin foundation. Watch out for breaking changes, please see [TODO: add link] for more information.
-
-= 1.3.16 =
-
-* Bug fix; fixes problem with saving "Random from preset values" setting
-
-= 1.3.15 =
-
-* Bug fix; fixes problems with javascript errors on widgets page
-
-= 1.3.14 =
-
-* Bug fix; fixes problem with empty cloud after upgrade
-
-= 1.3.13 =
-
-* New features and internal optimizations and improvements
-
-= 1.3.12 =
-
-* Minor bug fix and added support for saving/loading configurations.
-
-= 1.3.11 =
-
-* Minor CSS fix
-
-= 1.3.10 = 
-
-* Some shortcode bugfixes
-
-= 1.3.9 =
-
-* Added shortcode
-
-= 1.3.8 = 
-
-* Minor bug fixes from previous version
-* Added separator, prefix and suffix settings
-
-= 1.3.7 = 
-
-* Removed deprecated function get_users_of_blog() for WP 3.1+
-
-= 1.3.6 = 
-
-* Added two new features; post age and row spacing
-
-= 1.3.5 = 
-
-* Now also showing private posts when signed in. 
-
-= 1.3.4 = 
-
-Support for page tagging and an option for debug information
-
-= 1.3.3 =
-
-* New styling options added
-
-= 1.3.2 =
-
-* Small bug fix in the SQL-query and a new option added
-
-= 1.3.1 =
-
-* Added Swedish translateion
-
-= 1.3 = 
-
-* Support for integrating the widget within your theme added. 
-* New javascript fixing problem with options page in WP 3.1 beta 1 
-
-= 1.1 and 1.2 =
-
-* Just bug fixes, should be safe to upgrade. 
-
-= 1.0 =
-
-* Initial release
+* New plugin architecture and a big rewrite of the plugin foundation. Watch out for breaking changes, please see http://exz.nu/utcwbreaking for more information.
 
 == Feedback ==
 
-This plugin is under active development and my goal is to try to help everyone who have issues or suggestions for this plugin. If you have issues please post them in the forums, if you have suggestions I've got a new suggestion system up on my blog at http://0x539.se/wordpress/ultimate-tag-cloud-widget/. If you use this plugin and like it, please consider giving me some [flattr love](https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget).
+This plugin is under active development and my goal is to try to help everyone who have issues or suggestions for this plugin. If you find bugs or have feature requests please use [GitHub issues](https://github.com/rickard2/utcw/issues), if you need support please use the [WordPress forums](http://wordpress.org/support/plugin/ultimate-tag-cloud-widget).
 
 My contact information is
 
 * rickard (a) 0x539.se (email, gtalk, msn, you name it)
 * [twitter.com/rickard2](http://twitter.com/rickard2)
 
+If you use this plugin and like it, please consider giving me some [flattr love](https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget).
+
 == Theme integration / Shortcode == 
 
-TODO: Rewrite theme integration page
+You can integrate the widget within your own theme even if you're not using standard WordPress widgets. Just install and load the plugin as described and use the function
+
+`<?php do_utcw($args); ?>`
+
+...with `$args` being a array of `key => value` pairs for the options you would like to set. For example if you'd like to change the title of the widget:
+
+`<?php
+$args = array( "title" => "Most awesome title ever" );
+
+do_utcw( $args );`
+
+If you're not able to change your theme you can also use the shortcode `[utcw]` anywhere in your posts or pages. You can pass any of the settings along with the shortcode in the format of `key="value"`, for instance if you'd like to change the widget title:
+
+`[utcw title="Most awesome title ever"]`
+
+All the configuration options can be found in the [plugin documentation](http://docs). The list of properties of `UTCW_Config` can all be used as keys to the function or shortcode.
 
 == Breaking changes in version 2.0 ==
 
 * Tags lists with named tags will not work in version 2.0, only tags lists with IDs.
 * The configuration option for text case has been renamed from case to text_transform
-* The styles for links aren't marked as !important in the CSS longer, this might change the cloud presentation in some cases
-* The shortcode and theme integration function call no longer accepts the widget arguments before_widget, after_widget, before_title and after_title
+* The styles for links aren't marked as `!important` in the CSS longer, this might change the cloud presentation in some cases
+* The shortcode and theme integration function call no longer accepts the widget arguments `before_widget`, `after_widget`, `before_title` and `after_title`
 
 == Thanks == 
 

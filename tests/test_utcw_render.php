@@ -29,13 +29,23 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 		return $this->dataProvider->get_renderer( $input, $query_terms, $utcw );
 	}
 
+	function test_title_is_outside_of_wrapper() {
+		$render = $this->getRenderer( array( 'title' => 'Hello World' ) );
+		$this->assertRegExp( '/^Hello World<div class="widget_tag_cloud/', $render->get_cloud() );
+	}
+
+	function test_title_is_inside_widget() {
+		$render = $this->getRenderer( array( 'before_widget' => 'BEFORE_WIDGET', 'title' => 'Hello World' ) );
+		$this->assertRegExp( '/^BEFORE_WIDGETHello World/', $render->get_cloud() );
+	}
+
 	function test_output_contains_wrapper() {
 		$render = $this->getRenderer();
-		$this->assertRegExp( '/^<div class="widget_tag_cloud utcw-[0-9a-z]+">.*<\/div>$/i', $render->get_cloud() );
+		$this->assertRegExp( '/<div class="widget_tag_cloud utcw-[0-9a-z]+">.*<\/div>$/i', $render->get_cloud() );
 	}
 
 	function test_wrapper_is_inside_widget() {
-		$this->helper_contains( array( 'before_widget' => 'BEFORE_WIDGET' ), 'BEFORE_WIDGET<div class="' );
+		$this->helper_contains( array( 'before_widget' => 'BEFORE_WIDGET', 'title' => 'title' ), 'BEFORE_WIDGETtitle<div class="' );
 	}
 
 	function test_defaults_outputs_no_css() {
@@ -299,7 +309,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	}
 
 	function test_applies_filter_to_widget_title() {
-		$utcw = $this->mockFactory->getUTCWMock(array('apply_filters'));
+		$utcw = $this->mockFactory->getUTCWMock( array( 'apply_filters' ) );
 		$utcw->expects( $this->once() )
 			->method( 'apply_filters' )
 			->with( 'widget_title', 'Tag Cloud' )

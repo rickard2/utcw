@@ -103,8 +103,6 @@ class UTCW_Render {
 			$markup[ ] = $this->config->before_widget;
 		}
 
-		$markup[ ] = '<div class="widget_tag_cloud utcw-' . $this->id . '">';
-
 		if ( $this->config->show_title_text ) {
 			if ( $this->config->before_title ) {
 				$markup[ ] = $this->config->before_title;
@@ -116,6 +114,8 @@ class UTCW_Render {
 				$markup[ ] = $this->config->after_title;
 			}
 		}
+
+		$markup[ ] = '<div class="widget_tag_cloud utcw-' . $this->id . '">';
 
 		$terms = array();
 

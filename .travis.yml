@@ -22,10 +22,9 @@ env:
     - WP_VERSION=3.3.3 WP_MULTISITE=1
     - WP_VERSION=3.2.1 WP_MULTISITE=1
 
-# Grab the setup script and execute
+# Setup test environment
 before_script:
-    - wget https://raw.github.com/benbalter/wordpress-plugin-tests/setup/setup.sh
-    - source setup.sh
+    - source test/setup.sh
 
 script: phpunit -c test
 

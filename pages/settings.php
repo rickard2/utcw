@@ -116,7 +116,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<a class="utcw-help"
 	   title="<?php _e( 'Only posts which are posted within this number of days will be used when generating the cloud', 'utcw' ) ?>">?</a>
 	<strong><label for="<?php echo $this->get_field_id( 'days_old' ) ?>"
-				   title="<?php _e( 'The maximum number of days back to search for posts, zero means every post.', 'utcw' )?>"><?php _e( 'Posts max age:', 'utcw' )?></label></strong>
+				   title="<?php _e( 'The maximum number of days back to search for posts, zero means every post.', 'utcw' )?>"><?php _e( 'Posts max age:', 'utcw' )?></label></strong><br>
 	<input type="number" name="<?php echo $this->get_field_name( 'days_old' ) ?>"
 		   id="<?php echo $this->get_field_id( 'days_old' ) ?>" value="<?php echo $config->days_old; ?>"><br>
 </fieldset>

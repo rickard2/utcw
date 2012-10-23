@@ -28,7 +28,7 @@ class test_utcw_widget extends PHPUnit_Framework_TestCase {
 
 		$this->utcw->expects( $this->once() )
 			->method( 'save_configuration' )
-			->with( '__test', UTCW_Config::get_defaults() );
+			->with( '__test' );
 
 		$widget = new UTCW( $this->utcw );
 		$widget->update( $instance, array() );
@@ -61,5 +61,18 @@ class test_utcw_widget extends PHPUnit_Framework_TestCase {
 
 		$widget = new UTCW();
 		$widget->widget( array(), array() );
+	}
+
+	function test_widget_converts_empty_checkbox_values_to_false() {
+
+		$widget = new UTCW();
+
+		$instance = $widget->update( array(), array() );
+
+		$this->assertEquals( false, $instance[ 'show_title_text' ] );
+		$this->assertEquals( false, $instance[ 'show_title' ] );
+		$this->assertEquals( false, $instance[ 'debug' ] );
+		$this->assertEquals( false, $instance[ 'reverse' ] );
+		$this->assertEquals( false, $instance[ 'case_sensitive' ] );
 	}
 }

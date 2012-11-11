@@ -93,47 +93,71 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	}
 
 	function test_order_name() {
-		$this->helper_query_contains( array( 'order' => 'name', 'reverse' => false ), 'ORDER BY name ASC' );
+		$instance = array( 'order' => 'name', 'reverse' => false );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
+		$this->helper_query_contains( $instance, ') AS subQuery' );
+		$this->helper_query_contains( $instance, 'ORDER BY name ASC' );
 	}
 
 	function test_order_name_reverse() {
-		$this->helper_query_contains( array( 'order' => 'name', 'reverse' => true ), 'ORDER BY name DESC' );
+		$instance = array( 'order' => 'name', 'reverse' => true );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
+		$this->helper_query_contains( $instance, ') AS subQuery' );
+		$this->helper_query_contains( $instance, 'ORDER BY name DESC' );
 	}
 
 	function test_order_name_case_sensitive() {
-		$this->helper_query_contains( array(
-										   'order'        => 'name', 'case_sensitive' => true
-									  ), 'ORDER BY BINARY name ASC' );
+		$instance = array( 'order' => 'name', 'case_sensitive' => true );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
+		$this->helper_query_contains( $instance, ') AS subQuery' );
+		$this->helper_query_contains( $instance, 'ORDER BY BINARY name ASC' );
 	}
 
 	function test_order_slug() {
-		$this->helper_query_contains( array( 'order' => 'slug', 'reverse' => false ), 'ORDER BY slug ASC' );
+		$instance = array( 'order' => 'slug', 'reverse' => false );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
+		$this->helper_query_contains( $instance, ') AS subQuery' );
+		$this->helper_query_contains( $instance, 'ORDER BY slug ASC' );
 	}
 
 	function test_order_slug_reverse() {
-		$this->helper_query_contains( array( 'order' => 'slug', 'reverse' => true ), 'ORDER BY slug DESC' );
+		$instance = array( 'order' => 'slug', 'reverse' => true );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
+		$this->helper_query_contains( $instance, ') AS subQuery' );
+		$this->helper_query_contains( $instance, 'ORDER BY slug DESC' );
 	}
 
 	function test_order_slug_case_sensitive() {
-		$this->helper_query_contains( array(
-										   'order'        => 'slug', 'case_sensitive' => true
-									  ), 'ORDER BY BINARY slug ASC' );
+		$instance = array( 'order' => 'slug', 'case_sensitive' => true );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
+		$this->helper_query_contains( $instance, ') AS subQuery' );
+		$this->helper_query_contains( $instance, 'ORDER BY BINARY slug ASC' );
 	}
 
 	function test_order_id() {
-		$this->helper_query_contains( array( 'order' => 'id', 'reverse' => false ), 'ORDER BY term_id ASC' );
+		$instance = array( 'order' => 'id', 'reverse' => false );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
+		$this->helper_query_contains( $instance, ') AS subQuery' );
+		$this->helper_query_contains( $instance, 'ORDER BY term_id ASC' );
 	}
 
 	function test_order_id_reverse() {
-		$this->helper_query_contains( array( 'order' => 'id', 'reverse' => true ), 'ORDER BY term_id DESC' );
+		$instance = array( 'order' => 'id', 'reverse' => true );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
+		$this->helper_query_contains( $instance, ') AS subQuery' );
+		$this->helper_query_contains( $instance, 'ORDER BY term_id DESC' );
 	}
 
 	function test_order_count() {
-		$this->helper_query_contains( array( 'order' => 'count', 'reverse' => false ), 'ORDER BY count ASC' );
+		$instance = array( 'order' => 'count', 'reverse' => false );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
+		$this->helper_query_contains( $instance, ') AS subQuery' );
+		$this->helper_query_contains( $instance, 'ORDER BY count ASC' );
 	}
 
 	function test_order_count_reverse() {
-		$this->helper_query_contains( array( 'order' => 'count', 'reverse' => true ), 'ORDER BY count DESC' );
+		$instance = array( 'order' => 'count', 'reverse' => true );
+		$this->helper_query_contains( $instance, 'ORDER BY count DESC' );
 	}
 
 	/**

@@ -138,35 +138,57 @@ class UTCW_Data {
 			$parameters[ ] = $this->config->minimum;
 		}
 
-		// Try to sort the result using SQL if possible
-		$order  = $this->config->reverse ? 'DESC' : 'ASC';
-		$binary = $this->config->case_sensitive ? 'BINARY ' : '';
-
-		switch ( $this->config->order ) {
-			case 'random':
-				$query[ ] = 'ORDER BY RAND() ' . $order;
-				break;
-
-			case 'name':
-				$query[ ] = 'ORDER BY ' . $binary . 'name ' . $order;
-				break;
-
-			case 'slug':
-				$query[ ] = 'ORDER BY ' . $binary . 'slug ' . $order;
-				break;
-
-			case 'id':
-				$query[ ] = 'ORDER BY term_id ' . $order;
-				break;
-
-			case 'count':
-				$query[ ] = 'ORDER BY count ' . $order;
-				break;
-		}
+		// Always sort the result by count DESC to always work with the top result
+		$query[ ] = 'ORDER BY count DESC';
 
 		// Add limit constraint
 		$query[ ]      = 'LIMIT %d';
 		$parameters[ ] = $this->config->max;
+
+		// If the result should be ordered in another way, try to create a sub-query to sort the result
+		// directly in the database query
+		$subquery_required = true;
+
+		// No subquery is needed if the order should be by count desc (it's already sorted that way)
+		if ( $this->config->reverse && $this->config->order == 'count' ) {
+			$subquery_required = false;
+		}
+
+
+		// No subquery is needed if the order should be by color since the sorting is done in PHP afterwards
+		if ( $this->config->order == 'color' ) {
+			$subquery_required = false;
+		}
+
+		if ( $subquery_required ) {
+			array_unshift( $query, 'SELECT * FROM (' );
+			$query[ ] = ') AS subQuery';
+
+			$order  = $this->config->reverse ? 'DESC' : 'ASC';
+			$binary = $this->config->case_sensitive ? 'BINARY ' : '';
+
+			switch ( $this->config->order ) {
+				case 'random':
+					$query[ ] = 'ORDER BY RAND() ' . $order;
+					break;
+
+				case 'name':
+					$query[ ] = 'ORDER BY ' . $binary . 'name ' . $order;
+					break;
+
+				case 'slug':
+					$query[ ] = 'ORDER BY ' . $binary . 'slug ' . $order;
+					break;
+
+				case 'id':
+					$query[ ] = 'ORDER BY term_id ' . $order;
+					break;
+
+				case 'count':
+					$query[ ] = 'ORDER BY count ' . $order;
+					break;
+			}
+		}
 
 		// Build query
 		$query = join( "\n", $query );

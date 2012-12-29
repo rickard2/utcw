@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
  * @var string
  * @since 2.0
  */
-define( 'UTCW_VERSION', '2.0-beta1' );
+define( 'UTCW_VERSION', '2.0' );
 
 /**
  * If development mode is currently enabled

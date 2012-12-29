@@ -2,8 +2,8 @@
 Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
-Tested up to: 3.5 beta2
-Stable tag: 1.3.17
+Tested up to: 3.5
+Stable tag: 2.0
 Donate link: https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget
 License: GPLv2 or later
 

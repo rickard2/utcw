@@ -231,7 +231,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		<label class="screen-reader-text"
 			   for="<?php echo $this->get_field_id( 'color_set_chooser' ) ?>"><?php _e( 'Random from preset values', 'utcw' ) ?></label>
 		<input type="text" name="<?php echo $this->get_field_name( 'color_set' ) ?>"
-			   id="<?php echo $this->get_field_id( 'color_set_chooser' ) ?>">
+			   id="<?php echo $this->get_field_id( 'color_set_chooser' ) ?>" value="<?php echo join( ',', $config->color_set ) ?>">
 	</div>
 	<input type="radio" name="<?php echo $this->get_field_name( 'color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'color_span' ) ?>"

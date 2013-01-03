@@ -68,15 +68,21 @@ class UTCW_Data {
 		$query = array();
 
 		// Base query with joins
-		$query[ ] = 'SELECT t.term_id, t.name, t.slug, COUNT(tr.term_taxonomy_id) AS `count`';
+		$query[ ] = 'SELECT t.term_id, t.name, t.slug, COUNT(tr.term_taxonomy_id) AS `count`, tt.taxonomy';
 		$query[ ] = 'FROM `' . $this->db->posts . '` AS p';
 		$query[ ] = 'JOIN `' . $this->db->term_relationships . '` AS tr ON tr.object_id = p.ID';
 		$query[ ] = 'JOIN `' . $this->db->term_taxonomy . '` AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id';
 		$query[ ] = 'JOIN `' . $this->db->terms . '` AS t ON t.term_id = tt.term_id';
 
 		// Add taxonomy statement
-		$query[ ]      = 'WHERE tt.taxonomy = %s';
-		$parameters[ ] = $this->config->taxonomy;
+		$taxonomy_parameters = array();
+
+		foreach ( $this->config->taxonomy as $taxonomy ) {
+			$taxonomy_parameters[ ] = '%s';
+			$parameters[ ]          = $taxonomy;
+		}
+
+		$query[ ] = 'WHERE tt.taxonomy IN (' . join( ',', $taxonomy_parameters ) . ')';
 
 		// Add authors statement if configured
 		if ( $this->config->authors ) {
@@ -154,7 +160,6 @@ class UTCW_Data {
 			$subquery_required = false;
 		}
 
-
 		// No subquery is needed if the order should be by color since the sorting is done in PHP afterwards
 		if ( $this->config->order == 'color' ) {
 			$subquery_required = false;
@@ -211,7 +216,6 @@ class UTCW_Data {
 				$max_count = $item->count;
 			}
 
-			$item->taxonomy = $this->config->taxonomy;
 			$terms[ ]       = new UTCW_Term( $item, $this->plugin );
 		}
 

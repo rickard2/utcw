@@ -20,7 +20,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	}
 
 	function test_taxonomy() {
-		$this->helper_query_contains( array( 'taxonomy' => 'category' ), "taxonomy = 'category'" );
+		$this->helper_query_contains( array( 'taxonomy' => array('category') ), "taxonomy IN ('category')" );
 	}
 
 	function test_author() {

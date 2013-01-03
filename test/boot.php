@@ -116,10 +116,11 @@ class DataProvider {
 		for ( $x = 1; $x < $count; $x ++ ) {
 			$term = new stdClass;
 
-			$term->term_id = $x;
-			$term->name    = 'Test term ' . $x;
-			$term->slug    = 'term-' . $x;
-			$term->count   = $x * 10;
+			$term->term_id  = $x;
+			$term->name     = 'Test term ' . $x;
+			$term->slug     = 'term-' . $x;
+			$term->count    = $x * 10;
+			$term->taxonomy = 'post_tag';
 
 			$terms[ ] = $term;
 		}

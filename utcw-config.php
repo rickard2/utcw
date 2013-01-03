@@ -776,6 +776,7 @@ class UTCW_Config {
 	 * @param mixed $input
 	 *
 	 * @return bool|string   False on failure
+	 * @since 2.1
 	 */
 	private function parse_measurement( $input ) {
 		if ( ! preg_match( '/^' . UTCW_DECIMAL_REGEX . '(em|px|%)?$/i', $input ) ) {
@@ -797,6 +798,7 @@ class UTCW_Config {
 	 * @param string $measurement2
 	 *
 	 * @return bool
+	 * @since 2.1
 	 */
 	private function equal_units( $measurement1, $measurement2 ) {
 		$unit1 = preg_replace( '/' . UTCW_DECIMAL_REGEX . '/', '', $measurement1 );

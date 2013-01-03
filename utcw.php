@@ -2,7 +2,7 @@
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.0
+ * @version    2.1
  * @license    GPLv2
  * @package    utcw
  * @subpackage main
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
  * @var string
  * @since 2.0
  */
-define( 'UTCW_VERSION', '2.0.1' );
+define( 'UTCW_VERSION', '2.1' );
 
 /**
  * If development mode is currently enabled

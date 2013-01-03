@@ -188,13 +188,13 @@ if ( ! defined( 'ABSPATH' ) ) die();
 
 	<a class="utcw-help"
 	   title="<?php _e( 'The tag with the least number of posts will be the smallest, and the tag with the most number of posts will be the biggest.', 'utcw' ) ?>">?</a>
-	<strong><?php _e( 'Tag size (in px):', 'utcw' ) ?></strong><br>
+	<strong><?php _e( 'Tag size:', 'utcw' ) ?></strong><br>
 	<label for="<?php echo $this->get_field_id( 'size_from' ) ?>"><?php _e( 'From', 'utcw' ) ?></label>
-	<input type="number" name="<?php echo $this->get_field_name( 'size_from' ) ?>"
+	<input type="text" name="<?php echo $this->get_field_name( 'size_from' ) ?>"
 		   id="<?php echo $this->get_field_id( 'size_from' ) ?>" size="3"
 		   value="<?php echo $config->size_from ?>">
 	<label for="<?php echo $this->get_field_id( 'size_to' ) ?>"><?php _e( 'to', 'utcw' ) ?></label>
-	<input type="number" name="<?php echo $this->get_field_name( 'size_to' ) ?>"
+	<input type="text" name="<?php echo $this->get_field_name( 'size_to' ) ?>"
 		   id="<?php echo $this->get_field_id( 'size_to' ) ?>" size="3"
 		   value="<?php echo $config->size_to ?>"><br>
 	<br>
@@ -263,7 +263,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 
 	<a class="utcw-help"
 	   title="<?php _e( 'The spacing is a numerical value which controls how much space there is between letters, words, tags or rows. To use the default value for these settings just use the corresponding default value from the CSS specification: <ul><li>Letter spacing: normal</li><li>Word spacing: normal</li><li>Tag spacing (CSS margin): auto</li><li>Row spacing (CSS line height): inherit</li></ul>To use anything but the default values, just specify a number (the unit is pixels).', 'utcw' ) ?>">?</a>
-	<strong><?php _e( 'Spacing (in px):', 'utcw' ) ?></strong><br>
+	<strong><?php _e( 'Spacing:', 'utcw' ) ?></strong><br>
 	<label class="two-col"
 		   for="<?php echo $this->get_field_id( 'letter_spacing' ) ?>"><?php _e( 'Between letters:', 'utcw' ) ?></label>
 	<input type="text" size="5" name="<?php echo $this->get_field_name( 'letter_spacing' ) ?>"
@@ -424,8 +424,8 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	</select><br>
 	<br>
 	<label
-		for="<?php echo $this->get_field_id( 'link_border_width' ) ?>"><?php _e( 'Width (in px):', 'utcw' ) ?></label><br>
-	<input type="number" name="<?php echo $this->get_field_name( 'link_border_width' ) ?>"
+		for="<?php echo $this->get_field_id( 'link_border_width' ) ?>"><?php _e( 'Width:', 'utcw' ) ?></label><br>
+	<input type="text" name="<?php echo $this->get_field_name( 'link_border_width' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_border_width' ) ?>" value="<?php echo $config->link_border_width ?>"><br>
 	<br>
 	<label
@@ -517,8 +517,8 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	</select><br>
 	<br>
 	<label
-		for="<?php echo $this->get_field_id( 'hover_border_width' ) ?>"><?php _e( 'Width (in px):', 'utcw' ) ?></label><br>
-	<input type="number" name="<?php echo $this->get_field_name( 'hover_border_width' ) ?>"
+		for="<?php echo $this->get_field_id( 'hover_border_width' ) ?>"><?php _e( 'Width:', 'utcw' ) ?></label><br>
+	<input type="text" name="<?php echo $this->get_field_name( 'hover_border_width' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_border_width' ) ?>" value="<?php echo $config->hover_border_width ?>"><br>
 	<br>
 	<label

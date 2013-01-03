@@ -289,16 +289,23 @@ class UTCW_Plugin {
 	}
 
 	/**
-	 * Check if the term exist for taxonomy
+	 * Check if the term exist for any of the taxonomies
 	 *
 	 * @param int    $term_id     Term ID
-	 * @param string $taxonomy    Taxonomy name
+	 * @param array  $taxonomy    Array of taxonomy names
 	 *
 	 * @return bool
 	 * @since 2.0
 	 */
-	public function check_term_taxonomy( $term_id, $taxonomy ) {
-		return ! ! get_term( $term_id, $taxonomy );
+	public function check_term_taxonomy( $term_id, array $taxonomy ) {
+
+		foreach ( $taxonomy as $tax ) {
+			if ( get_term( $term_id, $tax ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

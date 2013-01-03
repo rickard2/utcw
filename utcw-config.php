@@ -67,9 +67,9 @@ class UTCW_Config {
 
 	/**
 	 * Which taxonomy to show tags from
-	 * Default: post_tag
+	 * Default: [post_tag]
 	 *
-	 * @var string
+	 * @var array
 	 * @since 2.0
 	 */
 	public $taxonomy;
@@ -490,7 +490,7 @@ class UTCW_Config {
 		'size_from'          => 10,
 		'size_to'            => 30,
 		'max'                => 45,
-		'taxonomy'           => 'post_tag',
+		'taxonomy'           => array( 'post_tag' ),
 		'reverse'            => false,
 		'color'              => 'none',
 		'letter_spacing'     => 'normal',
@@ -672,7 +672,18 @@ class UTCW_Config {
 						break;
 
 					case 'taxonomy':
-						$valid = in_array( $input[ $key ], $this->allowed_taxonomies );
+						if ( ! is_array( $input[ $key ] ) ) {
+							$input[ $key ] = explode( ',', $input[ $key ] );
+						}
+
+						// Remove invalid taxonomies
+						foreach ( $input[ $key ] as $tax_key => $taxonomy ) {
+							if ( ! in_array( $taxonomy, $this->allowed_taxonomies ) ) {
+								unset( $input[ $key ][ $tax_key ] );
+							}
+						}
+
+						$valid = ! ! $input[ $key ]; // Setting is valid if any of the taxonomies were valid
 						break;
 
 					case 'post_type':

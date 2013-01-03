@@ -111,11 +111,28 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 	}
 
 	function test_taxonomy_ok() {
-		$this->helper_string_ok( 'taxonomy', 'post_tag' );
+		$this->utcw = $this->mockFactory->getUTCWMock();
+		$this->helper_array_ok( 'taxonomy', array( 'category' ) );
 	}
 
 	function test_taxonomy_fail() {
-		$this->helper_string_fail( 'taxonomy', 'invalid taxonomy' );
+		$this->utcw = $this->mockFactory->getUTCWMock();
+		$this->helper_array_fail( 'taxonomy' );
+	}
+
+	function test_taxonomy_invalid() {
+		$this->utcw = $this->mockFactory->getUTCWMock();
+		$this->helper_array_fail( 'taxonomy', array( 'invalid_taxonomy' ) );
+	}
+
+	function test_taxonomy_multiple_ok() {
+		$this->utcw = $this->mockFactory->getUTCWMock();
+		$this->helper_array_ok( 'taxonomy', array( 'post_tag', 'category' ) );
+	}
+
+	function test_taxonomy_csv_ok() {
+		$this->utcw = $this->mockFactory->getUTCWMock();
+		$this->helper_array_ok( 'taxonomy', 'post_tag,category', array( 'post_tag', 'category' ) );
 	}
 
 	function test_color_ok() {

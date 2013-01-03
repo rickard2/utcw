@@ -216,7 +216,7 @@ class UTCW_Data {
 				$max_count = $item->count;
 			}
 
-			$terms[ ]       = new UTCW_Term( $item, $this->plugin );
+			$terms[ ] = new UTCW_Term( $item, $this->plugin );
 		}
 
 		$font_step = $this->calc_step( $min_count, $max_count, $this->config->size_from, $this->config->size_to );

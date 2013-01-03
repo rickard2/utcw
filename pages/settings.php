@@ -83,15 +83,14 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<a class="utcw-help"
 	   title="<?php _e( 'Which taxonomy should be used in the cloud. You should be able to choose a custom taxonomy as well.', 'utcw' ) ?>">?</a>
 	<strong><label
-		for="<?php echo $this->get_field_id( 'taxonomy' ) ?>"><?php _e( 'Taxonomy:', 'utcw' ) ?></label></strong><br>
-	<select id="<?php echo $this->get_field_id( 'taxonomy' ) ?>"
-			name="<?php echo $this->get_field_name( 'taxonomy' ) ?>">
-		<?php foreach ( $available_taxonomies as $taxonomy ) :  ?>
-		<option
-			value="<?php echo $taxonomy->name ?>" <?php echo $config->taxonomy == $taxonomy->name ? 'selected="selected"' : ''?>><?php echo $taxonomy->labels->name ?></option>
-		<?php endforeach; ?>
-	</select><br>
-	<br>
+		for="<?php echo $this->get_field_id( 'taxonomy' ) ?>"><?php _e( 'Taxonomies:', 'utcw' ) ?></label></strong><br>
+	<?php foreach ( $available_taxonomies as $taxonomy ) :  ?>
+	<label>
+        <input type="checkbox" value="<?php echo $taxonomy->name ?>" name="<?php echo $this->get_field_name( 'taxonomy' ) ?>[]" <?php if ( in_array( $taxonomy->name, $config->taxonomy ) ) echo 'checked="checked"' ?>>
+		<?php echo $taxonomy->labels->name ?>
+	</label><br>
+	<?php endforeach; ?>
+    <br>
 
 	<a class="utcw-help"
 	   title="<?php _e( 'Which post types should be used in the cloud. Only tags from posts from these post types will be used in the tag cloud.', 'utcw' ) ?>">?</a>

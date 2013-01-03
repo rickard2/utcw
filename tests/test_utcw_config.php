@@ -51,12 +51,12 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 
 	function test_size_integer_ok() {
 		$instance = array(
-			'size_from' => 10,
+			'size_from' => 50,
 			'size_to'   => 100,
 		);
 
 		$config = new UTCW_Config( $instance, $this->utcw );
-		$this->assertEquals( '10px', $config->size_from );
+		$this->assertEquals( '50px', $config->size_from );
 		$this->assertEquals( '100px', $config->size_to );
 	}
 
@@ -73,34 +73,34 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 
 	function test_size_pixels_ok() {
 		$instance = array(
-			'size_from' => '10px',
+			'size_from' => '50px',
 			'size_to'   => '100px',
 		);
 
 		$config = new UTCW_Config( $instance, $this->utcw );
-		$this->assertEquals( '10px', $config->size_from );
+		$this->assertEquals( '50px', $config->size_from );
 		$this->assertEquals( '100px', $config->size_to );
 	}
 
 	function test_size_ems_ok() {
 		$instance = array(
-			'size_from' => '10em',
+			'size_from' => '50em',
 			'size_to'   => '100em',
 		);
 
 		$config = new UTCW_Config( $instance, $this->utcw );
-		$this->assertEquals( '10em', $config->size_from );
+		$this->assertEquals( '50em', $config->size_from );
 		$this->assertEquals( '100em', $config->size_to );
 	}
 
 	function test_size_percent_ok() {
 		$instance = array(
-			'size_from' => '10%',
+			'size_from' => '50%',
 			'size_to'   => '100%',
 		);
 
 		$config = new UTCW_Config( $instance, $this->utcw );
-		$this->assertEquals( '10%', $config->size_from );
+		$this->assertEquals( '50%', $config->size_from );
 		$this->assertEquals( '100%', $config->size_to );
 	}
 

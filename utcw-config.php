@@ -802,7 +802,7 @@ class UTCW_Config {
 		$unit1 = preg_replace( '/\d+/', '', $measurement1 );
 		$unit2 = preg_replace( '/\d+/', '', $measurement2 );
 
-		return $unit1 === $unit2;
+		return $unit1 === $unit2 || ($unit1 === 'px' && $unit2 === '') || ($unit1 === '' && $unit2 === 'px');
 	}
 
 	/**

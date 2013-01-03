@@ -436,7 +436,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$utcw->expects( $this->any() )
 			->method( 'check_term_taxonomy' )
 			->will( $this->returnValue( true ) )
-			->with( $this->anything(), $this->stringContains( 'post_tag' ) );
+			->with( $this->anything(), $this->contains( 'post_tag' ) );
 
 		$config = new UTCW_Config( $instance, $utcw );
 		$db     = $this->mockFactory->getWPDBMock();

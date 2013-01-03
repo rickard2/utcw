@@ -705,12 +705,12 @@ class UTCW_Config {
 
 					case 'size_from':
 						$input[ 'size_from' ] = $this->parse_measurement( $input[ 'size_from' ] );
-						$valid                = $input[ 'size_from' ] !== false && isset( $input[ 'size_to' ] ) && $this->equal_units( $input[ 'size_from' ], $input[ 'size_to' ] ) && intval( $input[ 'size_from' ] ) <= intval( $input[ 'size_to' ] );
+						$valid                = $input[ 'size_from' ] !== false && isset( $input[ 'size_to' ] ) && $this->equal_units( $input[ 'size_from' ], $input[ 'size_to' ] ) && floatval( $input[ 'size_from' ] ) <= floatval( $input[ 'size_to' ] );
 						break;
 
 					case 'size_to':
 						$input[ 'size_to' ] = $this->parse_measurement( $input[ 'size_to' ] );
-						$valid              = $input[ 'size_to' ] !== false && isset( $input[ 'size_from' ] ) && $this->equal_units( $input[ 'size_from' ], $input[ 'size_to' ] ) && intval( $input[ 'size_to' ] ) >= intval( $input[ 'size_from' ] );
+						$valid              = $input[ 'size_to' ] !== false && isset( $input[ 'size_from' ] ) && $this->equal_units( $input[ 'size_from' ], $input[ 'size_to' ] ) && floatval( $input[ 'size_to' ] ) >= floatval( $input[ 'size_from' ] );
 						break;
 
 					case 'letter_spacing':
@@ -778,12 +778,12 @@ class UTCW_Config {
 	 * @return bool|string   False on failure
 	 */
 	private function parse_measurement( $input ) {
-		if ( ! preg_match( '/^\d+(em|px|%)?$/i', $input ) ) {
+		if ( ! preg_match( '/^' . UTCW_DECIMAL_REGEX . '(em|px|%)?$/i', $input ) ) {
 			return false;
 		}
 
 		// Convert integer values to pixel values
-		if ( preg_match( '/^\d+$/', $input ) ) {
+		if ( preg_match( '/^' . UTCW_DECIMAL_REGEX . '$/', $input ) ) {
 			return $input . 'px';
 		}
 
@@ -799,10 +799,10 @@ class UTCW_Config {
 	 * @return bool
 	 */
 	private function equal_units( $measurement1, $measurement2 ) {
-		$unit1 = preg_replace( '/\d+/', '', $measurement1 );
-		$unit2 = preg_replace( '/\d+/', '', $measurement2 );
+		$unit1 = preg_replace( '/' . UTCW_DECIMAL_REGEX . '/', '', $measurement1 );
+		$unit2 = preg_replace( '/' . UTCW_DECIMAL_REGEX . '/', '', $measurement2 );
 
-		return $unit1 === $unit2 || ($unit1 === 'px' && $unit2 === '') || ($unit1 === '' && $unit2 === 'px');
+		return $unit1 === $unit2 || ( $unit1 === 'px' && $unit2 === '' ) || ( $unit1 === '' && $unit2 === 'px' );
 	}
 
 	/**

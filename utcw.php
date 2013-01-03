@@ -35,6 +35,14 @@ define( 'UTCW_DEV', false );
 define( 'UTCW_HEX_COLOR_REGEX', '/#([a-f0-9]{6}|[a-f0-9]{3})/i' );
 
 /**
+ * Regular expression for matching decimal numbers
+ *
+ * @var string
+ * @since 2.1
+ */
+define( 'UTCW_DECIMAL_REGEX', '\d+(\.\d+)?' );
+
+/**
  * printf format for rendering hexadecimal colors
  *
  * @var string

@@ -60,6 +60,17 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->assertEquals( '100px', $config->size_to );
 	}
 
+	function test_size_float_ok() {
+		$instance = array(
+			'size_from' => 12.5,
+			'size_to'   => 25.5,
+		);
+
+		$config = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( '12.5px', $config->size_from );
+		$this->assertEquals( '25.5px', $config->size_to );
+	}
+
 	function test_size_different_units_not_ok() {
 		$instance = array(
 			'size_from' => '100px',
@@ -204,6 +215,12 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->assertEquals( '10px', $config->letter_spacing );
 	}
 
+	function test_letter_spacing_float_ok() {
+		$instance = array( 'letter_spacing' => 12.5 );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( '12.5px', $config->letter_spacing );
+	}
+
 	function test_letter_spacing_px_ok() {
 		$this->helper_string_ok( 'letter_spacing', '10px' );
 	}
@@ -234,6 +251,12 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->assertEquals( '10px', $config->word_spacing );
 	}
 
+	function test_word_spacing_float_ok() {
+		$instance = array( 'word_spacing' => 12.5 );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( '12.5px', $config->word_spacing );
+	}
+
 	function test_word_spacing_px_ok() {
 		$this->helper_string_ok( 'word_spacing', '10px' );
 	}
@@ -257,7 +280,6 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$config   = new UTCW_Config( $instance, $this->utcw );
 		$this->assertEquals( $defaults[ 'word_spacing' ], $config->word_spacing, 'Setting word_spacing to an empty value should return the default value' );
 	}
-
 
 	function test_text_transform_ok() {
 		$this->helper_string_ok( 'text_transform', 'capitalize' );
@@ -349,6 +371,12 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->assertEquals( '10px', $config->link_border_width );
 	}
 
+	function test_link_border_width_float_ok() {
+		$instance = array( 'link_border_width' => 12.5 );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( '12.5px', $config->link_border_width );
+	}
+
 	function test_link_border_width_px_ok() {
 		$this->helper_string_ok( 'link_border_width', '10px' );
 	}
@@ -427,6 +455,12 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->assertEquals( '10px', $config->hover_border_width );
 	}
 
+	function test_hover_border_width_float_ok() {
+		$instance = array( 'hover_border_width' => 12.5 );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( '12.5px', $config->hover_border_width );
+	}
+
 	function test_hover_border_width_px_ok() {
 		$this->helper_string_ok( 'hover_border_width', '10px' );
 	}
@@ -455,6 +489,12 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$instance = array( 'tag_spacing' => 10 );
 		$config   = new UTCW_Config( $instance, $this->utcw );
 		$this->assertEquals( '10px', $config->tag_spacing );
+	}
+
+	function test_tag_spacing_float_ok() {
+		$instance = array( 'tag_spacing' => 12.5 );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( '12.5px', $config->tag_spacing );
 	}
 
 	function test_tag_spacing_px_ok() {
@@ -507,6 +547,12 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->assertEquals( '10px', $config->line_height );
 	}
 
+	function test_line_height_float_ok() {
+		$instance = array( 'line_height' => 12.5 );
+		$config   = new UTCW_Config( $instance, $this->utcw );
+		$this->assertEquals( '12.5px', $config->line_height );
+	}
+
 	function test_line_height_px_ok() {
 		$this->helper_string_ok( 'line_height', '10px' );
 	}
@@ -522,6 +568,7 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 	function test_line_height_fail() {
 		$this->helper_string_fail( 'line_height', 'fail' );
 	}
+
 	function test_line_height_empty_default() {
 		$defaults = UTCW_Config::get_defaults();
 

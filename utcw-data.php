@@ -219,9 +219,9 @@ class UTCW_Data {
 			$terms[ ] = new UTCW_Term( $item, $this->plugin );
 		}
 
-		$size_from = intval( $this->config->size_from );
-		$size_to   = intval( $this->config->size_to );
-		$unit      = preg_replace( '/\d+/', '', $this->config->size_from );
+		$size_from = floatval( $this->config->size_from );
+		$size_to   = floatval( $this->config->size_to );
+		$unit      = preg_replace( '/' . UTCW_DECIMAL_REGEX . '/', '', $this->config->size_from );
 
 		$font_step = $this->calc_step( $min_count, $max_count, $size_from, $size_to );
 

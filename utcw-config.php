@@ -40,18 +40,18 @@ class UTCW_Config {
 
 	/**
 	 * The smallest possible size
-	 * Default: 10
+	 * Default: 10px
 	 *
-	 * @var int
+	 * @var string
 	 * @since 2.0
 	 */
 	public $size_from;
 
 	/**
 	 * The greatest possible size
-	 * Default: 30
+	 * Default: 30px
 	 *
-	 * @var int
+	 * @var string
 	 * @since 2.0
 	 */
 	public $size_to;
@@ -97,7 +97,7 @@ class UTCW_Config {
 	 * CSS letter-spacing value (in pixels)
 	 * Default: normal
 	 *
-	 * @var int|string
+	 * @var string
 	 * @since 2.0
 	 */
 	public $letter_spacing;
@@ -106,7 +106,7 @@ class UTCW_Config {
 	 * CSS word-spacing value (in pixels)
 	 * Default: normal
 	 *
-	 * @var int|string
+	 * @var string
 	 * @since 2.0
 	 */
 	public $word_spacing;
@@ -212,7 +212,7 @@ class UTCW_Config {
 	 * Border width for links
 	 * Default: 0
 	 *
-	 * @var int
+	 * @var string
 	 * @since 2.0
 	 */
 	public $link_border_width;
@@ -291,7 +291,7 @@ class UTCW_Config {
 	 * Border width for links in their hover state
 	 * Default: 0
 	 *
-	 * @var int
+	 * @var string
 	 * @since 2.0
 	 */
 	public $hover_border_width;
@@ -310,7 +310,7 @@ class UTCW_Config {
 	 * CSS margin between tags
 	 * Default: auto
 	 *
-	 * @var int
+	 * @var string
 	 * @since 2.0
 	 */
 	public $tag_spacing;
@@ -337,7 +337,7 @@ class UTCW_Config {
 	 * CSS line-height for the tags
 	 * Default: inherit
 	 *
-	 * @var int
+	 * @var string
 	 * @since 2.0
 	 */
 	public $line_height;
@@ -487,8 +487,8 @@ class UTCW_Config {
 	static protected $options = array(
 		'title'              => 'Tag Cloud',
 		'order'              => 'name',
-		'size_from'          => 10,
-		'size_to'            => 30,
+		'size_from'          => '10px',
+		'size_to'            => '30px',
 		'max'                => 45,
 		'taxonomy'           => array( 'post_tag' ),
 		'reverse'            => false,
@@ -505,7 +505,7 @@ class UTCW_Config {
 		'link_italic'        => 'default',
 		'link_bg_color'      => 'transparent',
 		'link_border_style'  => 'none',
-		'link_border_width'  => 0,
+		'link_border_width'  => '0',
 		'link_border_color'  => 'none',
 		'hover_underline'    => 'default',
 		'hover_bold'         => 'default',
@@ -513,7 +513,7 @@ class UTCW_Config {
 		'hover_bg_color'     => 'transparent',
 		'hover_color'        => 'default',
 		'hover_border_style' => 'none',
-		'hover_border_width' => 0,
+		'hover_border_width' => '0',
 		'hover_border_color' => 'none',
 		'tag_spacing'        => 'auto',
 		'debug'              => false,
@@ -704,18 +704,23 @@ class UTCW_Config {
 						break;
 
 					case 'size_from':
-						$valid = isset( $input[ 'size_to' ] ) && $input[ 'size_from' ] <= $input[ 'size_to' ];
+						$input[ 'size_from' ] = $this->parse_measurement( $input[ 'size_from' ] );
+						$valid                = $input[ 'size_from' ] !== false && isset( $input[ 'size_to' ] ) && $this->equal_units( $input[ 'size_from' ], $input[ 'size_to' ] ) && intval( $input[ 'size_from' ] ) <= intval( $input[ 'size_to' ] );
 						break;
 
 					case 'size_to':
-						$valid = isset( $input[ 'size_from' ] ) && $input[ 'size_to' ] >= $input[ 'size_from' ];
+						$input[ 'size_to' ] = $this->parse_measurement( $input[ 'size_to' ] );
+						$valid              = $input[ 'size_to' ] !== false && isset( $input[ 'size_from' ] ) && $this->equal_units( $input[ 'size_from' ], $input[ 'size_to' ] ) && intval( $input[ 'size_to' ] ) >= intval( $input[ 'size_from' ] );
 						break;
 
 					case 'letter_spacing':
 					case 'word_spacing':
 					case 'tag_spacing':
 					case 'line_height':
-						$valid = is_numeric( $input[ $key ] );
+					case 'link_border_width':
+					case 'hover_border_width':
+						$input[ $key ] = $this->parse_measurement( $input[ $key ] );
+						$valid         = $input[ $key ] !== false;
 						break;
 				}
 
@@ -734,9 +739,6 @@ class UTCW_Config {
 						}
 					}
 					$this->$key = $input[ $key ];
-				} // Special handling of some properties which have string defaults but integer values expected
-				else if ( in_array( $key, array( 'letter_spacing', 'word_spacing', 'tag_spacing', 'line_height' ) ) ) {
-					$this->$key = intval( $input[ $key ] );
 				} else if ( is_string( self::$options[ $key ] ) && is_string( $input[ $key ] ) && strlen( $input[ $key ] ) > 0 ) {
 					$this->$key = $input[ $key ];
 				} else if ( is_integer( self::$options[ $key ] ) && $input[ $key ] > 0 ) {
@@ -766,6 +768,41 @@ class UTCW_Config {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Parses the input value as measurement
+	 *
+	 * @param mixed $input
+	 *
+	 * @return bool|string   False on failure
+	 */
+	private function parse_measurement( $input ) {
+		if ( ! preg_match( '/^\d+(em|px|%)?$/i', $input ) ) {
+			return false;
+		}
+
+		// Convert integer values to pixel values
+		if ( preg_match( '/^\d+$/', $input ) ) {
+			return $input . 'px';
+		}
+
+		return $input;
+	}
+
+	/**
+	 * Checks if the two measurements have the same unit
+	 *
+	 * @param string $measurement1
+	 * @param string $measurement2
+	 *
+	 * @return bool
+	 */
+	private function equal_units( $measurement1, $measurement2 ) {
+		$unit1 = preg_replace( '/\d+/', '', $measurement1 );
+		$unit2 = preg_replace( '/\d+/', '', $measurement2 );
+
+		return $unit1 === $unit2;
 	}
 
 	/**

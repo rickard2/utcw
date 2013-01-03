@@ -45,7 +45,9 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	}
 
 	function test_wrapper_is_inside_widget() {
-		$this->helper_contains( array( 'before_widget' => 'BEFORE_WIDGET', 'title' => 'title' ), 'BEFORE_WIDGETtitle<div class="' );
+		$this->helper_contains( array(
+									 'before_widget' => 'BEFORE_WIDGET', 'title' => 'title'
+								), 'BEFORE_WIDGETtitle<div class="' );
 	}
 
 	function test_return_value_and_output_is_equal() {
@@ -70,8 +72,24 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 		$this->helper_contains( array( 'letter_spacing' => 10 ), 'letter-spacing:10px' );
 	}
 
+	function test_letter_spacing_em() {
+		$this->helper_contains( array( 'letter_spacing' => '1em' ), 'letter-spacing:1em' );
+	}
+
+	function test_letter_spacing_percentage() {
+		$this->helper_contains( array( 'letter_spacing' => '10%' ), 'letter-spacing:10%' );
+	}
+
 	function test_word_spacing() {
 		$this->helper_contains( array( 'word_spacing' => 10 ), 'word-spacing:10px' );
+	}
+
+	function test_word_spacing_em() {
+		$this->helper_contains( array( 'word_spacing' => '1em' ), 'word-spacing:1em' );
+	}
+
+	function test_word_spacing_percentage() {
+		$this->helper_contains( array( 'word_spacing' => '10%' ), 'word-spacing:10%' );
 	}
 
 	function test_link_underline() {
@@ -96,6 +114,14 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 
 	function test_link_border_width() {
 		$this->helper_contains( array( 'link_border_width' => 10 ), 'a{border-width:10px' );
+	}
+
+	function test_link_border_width_em() {
+		$this->helper_contains( array( 'link_border_width' => '1em' ), 'a{border-width:1em' );
+	}
+
+	function test_link_border_width_percentage() {
+		$this->helper_contains( array( 'link_border_width' => '50%' ), 'a{border-width:50%' );
 	}
 
 	function test_link_border_color() {
@@ -126,6 +152,14 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 		$this->helper_contains( array( 'hover_border_width' => 10 ), 'a:hover{border-width:10px' );
 	}
 
+	function test_hover_border_width_em() {
+		$this->helper_contains( array( 'hover_border_width' => '1em' ), 'a:hover{border-width:1em' );
+	}
+
+	function test_hover_border_width_percentage() {
+		$this->helper_contains( array( 'hover_border_width' => '50%' ), 'a:hover{border-width:50%' );
+	}
+
 	function test_hover_border_color() {
 		$this->helper_contains( array( 'hover_border_color' => '#bada55' ), 'a:hover{border-color:#bada55' );
 	}
@@ -149,8 +183,24 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 		$this->helper_contains( array( 'tag_spacing' => 10 ), 'a{margin-right:10px' );
 	}
 
+	function test_tag_spacing_em() {
+		$this->helper_contains( array( 'tag_spacing' => '1em' ), 'a{margin-right:1em' );
+	}
+
+	function test_tag_spacing_percentage() {
+		$this->helper_contains( array( 'tag_spacing' => '50%' ), 'a{margin-right:50%' );
+	}
+
 	function test_line_height() {
 		$this->helper_contains( array( 'line_height' => 10 ), 'a{line-height:10px' );
+	}
+
+	function test_line_height_em() {
+		$this->helper_contains( array( 'line_height' => '1em' ), 'a{line-height:1em' );
+	}
+
+	function test_line_height_percentage() {
+		$this->helper_contains( array( 'line_height' => '50%' ), 'a{line-height:50%' );
 	}
 
 	function test_before_widget() {
@@ -243,9 +293,9 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	 */
 	function test_prefix_separator_suffix_placement( $terms ) {
 		$instance = array(
-			'prefix'    => 'PREFIX',
+			'prefix' => 'PREFIX',
 			'separator' => 'SEPARATOR',
-			'suffix'    => 'SUFFIX',
+			'suffix' => 'SUFFIX',
 		);
 
 		$renderer = $this->getRenderer( $instance, $terms );
@@ -302,6 +352,26 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	function test_output_contains_size( $terms ) {
 		$renderer = $this->getRenderer( array(), $terms );
 		$this->assertRegExp( '/style="font-size:[0-9.]+px"/', $renderer->get_cloud() );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_output_contains_size_in_em( $terms ) {
+		$renderer = $this->getRenderer( array( 'size_from' => '1em', 'size_to' => '2em' ), $terms );
+		$this->assertRegExp( '/style="font-size:[0-9.]+em"/', $renderer->get_cloud() );
+	}
+
+	/**
+	 * @param $terms
+	 *
+	 * @dataProvider terms
+	 */
+	function test_output_contains_size_in_percentage( $terms ) {
+		$renderer = $this->getRenderer( array( 'size_from' => '25%', 'size_to' => '200%' ), $terms );
+		$this->assertRegExp( '/style="font-size:[0-9.]+%"/', $renderer->get_cloud() );
 	}
 
 	function test_debug() {

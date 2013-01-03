@@ -124,7 +124,7 @@ class UTCW_Render {
 			$title = $this->config->show_title ? sprintf( ' title="' . _n( '%s topic', '%s topics', $term->count ) . '"', $term->count ) : '';
 
 			$terms[ ] = sprintf(
-							'%s<a class="tag-link-%s" href="%s" style="font-size:%spx%s"%s>%s</a>%s',
+							'%s<a class="tag-link-%s" href="%s" style="font-size:%s%s"%s>%s</a>%s',
 							$this->config->prefix,
 							$term->term_id,
 							$term->link,
@@ -164,11 +164,11 @@ class UTCW_Render {
 		}
 
 		if ( ! $this->has_default_value( 'letter_spacing' ) ) {
-			$main_styles[ ] = sprintf( 'letter-spacing:%spx', $this->config->letter_spacing );
+			$main_styles[ ] = sprintf( 'letter-spacing:%s', $this->config->letter_spacing );
 		}
 
 		if ( ! $this->has_default_value( 'word_spacing' ) ) {
-			$main_styles[ ] = sprintf( 'word-spacing:%spx', $this->config->word_spacing );
+			$main_styles[ ] = sprintf( 'word-spacing:%s', $this->config->word_spacing );
 		}
 
 		$link_styles = array();
@@ -190,7 +190,7 @@ class UTCW_Render {
 		}
 
 		if ( ! $this->has_default_value( 'link_border_style' ) && ! $this->has_default_value( 'link_border_color' ) && ! $this->has_default_value( 'link_border_width' ) ) {
-			$link_styles[ ] = sprintf( 'border:%s %spx %s', $this->config->link_border_style, $this->config->link_border_width, $this->config->link_border_color );
+			$link_styles[ ] = sprintf( 'border:%s %s %s', $this->config->link_border_style, $this->config->link_border_width, $this->config->link_border_color );
 		} else {
 			if ( ! $this->has_default_value( 'link_border_style' ) ) {
 				$link_styles[ ] = sprintf( 'border-style:%s', $this->config->link_border_style );
@@ -201,16 +201,16 @@ class UTCW_Render {
 			}
 
 			if ( ! $this->has_default_value( 'link_border_width' ) ) {
-				$link_styles[ ] = sprintf( 'border-width:%spx', $this->config->link_border_width );
+				$link_styles[ ] = sprintf( 'border-width:%s', $this->config->link_border_width );
 			}
 		}
 
 		if ( ! $this->has_default_value( 'tag_spacing' ) ) {
-			$link_styles[ ] = sprintf( 'margin-right:%spx', $this->config->tag_spacing );
+			$link_styles[ ] = sprintf( 'margin-right:%s', $this->config->tag_spacing );
 		}
 
 		if ( ! $this->has_default_value( 'line_height' ) ) {
-			$link_styles[ ] = sprintf( 'line-height:%spx', $this->config->line_height );
+			$link_styles[ ] = sprintf( 'line-height:%s', $this->config->line_height );
 		}
 
 		$hover_styles = array();
@@ -233,7 +233,7 @@ class UTCW_Render {
 
 
 		if ( ! $this->has_default_value( 'hover_border_style' ) && ! $this->has_default_value( 'hover_border_color' ) && ! $this->has_default_value( 'hover_border_width' ) ) {
-			$hover_styles[ ] = sprintf( 'border:%s %spx %s', $this->config->hover_border_style, $this->config->hover_border_width, $this->config->hover_border_color );
+			$hover_styles[ ] = sprintf( 'border:%s %s %s', $this->config->hover_border_style, $this->config->hover_border_width, $this->config->hover_border_color );
 		} else {
 			if ( ! $this->has_default_value( 'hover_border_style' ) ) {
 				$hover_styles[ ] = sprintf( 'border-style:%s', $this->config->hover_border_style );
@@ -244,7 +244,7 @@ class UTCW_Render {
 			}
 
 			if ( ! $this->has_default_value( 'hover_border_width' ) ) {
-				$hover_styles[ ] = sprintf( 'border-width:%spx', $this->config->hover_border_width );
+				$hover_styles[ ] = sprintf( 'border-width:%s', $this->config->hover_border_width );
 			}
 		}
 

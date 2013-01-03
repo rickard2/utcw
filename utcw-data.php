@@ -219,10 +219,14 @@ class UTCW_Data {
 			$terms[ ] = new UTCW_Term( $item, $this->plugin );
 		}
 
-		$font_step = $this->calc_step( $min_count, $max_count, $this->config->size_from, $this->config->size_to );
+		$size_from = intval( $this->config->size_from );
+		$size_to   = intval( $this->config->size_to );
+		$unit      = preg_replace( '/\d+/', '', $this->config->size_from );
+
+		$font_step = $this->calc_step( $min_count, $max_count, $size_from, $size_to );
 
 		foreach ( $terms as $term ) {
-			$term->size = $this->calc_size( $this->config->size_from, $term->count, $min_count, $font_step );
+			$term->size = $this->calc_size( $size_from, $term->count, $min_count, $font_step ) . $unit;
 		}
 
 		// Set colors

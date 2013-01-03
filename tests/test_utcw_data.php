@@ -217,8 +217,8 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$terms = $this->helper_get_terms( $instance, $query_terms );
 
 		foreach ( $terms as $term ) {
-			$this->assertLessThanOrEqual( 10, $term->size );
-			$this->assertGreaterThanOrEqual( 1, $term->size );
+			$this->assertLessThanOrEqual( 10, intval($term->size) );
+			$this->assertGreaterThanOrEqual( 1, intval($term->size) );
 		}
 	}
 

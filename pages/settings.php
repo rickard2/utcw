@@ -86,7 +86,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		for="<?php echo $this->get_field_id( 'taxonomy' ) ?>"><?php _e( 'Taxonomies:', 'utcw' ) ?></label></strong><br>
 	<?php foreach ( $available_taxonomies as $taxonomy ) :  ?>
 	<label>
-        <input type="checkbox" value="<?php echo $taxonomy->name ?>" name="<?php echo $this->get_field_name( 'taxonomy' ) ?>[]" <?php if ( in_array( $taxonomy->name, $config->taxonomy ) ) echo 'checked="checked"' ?>>
+        <input type="checkbox" class="utcw-input-taxonomy" value="<?php echo $taxonomy->name ?>" name="<?php echo $this->get_field_name( 'taxonomy' ) ?>[]" <?php if ( in_array( $taxonomy->name, $config->taxonomy ) ) echo 'checked="checked"' ?>>
 		<?php echo $taxonomy->labels->name ?>
 	</label><br>
 	<?php endforeach; ?>
@@ -143,7 +143,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<a class="utcw-help" title="<?php _e( 'Which tags to include or exclude', 'utcw' ) ?>">?</a>
 	<?php foreach ( $available_taxonomies as $taxonomy ) : ?>
 
-	<div id="<?php echo $taxonomy->name ?>-terms" <?php if ( $taxonomy->name != $config->taxonomy ) echo 'class="hidden"' ?>>
+	<div id="<?php echo $taxonomy->name ?>-terms" <?php if ( !in_array( $taxonomy->name, $config->taxonomy ) ) echo 'class="hidden"' ?>>
 
 		<strong><?php printf( __( 'Terms for taxonomy %s', 'utcw' ), $taxonomy->labels->name ) ?></strong>
 

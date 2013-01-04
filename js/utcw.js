@@ -15,6 +15,7 @@
 	* $.parents			v1.0
 	* $.val				v1.0
 	* $.trigger			v1.0
+	* $.is				v1.0
 	*
 	* jQuery v1.3 required
 	* WordPress 2.8 shipped jQuery 1.3.2 => http://core.trac.wordpress.org/browser/tags/2.8/wp-includes/js/jquery/jquery.js?rev=11550
@@ -40,7 +41,7 @@
 		init:function () {
 			$( 'input[id$=-color_none], input[id$=-color_random], input[id$=-color_set], input[id$=-color_span]' ).live( 'click', this.colorClickHandler );
 			$( '.utcw-tab-button' ).live( 'click', this.tabClickHandler );
-			$( 'select[id$=-taxonomy]' ).live( 'change', this.taxonomyChangeHandler );
+			$( '.utcw-input-taxonomy' ).live( 'click', this.taxonomyClickHandler );
 
 			$( document ).ready( this.initTooltip );
 			$( document ).ajaxSuccess( this.ajaxSuccessHandler );
@@ -88,14 +89,19 @@
 			}
 		},
 
-		taxonomyChangeHandler:function () {
+		taxonomyClickHandler:function () {
 
 			var $this = $( this );
-			var taxonomy = $this.find( ':selected' ).val();
+			var taxonomy = $this.val();
+			var checked = $this.is( ':checked' );
 			var $widget = $this.parents( '.widget-content' );
+			var $target = $widget.find( '#' + taxonomy + '-terms' );
 
-			$widget.find( 'div[id$=-terms]' ).addClass( 'hidden' );
-			$widget.find( '#' + taxonomy + '-terms' ).removeClass( 'hidden' );
+			if ( checked ) {
+				$target.removeClass( 'hidden' );
+			} else {
+				$target.addClass( 'hidden' );
+			}
 		},
 
 		ajaxSuccessHandler:function ( e, xhr, settings ) {

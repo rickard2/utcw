@@ -305,8 +305,8 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->helper_int_fail( 'minimum' );
 	}
 
-	function test_minimum_zero_fail() {
-		$this->helper_int_fail( 'minimum', 0 );
+	function test_minimum_zero_ok() {
+		$this->helper_int_ok( 'minimum', 0 );
 	}
 
 	function test_tags_list_type_ok() {

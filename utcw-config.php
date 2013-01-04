@@ -739,6 +739,8 @@ class UTCW_Config {
 						}
 					}
 					$this->$key = $input[ $key ];
+				} else if ( $key == 'minimum' ) {
+					$this->$key = intval( $input[ $key ] );
 				} else if ( is_string( self::$options[ $key ] ) && is_string( $input[ $key ] ) && strlen( $input[ $key ] ) > 0 ) {
 					$this->$key = $input[ $key ];
 				} else if ( is_integer( self::$options[ $key ] ) && $input[ $key ] > 0 ) {

@@ -44,6 +44,14 @@ class UTCW_Data {
 	protected $plugin;
 
 	/**
+	 * A copy of the SQL query for debugging purposes
+	 *
+	 * @var string
+	 * @since 2.1
+	 */
+	protected $query;
+
+	/**
 	 * Creates a new instance
 	 *
 	 * @param UTCW_Config $config   Current configuration
@@ -69,10 +77,45 @@ class UTCW_Data {
 
 		// Base query with joins
 		$query[ ] = 'SELECT t.term_id, t.name, t.slug, COUNT(tr.term_taxonomy_id) AS `count`, tt.taxonomy';
-		$query[ ] = 'FROM `' . $this->db->posts . '` AS p';
-		$query[ ] = 'JOIN `' . $this->db->term_relationships . '` AS tr ON tr.object_id = p.ID';
-		$query[ ] = 'JOIN `' . $this->db->term_taxonomy . '` AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id';
-		$query[ ] = 'JOIN `' . $this->db->terms . '` AS t ON t.term_id = tt.term_id';
+		$query[ ] = 'FROM `' . $this->db->terms . '` AS t';
+		$query[ ] = 'JOIN `' . $this->db->term_taxonomy . '` AS tt ON t.term_id = tt.term_id';
+		$query[ ] = 'LEFT JOIN `' . $this->db->term_relationships . '` AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id';
+		$query[ ] = 'LEFT JOIN `' . $this->db->posts . '` AS p ON tr.object_id = p.ID';
+
+		// Add authors constraint if configured
+		if ( $this->config->authors ) {
+			$author_parameters = array();
+
+			foreach ( $this->config->authors as $author ) {
+				$author_parameters[ ] = '%d';
+				$parameters[ ]        = $author;
+			}
+
+			$query[ ] = 'AND p.post_author IN (' . join( ',', $author_parameters ) . ')';
+		}
+
+		// Add post types constraint
+		$post_type_parameters = array();
+
+		foreach ( $this->config->post_type as $post_type ) {
+			$post_type_parameters[ ] = '%s';
+			$parameters[ ]           = $post_type;
+		}
+
+		$query[ ] = 'AND p.post_type IN (' . join( ',', $post_type_parameters ) . ')';
+
+		// Add post status statement, authenticated users are allowed to view tags for private posts
+		if ( $this->config->authenticated ) {
+			$query[ ] = "AND p.post_status IN ('publish','private')";
+		} else {
+			$query[ ] = "AND p.post_status = 'publish'";
+		}
+
+		// Add days old constraint
+		if ( $this->config->days_old ) {
+			$query[ ]      = 'AND p.post_date > %s';
+			$parameters[ ] = date( 'Y-m-d', strtotime( '-' . $this->config->days_old . ' days' ) );
+		}
 
 		// Add taxonomy statement
 		$taxonomy_parameters = array();
@@ -83,35 +126,6 @@ class UTCW_Data {
 		}
 
 		$query[ ] = 'WHERE tt.taxonomy IN (' . join( ',', $taxonomy_parameters ) . ')';
-
-		// Add authors statement if configured
-		if ( $this->config->authors ) {
-			$author_parameters = array();
-
-			foreach ( $this->config->authors as $author ) {
-				$author_parameters[ ] = '%d';
-				$parameters[ ]        = $author;
-			}
-
-			$query[ ] = 'AND post_author IN (' . join( ',', $author_parameters ) . ')';
-		}
-
-		// Add post types statement
-		$post_type_parameters = array();
-
-		foreach ( $this->config->post_type as $post_type ) {
-			$post_type_parameters[ ] = '%s';
-			$parameters[ ]           = $post_type;
-		}
-
-		$query[ ] = 'AND post_type IN (' . join( ',', $post_type_parameters ) . ')';
-
-		// Add post status statement, authenticated users are allowed to view tags for private posts
-		if ( $this->config->authenticated ) {
-			$query[ ] = "AND post_status IN ('publish','private')";
-		} else {
-			$query[ ] = "AND post_status = 'publish'";
-		}
 
 		// Add include or exclude statement
 		if ( $this->config->tags_list ) {
@@ -130,16 +144,10 @@ class UTCW_Data {
 			}
 		}
 
-		// Add days old statement
-		if ( $this->config->days_old ) {
-			$query[ ]      = 'AND post_date > %s';
-			$parameters[ ] = date( 'Y-m-d', strtotime( '-' . $this->config->days_old . ' days' ) );
-		}
-
 		$query[ ] = 'GROUP BY tr.term_taxonomy_id';
 
 		// Add minimum constraint
-		if ( $this->config->minimum > 1 ) {
+		if ( $this->config->minimum ) {
 			$query[ ]      = 'HAVING count >= %d';
 			$parameters[ ] = $this->config->minimum;
 		}
@@ -200,8 +208,9 @@ class UTCW_Data {
 		$query = $this->db->prepare( $query, $parameters );
 
 		// Fetch terms from DB
-		$result = $this->db->get_results( $query );
-		$terms  = array();
+		$result      = $this->db->get_results( $query );
+		$this->query = $this->db->last_query;
+		$terms       = array();
 
 		// Calculate sizes
 		$min_count = PHP_INT_MAX;

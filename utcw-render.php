@@ -122,13 +122,15 @@ class UTCW_Render {
 		foreach ( $this->data->get_terms() as $term ) {
 			$color = $term->color ? ';color:' . $term->color : '';
 			$title = $this->config->show_title ? sprintf( ' title="' . _n( '%s topic', '%s topics', $term->count ) . '"', $term->count ) : '';
+			$verticalalign = intval(($term->size - $this->config->size_from) / 5);
 
 			$terms[ ] = sprintf(
-							'%s<a class="tag-link-%s" href="%s" style="font-size:%spx%s"%s>%s</a>%s',
+							'%s<a class="tag-link-%s" href="%s" style="font-size:%spx;vertical-align:-%spx%s"%s>%s</a>%s',
 							$this->config->prefix,
 							$term->term_id,
 							$term->link,
 							$term->size,
+							$verticalalign,
 							$color,
 							$title,
 							$term->name,

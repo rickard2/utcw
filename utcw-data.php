@@ -199,28 +199,38 @@ class UTCW_Data {
 		$terms  = array();
 
 		// Calculate sizes
-		$min_count = PHP_INT_MAX;
-		$max_count = 0;
-
-		foreach ( $result as $item ) {
-			if ( $item->count < $min_count ) {
-				$min_count = $item->count;
+		if($this->config->sizing == 'random') {
+			foreach ( $result as $item ) {
+				$item->taxonomy = $this->config->taxonomy;
+				$terms[ ]       = new UTCW_Term( $item, $this->plugin );
 			}
-
-			if ( $item->count > $max_count ) {
-				$max_count = $item->count;
+			foreach ( $terms as $term ) {
+				$term->size = rand( $this->config->size_from, $this->config->size_to );
 			}
-
-			$item->taxonomy = $this->config->taxonomy;
-			$terms[ ]       = new UTCW_Term( $item, $this->plugin );
+		} else { 
+			// size calculated from frequency
+			$min_count = PHP_INT_MAX;
+			$max_count = 0;
+	
+			foreach ( $result as $item ) {
+				if ( $item->count < $min_count ) {
+					$min_count = $item->count;
+				}
+	
+				if ( $item->count > $max_count ) {
+					$max_count = $item->count;
+				}
+	
+				$item->taxonomy = $this->config->taxonomy;
+				$terms[ ]       = new UTCW_Term( $item, $this->plugin );
+			}
+	
+			$font_step = $this->calc_step( $min_count, $max_count, $this->config->size_from, $this->config->size_to );
+	
+			foreach ( $terms as $term ) {
+				$term->size = $this->calc_size( $this->config->size_from, $term->count, $min_count, $font_step );
+			}
 		}
-
-		$font_step = $this->calc_step( $min_count, $max_count, $this->config->size_from, $this->config->size_to );
-
-		foreach ( $terms as $term ) {
-			$term->size = $this->calc_size( $this->config->size_from, $term->count, $min_count, $font_step );
-		}
-
 		// Set colors
 		switch ( $this->config->color ) {
 			case 'random':

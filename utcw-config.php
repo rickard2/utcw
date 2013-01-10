@@ -57,6 +57,16 @@ class UTCW_Config {
 	public $size_to;
 
 	/**
+	 * Which tag sizing strategy to use
+	 * Default: frequency
+	 ' Valid values: frequency, random
+	 *
+	 * @var string
+	 * @since 2.0.2
+	 */
+	public $sizing;
+
+	/**
 	 * Maximum number of tags to display
 	 * Default: 45
 	 *
@@ -489,6 +499,7 @@ class UTCW_Config {
 		'order'              => 'name',
 		'size_from'          => 10,
 		'size_to'            => 30,
+		'sizing'             => 'frequency',
 		'max'                => 45,
 		'taxonomy'           => 'post_tag',
 		'reverse'            => false,
@@ -534,6 +545,14 @@ class UTCW_Config {
 		'before_title'       => '',
 		'after_title'        => '',
 	);
+
+	/**
+	 * Which tag sizing strategies are allowed
+	 *
+	 * @var array
+	 * @since 2.0
+	 */
+	protected $allowed_sizing = array( 'frequency', 'random' );
 
 	/**
 	 * Which ordering strategies are allowed
@@ -698,6 +717,9 @@ class UTCW_Config {
 
 					case 'size_to':
 						$valid = isset( $input[ 'size_from' ] ) && $input[ 'size_to' ] >= $input[ 'size_from' ];
+						break;
+					case 'sizing':
+						$valid = in_array( $input[ $key ], $this->allowed_sizing );
 						break;
 
 					case 'letter_spacing':

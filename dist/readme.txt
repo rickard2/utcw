@@ -50,6 +50,10 @@ If you have questions, please post them in the forums.
 = 2.1 =
 
 * Support for multiple taxonomies per widget
+* Improved UI for selecting authors
+* Fixed problem with authors setting not working correctly
+* Support for setting minimum post count to zero
+* Support for other measurements than pixels
 
 = 2.0.1 =
 

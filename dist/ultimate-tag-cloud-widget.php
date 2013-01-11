@@ -10,4 +10,5 @@ License: GPLv2
 */
 
 // Legacy file for compatibility with verison 1.x
+/** @noinspection PhpIncludeInspection */
 require_once 'utcw.php';

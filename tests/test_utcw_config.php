@@ -629,6 +629,17 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->helper_int_array_ok( 'authors', array() );
 	}
 
+	function test_authors_converts_string_to_int() {
+		$instance = array(
+			'authors' => array( '1', '2', '3' ),
+		);
+
+		$config = new UTCW_Config( $instance, $this->utcw );
+		$this->assertTrue( is_int( $config->authors[ 0 ] ) );
+		$this->assertTrue( is_int( $config->authors[ 1 ] ) );
+		$this->assertTrue( is_int( $config->authors[ 2 ] ) );
+	}
+
 	function test_post_type_ok() {
 		$this->helper_array_ok( 'post_type', array( 'post' ) );
 	}
@@ -668,6 +679,17 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 
 	function test_tags_list_fail() {
 		$this->helper_int_array_fail( 'tags_list' );
+	}
+
+	function test_tags_list_converts_string_to_int() {
+		$instance = array(
+			'tags_list' => array( '1', '2', '3' ),
+		);
+
+		$config = new UTCW_Config( $instance, $this->utcw );
+		$this->assertTrue( is_int( $config->tags_list[ 0 ] ) );
+		$this->assertTrue( is_int( $config->tags_list[ 1 ] ) );
+		$this->assertTrue( is_int( $config->tags_list[ 2 ] ) );
 	}
 
 	function test_color_set_ok() {

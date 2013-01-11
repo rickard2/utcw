@@ -700,7 +700,8 @@ class UTCW_Config {
 							$input[ $key ] = explode( ',', $input[ $key ] );
 						}
 
-						$valid = $this->is_array_numeric( $input[ $key ] );
+						$valid         = $this->is_array_numeric( $input[ $key ] );
+						$input[ $key ] = array_map( 'intval', $input[ $key ] );
 						break;
 
 					case 'size_from':

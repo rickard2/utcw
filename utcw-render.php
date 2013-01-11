@@ -141,7 +141,9 @@ class UTCW_Render {
 		$markup[ ] = '</div>';
 
 		if ( $this->config->debug ) {
-			$markup[ ] = sprintf( "<!-- Ultimate Tag Cloud Debug information:\n%s -->", print_r( $this->data, true ) );
+			$debug_object = clone $this->data;
+			$debug_object->cleanup_for_debug();
+			$markup[ ] = sprintf( "<!-- Ultimate Tag Cloud Debug information:\n%s -->", print_r( $debug_object, true ) );
 		}
 
 		if ( $this->config->after_widget ) {

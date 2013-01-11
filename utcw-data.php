@@ -354,4 +354,11 @@ class UTCW_Data {
 
 		return $step;
 	}
+
+	/**
+	 * Cleans up sensitive data before being used in debug output
+	 */
+	public function cleanup_for_debug() {
+		unset( $this->db );
+	}
 }

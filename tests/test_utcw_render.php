@@ -293,9 +293,9 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	 */
 	function test_prefix_separator_suffix_placement( $terms ) {
 		$instance = array(
-			'prefix' => 'PREFIX',
+			'prefix'    => 'PREFIX',
 			'separator' => 'SEPARATOR',
-			'suffix' => 'SUFFIX',
+			'suffix'    => 'SUFFIX',
 		);
 
 		$renderer = $this->getRenderer( $instance, $terms );
@@ -397,6 +397,10 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	function test_output_contains_href( $terms ) {
 		$renderer = $this->getRenderer( array(), $terms );
 		$this->assertRegexp( '/href="http:\/\/example.com\/"/', $renderer->get_cloud() );
+	}
+
+	function test_debug_output_omits_wpdb() {
+		$this->helper_not_contains( array( 'debug' => true ), 'wpdb' );
 	}
 
 	function terms() {

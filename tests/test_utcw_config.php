@@ -137,12 +137,20 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->assertNotEquals( $instance[ 'size_to' ], $config->size_to );
 	}
 
-	function test_size_from_fail() {
-		$this->helper_int_fail( 'size_from', 100, 'You always need to submit both size_from and size_to' );
+	function test_size_from_only_ok() {
+		$this->helper_string_ok( 'size_from', '15px' );
 	}
 
-	function test_size_to_fail() {
-		$this->helper_int_fail( 'size_to', 100, 'You always need to submit both size_from and size_to' );
+	function test_size_from_only_fail() {
+		$this->helper_string_fail( 'size_from', '100px' );
+	}
+
+	function test_size_to_only_ok() {
+		$this->helper_string_ok( 'size_to', '100px' );
+	}
+
+	function test_size_to_only_fail() {
+		$this->helper_string_fail( 'size_to', '5px' );
 	}
 
 	function test_size_wrong_order_fail() {

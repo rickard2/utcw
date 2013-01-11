@@ -705,12 +705,14 @@ class UTCW_Config {
 
 					case 'size_from':
 						$input[ 'size_from' ] = $this->parse_measurement( $input[ 'size_from' ] );
-						$valid                = $input[ 'size_from' ] !== false && isset( $input[ 'size_to' ] ) && $this->equal_units( $input[ 'size_from' ], $input[ 'size_to' ] ) && floatval( $input[ 'size_from' ] ) <= floatval( $input[ 'size_to' ] );
+						$size_to              = isset( $input[ 'size_to' ] ) ? $input[ 'size_to' ] : self::$options[ 'size_to' ];
+						$valid                = $input[ 'size_from' ] !== false && $this->equal_units( $input[ 'size_from' ], $size_to ) && floatval( $input[ 'size_from' ] ) <= floatval( $size_to );
 						break;
 
 					case 'size_to':
 						$input[ 'size_to' ] = $this->parse_measurement( $input[ 'size_to' ] );
-						$valid              = $input[ 'size_to' ] !== false && isset( $input[ 'size_from' ] ) && $this->equal_units( $input[ 'size_from' ], $input[ 'size_to' ] ) && floatval( $input[ 'size_to' ] ) >= floatval( $input[ 'size_from' ] );
+						$size_from          = isset( $input[ 'size_from' ] ) ? $input[ 'size_from' ] : self::$options[ 'size_from' ];
+						$valid              = $input[ 'size_to' ] !== false && $this->equal_units( $size_from, $input[ 'size_to' ] ) && floatval( $input[ 'size_to' ] ) >= floatval( $size_from );
 						break;
 
 					case 'letter_spacing':

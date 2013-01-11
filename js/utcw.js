@@ -27,10 +27,10 @@
 	*/
 
 	var tooltipStyle = {
-		border:"solid 1px #6295fb",
-		background:"#fff",
-		color:"#000",
-		padding:"5px",
+		border:'solid 1px #6295fb',
+		background:'#fff',
+		color:'#000',
+		padding:'5px',
 		zIndex:1E3
 	};
 
@@ -42,6 +42,8 @@
 			$( 'input[id$=-color_none], input[id$=-color_random], input[id$=-color_set], input[id$=-color_span]' ).live( 'click', this.colorClickHandler );
 			$( '.utcw-tab-button' ).live( 'click', this.tabClickHandler );
 			$( '.utcw-input-taxonomy' ).live( 'click', this.taxonomyClickHandler );
+			$( '.utcw-all-authors' ).live( 'click', this.allAuthorsClickHandler );
+			$( '.utcw-selected-authors' ).live( 'click', this.selectedAuthorsClickHandler );
 
 			$( document ).ready( this.initTooltip );
 			$( document ).ajaxSuccess( this.ajaxSuccessHandler );
@@ -49,24 +51,37 @@
 		},
 
 		initTooltip:function () {
-			$( ".utcw-help" ).wTooltip( {
+			$( '.utcw-help' ).wTooltip( {
 				style:tooltipStyle,
 				className:'utcw-tooltip'
 			} );
 		},
 
+		allAuthorsClickHandler:function () {
+			var $this = $( this );
+			var $widget = UTCW.findWidgetParent( $this );
+			$widget.find( '.utcw-authors' ).addClass( 'hidden' );
+			$widget.find( '.utcw-author-field' ).attr( 'checked', false );
+		},
+
+		selectedAuthorsClickHandler:function () {
+			var $this = $( this );
+			var $widget = UTCW.findWidgetParent( $this );
+			$widget.find( '.utcw-authors' ).removeClass( 'hidden' );
+		},
+
 		tabClickHandler:function () {
 			var $this = $( this );
 
-			if ( $this.data( 'id' ) === "utcw-__i__" ) {
+			if ( $this.data( 'id' ) === 'utcw-__i__' ) {
 				return false;
 			}
 
-			$this.parent().find( ".utcw-tab-button" ).removeClass( "utcw-active" );
-			$this.addClass( "utcw-active" );
+			$this.parent().find( '.utcw-tab-button' ).removeClass( 'utcw-active' );
+			$this.addClass( 'utcw-active' );
 
-			$this.parent().find( "fieldset.utcw" ).addClass( "hidden" );
-			$( "#" + $this.data( 'tab' ) ).removeClass( "hidden" );
+			$this.parent().find( 'fieldset.utcw' ).addClass( 'hidden' );
+			$( '#' + $this.data( 'tab' ) ).removeClass( 'hidden' );
 
 			UTCW.activeTab[ $this.data( 'id' ) ] = $this.data( 'tab' );
 
@@ -75,8 +90,8 @@
 
 		colorClickHandler:function () {
 
-			var $set_chooser = $( "div[id$='set_chooser']" );
-			var $span_chooser = $( "div[id$='span_chooser']" );
+			var $set_chooser = $( 'div[id$="set_chooser"]' );
+			var $span_chooser = $( 'div[id$="span_chooser"]' );
 			var value = $( this ).val();
 
 			$set_chooser.addClass( 'utcw-hidden' );
@@ -89,12 +104,16 @@
 			}
 		},
 
+		findWidgetParent:function ( $element ) {
+			return $element.parents( '.widget-content' );
+		},
+
 		taxonomyClickHandler:function () {
 
 			var $this = $( this );
 			var taxonomy = $this.val();
 			var checked = $this.is( ':checked' );
-			var $widget = $this.parents( '.widget-content' );
+			var $widget = UTCW.findWidgetParent( $this );
 			var $target = $widget.find( '#' + taxonomy + '-terms' );
 
 			if ( checked ) {
@@ -119,7 +138,7 @@
 				widget_id = uri.getQueryParamValue( 'widget-id' );
 
 				if ( this.activeTab[ widget_id ] ) {
-					$( "button[data-tab='" + this.activeTab[ widget_id ] + "']" ).trigger( 'click' );
+					$( 'button[data-tab="' + this.activeTab[ widget_id ] + '"]' ).trigger( 'click' );
 				}
 			}
 		}

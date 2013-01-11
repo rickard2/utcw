@@ -36,13 +36,27 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<a class="utcw-help"
 	   title="<?php _e( 'Only posts from the selected authors will be used when calculating the tag cloud.', 'utcw' ) ?>">?</a>
 	<strong><?php _e( 'Authors:', 'utcw' ) ?></strong><br>
-	<?php foreach ( $users as $user ) : ?>
-	<input type="checkbox" name="<?php echo $this->get_field_name( 'authors' ) ?>[]"
-		   id="<?php echo $this->get_field_id( 'author_' . $user->ID ) ?>"
-		   value="<?php echo $user->ID?>" <?php echo  in_array( $user->ID, $config->authors, true ) ? 'checked="checked"' : ''; ?>>
-	<label for="<?php echo $this->get_field_id( 'author_' . $user->ID ) ?>"><?php echo $user->user_login?></label><br>
-	<?php endforeach; ?>
+
+    <label>
+        <input type="radio" class="utcw-all-authors" name="<?php echo $this->get_field_name( 'utcw-all-authors' ) ?>" <?php if ( ! $config->authors ) echo 'checked="checked"'; ?>>
+		<?php _e( 'All authors', 'utcw' ) ?>
+	</label>
 	<br>
+    <label>
+        <input type="radio" class="utcw-selected-authors" name="<?php echo $this->get_field_name( 'utcw-all-authors' ) ?>" <?php if ( $config->authors ) echo 'checked="checked"'; ?>>
+		<?php _e( 'Selected authors only', 'utcw' ) ?>
+	</label>
+	<br>
+
+	<div class="utcw-authors <?php if (!$config->authors) echo 'hidden' ?>">
+		<?php foreach ( $users as $user ) : ?>
+        <input class="utcw-author-field" type="checkbox" name="<?php echo $this->get_field_name( 'authors' ) ?>[]"
+               id="<?php echo $this->get_field_id( 'author_' . $user->ID ) ?>"
+               value="<?php echo $user->ID ?>" <?php echo  in_array( $user->ID, $config->authors, true ) ? 'checked="checked"' : ''; ?>>
+        <label for="<?php echo $this->get_field_id( 'author_' . $user->ID ) ?>"><?php echo $user->display_name ?></label><br>
+		<?php endforeach; ?>
+	</div>
+    <br>
 
 	<a class="utcw-help"
 	   title="<?php _e( 'Which property of the tag should be used when determining the order of the tags in the cloud.', 'utcw' ) ?>">?</a>

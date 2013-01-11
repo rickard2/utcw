@@ -576,7 +576,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<label
 		for="<?php echo $this->get_field_id( 'load_config_name' ) ?>"><?php _e( 'Configuration name', 'utcw' ) ?></label>
 	<br>
-	<select name="<?php echo $this->get_field_name( 'load_config_name' ) ?>"
+	<select class="utcw-load-config" name="<?php echo $this->get_field_name( 'load_config_name' ) ?>"
 			id="<?php echo $this->get_field_id( 'load_config_name' ) ?>">
 
 		<?php foreach ( $configurations as $name => $config ) : ?>
@@ -584,6 +584,10 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		<?php endforeach ?>
 
 	</select>
+
+	<span class="submitbox">
+		<a class="submitdelete deletion utcw-remove-config" data-input-name="<?php echo $this->get_field_name( 'remove_config' ) ?>"><?php _e( 'Delete', 'utcw' ) ?></a>
+	</span>
 
 	<?php endif ?>
 

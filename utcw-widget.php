@@ -77,6 +77,12 @@ class UTCW extends WP_Widget {
 			$this->plugin->save_configuration( $new_instance[ 'save_config_name' ], $config->get_instance() );
 		}
 
+		if ( isset( $new_instance[ 'remove_config' ] ) && is_array( $new_instance[ 'remove_config' ] ) ) {
+			foreach ( $new_instance[ 'remove_config' ] as $configuration ) {
+				$this->plugin->remove_configuration( $configuration );
+			}
+		}
+
 		return $config->get_instance();
 	}
 

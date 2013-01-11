@@ -228,6 +228,25 @@ class UTCW_Plugin {
 	}
 
 	/**
+	 * Removes a previously saved configuration
+	 *
+	 * @param string $name
+	 *
+	 * @return bool
+	 * @since 2.1
+	 */
+	function remove_configuration( $name ) {
+		$configs = $this->get_configurations();
+
+		if ( isset( $configs[ $name ] ) ) {
+			unset( $configs[ $name ] );
+			return $this->set_configurations( $configs );
+		}
+
+		return false;
+	}
+
+	/**
 	 * Saves the configuration
 	 *
 	 * @param string $name   Name of configuration
@@ -240,7 +259,7 @@ class UTCW_Plugin {
 		$configs          = $this->get_configurations();
 		$configs[ $name ] = $config;
 
-		return update_option( 'utcw_saved_configs', $configs );
+		return $this->set_configurations( $configs );
 	}
 
 	/**
@@ -269,6 +288,18 @@ class UTCW_Plugin {
 	 */
 	function get_configurations() {
 		return get_option( 'utcw_saved_configs', array() );
+	}
+
+	/**
+	 * Set saved configurations
+	 *
+	 * @param array $configs
+	 *
+	 * @return bool
+	 * @since 2.1
+	 */
+	protected function set_configurations( $configs ) {
+		return update_option( 'utcw_saved_configs', $configs );
 	}
 
 	/**

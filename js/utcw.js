@@ -16,6 +16,8 @@
 	* $.val				v1.0
 	* $.trigger			v1.0
 	* $.is				v1.0
+	* $.attr			v1.0
+	* $.after			v1.0
 	*
 	* jQuery v1.3 required
 	* WordPress 2.8 shipped jQuery 1.3.2 => http://core.trac.wordpress.org/browser/tags/2.8/wp-includes/js/jquery/jquery.js?rev=11550
@@ -44,6 +46,7 @@
 			$( '.utcw-input-taxonomy' ).live( 'click', this.taxonomyClickHandler );
 			$( '.utcw-all-authors' ).live( 'click', this.allAuthorsClickHandler );
 			$( '.utcw-selected-authors' ).live( 'click', this.selectedAuthorsClickHandler );
+			$( '.utcw-remove-config' ).live( 'click', this.removeConfigClickHandler );
 
 			$( document ).ready( this.initTooltip );
 			$( document ).ajaxSuccess( this.ajaxSuccessHandler );
@@ -55,6 +58,21 @@
 				style:tooltipStyle,
 				className:'utcw-tooltip'
 			} );
+		},
+
+		removeConfigClickHandler:function () {
+			var $this = $( this );
+			var $widget = UTCW.findWidgetParent( $this );
+			var $loadConfig = $widget.find( '.utcw-load-config' );
+			var configToRemove = $loadConfig.val();
+			var fieldName = $this.data( 'input-name' ) + '[]';
+			var $removeConfigField = $( document.createElement('input') );
+			$removeConfigField.attr( 'type', 'hidden' );
+			$removeConfigField.attr( 'name', fieldName );
+			$removeConfigField.attr( 'value', configToRemove );
+
+			$this.after( $removeConfigField );
+			$loadConfig.find( ':selected' ).remove();
 		},
 
 		allAuthorsClickHandler:function () {

@@ -76,7 +76,7 @@ class UTCW_Data {
 		$query = array();
 
 		// Base query with joins
-		$query[ ] = 'SELECT t.term_id, t.name, t.slug, COUNT(tr.term_taxonomy_id) AS `count`, tt.taxonomy';
+		$query[ ] = 'SELECT t.term_id, t.name, t.slug, COUNT(p.ID) AS `count`, tt.taxonomy';
 		$query[ ] = 'FROM `' . $this->db->terms . '` AS t';
 		$query[ ] = 'JOIN `' . $this->db->term_taxonomy . '` AS tt ON t.term_id = tt.term_id';
 		$query[ ] = 'LEFT JOIN `' . $this->db->term_relationships . '` AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id';

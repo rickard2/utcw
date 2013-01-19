@@ -20,7 +20,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 	}
 
 	function test_taxonomy() {
-		$this->helper_query_contains( array( 'taxonomy' => array('category') ), "taxonomy IN ('category')" );
+		$this->helper_query_contains( array( 'taxonomy' => array( 'category' ) ), "taxonomy IN ('category')" );
 	}
 
 	function test_author() {
@@ -217,8 +217,8 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$terms = $this->helper_get_terms( $instance, $query_terms );
 
 		foreach ( $terms as $term ) {
-			$this->assertLessThanOrEqual( 10, intval($term->size) );
-			$this->assertGreaterThanOrEqual( 1, intval($term->size) );
+			$this->assertLessThanOrEqual( 10, intval( $term->size ) );
+			$this->assertGreaterThanOrEqual( 1, intval( $term->size ) );
 		}
 	}
 
@@ -392,6 +392,10 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$colors->blue_to  = 0x02;
 
 		$this->helper_test_color_span( $instance, $colors, $query_terms );
+	}
+
+	function test_query_counts_posts() {
+		$this->helper_query_contains( array(), 'COUNT(p.ID) AS `count`' );
 	}
 
 	function helper_test_color_span( $instance, $colors, $query_terms ) {

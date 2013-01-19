@@ -37,7 +37,7 @@ class UTCW extends WP_Widget {
 	 */
 	function __construct( UTCW_Plugin $plugin = null ) {
 		$options = array( 'description' => __( 'Highly configurable tag cloud', 'utcw' ) );
-		parent::WP_Widget( false, __( 'Ultimate Tag Cloud', 'utcw' ), $options );
+		parent::__construct( false, __( 'Ultimate Tag Cloud', 'utcw' ), $options );
 
 		$this->plugin = $plugin ? $plugin : UTCW_Plugin::get_instance();
 	}

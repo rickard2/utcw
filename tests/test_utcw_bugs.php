@@ -1,4 +1,7 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
+use Rickard\UTCW\Widget;
+
+if ( ! defined( 'ABSPATH' ) ) die();
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -33,7 +36,7 @@ class UTCW_Test_Bugs extends WP_UnitTestCase {
 		$terms = array( $term, $term );
 
 		$data = $this->dataProvider->get_data_object( array(), $terms );
-		$data->get_terms();
+		$data->getTerms();
 	}
 
 	/**
@@ -41,7 +44,7 @@ class UTCW_Test_Bugs extends WP_UnitTestCase {
 	 * otherwise $instance might overwrite before_widget, after_widget, etc
 	 */
 	function test_merge_args_instance_order() {
-		$widget = new UTCW();
+		$widget = new Widget();
 
 		$args     = array( 'before_widget' => 'Hello World' );
 		$instance = array( 'before_widget' => 'Goodbye World' );

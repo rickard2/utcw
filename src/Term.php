@@ -1,4 +1,9 @@
 <?php
+
+namespace Rickard\UTCW;
+
+use stdClass;
+
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -8,7 +13,6 @@
  * @subpackage main
  * @since      2.0
  */
-if ( ! defined( 'ABSPATH' ) ) die();
 
 /**
  * Class to represent a term
@@ -17,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
  * @package    utcw
  * @subpackage main
  */
-class UTCW_Term {
+class Term {
 
 	/**
 	 * Term ID
@@ -87,11 +91,11 @@ class UTCW_Term {
 	 * Creates a new term
 	 *
 	 * @param stdClass    $input   Object with properties term_id, count, slug, name, color and taxonomy
-	 * @param UTCW_Plugin $plugin  Reference to the plugin instance
+	 * @param Plugin $plugin  Reference to the plugin instance
 	 *
 	 * @since 2.0
 	 */
-	function __construct( stdClass $input, UTCW_Plugin $plugin ) {
+	function __construct( stdClass $input, Plugin $plugin ) {
 
 		if ( isset( $input->term_id ) && filter_var( $input->term_id, FILTER_VALIDATE_INT ) ) {
 			$this->term_id = intval( $input->term_id );
@@ -118,7 +122,7 @@ class UTCW_Term {
 		}
 
 		if ( $this->term_id && $this->taxonomy ) {
-			$this->link = $plugin->get_term_link( $this->term_id, $this->taxonomy );
+			$this->link = $plugin->getTermLink( $this->term_id, $this->taxonomy );
 		}
 	}
 }

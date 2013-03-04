@@ -1,4 +1,7 @@
 <?php
+
+namespace Rickard\UTCW;
+
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -8,53 +11,6 @@
  * @subpackage main
  * @since      2.0
  */
-if ( ! defined( 'ABSPATH' ) ) die();
-
-/**
- * Current version number
- *
- * @var string
- * @since 2.0
- */
-define( 'UTCW_VERSION', '2.1' );
-
-/**
- * If development mode is currently enabled
- *
- * @var bool
- * @since 2.0
- */
-define( 'UTCW_DEV', false );
-
-/**
- * Regular expression for matching hexadecimal colors
- *
- * @var string
- * @since 2.0
- */
-define( 'UTCW_HEX_COLOR_REGEX', '/#([a-f0-9]{6}|[a-f0-9]{3})/i' );
-
-/**
- * Regular expression for matching decimal numbers
- *
- * @var string
- * @since 2.1
- */
-define( 'UTCW_DECIMAL_REGEX', '\d+(\.\d+)?' );
-
-/**
- * printf format for rendering hexadecimal colors
- *
- * @var string
- * @since 2.0
- */
-define( 'UTCW_HEX_COLOR_FORMAT', '#%02x%02x%02x' );
-
-require_once 'utcw-config.php';
-require_once 'utcw-widget.php';
-require_once 'utcw-data.php';
-require_once 'utcw-render.php';
-require_once 'utcw-term.php';
 
 /**
  * Class for general plugin integration with WordPress
@@ -63,7 +19,7 @@ require_once 'utcw-term.php';
  * @package    utcw
  * @subpackage main
  */
-class UTCW_Plugin {
+class Plugin {
 
 	/**
 	 * An array of which taxonomies are available
@@ -84,7 +40,7 @@ class UTCW_Plugin {
 	/**
 	 * Singleton instance
 	 *
-	 * @var UTCW_Plugin
+	 * @var Plugin
 	 * @since 2.0
 	 */
 	private static $instance;
@@ -96,20 +52,20 @@ class UTCW_Plugin {
 	 * @since 2.0
 	 */
 	private function __construct() {
-		add_action( 'admin_head-widgets.php', array( $this, 'init_admin_assets' ) );
-		add_action( 'wp_loaded', array( $this, 'wp_loaded' ) );
+		add_action( 'admin_head-widgets.php', array( $this, 'initAdminAssets' ) );
+		add_action( 'wpLoaded', array( $this, 'wpLoaded' ) );
 		add_action( 'widgets_init', create_function( '', 'return register_widget("UTCW");' ) );
-		add_shortcode( 'utcw', array( $this, 'utcw_shortcode' ) );
+		add_shortcode( 'utcw', array( $this, 'shortcode') );
 	}
 
 	/**
 	 * Returns an instance of the plugin
 	 *
 	 * @static
-	 * @return UTCW_Plugin
+	 * @return Plugin
 	 * @since 2.0
 	 */
-	public static function get_instance() {
+	public static function getInstance() {
 		if ( ! self::$instance ) {
 			self::$instance = new self;
 		}
@@ -118,12 +74,12 @@ class UTCW_Plugin {
 	}
 
 	/**
-	 * Action handler for 'wp_loaded' hook
+	 * Action handler for 'wpLoaded' hook
 	 * Loads taxonomies and post types
 	 *
 	 * @since 2.0
 	 */
-	function wp_loaded() {
+	function wpLoaded() {
 		$this->allowed_taxonomies = get_taxonomies();
 		$this->allowed_post_types = get_post_types( array( 'public' => true ) );
 	}
@@ -136,14 +92,14 @@ class UTCW_Plugin {
 	 * @return string
 	 * @since 2.0
 	 */
-	function utcw_shortcode( array $args ) {
+	function shortcode( array $args ) {
 		global $wpdb;
 
-		$config = new UTCW_Config( $args, $this );
-		$data   = new UTCW_Data( $config, $this, $wpdb );
-		$render = new UTCW_Render( $config, $data, $this );
+		$config = new Config( $args, $this );
+		$data   = new Data( $config, $this, $wpdb );
+		$render = new Render( $config, $data, $this );
 
-		return $render->get_cloud();
+		return $render->getCloud();
 	}
 
 	/**
@@ -152,7 +108,7 @@ class UTCW_Plugin {
 	 *
 	 * @since 2.0
 	 */
-	public function init_admin_assets() {
+	public function initAdminAssets() {
 		wp_enqueue_style( 'utcw-admin', plugins_url( 'ultimate-tag-cloud-widget/css/style.css' ), array(), UTCW_VERSION );
 
 		// In development mode, add the libraries and main file individually
@@ -171,7 +127,7 @@ class UTCW_Plugin {
 	 * @return array
 	 * @since 2.0
 	 */
-	public function get_allowed_taxonomies() {
+	public function getAllowedTaxonomies() {
 		return $this->allowed_taxonomies;
 	}
 
@@ -181,7 +137,7 @@ class UTCW_Plugin {
 	 * @return array
 	 * @since 2.0
 	 */
-	public function get_allowed_taxonomies_objects() {
+	public function getAllowedTaxonomiesObjects() {
 		return get_taxonomies( array(), 'objects' );
 	}
 
@@ -191,10 +147,10 @@ class UTCW_Plugin {
 	 * @return array
 	 * @since 2.0
 	 */
-	public function get_terms() {
+	public function getTerms() {
 		$terms = array();
 
-		foreach ( $this->get_allowed_taxonomies() as $taxonomy ) {
+		foreach ( $this->getAllowedTaxonomies() as $taxonomy ) {
 			$terms[ $taxonomy ] = get_terms( $taxonomy );
 		}
 
@@ -207,7 +163,7 @@ class UTCW_Plugin {
 	 * @return array
 	 * @since 2.0
 	 */
-	public function get_allowed_post_types() {
+	public function getAllowedPostTypes() {
 		return $this->allowed_post_types;
 	}
 
@@ -217,7 +173,7 @@ class UTCW_Plugin {
 	 * @return array
 	 * @since 2.0
 	 */
-	function get_users() {
+	function getUsers() {
 		global $wp_version;
 
 		if ( (float)$wp_version < 3.1 ) {
@@ -235,12 +191,12 @@ class UTCW_Plugin {
 	 * @return bool
 	 * @since 2.1
 	 */
-	function remove_configuration( $name ) {
-		$configs = $this->get_configurations();
+	function removeConfiguration( $name ) {
+		$configs = $this->getConfigurations();
 
 		if ( isset( $configs[ $name ] ) ) {
 			unset( $configs[ $name ] );
-			return $this->set_configurations( $configs );
+			return $this->setConfigurations( $configs );
 		}
 
 		return false;
@@ -250,16 +206,16 @@ class UTCW_Plugin {
 	 * Saves the configuration
 	 *
 	 * @param string $name   Name of configuration
-	 * @param array  $config Exported configuration from UTCW_Config
+	 * @param array  $config Exported configuration from Config
 	 *
 	 * @return bool
 	 * @since 2.0
 	 */
-	function save_configuration( $name, array $config ) {
-		$configs          = $this->get_configurations();
+	function saveConfiguration( $name, array $config ) {
+		$configs          = $this->getConfigurations();
 		$configs[ $name ] = $config;
 
-		return $this->set_configurations( $configs );
+		return $this->setConfigurations( $configs );
 	}
 
 	/**
@@ -270,8 +226,8 @@ class UTCW_Plugin {
 	 * @return array|bool Returns an instance array on success and boolean false on failure
 	 * @since 2.0
 	 */
-	function load_configuration( $name ) {
-		$configs = $this->get_configurations();
+	function loadConfiguration( $name ) {
+		$configs = $this->getConfigurations();
 
 		if ( isset( $configs[ $name ] ) ) {
 			return $configs[ $name ];
@@ -286,7 +242,7 @@ class UTCW_Plugin {
 	 * @return array
 	 * @since 2.0
 	 */
-	function get_configurations() {
+	function getConfigurations() {
 		return get_option( 'utcw_saved_configs', array() );
 	}
 
@@ -298,7 +254,7 @@ class UTCW_Plugin {
 	 * @return bool
 	 * @since 2.1
 	 */
-	protected function set_configurations( $configs ) {
+	protected function setConfigurations( $configs ) {
 		return update_option( 'utcw_saved_configs', $configs );
 	}
 
@@ -308,7 +264,7 @@ class UTCW_Plugin {
 	 * @return bool
 	 * @since 2.0
 	 */
-	public function is_authenticated_user() {
+	public function isAuthenticatedUser() {
 		return is_user_logged_in();
 	}
 
@@ -321,7 +277,7 @@ class UTCW_Plugin {
 	 * @return string Returns URI on success and empty string on failure
 	 * @since 2.0
 	 */
-	public function get_term_link( $term_id, $taxonomy ) {
+	public function getTermLink( $term_id, $taxonomy ) {
 		$link = get_term_link( $term_id, $taxonomy );
 
 		return ! is_wp_error( $link ) ? $link : '';
@@ -336,7 +292,7 @@ class UTCW_Plugin {
 	 * @return bool
 	 * @since 2.0
 	 */
-	public function check_term_taxonomy( $term_id, array $taxonomy ) {
+	public function checkTermTaxonomy( $term_id, array $taxonomy ) {
 
 		foreach ( $taxonomy as $tax ) {
 			if ( get_term( $term_id, $tax ) ) {
@@ -356,22 +312,7 @@ class UTCW_Plugin {
 	 * @return mixed|void
 	 * @since 2.0
 	 */
-	public function apply_filters( $tag, $value ) {
+	public function applyFilters( $tag, $value ) {
 		return apply_filters( $tag, $value );
 	}
-}
-
-// Instantiates the plugin
-UTCW_Plugin::get_instance();
-
-/**
- * Function for theme integration
- *
- * @param array $args
- *
- * @since 1.3
- */
-function do_utcw( array $args ) {
-	$plugin = UTCW_Plugin::get_instance();
-	echo $plugin->utcw_shortcode( $args );
 }

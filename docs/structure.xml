@@ -844,8 +844,8 @@ Default: (an empty string)</p>]]></long-description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="743" package="utcw\main">
-        <name>is_array_numeric</name>
-        <full_name>is_array_numeric</full_name>
+        <name>isArrayNumeric</name>
+        <full_name>isArrayNumeric</full_name>
         <docblock line="735">
           <description><![CDATA[Checks if every item in the array is numeric]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -864,8 +864,8 @@ Default: (an empty string)</p>]]></long-description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="759" package="utcw\main">
-        <name>get_instance</name>
-        <full_name>get_instance</full_name>
+        <name>getInstance</name>
+        <full_name>getInstance</full_name>
         <docblock line="753">
           <description><![CDATA[Returns an array of current configuration]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -876,8 +876,8 @@ Default: (an empty string)</p>]]></long-description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="776" package="utcw\main">
-        <name>get_defaults</name>
-        <full_name>get_defaults</full_name>
+        <name>getDefaults</name>
+        <full_name>getDefaults</full_name>
         <docblock line="769">
           <description><![CDATA[Returns the default values for all the configuration options]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -985,8 +985,8 @@ Default: (an empty string)</p>]]></long-description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="67" package="utcw\main">
-        <name>get_terms</name>
-        <full_name>get_terms</full_name>
+        <name>getTerms</name>
+        <full_name>getTerms</full_name>
         <docblock line="61">
           <description><![CDATA[Loads terms based on current configuration]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -997,8 +997,8 @@ Default: (an empty string)</p>]]></long-description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="267" package="utcw\main">
-        <name>calc_color</name>
-        <full_name>calc_color</full_name>
+        <name>calcColor</name>
+        <full_name>calcColor</full_name>
         <docblock line="256">
           <description><![CDATA[Calculate term color]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1041,8 +1041,8 @@ Default: (an empty string)</p>]]></long-description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="292" package="utcw\main">
-        <name>calc_size</name>
-        <full_name>calc_size</full_name>
+        <name>calcSize</name>
+        <full_name>calcSize</full_name>
         <docblock line="281">
           <description><![CDATA[Calculate term size]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1085,8 +1085,8 @@ Default: (an empty string)</p>]]></long-description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="307" package="utcw\main">
-        <name>calc_step</name>
-        <full_name>calc_step</full_name>
+        <name>calcStep</name>
+        <full_name>calcStep</full_name>
         <docblock line="296">
           <description><![CDATA[Calculate step size]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1255,8 +1255,8 @@ Default: (an empty string)</p>]]></long-description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="95" package="utcw\main">
-        <name>get_cloud</name>
-        <full_name>get_cloud</full_name>
+        <name>getCloud</name>
+        <full_name>getCloud</full_name>
         <docblock line="89">
           <description><![CDATA[Returns the cloud as a string]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1267,8 +1267,8 @@ Default: (an empty string)</p>]]></long-description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="159" package="utcw\main">
-        <name>build_css</name>
-        <full_name>build_css</full_name>
+        <name>buildCSS</name>
+        <full_name>buildCSS</full_name>
         <docblock line="154">
           <description><![CDATA[Builds the CSS needed to properly style the cloud]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1276,8 +1276,8 @@ Default: (an empty string)</p>]]></long-description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="282" package="utcw\main">
-        <name>has_default_value</name>
-        <full_name>has_default_value</full_name>
+        <name>hasDefaultValue</name>
+        <full_name>hasDefaultValue</full_name>
         <docblock line="274">
           <description><![CDATA[Checks if option still has the default value]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1727,8 +1727,8 @@ Default: (an empty string)</p>]]></long-description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="113" package="utcw\main">
-        <name>get_instance</name>
-        <full_name>get_instance</full_name>
+        <name>getInstance</name>
+        <full_name>getInstance</full_name>
         <docblock line="106">
           <description><![CDATA[Returns an instance of the plugin]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1740,18 +1740,18 @@ Default: (an empty string)</p>]]></long-description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="127" package="utcw\main">
-        <name>wp_loaded</name>
-        <full_name>wp_loaded</full_name>
+        <name>wpLoaded</name>
+        <full_name>wpLoaded</full_name>
         <docblock line="121">
-          <description><![CDATA[Action handler for 'wp_loaded' hook
+          <description><![CDATA[Action handler for 'wpLoaded' hook
 Loads taxonomies and post types]]></description>
           <long-description><![CDATA[]]></long-description>
           <tag line="121" name="since" description="2.0"/>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="140" package="utcw\main">
-        <name>utcw_shortcode</name>
-        <full_name>utcw_shortcode</full_name>
+        <name>shortcode</name>
+        <full_name>shortcode</full_name>
         <docblock line="132">
           <description><![CDATA[Shortcode handler for 'utcw' hook]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1770,8 +1770,8 @@ Loads taxonomies and post types]]></description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="156" package="utcw\main">
-        <name>init_admin_assets</name>
-        <full_name>init_admin_assets</full_name>
+        <name>initAdminAssets</name>
+        <full_name>initAdminAssets</full_name>
         <docblock line="150">
           <description><![CDATA[Action handler for 'admin_head-widgets.php' hook
 Loads assets needed by the administration interface]]></description>
@@ -1780,8 +1780,8 @@ Loads assets needed by the administration interface]]></description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="175" package="utcw\main">
-        <name>get_allowed_taxonomies</name>
-        <full_name>get_allowed_taxonomies</full_name>
+        <name>getAllowedTaxonomies</name>
+        <full_name>getAllowedTaxonomies</full_name>
         <docblock line="169">
           <description><![CDATA[Returns an array with the names of allowed taxonomies]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1792,8 +1792,8 @@ Loads assets needed by the administration interface]]></description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="185" package="utcw\main">
-        <name>get_allowed_taxonomies_objects</name>
-        <full_name>get_allowed_taxonomies_objects</full_name>
+        <name>getAllowedTaxonomiesObjects</name>
+        <full_name>getAllowedTaxonomiesObjects</full_name>
         <docblock line="179">
           <description><![CDATA[Returns allowed taxonomies as objects]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1804,8 +1804,8 @@ Loads assets needed by the administration interface]]></description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="195" package="utcw\main">
-        <name>get_terms</name>
-        <full_name>get_terms</full_name>
+        <name>getTerms</name>
+        <full_name>getTerms</full_name>
         <docblock line="189">
           <description><![CDATA[Returns an array with taxonomy as key and an array of term objects for each taxonomy.]]></description>
           <long-description><![CDATA[<p>Like:</p>]]></long-description>
@@ -1816,8 +1816,8 @@ Loads assets needed by the administration interface]]></description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="211" package="utcw\main">
-        <name>get_allowed_post_types</name>
-        <full_name>get_allowed_post_types</full_name>
+        <name>getAllowedPostTypes</name>
+        <full_name>getAllowedPostTypes</full_name>
         <docblock line="205">
           <description><![CDATA[Returns an array with the names of allowed post types]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1828,8 +1828,8 @@ Loads assets needed by the administration interface]]></description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="221" package="utcw\main">
-        <name>get_users</name>
-        <full_name>get_users</full_name>
+        <name>getUsers</name>
+        <full_name>getUsers</full_name>
         <docblock line="215">
           <description><![CDATA[Returns the users on this blog]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1840,8 +1840,8 @@ Loads assets needed by the administration interface]]></description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="240" package="utcw\main">
-        <name>save_configuration</name>
-        <full_name>save_configuration</full_name>
+        <name>saveConfiguration</name>
+        <full_name>saveConfiguration</full_name>
         <docblock line="231">
           <description><![CDATA[Saves the configuration]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1868,8 +1868,8 @@ Loads assets needed by the administration interface]]></description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="255" package="utcw\main">
-        <name>load_configuration</name>
-        <full_name>load_configuration</full_name>
+        <name>loadConfiguration</name>
+        <full_name>loadConfiguration</full_name>
         <docblock line="247">
           <description><![CDATA[Loads saved configuration]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1889,8 +1889,8 @@ Loads assets needed by the administration interface]]></description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="271" package="utcw\main">
-        <name>get_configurations</name>
-        <full_name>get_configurations</full_name>
+        <name>getConfigurations</name>
+        <full_name>getConfigurations</full_name>
         <docblock line="265">
           <description><![CDATA[Get saved configurations]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1901,8 +1901,8 @@ Loads assets needed by the administration interface]]></description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="281" package="utcw\main">
-        <name>is_authenticated_user</name>
-        <full_name>is_authenticated_user</full_name>
+        <name>isAuthenticatedUser</name>
+        <full_name>isAuthenticatedUser</full_name>
         <docblock line="275">
           <description><![CDATA[Returns boolean true if the current page request is for an authenticated user]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1913,8 +1913,8 @@ Loads assets needed by the administration interface]]></description>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="294" package="utcw\main">
-        <name>get_term_link</name>
-        <full_name>get_term_link</full_name>
+        <name>getTermLink</name>
+        <full_name>getTermLink</full_name>
         <docblock line="285">
           <description><![CDATA[Returns an absolute URI to the archive page for the term]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1941,8 +1941,8 @@ Loads assets needed by the administration interface]]></description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="309" package="utcw\main">
-        <name>check_term_taxonomy</name>
-        <full_name>check_term_taxonomy</full_name>
+        <name>checkTermTaxonomy</name>
+        <full_name>checkTermTaxonomy</full_name>
         <docblock line="300">
           <description><![CDATA[Check if the term exist for taxonomy]]></description>
           <long-description><![CDATA[]]></long-description>
@@ -1969,8 +1969,8 @@ Loads assets needed by the administration interface]]></description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="322" package="utcw\main">
-        <name>apply_filters</name>
-        <full_name>apply_filters</full_name>
+        <name>applyFilters</name>
+        <full_name>applyFilters</full_name>
         <docblock line="313">
           <description><![CDATA[Apply filters]]></description>
           <long-description><![CDATA[]]></long-description>

@@ -1,4 +1,10 @@
 <?php
+
+namespace Rickard\UTCW;
+
+use wpdb;
+use stdClass;
+
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -8,7 +14,6 @@
  * @subpackage main
  * @since      2.0
  */
-if ( ! defined( 'ABSPATH' ) ) die();
 
 /**
  * Class for loading data for the cloud
@@ -17,12 +22,12 @@ if ( ! defined( 'ABSPATH' ) ) die();
  * @package    utcw
  * @subpackage main
  */
-class UTCW_Data {
+class Data {
 
 	/**
 	 * Reference to the current configuration
 	 *
-	 * @var UTCW_Config
+	 * @var Config
 	 * @since 2.0
 	 */
 	protected $config;
@@ -38,7 +43,7 @@ class UTCW_Data {
 	/**
 	 * Reference to main plugin instance
 	 *
-	 * @var UTCW_Plugin
+	 * @var Plugin
 	 * @since 2.0
 	 */
 	protected $plugin;
@@ -54,13 +59,13 @@ class UTCW_Data {
 	/**
 	 * Creates a new instance
 	 *
-	 * @param UTCW_Config $config   Current configuration
-	 * @param UTCW_Plugin $plugin   Main plugin instance
+	 * @param Config $config   Current configuration
+	 * @param Plugin $plugin   Main plugin instance
 	 * @param wpdb        $db       WordPress DB instance
 	 *
 	 * @since 2.0
 	 */
-	function __construct( UTCW_Config $config, UTCW_Plugin $plugin, wpdb $db ) {
+	function __construct( Config $config, Plugin $plugin, wpdb $db ) {
 		$this->config = $config;
 		$this->db     = $db;
 		$this->plugin = $plugin;
@@ -69,10 +74,10 @@ class UTCW_Data {
 	/**
 	 * Loads terms based on current configuration
 	 *
-	 * @return UTCW_Term[]
+	 * @return Term[]
 	 * @since 2.0
 	 */
-	function get_terms() {
+	function getTerms() {
 		$query = array();
 
 		// Base query with joins
@@ -132,7 +137,7 @@ class UTCW_Data {
 			$tags_list_parameters = array();
 
 			foreach ( $this->config->tags_list as $tag_id ) {
-				if ( $this->plugin->check_term_taxonomy( $tag_id, $this->config->taxonomy ) ) {
+				if ( $this->plugin->checkTermTaxonomy( $tag_id, $this->config->taxonomy ) ) {
 					$tags_list_parameters[ ] = '%d';
 					$parameters[ ]           = $tag_id;
 				}
@@ -225,17 +230,17 @@ class UTCW_Data {
 				$max_count = $item->count;
 			}
 
-			$terms[ ] = new UTCW_Term( $item, $this->plugin );
+			$terms[ ] = new Term( $item, $this->plugin );
 		}
 
 		$size_from = floatval( $this->config->size_from );
 		$size_to   = floatval( $this->config->size_to );
 		$unit      = preg_replace( '/' . UTCW_DECIMAL_REGEX . '/', '', $this->config->size_from );
 
-		$font_step = $this->calc_step( $min_count, $max_count, $size_from, $size_to );
+		$font_step = $this->calcStep( $min_count, $max_count, $size_from, $size_to );
 
 		foreach ( $terms as $term ) {
-			$term->size = $this->calc_size( $size_from, $term->count, $min_count, $font_step ) . $unit;
+			$term->size = $this->calcSize( $size_from, $term->count, $min_count, $font_step ) . $unit;
 		}
 
 		// Set colors
@@ -271,7 +276,7 @@ class UTCW_Data {
 					$colors->blue_to    = $blue_to;
 
 					foreach ( $terms as $term ) {
-						$term->color = $this->calc_color( $min_count, $max_count, $colors, $term->count );
+						$term->color = $this->calcColor( $min_count, $max_count, $colors, $term->count );
 					}
 				}
 		}
@@ -303,14 +308,14 @@ class UTCW_Data {
 	 * @return string
 	 * @since 2.0
 	 */
-	private function calc_color( $min_count, $max_count, stdClass $colors, $count ) {
-		$red_step   = $this->calc_step( $min_count, $max_count, $colors->red_from, $colors->red_to );
-		$green_step = $this->calc_step( $min_count, $max_count, $colors->green_from, $colors->green_to );
-		$blue_step  = $this->calc_step( $min_count, $max_count, $colors->blue_from, $colors->blue_to );
+	private function calcColor( $min_count, $max_count, stdClass $colors, $count ) {
+		$red_step   = $this->calcStep( $min_count, $max_count, $colors->red_from, $colors->red_to );
+		$green_step = $this->calcStep( $min_count, $max_count, $colors->green_from, $colors->green_to );
+		$blue_step  = $this->calcStep( $min_count, $max_count, $colors->blue_from, $colors->blue_to );
 
-		$red   = $this->calc_size( $colors->red_from, $count, $min_count, $red_step );
-		$green = $this->calc_size( $colors->green_from, $count, $min_count, $green_step );
-		$blue  = $this->calc_size( $colors->blue_from, $count, $min_count, $blue_step );
+		$red   = $this->calcSize( $colors->red_from, $count, $min_count, $red_step );
+		$green = $this->calcSize( $colors->green_from, $count, $min_count, $green_step );
+		$blue  = $this->calcSize( $colors->blue_from, $count, $min_count, $blue_step );
 
 		$color = sprintf( UTCW_HEX_COLOR_FORMAT, $red, $green, $blue );
 
@@ -328,7 +333,7 @@ class UTCW_Data {
 	 * @return int
 	 * @since 2.0
 	 */
-	private function calc_size( $size_from, $count, $min_count, $font_step ) {
+	private function calcSize( $size_from, $count, $min_count, $font_step ) {
 		return $size_from + ( ( $count - $min_count ) * $font_step );
 	}
 
@@ -343,7 +348,7 @@ class UTCW_Data {
 	 * @return int
 	 * @since 2.0
 	 */
-	private function calc_step( $min, $max, $from, $to ) {
+	private function calcStep( $min, $max, $from, $to ) {
 		if ( $min === $max ) {
 			return 0;
 		}
@@ -358,7 +363,7 @@ class UTCW_Data {
 	/**
 	 * Cleans up sensitive data before being used in debug output
 	 */
-	public function cleanup_for_debug() {
+	public function cleanupForDebug() {
 		unset( $this->db );
 	}
 }

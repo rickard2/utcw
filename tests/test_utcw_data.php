@@ -1,4 +1,8 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
+use Rickard\UTCW\Config;
+use Rickard\UTCW\Data;
+
+if ( ! defined( 'ABSPATH' ) ) die();
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -64,7 +68,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$utcw = $this->mockFactory->getUTCWMock();
 
 		$utcw->expects( $this->any() )
-			->method( 'check_term_taxonomy' )
+			->method( 'checkTermTaxonomy' )
 			->will( $this->returnValue( false ) );
 
 		$instance = array(
@@ -79,9 +83,9 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 			->will( $this->returnValue( array() ) )
 			->with( new PHPUnit_Framework_Constraint_Not( $this->stringContains( 't.term_id IN (' ) ) );
 
-		$config = new UTCW_Config( $instance, $utcw );
-		$data   = new UTCW_Data( $config, $utcw, $db );
-		$data->get_terms();
+		$config = new Config( $instance, $utcw );
+		$data   = new Data( $config, $utcw, $db );
+		$data->getTerms();
 	}
 
 	function test_days_old() {
@@ -438,11 +442,11 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 		$utcw = $authenticated ? $this->mockFactory->getUTCWAuthenticated() : $this->mockFactory->getUTCWNotAuthenticated();
 
 		$utcw->expects( $this->any() )
-			->method( 'check_term_taxonomy' )
+			->method( 'checkTermTaxonomy' )
 			->will( $this->returnValue( true ) )
 			->with( $this->anything(), $this->contains( 'post_tag' ) );
 
-		$config = new UTCW_Config( $instance, $utcw );
+		$config = new Config( $instance, $utcw );
 		$db     = $this->mockFactory->getWPDBMock();
 
 		$db->expects( $this->once() )
@@ -450,8 +454,8 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 			->will( $this->returnValue( array() ) )
 			->with( $this->stringContains( $string ) );
 
-		$data = new UTCW_Data( $config, $utcw, $db );
-		$data->get_terms();
+		$data = new Data( $config, $utcw, $db );
+		$data->getTerms();
 	}
 
 	function terms() {

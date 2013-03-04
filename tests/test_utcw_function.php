@@ -1,4 +1,7 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
+use Rickard\UTCW\Plugin;
+
+if ( ! defined( 'ABSPATH' ) ) die();
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -20,8 +23,8 @@ class UTCW_Test_Function extends WP_UnitTestCase {
 	}
 
 	function test_function_and_shortcode_is_equal() {
-		$utcw = UTCW_Plugin::get_instance();
-		$this->expectOutputString( $utcw->utcw_shortcode( array() ) );
+		$utcw = Plugin::getInstance();
+		$this->expectOutputString( $utcw->shortcode( array() ) );
 		do_utcw( array() );
 	}
 

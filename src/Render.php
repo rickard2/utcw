@@ -1,4 +1,7 @@
 <?php
+
+namespace Rickard\UTCW;
+
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -8,7 +11,6 @@
  * @subpackage main
  * @since      2.0
  */
-if ( ! defined( 'ABSPATH' ) ) die();
 
 /**
  * Class for rendering the cloud
@@ -17,12 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) die();
  * @package    utcw
  * @subpackage main
  */
-class UTCW_Render {
+class Render {
 
 	/**
 	 * Reference to the Data class which contains the data to be rendered
 	 *
-	 * @var UTCW_Data
+	 * @var Data
 	 * @since 2.0
 	 */
 	private $data;
@@ -30,7 +32,7 @@ class UTCW_Render {
 	/**
 	 * Reference to the current configuration
 	 *
-	 * @var UTCW_Config
+	 * @var Config
 	 * @since 2.0
 	 */
 	private $config;
@@ -38,7 +40,7 @@ class UTCW_Render {
 	/**
 	 * Reference to the main plugin instance
 	 *
-	 * @var UTCW_Plugin
+	 * @var Plugin
 	 * @since 2.0
 	 */
 	private $plugin;
@@ -62,19 +64,19 @@ class UTCW_Render {
 	/**
 	 * Creates a new instance of the renderer
 	 *
-	 * @param UTCW_Config $config Configuration
-	 * @param UTCW_Data   $data   Term data
-	 * @param UTCW_Plugin $plugin Main plugin instance
+	 * @param Config $config Configuration
+	 * @param Data   $data   Term data
+	 * @param Plugin $plugin Main plugin instance
 	 *
 	 * @since 2.0
 	 */
-	public function __construct( UTCW_Config $config, UTCW_Data $data, UTCW_Plugin $plugin ) {
+	public function __construct( Config $config, Data $data, Plugin $plugin ) {
 		$this->data   = $data;
 		$this->config = $config;
 		$this->plugin = $plugin;
 		$this->id     = base_convert( crc32( serialize( $config ) ), 10, 27 );
 
-		$this->build_css();
+		$this->buildCSS();
 	}
 
 	/**
@@ -83,7 +85,7 @@ class UTCW_Render {
 	 * @since 2.0
 	 */
 	public function render() {
-		echo $this->get_cloud();
+		echo $this->getCloud();
 	}
 
 	/**
@@ -92,7 +94,7 @@ class UTCW_Render {
 	 * @return string
 	 * @since 2.0
 	 */
-	public function get_cloud() {
+	public function getCloud() {
 		$markup = array();
 
 		if ( $this->css ) {
@@ -108,7 +110,7 @@ class UTCW_Render {
 				$markup[ ] = $this->config->before_title;
 			}
 
-			$markup[ ] = $this->plugin->apply_filters( 'widget_title', $this->config->title );
+			$markup[ ] = $this->plugin->applyFilters( 'widget_title', $this->config->title );
 
 			if ( $this->config->after_title ) {
 				$markup[ ] = $this->config->after_title;
@@ -119,7 +121,7 @@ class UTCW_Render {
 
 		$terms = array();
 
-		foreach ( $this->data->get_terms() as $term ) {
+		foreach ( $this->data->getTerms() as $term ) {
 			$color = $term->color ? ';color:' . $term->color : '';
 			$title = $this->config->show_title ? sprintf( ' title="' . _n( '%s topic', '%s topics', $term->count ) . '"', $term->count ) : '';
 
@@ -142,7 +144,7 @@ class UTCW_Render {
 
 		if ( $this->config->debug ) {
 			$debug_object = clone $this->data;
-			$debug_object->cleanup_for_debug();
+			$debug_object->cleanupForDebug();
 			$markup[ ] = sprintf( "<!-- Ultimate Tag Cloud Debug information:\n%s -->", print_r( $debug_object, true ) );
 		}
 
@@ -158,99 +160,99 @@ class UTCW_Render {
 	 *
 	 * @since 2.0
 	 */
-	private function build_css() {
+	private function buildCSS() {
 		$main_styles = array( 'word-wrap:break-word' );
 
-		if ( ! $this->has_default_value( 'text_transform' ) ) {
+		if ( ! $this->hasDefaultValue( 'text_transform' ) ) {
 			$main_styles[ ] = sprintf( 'text-transform:%s', $this->config->text_transform );
 		}
 
-		if ( ! $this->has_default_value( 'letter_spacing' ) ) {
+		if ( ! $this->hasDefaultValue( 'letter_spacing' ) ) {
 			$main_styles[ ] = sprintf( 'letter-spacing:%s', $this->config->letter_spacing );
 		}
 
-		if ( ! $this->has_default_value( 'word_spacing' ) ) {
+		if ( ! $this->hasDefaultValue( 'word_spacing' ) ) {
 			$main_styles[ ] = sprintf( 'word-spacing:%s', $this->config->word_spacing );
 		}
 
 		$link_styles = array();
 
-		if ( ! $this->has_default_value( 'link_underline' ) ) {
+		if ( ! $this->hasDefaultValue( 'link_underline' ) ) {
 			$link_styles[ ] = sprintf( 'text-decoration:%s', $this->config->link_underline === 'yes' ? 'underline' : 'none' );
 		}
 
-		if ( ! $this->has_default_value( 'link_bold' ) ) {
+		if ( ! $this->hasDefaultValue( 'link_bold' ) ) {
 			$link_styles[ ] = sprintf( 'font-weight:%s', $this->config->link_bold === 'yes' ? 'bold' : 'normal' );
 		}
 
-		if ( ! $this->has_default_value( 'link_italic' ) ) {
+		if ( ! $this->hasDefaultValue( 'link_italic' ) ) {
 			$link_styles[ ] = sprintf( 'font-style:%s', $this->config->link_italic === 'yes' ? 'italic' : 'normal' );
 		}
 
-		if ( ! $this->has_default_value( 'link_bg_color' ) ) {
+		if ( ! $this->hasDefaultValue( 'link_bg_color' ) ) {
 			$link_styles[ ] = sprintf( 'background-color:%s', $this->config->link_bg_color );
 		}
 
-		if ( ! $this->has_default_value( 'link_border_style' ) && ! $this->has_default_value( 'link_border_color' ) && ! $this->has_default_value( 'link_border_width' ) ) {
+		if ( ! $this->hasDefaultValue( 'link_border_style' ) && ! $this->hasDefaultValue( 'link_border_color' ) && ! $this->hasDefaultValue( 'link_border_width' ) ) {
 			$link_styles[ ] = sprintf( 'border:%s %s %s', $this->config->link_border_style, $this->config->link_border_width, $this->config->link_border_color );
 		} else {
-			if ( ! $this->has_default_value( 'link_border_style' ) ) {
+			if ( ! $this->hasDefaultValue( 'link_border_style' ) ) {
 				$link_styles[ ] = sprintf( 'border-style:%s', $this->config->link_border_style );
 			}
 
-			if ( ! $this->has_default_value( 'link_border_color' ) ) {
+			if ( ! $this->hasDefaultValue( 'link_border_color' ) ) {
 				$link_styles[ ] = sprintf( 'border-color:%s', $this->config->link_border_color );
 			}
 
-			if ( ! $this->has_default_value( 'link_border_width' ) ) {
+			if ( ! $this->hasDefaultValue( 'link_border_width' ) ) {
 				$link_styles[ ] = sprintf( 'border-width:%s', $this->config->link_border_width );
 			}
 		}
 
-		if ( ! $this->has_default_value( 'tag_spacing' ) ) {
+		if ( ! $this->hasDefaultValue( 'tag_spacing' ) ) {
 			$link_styles[ ] = sprintf( 'margin-right:%s', $this->config->tag_spacing );
 		}
 
-		if ( ! $this->has_default_value( 'line_height' ) ) {
+		if ( ! $this->hasDefaultValue( 'line_height' ) ) {
 			$link_styles[ ] = sprintf( 'line-height:%s', $this->config->line_height );
 		}
 
 		$hover_styles = array();
 
-		if ( ! $this->has_default_value( 'hover_underline' ) ) {
+		if ( ! $this->hasDefaultValue( 'hover_underline' ) ) {
 			$hover_styles[ ] = sprintf( 'text-decoration:%s', $this->config->hover_underline === 'yes' ? 'underline' : 'none' );
 		}
 
-		if ( ! $this->has_default_value( 'hover_bold' ) ) {
+		if ( ! $this->hasDefaultValue( 'hover_bold' ) ) {
 			$hover_styles[ ] = sprintf( 'font-weight:%s', $this->config->hover_bold === 'yes' ? 'bold' : 'normal' );
 		}
 
-		if ( ! $this->has_default_value( 'hover_italic' ) ) {
+		if ( ! $this->hasDefaultValue( 'hover_italic' ) ) {
 			$hover_styles[ ] = sprintf( 'font-style:%s', $this->config->hover_italic === 'yes' ? 'italic' : 'normal' );
 		}
 
-		if ( ! $this->has_default_value( 'hover_bg_color' ) ) {
+		if ( ! $this->hasDefaultValue( 'hover_bg_color' ) ) {
 			$hover_styles[ ] = sprintf( 'background-color:%s', $this->config->hover_bg_color );
 		}
 
 
-		if ( ! $this->has_default_value( 'hover_border_style' ) && ! $this->has_default_value( 'hover_border_color' ) && ! $this->has_default_value( 'hover_border_width' ) ) {
+		if ( ! $this->hasDefaultValue( 'hover_border_style' ) && ! $this->hasDefaultValue( 'hover_border_color' ) && ! $this->hasDefaultValue( 'hover_border_width' ) ) {
 			$hover_styles[ ] = sprintf( 'border:%s %s %s', $this->config->hover_border_style, $this->config->hover_border_width, $this->config->hover_border_color );
 		} else {
-			if ( ! $this->has_default_value( 'hover_border_style' ) ) {
+			if ( ! $this->hasDefaultValue( 'hover_border_style' ) ) {
 				$hover_styles[ ] = sprintf( 'border-style:%s', $this->config->hover_border_style );
 			}
 
-			if ( ! $this->has_default_value( 'hover_border_color' ) ) {
+			if ( ! $this->hasDefaultValue( 'hover_border_color' ) ) {
 				$hover_styles[ ] = sprintf( 'border-color:%s', $this->config->hover_border_color );
 			}
 
-			if ( ! $this->has_default_value( 'hover_border_width' ) ) {
+			if ( ! $this->hasDefaultValue( 'hover_border_width' ) ) {
 				$hover_styles[ ] = sprintf( 'border-width:%s', $this->config->hover_border_width );
 			}
 		}
 
-		if ( ! $this->has_default_value( 'hover_color' ) ) {
+		if ( ! $this->hasDefaultValue( 'hover_color' ) ) {
 			$hover_styles[ ] = sprintf( 'color:%s', $this->config->hover_color );
 		}
 
@@ -281,8 +283,8 @@ class UTCW_Render {
 	 * @return bool
 	 * @since 2.0
 	 */
-	private function has_default_value( $option ) {
-		$defaults = $this->config->get_defaults();
+	private function hasDefaultValue( $option ) {
+		$defaults = $this->config->getDefaults();
 		return $this->config->$option === $defaults[ $option ];
 	}
 }

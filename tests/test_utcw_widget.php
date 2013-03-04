@@ -1,4 +1,8 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
+
+use Rickard\UTCW\Widget;
+
+if ( ! defined( 'ABSPATH' ) ) die();
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -16,7 +20,7 @@ class test_utcw_widget extends PHPUnit_Framework_TestCase {
 	private $utcw;
 
 	function setUp() {
-		$this->utcw = $this->getMock( 'UTCW_Plugin', array(), array(), '', false );
+		$this->utcw = $this->getMock( '\Rickard\UTCW\Plugin', array(), array(), '', false );
 	}
 
 	function test_save_config() {
@@ -27,10 +31,10 @@ class test_utcw_widget extends PHPUnit_Framework_TestCase {
 		);
 
 		$this->utcw->expects( $this->once() )
-			->method( 'save_configuration' )
+			->method( 'saveConfiguration' )
 			->with( '__test' );
 
-		$widget = new UTCW( $this->utcw );
+		$widget = new Widget( $this->utcw );
 		$widget->update( $instance, array() );
 	}
 
@@ -42,30 +46,30 @@ class test_utcw_widget extends PHPUnit_Framework_TestCase {
 		);
 
 		$this->utcw->expects( $this->once() )
-			->method( 'load_configuration' )
+			->method( 'loadConfiguration' )
 			->with( '__test' );
 
-		$widget = new UTCW( $this->utcw );
+		$widget = new Widget( $this->utcw );
 		$widget->update( $instance, array() );
 	}
 
 	function test_form_renders_html() {
 		$this->expectOutputRegex( UTCW_TEST_HTML_REGEX );
 
-		$widget = new UTCW();
+		$widget = new Widget();
 		$widget->form( array() );
 	}
 
 	function test_widget_renders_html() {
 		$this->expectOutputRegex( UTCW_TEST_HTML_REGEX );
 
-		$widget = new UTCW();
+		$widget = new Widget();
 		$widget->widget( array(), array() );
 	}
 
 	function test_widget_converts_empty_checkbox_values_to_false() {
 
-		$widget = new UTCW();
+		$widget = new Widget();
 
 		$instance = $widget->update( array(), array() );
 

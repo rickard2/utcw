@@ -1,4 +1,9 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
+
+use Rickard\UTCW\Widget;
+use Rickard\UTCW\Plugin;
+
+if ( ! defined( 'ABSPATH' ) ) die();
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -11,35 +16,35 @@
 class UTCW_Test_Class extends WP_UnitTestCase {
 
 	function test_class_exists() {
-		$this->assertTrue( class_exists( 'UTCW' ) );
+		$this->assertTrue( class_exists( '\Rickard\UTCW\Widget' ) );
 	}
 
 	function test_class_inherits_wp_widget() {
-		$this->assertTrue( new UTCW() instanceof WP_Widget );
+		$this->assertTrue( new Widget() instanceof WP_Widget );
 	}
 
 	function test_config_class_exists() {
-		$this->assertTrue( class_exists( 'UTCW_Config' ) );
+		$this->assertTrue( class_exists( '\Rickard\UTCW\Config' ) );
 	}
 
 	function test_class_plugin() {
-		$this->assertTrue( class_exists( 'UTCW_Plugin' ) );
+		$this->assertTrue( class_exists( '\Rickard\UTCW\Plugin' ) );
 	}
 
 	function test_plugin_singleton() {
-		$utcw = UTCW_Plugin::get_instance();
-		$this->assertTrue( $utcw instanceof UTCW_Plugin );
+		$utcw = Plugin::getInstance();
+		$this->assertTrue( $utcw instanceof Plugin );
 	}
 
 	function test_class_data() {
-		$this->assertTrue( class_exists( 'UTCW_Data' ) );
+		$this->assertTrue( class_exists( '\Rickard\UTCW\Data' ) );
 	}
 
 	function test_class_render() {
-		$this->assertTrue( class_exists( 'UTCW_Render' ) );
+		$this->assertTrue( class_exists( '\Rickard\UTCW\Render' ) );
 	}
 
 	function test_class_term() {
-		$this->assertTrue( class_exists( 'UTCW_Term' ) );
+		$this->assertTrue( class_exists( '\Rickard\UTCW\Term' ) );
 	}
 }

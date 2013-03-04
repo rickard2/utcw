@@ -31,17 +31,17 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 
 	function test_title_is_outside_of_wrapper() {
 		$render = $this->getRenderer( array( 'title' => 'Hello World' ) );
-		$this->assertRegExp( '/Hello World<div class="widget_tag_cloud/', $render->get_cloud() );
+		$this->assertRegExp( '/Hello World<div class="widget_tag_cloud/', $render->getCloud() );
 	}
 
 	function test_title_is_inside_widget() {
 		$render = $this->getRenderer( array( 'before_widget' => 'BEFORE_WIDGET', 'title' => 'Hello World' ) );
-		$this->assertRegExp( '/BEFORE_WIDGETHello World/', $render->get_cloud() );
+		$this->assertRegExp( '/BEFORE_WIDGETHello World/', $render->getCloud() );
 	}
 
 	function test_output_contains_wrapper() {
 		$render = $this->getRenderer();
-		$this->assertRegExp( '/<div class="widget_tag_cloud utcw-[0-9a-z]+">.*<\/div>$/i', $render->get_cloud() );
+		$this->assertRegExp( '/<div class="widget_tag_cloud utcw-[0-9a-z]+">.*<\/div>$/i', $render->getCloud() );
 	}
 
 	function test_wrapper_is_inside_widget() {
@@ -52,7 +52,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 
 	function test_return_value_and_output_is_equal() {
 		$render = $this->getRenderer();
-		$this->expectOutputString( $render->get_cloud() );
+		$this->expectOutputString( $render->getCloud() );
 		$render->render();
 	}
 
@@ -299,7 +299,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 		);
 
 		$renderer = $this->getRenderer( $instance, $terms );
-		$this->assertEquals( 9, preg_match_all( '/PREFIX<a[^>]+>Test term [0-9]+<\/a>SUFFIXSEPARATOR/', $renderer->get_cloud(), $dummy ) );
+		$this->assertEquals( 9, preg_match_all( '/PREFIX<a[^>]+>Test term [0-9]+<\/a>SUFFIXSEPARATOR/', $renderer->getCloud(), $dummy ) );
 	}
 
 	/**
@@ -310,7 +310,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	function test_show_title_shows_title( $terms ) {
 		$instance = array( 'show_title' => true );
 		$renderer = $this->getRenderer( $instance, $terms );
-		$this->assertRegExp( '/title="[0-9]+ topics?"/', $renderer->get_cloud() );
+		$this->assertRegExp( '/title="[0-9]+ topics?"/', $renderer->getCloud() );
 	}
 
 	/**
@@ -321,7 +321,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	function test_hide_title_hides_title( $terms ) {
 		$instance = array( 'show_title' => false );
 		$renderer = $this->getRenderer( $instance, $terms );
-		$this->assertNotRegExp( '/title="[0-9]+ topics?"/', $renderer->get_cloud() );
+		$this->assertNotRegExp( '/title="[0-9]+ topics?"/', $renderer->getCloud() );
 	}
 
 	/**
@@ -331,7 +331,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	 */
 	function test_output_links_contains_class( $terms ) {
 		$renderer = $this->getRenderer( array(), $terms );
-		$this->assertRegexp( '/class="tag-link-[0-9]+"/', $renderer->get_cloud() );
+		$this->assertRegexp( '/class="tag-link-[0-9]+"/', $renderer->getCloud() );
 	}
 
 	/**
@@ -341,7 +341,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	 */
 	function test_output_contains_color( $terms ) {
 		$renderer = $this->getRenderer( array( 'color' => 'random' ), $terms );
-		$this->assertRegexp( '/;color:#[0-9a-f]{6}"/', $renderer->get_cloud() );
+		$this->assertRegexp( '/;color:#[0-9a-f]{6}"/', $renderer->getCloud() );
 	}
 
 	/**
@@ -351,7 +351,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	 */
 	function test_output_contains_size( $terms ) {
 		$renderer = $this->getRenderer( array(), $terms );
-		$this->assertRegExp( '/style="font-size:[0-9.]+px"/', $renderer->get_cloud() );
+		$this->assertRegExp( '/style="font-size:[0-9.]+px"/', $renderer->getCloud() );
 	}
 
 	/**
@@ -361,7 +361,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	 */
 	function test_output_contains_size_in_em( $terms ) {
 		$renderer = $this->getRenderer( array( 'size_from' => '1em', 'size_to' => '2em' ), $terms );
-		$this->assertRegExp( '/style="font-size:[0-9.]+em"/', $renderer->get_cloud() );
+		$this->assertRegExp( '/style="font-size:[0-9.]+em"/', $renderer->getCloud() );
 	}
 
 	/**
@@ -371,7 +371,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	 */
 	function test_output_contains_size_in_percentage( $terms ) {
 		$renderer = $this->getRenderer( array( 'size_from' => '25%', 'size_to' => '200%' ), $terms );
-		$this->assertRegExp( '/style="font-size:[0-9.]+%"/', $renderer->get_cloud() );
+		$this->assertRegExp( '/style="font-size:[0-9.]+%"/', $renderer->getCloud() );
 	}
 
 	function test_debug() {
@@ -379,14 +379,14 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	}
 
 	function test_applies_filter_to_widget_title() {
-		$utcw = $this->mockFactory->getUTCWMock( array( 'apply_filters' ) );
+		$utcw = $this->mockFactory->getUTCWMock( array( 'applyFilters' ) );
 		$utcw->expects( $this->once() )
-			->method( 'apply_filters' )
+			->method( 'applyFilters' )
 			->with( 'widget_title', 'Tag Cloud' )
 			->will( $this->returnValue( 'Tag Cloud' ) );
 
 		$renderer = $this->getRenderer( array(), array(), $utcw );
-		$renderer->get_cloud();
+		$renderer->getCloud();
 	}
 
 	/**
@@ -396,7 +396,7 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 	 */
 	function test_output_contains_href( $terms ) {
 		$renderer = $this->getRenderer( array(), $terms );
-		$this->assertRegexp( '/href="http:\/\/example.com\/"/', $renderer->get_cloud() );
+		$this->assertRegexp( '/href="http:\/\/example.com\/"/', $renderer->getCloud() );
 	}
 
 	function test_debug_output_omits_wpdb() {
@@ -410,16 +410,16 @@ class UTCW_Test_Render extends WP_UnitTestCase {
 
 	function helper_substr_count( $config, $needle, $terms, $expected ) {
 		$renderer = $this->getRenderer( $config, $terms );
-		$this->assertEquals( $expected, substr_count( $renderer->get_cloud(), $needle ) );
+		$this->assertEquals( $expected, substr_count( $renderer->getCloud(), $needle ) );
 	}
 
 	function helper_contains( $config, $needle ) {
 		$render = $this->getRenderer( $config );
-		$this->assertContains( $needle, $render->get_cloud() );
+		$this->assertContains( $needle, $render->getCloud() );
 	}
 
 	function helper_not_contains( $config, $needle ) {
 		$render = $this->getRenderer( $config );
-		$this->assertNotContains( $needle, $render->get_cloud() );
+		$this->assertNotContains( $needle, $render->getCloud() );
 	}
 }

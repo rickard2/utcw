@@ -1,4 +1,9 @@
 <?php
+
+namespace Rickard\UTCW;
+
+use WP_Widget;
+
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -8,7 +13,6 @@
  * @subpackage main
  * @since      2.0
  */
-if ( ! defined( 'ABSPATH' ) ) die();
 
 /**
  * Widget class for WordPress integration
@@ -17,12 +21,12 @@ if ( ! defined( 'ABSPATH' ) ) die();
  * @package    utcw
  * @subpackage main
  */
-class UTCW extends WP_Widget {
+class Widget extends WP_Widget {
 
 	/**
 	 * Reference to the main plugin instance
 	 *
-	 * @var UTCW_Plugin
+	 * @var Plugin
 	 * @since 2.0
 	 */
 	private $plugin;
@@ -30,16 +34,16 @@ class UTCW extends WP_Widget {
 	/**
 	 * Constructor
 	 *
-	 * @param UTCW_Plugin $plugin  Optional. Plugin instance for dependency injection
+	 * @param Plugin $plugin  Optional. Plugin instance for dependency injection
 	 *
-	 * @return UTCW
+	 * @return Widget
 	 * @since 1.0
 	 */
-	function __construct( UTCW_Plugin $plugin = null ) {
+	function __construct( Plugin $plugin = null ) {
 		$options = array( 'description' => __( 'Highly configurable tag cloud', 'utcw' ) );
 		parent::__construct( false, __( 'Ultimate Tag Cloud', 'utcw' ), $options );
 
-		$this->plugin = $plugin ? $plugin : UTCW_Plugin::get_instance();
+		$this->plugin = $plugin ? $plugin : Plugin::getInstance();
 	}
 
 	/**
@@ -55,7 +59,7 @@ class UTCW extends WP_Widget {
 
 		// Overwrite the form values with the saved configuration
 		if ( isset( $new_instance[ 'load_config' ] ) && isset( $new_instance[ 'load_config_name' ] ) && $new_instance[ 'load_config_name' ] ) {
-			$loaded_configuration = $this->plugin->load_configuration( $new_instance[ 'load_config_name' ] );
+			$loaded_configuration = $this->plugin->loadConfiguration( $new_instance[ 'load_config_name' ] );
 
 			if ( $loaded_configuration ) {
 				$new_instance = $loaded_configuration;
@@ -71,19 +75,19 @@ class UTCW extends WP_Widget {
 			}
 		}
 
-		$config = new UTCW_Config( $new_instance, $this->plugin );
+		$config = new Config( $new_instance, $this->plugin );
 
 		if ( isset( $new_instance[ 'save_config' ] ) && isset( $new_instance[ 'save_config_name' ] ) && $new_instance[ 'save_config_name' ] ) {
-			$this->plugin->save_configuration( $new_instance[ 'save_config_name' ], $config->get_instance() );
+			$this->plugin->saveConfiguration( $new_instance[ 'save_config_name' ], $config->getInstance() );
 		}
 
 		if ( isset( $new_instance[ 'remove_config' ] ) && is_array( $new_instance[ 'remove_config' ] ) ) {
 			foreach ( $new_instance[ 'remove_config' ] as $configuration ) {
-				$this->plugin->remove_configuration( $configuration );
+				$this->plugin->removeConfiguration( $configuration );
 			}
 		}
 
-		return $config->get_instance();
+		return $config->getInstance();
 	}
 
 	/**
@@ -96,17 +100,17 @@ class UTCW extends WP_Widget {
 	 */
 	function form( array $instance ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$config = new UTCW_Config( $instance, $this->plugin );
+		$config = new Config( $instance, $this->plugin );
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$configurations = $this->plugin->get_configurations();
+		$configurations = $this->plugin->getConfigurations();
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$available_post_types = $this->plugin->get_allowed_post_types();
+		$available_post_types = $this->plugin->getAllowedPostTypes();
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$available_taxonomies = $this->plugin->get_allowed_taxonomies_objects();
+		$available_taxonomies = $this->plugin->getAllowedTaxonomiesObjects();
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$users = $this->plugin->get_users();
+		$users = $this->plugin->getUsers();
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$terms = $this->plugin->get_terms();
+		$terms = $this->plugin->getTerms();
 
 		// Content of the widget settings form
 		require 'pages/settings.php';
@@ -124,9 +128,9 @@ class UTCW extends WP_Widget {
 
 		$input = array_merge( $instance, $args );
 
-		$config = new UTCW_Config( $input, $this->plugin );
-		$data   = new UTCW_Data( $config, $this->plugin, $wpdb );
-		$render = new UTCW_Render( $config, $data, $this->plugin );
+		$config = new Config( $input, $this->plugin );
+		$data   = new Data( $config, $this->plugin, $wpdb );
+		$render = new Render( $config, $data, $this->plugin );
 
 		$render->render();
 	}

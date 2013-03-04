@@ -1,4 +1,7 @@
 <?php
+
+namespace Rickard\UTCW;
+
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -8,7 +11,6 @@
  * @subpackage main
  * @since      2.0
  */
-if ( ! defined( 'ABSPATH' ) ) die();
 
 /**
  * Configuration class for the widget.
@@ -17,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
  * @package    utcw
  * @subpackage main
  */
-class UTCW_Config {
+class Config {
 
 	/**
 	 * Title text of the widget.
@@ -605,14 +607,14 @@ class UTCW_Config {
 	 * Loads a configuration instance array and parses the options
 	 *
 	 * @param array       $input   Array of key => value pairs of settings and values
-	 * @param UTCW_Plugin $plugin  Reference to the main plugin instance
+	 * @param Plugin $plugin  Reference to the main plugin instance
 	 *
 	 * @since 2.0
 	 */
-	public function __construct( array $input, UTCW_Plugin $plugin ) {
-		$this->allowed_post_types = $plugin->get_allowed_post_types();
-		$this->allowed_taxonomies = $plugin->get_allowed_taxonomies();
-		$this->authenticated      = $plugin->is_authenticated_user();
+	public function __construct( array $input, Plugin $plugin ) {
+		$this->allowed_post_types = $plugin->getAllowedPostTypes();
+		$this->allowed_taxonomies = $plugin->getAllowedTaxonomies();
+		$this->authenticated      = $plugin->isAuthenticatedUser();
 
 		foreach ( self::$options as $key => $default ) {
 			$this->$key = $default;
@@ -700,20 +702,20 @@ class UTCW_Config {
 							$input[ $key ] = explode( ',', $input[ $key ] );
 						}
 
-						$valid         = $this->is_array_numeric( $input[ $key ] );
+						$valid         = $this->isArrayNumeric( $input[ $key ] );
 						$input[ $key ] = array_map( 'intval', $input[ $key ] );
 						break;
 
 					case 'size_from':
-						$input[ 'size_from' ] = $this->parse_measurement( $input[ 'size_from' ] );
+						$input[ 'size_from' ] = $this->parseMeasurement( $input[ 'size_from' ] );
 						$size_to              = isset( $input[ 'size_to' ] ) ? $input[ 'size_to' ] : self::$options[ 'size_to' ];
-						$valid                = $input[ 'size_from' ] !== false && $this->equal_units( $input[ 'size_from' ], $size_to ) && floatval( $input[ 'size_from' ] ) <= floatval( $size_to );
+						$valid                = $input[ 'size_from' ] !== false && $this->equalUnits( $input[ 'size_from' ], $size_to ) && floatval( $input[ 'size_from' ] ) <= floatval( $size_to );
 						break;
 
 					case 'size_to':
-						$input[ 'size_to' ] = $this->parse_measurement( $input[ 'size_to' ] );
+						$input[ 'size_to' ] = $this->parseMeasurement( $input[ 'size_to' ] );
 						$size_from          = isset( $input[ 'size_from' ] ) ? $input[ 'size_from' ] : self::$options[ 'size_from' ];
-						$valid              = $input[ 'size_to' ] !== false && $this->equal_units( $size_from, $input[ 'size_to' ] ) && floatval( $input[ 'size_to' ] ) >= floatval( $size_from );
+						$valid              = $input[ 'size_to' ] !== false && $this->equalUnits( $size_from, $input[ 'size_to' ] ) && floatval( $input[ 'size_to' ] ) >= floatval( $size_from );
 						break;
 
 					case 'letter_spacing':
@@ -722,7 +724,7 @@ class UTCW_Config {
 					case 'line_height':
 					case 'link_border_width':
 					case 'hover_border_width':
-						$input[ $key ] = $this->parse_measurement( $input[ $key ] );
+						$input[ $key ] = $this->parseMeasurement( $input[ $key ] );
 						$valid         = $input[ $key ] !== false;
 						break;
 				}
@@ -765,7 +767,7 @@ class UTCW_Config {
 	 * @return bool
 	 * @since 2.0
 	 */
-	private function is_array_numeric( array $array ) {
+	private function isArrayNumeric( array $array ) {
 		foreach ( $array as $item ) {
 			if ( ! is_numeric( $item ) ) {
 				return false;
@@ -783,7 +785,7 @@ class UTCW_Config {
 	 * @return bool|string   False on failure
 	 * @since 2.1
 	 */
-	private function parse_measurement( $input ) {
+	private function parseMeasurement( $input ) {
 		if ( ! preg_match( '/^' . UTCW_DECIMAL_REGEX . '(em|px|%)?$/i', $input ) ) {
 			return false;
 		}
@@ -805,7 +807,7 @@ class UTCW_Config {
 	 * @return bool
 	 * @since 2.1
 	 */
-	private function equal_units( $measurement1, $measurement2 ) {
+	private function equalUnits( $measurement1, $measurement2 ) {
 		$unit1 = preg_replace( '/' . UTCW_DECIMAL_REGEX . '/', '', $measurement1 );
 		$unit2 = preg_replace( '/' . UTCW_DECIMAL_REGEX . '/', '', $measurement2 );
 
@@ -818,7 +820,7 @@ class UTCW_Config {
 	 * @return array
 	 * @since  2.0
 	 */
-	public function get_instance() {
+	public function getInstance() {
 		$instance = array();
 
 		foreach ( array_keys( self::$options ) as $key ) {
@@ -835,7 +837,7 @@ class UTCW_Config {
 	 * @return array
 	 * @since 2.0
 	 */
-	public static function get_defaults() {
+	public static function getDefaults() {
 		return self::$options;
 	}
 }

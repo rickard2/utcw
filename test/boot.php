@@ -1,6 +1,10 @@
 <?php
 
-require 'utcw.php';
+use Rickard\UTCW\Render;
+use Rickard\UTCW\Data;
+use Rickard\UTCW\Config;
+
+require 'dist/ultimate-tag-cloud-widget.php';
 
 class testWPDB extends wpdb {
 
@@ -33,13 +37,13 @@ class MockFactory {
 		$this->utcw_not_authenticated = $this->getUTCWMock();
 
 		$this->utcw_not_authenticated->expects( $this->testCase->any() )
-			->method( 'is_authenticated_user' )
+			->method( 'isAuthenticatedUser' )
 			->will( $this->testCase->returnValue( false ) );
 
 		$this->utcw_authenticated = $this->getUTCWMock();
 
 		$this->utcw_authenticated->expects( $this->testCase->any() )
-			->method( 'is_authenticated_user' )
+			->method( 'isAuthenticatedUser' )
 			->will( $this->testCase->returnValue( true ) );
 	}
 
@@ -55,17 +59,17 @@ class MockFactory {
 
 		$methods = array_merge(
 			array(
-				 'get_allowed_taxonomies',
-				 'get_allowed_post_types',
-				 'is_authenticated_user',
-				 'get_term_link',
-				 'check_term_taxonomy',
+				 'getAllowedTaxonomies',
+				 'getAllowedPostTypes',
+				 'isAuthenticatedUser',
+				 'getTermLink',
+				 'checkTermTaxonomy',
 			),
 			$additional_methods
 		);
 
 		$mock = $this->testCase->getMock(
-			'UTCW_Plugin',
+			'\Rickard\UTCW\Plugin',
 			$methods,
 			array(),
 			'',
@@ -73,15 +77,15 @@ class MockFactory {
 		);
 
 		$mock->expects( $this->testCase->any() )
-			->method( 'get_allowed_taxonomies' )
+			->method( 'getAllowedTaxonomies' )
 			->will( $this->testCase->returnValue( array( 'post_tag', 'category' ) ) );
 
 		$mock->expects( $this->testCase->any() )
-			->method( 'get_allowed_post_types' )
+			->method( 'getAllowedPostTypes' )
 			->will( $this->testCase->returnValue( array( 'post', 'page' ) ) );
 
 		$mock->expects( $this->testCase->any() )
-			->method( 'get_term_link' )
+			->method( 'getTermLink' )
 			->will( $this->testCase->returnValue( 'http://example.com/' ) );
 
 		return $mock;
@@ -130,7 +134,7 @@ class DataProvider {
 
 	function get_terms( array $instance, array $query_terms ) {
 		$data = $this->get_data_object( $instance, $query_terms );
-		return $data->get_terms();
+		return $data->getTerms();
 	}
 
 	function get_renderer( array $instance, array $query_terms, $utcw = null ) {
@@ -139,11 +143,11 @@ class DataProvider {
 			$utcw = $this->mockFactory->getUTCWNotAuthenticated();
 		}
 
-		return new UTCW_Render( $this->get_config( $instance ), $this->get_data_object( $instance, $query_terms ), $utcw );
+		return new Render( $this->get_config( $instance ), $this->get_data_object( $instance, $query_terms ), $utcw );
 	}
 
 	function get_config( array $instance ) {
-		return new UTCW_Config( $instance, $this->mockFactory->getUTCWAuthenticated() );
+		return new Config( $instance, $this->mockFactory->getUTCWAuthenticated() );
 	}
 
 	function get_data_object( array $instance, array $query_terms ) {
@@ -155,7 +159,7 @@ class DataProvider {
 			->method( 'get_results' )
 			->will( $this->testCase->returnValue( $query_terms ) );
 
-		return new UTCW_Data( $config, $this->mockFactory->getUTCWMock(), $db );
+		return new Data( $config, $this->mockFactory->getUTCWMock(), $db );
 	}
 }
 

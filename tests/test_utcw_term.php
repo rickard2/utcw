@@ -1,4 +1,8 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die();
+<?php
+use Rickard\UTCW\Plugin;
+use Rickard\UTCW\Term;
+
+if ( ! defined( 'ABSPATH' ) ) die();
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -85,18 +89,18 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input->term_id  = 10;
 		$input->taxonomy = 'post_tag';
 
-		/** @var UTCW_Plugin $utcw  */
+		/** @var Plugin $utcw  */
 		$utcw = $this->mockFactory->getUTCWMock();
-
-		$tag = new UTCW_Term( $input, $utcw );
-		$this->assertEquals( $utcw->get_term_link( $input->term_id, $input->taxonomy ), $tag->link );
+        
+		$tag = new Term( $input, $utcw );
+		$this->assertEquals( $utcw->getTermLink( $input->term_id, $input->taxonomy ), $tag->link );
 	}
 
 	function test_link_fail()
 	{
 		$input = new stdClass;
 
-		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertNull( $tag->link );
 	}
 
@@ -105,7 +109,7 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input          = new stdClass;
 		$input->$option = $fail_string;
 
-		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertNull( $tag->$option );
 	}
 
@@ -114,7 +118,7 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input          = new stdClass;
 		$input->$option = $ok_string;
 
-		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertEquals( $tag->$option, $input->$option );
 	}
 
@@ -123,7 +127,7 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input          = new stdClass;
 		$input->$option = $ok_int;
 
-		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertEquals( $tag->$option, $input->$option );
 	}
 
@@ -132,7 +136,7 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input          = new stdClass;
 		$input->$option = $fail_int;
 
-		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertNull( $tag->$option );
 	}
 }

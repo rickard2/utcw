@@ -4,7 +4,7 @@ use Rickard\UTCW\Plugin;
 /*
 Plugin Name: Ultimate tag cloud widget
 Plugin URI: https://www.0x539.se/wordpress/ultimate-tag-cloud-widget/
-Description: This plugin aims to be the most configurable tag cloud widget out there, able to suit all your weird tag cloud needs.
+Description: This plugin aims to be the most configurable tag cloud widget out there.
 Version: 2.1 beta1
 Author: Rickard Andersson
 Author URI: https://www.0x539.se
@@ -17,7 +17,7 @@ License: GPLv2
  * @var string
  * @since 2.0
  */
-define( 'UTCW_VERSION', '2.1' );
+define('UTCW_VERSION', '2.1');
 
 /**
  * If development mode is currently enabled
@@ -25,7 +25,7 @@ define( 'UTCW_VERSION', '2.1' );
  * @var bool
  * @since 2.0
  */
-define( 'UTCW_DEV', false );
+define('UTCW_DEV', false);
 
 /**
  * Regular expression for matching hexadecimal colors
@@ -33,7 +33,7 @@ define( 'UTCW_DEV', false );
  * @var string
  * @since 2.0
  */
-define( 'UTCW_HEX_COLOR_REGEX', '/#([a-f0-9]{6}|[a-f0-9]{3})/i' );
+define('UTCW_HEX_COLOR_REGEX', '/#([a-f0-9]{6}|[a-f0-9]{3})/i');
 
 /**
  * Regular expression for matching decimal numbers
@@ -41,7 +41,7 @@ define( 'UTCW_HEX_COLOR_REGEX', '/#([a-f0-9]{6}|[a-f0-9]{3})/i' );
  * @var string
  * @since 2.1
  */
-define( 'UTCW_DECIMAL_REGEX', '\d+(\.\d+)?' );
+define('UTCW_DECIMAL_REGEX', '\d+(\.\d+)?');
 
 /**
  * printf format for rendering hexadecimal colors
@@ -49,7 +49,7 @@ define( 'UTCW_DECIMAL_REGEX', '\d+(\.\d+)?' );
  * @var string
  * @since 2.0
  */
-define( 'UTCW_HEX_COLOR_FORMAT', '#%02x%02x%02x' );
+define('UTCW_HEX_COLOR_FORMAT', '#%02x%02x%02x');
 
 require_once 'src/Plugin.php';
 require_once 'src/Config.php';
@@ -68,7 +68,8 @@ Plugin::getInstance();
  *
  * @since 1.3
  */
-function do_utcw( array $args ) {
+function do_utcw(array $args)
+{
     $plugin = Plugin::getInstance();
-    echo $plugin->shortcode( $args );
+    echo $plugin->shortcode($args);
 }

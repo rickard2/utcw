@@ -6,6 +6,7 @@ use stdClass;
 
 /**
  * Ultimate Tag Cloud Widget
+ *
  * @author     Rickard Andersson <rickard@0x539.se>
  * @version    2.1
  * @license    GPLv2
@@ -21,108 +22,110 @@ use stdClass;
  * @package    utcw
  * @subpackage main
  */
-class Term {
+class Term
+{
 
-	/**
-	 * Term ID
-	 *
-	 * @var int
-	 * @since 2.0
-	 */
-	public $term_id;
+    /**
+     * Term ID
+     *
+     * @var int
+     * @since 2.0
+     */
+    public $term_id;
 
-	/**
-	 * Number of posts
-	 *
-	 * @var int
-	 * @since 2.0
-	 */
-	public $count;
+    /**
+     * Number of posts
+     *
+     * @var int
+     * @since 2.0
+     */
+    public $count;
 
-	/**
-	 * Term slug
-	 *
-	 * @var string
-	 * @since 2.0
-	 */
-	public $slug;
+    /**
+     * Term slug
+     *
+     * @var string
+     * @since 2.0
+     */
+    public $slug;
 
-	/**
-	 * Term name
-	 *
-	 * @var string
-	 * @since 2.0
-	 */
-	public $name;
+    /**
+     * Term name
+     *
+     * @var string
+     * @since 2.0
+     */
+    public $name;
 
-	/**
-	 * Term link
-	 *
-	 * @var string
-	 * @since 2.0
-	 */
-	public $link;
+    /**
+     * Term link
+     *
+     * @var string
+     * @since 2.0
+     */
+    public $link;
 
-	/**
-	 * Term color
-	 *
-	 * @var string
-	 * @since 2.0
-	 */
-	public $color;
+    /**
+     * Term color
+     *
+     * @var string
+     * @since 2.0
+     */
+    public $color;
 
-	/**
-	 * Term taxonomy
-	 *
-	 * @var string
-	 * @since 2.0
-	 */
-	public $taxonomy;
+    /**
+     * Term taxonomy
+     *
+     * @var string
+     * @since 2.0
+     */
+    public $taxonomy;
 
-	/**
-	 * Term size
-	 *
-	 * @var float
-	 * @since 2.0
-	 */
-	public $size;
+    /**
+     * Term size
+     *
+     * @var float
+     * @since 2.0
+     */
+    public $size;
 
-	/**
-	 * Creates a new term
-	 *
-	 * @param stdClass    $input   Object with properties term_id, count, slug, name, color and taxonomy
-	 * @param Plugin $plugin  Reference to the plugin instance
-	 *
-	 * @since 2.0
-	 */
-	function __construct( stdClass $input, Plugin $plugin ) {
+    /**
+     * Creates a new term
+     *
+     * @param stdClass    $input   Object with properties term_id, count, slug, name, color and taxonomy
+     * @param Plugin      $plugin  Reference to the plugin instance
+     *
+     * @since 2.0
+     */
+    public function __construct(stdClass $input, Plugin $plugin)
+    {
 
-		if ( isset( $input->term_id ) && filter_var( $input->term_id, FILTER_VALIDATE_INT ) ) {
-			$this->term_id = intval( $input->term_id );
-		}
+        if (isset($input->term_id) && filter_var($input->term_id, FILTER_VALIDATE_INT)) {
+            $this->term_id = intval($input->term_id);
+        }
 
-		if ( isset( $input->count ) && filter_var( $input->count, FILTER_VALIDATE_INT ) ) {
-			$this->count = intval( $input->count );
-		}
+        if (isset($input->count) && filter_var($input->count, FILTER_VALIDATE_INT)) {
+            $this->count = intval($input->count);
+        }
 
-		if ( isset( $input->slug ) && strlen( $input->slug ) > 0 && preg_match( '/^[0-9a-z\-]+/i', $input->slug ) ) {
-			$this->slug = $input->slug;
-		}
+        if (isset($input->slug) && strlen($input->slug) > 0 && preg_match('/^[0-9a-z\-]+/i', $input->slug)) {
+            $this->slug = $input->slug;
+        }
 
-		if ( isset( $input->name ) && strlen( $input->name ) > 0 ) {
-			$this->name = $input->name;
-		}
+        if (isset($input->name) && strlen($input->name) > 0) {
+            $this->name = $input->name;
+        }
 
-		if ( isset( $input->color ) && strlen( $input->color ) > 0 && preg_match( UTCW_HEX_COLOR_REGEX, $input->color ) ) {
-			$this->color = $input->color;
-		}
+        if (isset($input->color) && strlen($input->color) > 0 && preg_match(UTCW_HEX_COLOR_REGEX, $input->color)) {
+            $this->color = $input->color;
+        }
 
-		if ( isset( $input->taxonomy ) && strlen( $input->taxonomy ) > 0 ) {
-			$this->taxonomy = $input->taxonomy;
-		}
+        if (isset($input->taxonomy) && strlen($input->taxonomy) > 0) {
+            $this->taxonomy = $input->taxonomy;
+        }
 
-		if ( $this->term_id && $this->taxonomy ) {
-			$this->link = $plugin->getTermLink( $this->term_id, $this->taxonomy );
-		}
-	}
+        if ($this->term_id && $this->taxonomy) {
+            $this->link = $plugin->getTermLink($this->term_id, $this->taxonomy);
+        }
+    }
 }

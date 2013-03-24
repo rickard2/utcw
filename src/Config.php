@@ -163,6 +163,15 @@ class Config
     public $show_title;
 
     /**
+     * If the tags should be wrapped in links
+     * Default: true
+     *
+     * @var bool
+     * @since 2.0
+     */
+    public $show_links;
+
+    /**
      * If links should be styled with underline decoration
      * Default: default
      * Valid values: yes, no, default
@@ -508,6 +517,7 @@ class Config
         'minimum'            => 1,
         'tags_list_type'     => 'exclude',
         'show_title'         => true,
+        'show_links'         => true,
         'link_underline'     => 'default',
         'link_bold'          => 'default',
         'link_italic'        => 'default',

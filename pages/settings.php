@@ -272,7 +272,11 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_title' ) ?>"
 		   id="<?php echo $this->get_field_id( 'show_title' ) ?>" <?php echo $config->show_title === true ? 'checked="checked"' : ''?>>
 	<label for="<?php echo $this->get_field_id( 'show_title' ) ?>"
-		   title="<?php _e( 'This is a title', 'utcw' ) ?>"><?php _e( 'Show title (hover text)', 'utcw' ) ?></label><br>
+		   title="<?php _e( 'This is a title', 'utcw' ) ?>"><?php _e( 'Show title (hover text)', 'utcw' ) ?></label><br>	<a class="utcw-help"
+	   title="<?php _e( 'Uncheck this option if you do not want your tag cloud to contain links to the archive page for each tag.', 'utcw' ) ?>">?</a>
+	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_links' ) ?>"
+		   id="<?php echo $this->get_field_id( 'show_links' ) ?>" <?php echo $config->show_links === true ? 'checked="checked"' : ''?>>
+	<label for="<?php echo $this->get_field_id( 'show_links' ) ?>"><?php _e( 'Show links', 'utcw' ) ?></label><br>
 	<br>
 
 	<a class="utcw-help"

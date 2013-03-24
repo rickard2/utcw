@@ -132,16 +132,19 @@ class Render
                 ' title="' . _n('%s topic', '%s topics', $term->count) . '"',
                 $term->count
             ) : '';
+            $tag = $this->config->show_links ? 'a' : 'span';
 
             $terms[] = sprintf(
-                '%s<a class="tag-link-%s" href="%s" style="font-size:%s%s"%s>%s</a>%s',
+                '%s<%s class="tag-link-%s" href="%s" style="font-size:%s%s"%s>%s</%s>%s',
                 $this->config->prefix,
+                $tag,
                 $term->term_id,
                 $term->link,
                 $term->size,
                 $color,
                 $title,
                 $term->name,
+                $tag,
                 $this->config->suffix
             );
         }
@@ -294,11 +297,11 @@ class Render
         }
 
         if ($link_styles) {
-            $styles[] = sprintf('.utcw-%s a{%s}', $this->id, join(';', $link_styles));
+            $styles[] = sprintf('.utcw-%s span,.utcw-%s a{%s}', $this->id, $this->id, join(';', $link_styles));
         }
 
         if ($hover_styles) {
-            $styles[] = sprintf('.utcw-%s a:hover{%s}', $this->id, join(';', $hover_styles));
+            $styles[] = sprintf('.utcw-%s span:hover,.utcw-%s a:hover{%s}', $this->id, $this->id, join(';', $hover_styles));
         }
 
         if ($styles) {

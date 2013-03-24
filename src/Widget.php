@@ -78,7 +78,7 @@ class Widget extends WP_Widget
         }
 
         // Checkbox inputs which are unchecked, will not be set in $new_instance. Set them manually to false
-        $checkbox_settings = array('show_title_text', 'show_title', 'debug', 'reverse', 'case_sensitive');
+        $checkbox_settings = array('show_title_text', 'show_links', 'show_title', 'debug', 'reverse', 'case_sensitive');
 
         foreach ($checkbox_settings as $checkbox_setting) {
             if (!isset($new_instance[$checkbox_setting])) {

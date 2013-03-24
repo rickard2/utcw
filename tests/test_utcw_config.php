@@ -337,6 +337,14 @@ class UTCW_Test_Config extends WP_UnitTestCase {
 		$this->helper_bool_fail( 'show_title' );
 	}
 
+	function test_show_links_ok() {
+		$this->helper_bool_ok( 'show_links' );
+	}
+
+	function test_show_links_fail() {
+		$this->helper_bool_fail( 'show_links' );
+	}
+
 	function test_link_underline_ok() {
 		$this->helper_optional_bool_ok( 'link_underline' );
 	}

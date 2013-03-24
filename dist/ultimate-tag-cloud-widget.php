@@ -5,7 +5,7 @@ use Rickard\UTCW\Plugin;
 Plugin Name: Ultimate tag cloud widget
 Plugin URI: https://www.0x539.se/wordpress/ultimate-tag-cloud-widget/
 Description: This plugin aims to be the most configurable tag cloud widget out there.
-Version: 2.1 beta1
+Version: 2.2-dev
 Author: Rickard Andersson
 Author URI: https://www.0x539.se
 License: GPLv2
@@ -17,7 +17,7 @@ License: GPLv2
  * @var string
  * @since 2.0
  */
-define('UTCW_VERSION', '2.1');
+define('UTCW_VERSION', '2.2');
 
 /**
  * If development mode is currently enabled
@@ -51,12 +51,21 @@ define('UTCW_DECIMAL_REGEX', '\d+(\.\d+)?');
  */
 define('UTCW_HEX_COLOR_FORMAT', '#%02x%02x%02x');
 
-require_once 'src/Plugin.php';
-require_once 'src/Config.php';
-require_once 'src/Widget.php';
-require_once 'src/Data.php';
-require_once 'src/Render.php';
-require_once 'src/Term.php';
+if (UTCW_DEV) {
+    require_once '/www/utcw2/src/Plugin.php';
+    require_once '/www/utcw2/src/Config.php';
+    require_once '/www/utcw2/src/Widget.php';
+    require_once '/www/utcw2/src/Data.php';
+    require_once '/www/utcw2/src/Render.php';
+    require_once '/www/utcw2/src/Term.php';
+} else {
+    require_once 'src/Plugin.php';
+    require_once 'src/Config.php';
+    require_once 'src/Widget.php';
+    require_once 'src/Data.php';
+    require_once 'src/Render.php';
+    require_once 'src/Term.php';
+}
 
 // Instantiates the plugin
 Plugin::getInstance();

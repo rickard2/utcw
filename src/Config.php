@@ -6,7 +6,7 @@ namespace Rickard\UTCW;
      * Ultimate Tag Cloud Widget
      *
      * @author     Rickard Andersson <rickard@0x539.se>
-     * @version    2.1
+     * @version    2.2
      * @license    GPLv2
      * @package    utcw
      * @subpackage main
@@ -167,7 +167,7 @@ class Config
      * Default: true
      *
      * @var bool
-     * @since 2.0
+     * @since 2.2
      */
     public $show_links;
 

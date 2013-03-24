@@ -101,6 +101,14 @@ class Plugin
     {
         global $wpdb;
 
+        if (isset($args['load_config'])) {
+            $loaded = $this->loadConfiguration($args['load_config']);
+
+            if (is_array($loaded)) {
+                $args = $loaded;
+            }
+        }
+
         $config = new Config($args, $this);
         $data   = new Data($config, $this, $wpdb);
         $render = new Render($config, $data, $this);
@@ -250,7 +258,7 @@ class Plugin
      */
     public function saveConfiguration($name, array $config)
     {
-        $configs = $this->getConfigurations();
+        $configs        = $this->getConfigurations();
         $configs[$name] = $config;
 
         return $this->setConfigurations($configs);

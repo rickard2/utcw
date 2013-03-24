@@ -57,7 +57,7 @@ class Plugin
     {
         add_action('admin_head-widgets.php', array($this, 'initAdminAssets'));
         add_action('wpLoaded', array($this, 'wpLoaded'));
-        add_action('widgets_init', create_function('', 'return register_widget("UTCW");'));
+        add_action('widgets_init', create_function('', 'return register_widget("Rickard\UTCW\Widget");'));
         add_shortcode('utcw', array($this, 'shortcode'));
     }
 

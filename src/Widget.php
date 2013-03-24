@@ -44,7 +44,7 @@ class Widget extends WP_Widget
     public function __construct(Plugin $plugin = null)
     {
         $options = array('description' => __('Highly configurable tag cloud', 'utcw'));
-        parent::__construct(false, __('Ultimate Tag Cloud', 'utcw'), $options);
+        parent::__construct('utcw', __('Ultimate Tag Cloud', 'utcw'), $options);
 
         $this->plugin = $plugin ? $plugin : Plugin::getInstance();
     }
@@ -125,7 +125,7 @@ class Widget extends WP_Widget
         $terms = $this->plugin->getTerms();
 
         // Content of the widget settings form
-        require 'pages/settings.php';
+        require dirname(__FILE__) . '/../pages/settings.php';
     }
 
     /**

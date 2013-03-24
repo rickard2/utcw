@@ -47,6 +47,11 @@ If you have questions, please post them in the forums.
 
 == Changelog ==
 
+= 2.2 =
+
+* Support for disabling links in tag cloud output
+* Support for loading a saved configuration from short code
+
 = 2.1 =
 
 * Support for multiple taxonomies per widget
@@ -69,6 +74,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.2 =
+
+* New features, see the plugin page at wordpress.org for full details
 
 = 2.1 =
 

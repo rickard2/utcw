@@ -35,7 +35,7 @@ cp -v js/*.min.js build/tags/$VERSION/js
 cp -Rv pages build/tags/$VERSION/
 
 # PHP files
-cp -v *php build/tags/$VERSION/
+cp -Rv src build/tags/$VERSION/
 
 # Add and commit
 svn add build/tags/$VERSION

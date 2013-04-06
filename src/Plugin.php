@@ -2,16 +2,16 @@
 
 namespace Rickard\UTCW;
 
-    /**
-     * Ultimate Tag Cloud Widget
-     *
-     * @author     Rickard Andersson <rickard@0x539.se>
-     * @version    2.2
-     * @license    GPLv2
-     * @package    utcw
-     * @subpackage main
-     * @since      2.0
-     */
+/**
+ * Ultimate Tag Cloud Widget
+ *
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.2
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage main
+ * @since      2.0
+ */
 
 /**
  * Class for general plugin integration with WordPress

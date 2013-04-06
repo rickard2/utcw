@@ -3,11 +3,24 @@
 namespace Rickard\UTCW;
 
 /**
+ * Ultimate Tag Cloud Widget
+ *
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.2
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage language
+ * @since      2.0
+ */
+
+/**
  * Class to handle QTranslate multi language support
  *
  * Class QTranslateHandler
  *
- * @package Rickard\UTCW
+ * @since      2.2
+ * @package    utcw
+ * @subpackage language
  */
 class QTranslateHandler
 {
@@ -15,11 +28,13 @@ class QTranslateHandler
      * An array of term names mapped to translated names
      *
      * @var array
+     * @since 2.2
      */
     protected $nameMap;
 
     /**
      * @param array $nameMap An array of term names mapped to translated names
+     * @since 2.2
      */
     public function __construct(array $nameMap)
     {
@@ -30,6 +45,7 @@ class QTranslateHandler
      * Returns true if QTranslate support is enabled
      *
      * @return bool
+     * @since 2.2
      */
     public function isEnabled()
     {
@@ -40,6 +56,7 @@ class QTranslateHandler
      * Returns the current QTranslate language
      *
      * @return string|bool
+     * @since 2.2
      */
     public function getLanguage()
     {
@@ -55,6 +72,7 @@ class QTranslateHandler
      * @param string $language (optional)
      *
      * @return string
+     * @since 2.2
      */
     public function getTermName($term, $language = null)
     {

@@ -3,6 +3,17 @@
 namespace Rickard\UTCW;
 
 /**
+ * Class for general plugin integration with WordPress
+ *
+ * @since      2.0
+ * @package    utcw
+ * @subpackage main
+ */
+use Rickard\UTCW\Language\QTranslateHandler;
+use Rickard\UTCW\Language\TranslationHandler;
+use Rickard\UTCW\Language\WPMLHandler;
+
+/**
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
@@ -11,14 +22,6 @@ namespace Rickard\UTCW;
  * @package    utcw
  * @subpackage main
  * @since      2.0
- */
-
-/**
- * Class for general plugin integration with WordPress
- *
- * @since      2.0
- * @package    utcw
- * @subpackage main
  */
 class Plugin
 {
@@ -372,14 +375,24 @@ class Plugin
     /**
      * Returns a new instance of the QTranslate Handler class
      *
-     * @return QTranslateHandler
+     * @return null|TranslationHandler
      */
-    public function getQTranslateHandler()
+    public function getTranslationHandler()
     {
-        $names   = get_option('qtranslate_term_name');
-        $names   = $names ? $names : array();
-        $handler = new QTranslateHandler($names);
+        $names      = get_option('qtranslate_term_name');
+        $names      = $names ? $names : array();
+        $qTranslate = new QTranslateHandler($names);
 
-        return $handler;
+        if ($qTranslate->isEnabled()) {
+            return $qTranslate;
+        }
+
+        $WPML = new WPMLHandler();
+
+        if ($WPML->isEnabled()) {
+            return $WPML;
+        }
+
+        return null;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Rickard\UTCW;
+namespace Rickard\UTCW\Language;
 
 /**
  * Ultimate Tag Cloud Widget
@@ -10,19 +10,21 @@ namespace Rickard\UTCW;
  * @license    GPLv2
  * @package    utcw
  * @subpackage language
- * @since      2.0
+ * @since      2.2
  */
+
+use Rickard\UTCW\Plugin;
+use Rickard\UTCW\Term;
+use stdClass;
 
 /**
  * Class to handle QTranslate multi language support
- *
- * Class QTranslateHandler
  *
  * @since      2.2
  * @package    utcw
  * @subpackage language
  */
-class QTranslateHandler
+class QTranslateHandler extends TranslationHandler
 {
     /**
      * An array of term names mapped to translated names
@@ -34,6 +36,7 @@ class QTranslateHandler
 
     /**
      * @param array $nameMap An array of term names mapped to translated names
+     *
      * @since 2.2
      */
     public function __construct(array $nameMap)
@@ -42,7 +45,7 @@ class QTranslateHandler
     }
 
     /**
-     * Returns true if QTranslate support is enabled
+     * Returns true if QTranslate is installed and active
      *
      * @return bool
      * @since 2.2
@@ -64,21 +67,32 @@ class QTranslateHandler
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * @param stdClass $input
+     * @param Plugin   $plugin
+     *
+     * @return null|Term
+     * @since 2.2
+     */
+    public function createTerm(stdClass $input, Plugin $plugin)
+    {
+        $input->name = $this->getTermName($input->name);
+
+        return new Term($input, $plugin);
+    }
+
+    /**
      * Returns the QTranslate translated name for the given term name.
      *
-     * Language is optional and will be determined to the current language if omitted.
-     *
      * @param string $term
-     * @param string $language (optional)
      *
      * @return string
      * @since 2.2
      */
-    public function getTermName($term, $language = null)
+    public function getTermName($term)
     {
-        if (!$language) {
-            $language = $this->getLanguage();
-        }
+        $language = $this->getLanguage();
 
         if (!$language) {
             return $term;

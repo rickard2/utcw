@@ -224,7 +224,8 @@ class Data
         $min_count = PHP_INT_MAX;
         $max_count = 0;
 
-        $qTranslate = $this->plugin->getQTranslateHandler();
+        // Get translation handler if a translation plugin is active
+        $translationHandler = $this->plugin->getTranslationHandler();
 
         foreach ($result as $item) {
             if ($item->count < $min_count) {
@@ -235,8 +236,14 @@ class Data
                 $max_count = $item->count;
             }
 
-            if ($qTranslate->isEnabled()) {
-                $terms[] = new QTranslateTerm($item, $this->plugin);
+            if ($translationHandler) {
+
+                // Let the translation handler determine if the term should be included or not
+                $term = $translationHandler->createTerm($item, $this->plugin);
+
+                if ($term) {
+                    $terms[] = $term;
+                }
             } else {
                 $terms[] = new Term($item, $this->plugin);
             }

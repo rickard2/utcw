@@ -58,8 +58,9 @@ if (UTCW_DEV) {
     require_once '/www/utcw2/src/Data.php';
     require_once '/www/utcw2/src/Render.php';
     require_once '/www/utcw2/src/Term.php';
-    require_once '/www/utcw2/src/QTranslateHandler.php';
-    require_once '/www/utcw2/src/QTranslateTerm.php';
+    require_once '/www/utcw2/src/Language/TranslationHandler.php';
+    require_once '/www/utcw2/src/Language/QTranslateHandler.php';
+    require_once '/www/utcw2/src/Language/WPMLHandler.php';
 } else {
     require_once 'src/Plugin.php';
     require_once 'src/Config.php';
@@ -67,8 +68,9 @@ if (UTCW_DEV) {
     require_once 'src/Data.php';
     require_once 'src/Render.php';
     require_once 'src/Term.php';
-    require_once 'src/QTranslateHandler.php';
-    require_once 'src/QTranslateTerm.php';
+    require_once 'src/Language/TranslationHandler.php';
+    require_once 'src/Language/QTranslateHandler.php';
+    require_once 'src/Language/WPMLHandler.php';
 }
 
 // Instantiates the plugin

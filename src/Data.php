@@ -61,9 +61,9 @@ class Data
     /**
      * Creates a new instance
      *
-     * @param Config      $config   Current configuration
-     * @param Plugin      $plugin   Main plugin instance
-     * @param wpdb        $db       WordPress DB instance
+     * @param Config $config   Current configuration
+     * @param Plugin $plugin   Main plugin instance
+     * @param wpdb   $db       WordPress DB instance
      *
      * @since 2.0
      */
@@ -224,6 +224,8 @@ class Data
         $min_count = PHP_INT_MAX;
         $max_count = 0;
 
+        $qTranslate = $this->plugin->getQTranslateSupport();
+
         foreach ($result as $item) {
             if ($item->count < $min_count) {
                 $min_count = $item->count;
@@ -233,7 +235,11 @@ class Data
                 $max_count = $item->count;
             }
 
-            $terms[] = new Term($item, $this->plugin);
+            if ($qTranslate) {
+                $terms[] = new QTranslateTerm($item, $this->plugin);
+            } else {
+                $terms[] = new Term($item, $this->plugin);
+            }
         }
 
         $size_from = floatval($this->config->size_from);

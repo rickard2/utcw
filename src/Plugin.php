@@ -337,8 +337,8 @@ class Plugin
     /**
      * Check if the term exist for any of the taxonomies
      *
-     * @param int    $term_id     Term ID
-     * @param array  $taxonomy    Array of taxonomy names
+     * @param int   $term_id     Term ID
+     * @param array $taxonomy    Array of taxonomy names
      *
      * @return bool
      * @since 2.0
@@ -367,5 +367,68 @@ class Plugin
     public function applyFilters($tag, $value)
     {
         return apply_filters($tag, $value);
+    }
+
+    /**
+     * Returns true if QTranslate support is enabled
+     *
+     * @return bool
+     */
+    public function getQTranslateSupport()
+    {
+        return defined('QT_SUPPORTED_WP_VERSION');
+    }
+
+    /**
+     * Return an array of QTranslate translated terms
+     *
+     * @return array
+     */
+    public function getQTranslateTermMap()
+    {
+        $result = get_option('qtranslate_term_name');
+
+        return $result ? $result : array();
+    }
+
+    /**
+     * Returns the current QTranslate language
+     *
+     * @return string|bool
+     */
+    public function getQTranslateLanguage()
+    {
+        return function_exists('qtrans_getLanguage') ? qtrans_getLanguage() : false;
+    }
+
+    /**
+     * Returns the QTranslate translated name for the given term name.
+     *
+     * Language is optional and will be determined to the current language ommited.
+     *
+     * @param string $term
+     * @param string $language (optional)
+     *
+     * @return string
+     */
+    public function getQTranslateTermName($term, $language = null)
+    {
+        $termNames = $this->getQTranslateTermMap();
+
+        if (!$language) {
+            $language = $this->getQTranslateLanguage();
+        }
+
+        if (!$language) {
+            return $term;
+        }
+
+        $language = strtolower($language);
+
+        if (!isset($termNames[$term][$language])) {
+            return $term;
+        }
+
+        return $termNames[$term][$language];
     }
 }

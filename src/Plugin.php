@@ -370,65 +370,16 @@ class Plugin
     }
 
     /**
-     * Returns true if QTranslate support is enabled
+     * Returns a new instance of the QTranslate Handler class
      *
-     * @return bool
+     * @return QTranslateHandler
      */
-    public function getQTranslateSupport()
+    public function getQTranslateHandler()
     {
-        return defined('QT_SUPPORTED_WP_VERSION');
-    }
+        $names   = get_option('qtranslate_term_name');
+        $names   = $names ? $names : array();
+        $handler = new QTranslateHandler($names);
 
-    /**
-     * Return an array of QTranslate translated terms
-     *
-     * @return array
-     */
-    public function getQTranslateTermMap()
-    {
-        $result = get_option('qtranslate_term_name');
-
-        return $result ? $result : array();
-    }
-
-    /**
-     * Returns the current QTranslate language
-     *
-     * @return string|bool
-     */
-    public function getQTranslateLanguage()
-    {
-        return function_exists('qtrans_getLanguage') ? qtrans_getLanguage() : false;
-    }
-
-    /**
-     * Returns the QTranslate translated name for the given term name.
-     *
-     * Language is optional and will be determined to the current language ommited.
-     *
-     * @param string $term
-     * @param string $language (optional)
-     *
-     * @return string
-     */
-    public function getQTranslateTermName($term, $language = null)
-    {
-        $termNames = $this->getQTranslateTermMap();
-
-        if (!$language) {
-            $language = $this->getQTranslateLanguage();
-        }
-
-        if (!$language) {
-            return $term;
-        }
-
-        $language = strtolower($language);
-
-        if (!isset($termNames[$term][$language])) {
-            return $term;
-        }
-
-        return $termNames[$term][$language];
+        return $handler;
     }
 }

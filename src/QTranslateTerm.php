@@ -8,8 +8,8 @@ class QTranslateTerm extends Term
 {
     public function __construct(stdClass $input, Plugin $plugin)
     {
-
-        $input->name = $plugin->getQTranslateTermName($input->name);
+        $handler     = $plugin->getQTranslateHandler();
+        $input->name = $handler->getTermName($input->name);
 
         parent::__construct($input, $plugin);
     }

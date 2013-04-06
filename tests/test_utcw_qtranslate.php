@@ -58,11 +58,17 @@ class UTCW_Test_QTranslate extends WP_UnitTestCase
             ->method('get_results')
             ->will($this->returnValue(array($this->term)));
 
-        $plugin = $this->mockFactory->getUTCWMock(array('getQTranslateSupport'));
+        $plugin = $this->mockFactory->getUTCWMock(array('getQTranslateHandler'));
 
-        $plugin->expects($this->once())
-            ->method('getQTranslateSupport')
+        $handler = $this->getMock('\Rickard\UTCW\QTranslateHandler', array('isEnabled'), array(array()));
+
+        $handler->expects($this->once())
+            ->method('isEnabled')
             ->will($this->returnValue(true));
+
+        $plugin->expects($this->atLeastOnce())
+            ->method('getQTranslateHandler')
+            ->will($this->returnValue($handler));
 
         $config = new Config(array(), $plugin);
 
@@ -76,13 +82,18 @@ class UTCW_Test_QTranslate extends WP_UnitTestCase
 
     public function test_will_map_term_name()
     {
-
         $name = 'Testing termius singularis';
 
-        $plugin = $this->mockFactory->getUTCWMock(array('getQTranslateTermName'));
+        $plugin = $this->mockFactory->getUTCWMock(array('getQTranslateHandler'));
+
+        $handler = $this->getMock('\Rickard\UTCW\QTranslateHandler', array('getTermName'), array(array()));
 
         $plugin->expects($this->once())
-            ->method('getQTranslateTermName')
+            ->method('getQTranslateHandler')
+            ->will($this->returnValue($handler));
+
+        $handler->expects($this->once())
+            ->method('getTermName')
             ->with('Test term 1')
             ->will($this->returnValue($name));
 

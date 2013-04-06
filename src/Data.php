@@ -224,7 +224,7 @@ class Data
         $min_count = PHP_INT_MAX;
         $max_count = 0;
 
-        $qTranslate = $this->plugin->getQTranslateSupport();
+        $qTranslate = $this->plugin->getQTranslateHandler();
 
         foreach ($result as $item) {
             if ($item->count < $min_count) {
@@ -235,7 +235,7 @@ class Data
                 $max_count = $item->count;
             }
 
-            if ($qTranslate) {
+            if ($qTranslate->isEnabled()) {
                 $terms[] = new QTranslateTerm($item, $this->plugin);
             } else {
                 $terms[] = new Term($item, $this->plugin);

@@ -98,12 +98,8 @@ class RandomStrategy extends SelectionStrategy
 
         $query      = $builder->getQuery();
         $parameters = $builder->getParameters();
+        $query      = $this->db->prepare($query, $parameters);
 
-        // Build query
-        $query = join("\n", $query);
-        $query = $this->db->prepare($query, $parameters);
-
-        // Fetch terms from DB
         $result      = $this->db->get_results($query);
         $this->query = $this->db->last_query;
 

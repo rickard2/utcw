@@ -495,6 +495,15 @@ class Config
     public $after_title;
 
     /**
+     * Which strategy to use when selecting tags
+     * Default: popularity
+     *
+     * @var string
+     * @since 2.2
+     */
+    public $strategy;
+
+    /**
      * Config store with default values
      *
      * @static
@@ -551,6 +560,7 @@ class Config
         'after_widget'       => '',
         'before_title'       => '',
         'after_title'        => '',
+        'strategy'           => 'popularity'
     );
 
     /**
@@ -611,7 +621,7 @@ class Config
     protected $allowed_optional_booleans = array('yes', 'no', 'default');
 
     /**
-     * Which CSS border-style valeus are allowed
+     * Which CSS border-style values are allowed
      *
      * @var array
      * @since 2.0
@@ -629,10 +639,18 @@ class Config
     );
 
     /**
+     * Which strategies are allowed
+     *
+     * @var array
+     * @since 2.2
+     */
+    protected $allowed_strategies = array('popularity', 'random');
+
+    /**
      * Loads a configuration instance array and parses the options
      *
-     * @param array       $input   Array of key => value pairs of settings and values
-     * @param Plugin      $plugin  Reference to the main plugin instance
+     * @param array  $input   Array of key => value pairs of settings and values
+     * @param Plugin $plugin  Reference to the main plugin instance
      *
      * @since 2.0
      */
@@ -649,6 +667,9 @@ class Config
                 $valid = true;
 
                 switch ($key) {
+                    case 'strategy':
+                        $valid = in_array($input[$key], $this->allowed_strategies);
+                        break;
                     case 'order':
                         $valid = in_array($input[$key], $this->allowed_orders);
                         break;

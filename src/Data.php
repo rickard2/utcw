@@ -2,9 +2,6 @@
 
 namespace Rickard\UTCW;
 
-use wpdb;
-use stdClass;
-
 /**
  * Ultimate Tag Cloud Widget
  *
@@ -15,6 +12,12 @@ use stdClass;
  * @subpackage main
  * @since      2.0
  */
+
+use Rickard\UTCW\Selection\PopularityStrategy;
+use Rickard\UTCW\Selection\RandomStrategy;
+use Rickard\UTCW\Selection\SelectionStrategy;
+use wpdb;
+use stdClass;
 
 /**
  * Class for loading data for the cloud
@@ -51,12 +54,12 @@ class Data
     protected $plugin;
 
     /**
-     * A copy of the SQL query for debugging purposes
+     * Reference to the selection strategy used
      *
-     * @var string
-     * @since 2.1
+     * @var SelectionStrategy
+     * @since 2.2
      */
-    protected $query;
+    protected $strategy;
 
     /**
      * Creates a new instance
@@ -72,6 +75,15 @@ class Data
         $this->config = $config;
         $this->db     = $db;
         $this->plugin = $plugin;
+
+        switch ($this->config->strategy) {
+            case 'popularity':
+                $this->strategy = new PopularityStrategy($this->config, $this->plugin, $this->db);
+                break;
+            case 'random':
+                $this->strategy = new RandomStrategy($this->config, $this->plugin, $this->db);
+                break;
+        }
     }
 
     /**
@@ -82,143 +94,8 @@ class Data
      */
     public function getTerms()
     {
-        // Base query with joins
-        $query = array(
-            'SELECT t.term_id, t.name, t.slug, COUNT(p.ID) AS `count`, tt.taxonomy',
-            'FROM `' . $this->db->terms . '` AS t',
-            'JOIN `' . $this->db->term_taxonomy . '` AS tt ON t.term_id = tt.term_id',
-            'LEFT JOIN `' . $this->db->term_relationships . '` AS tr ON tt.term_taxonomy_id = tr.term_taxonomy_id',
-            'LEFT JOIN `' . $this->db->posts . '` AS p ON tr.object_id = p.ID',
-        );
-
-        // Add authors constraint if configured
-        if ($this->config->authors) {
-            $author_parameters = array();
-
-            foreach ($this->config->authors as $author) {
-                $author_parameters[] = '%d';
-                $parameters[]        = $author;
-            }
-
-            $query[] = 'AND p.post_author IN (' . join(',', $author_parameters) . ')';
-        }
-
-        // Add post types constraint
-        $post_type_parameters = array();
-
-        foreach ($this->config->post_type as $post_type) {
-            $post_type_parameters[] = '%s';
-            $parameters[]           = $post_type;
-        }
-
-        $query[] = 'AND p.post_type IN (' . join(',', $post_type_parameters) . ')';
-
-        // Add post status statement, authenticated users are allowed to view tags for private posts
-        if ($this->config->authenticated) {
-            $query[] = "AND p.post_status IN ('publish','private')";
-        } else {
-            $query[] = "AND p.post_status = 'publish'";
-        }
-
-        // Add days old constraint
-        if ($this->config->days_old) {
-            $query[]      = 'AND p.post_date > %s';
-            $parameters[] = date('Y-m-d', strtotime('-' . $this->config->days_old . ' days'));
-        }
-
-        // Add taxonomy statement
-        $taxonomy_parameters = array();
-
-        foreach ($this->config->taxonomy as $taxonomy) {
-            $taxonomy_parameters[] = '%s';
-            $parameters[]          = $taxonomy;
-        }
-
-        $query[] = 'WHERE tt.taxonomy IN (' . join(',', $taxonomy_parameters) . ')';
-
-        // Add include or exclude statement
-        if ($this->config->tags_list) {
-            $tags_list_parameters = array();
-
-            foreach ($this->config->tags_list as $tag_id) {
-                if ($this->plugin->checkTermTaxonomy($tag_id, $this->config->taxonomy)) {
-                    $tags_list_parameters[] = '%d';
-                    $parameters[]           = $tag_id;
-                }
-            }
-
-            if ($tags_list_parameters) {
-                $tags_list_operator = $this->config->tags_list_type == 'include' ? 'IN' : 'NOT IN';
-                $query[]            = 'AND t.term_id ' . $tags_list_operator . ' (' . join(
-                    ',',
-                    $tags_list_parameters
-                ) . ')';
-            }
-        }
-
-        $query[] = 'GROUP BY tr.term_taxonomy_id';
-
-        // Add minimum constraint
-        if ($this->config->minimum) {
-            $query[]      = 'HAVING count >= %d';
-            $parameters[] = $this->config->minimum;
-        }
-
-        // Always sort the result by count DESC to always work with the top result
-        $query[] = 'ORDER BY count DESC';
-
-        // Add limit constraint
-        $query[]      = 'LIMIT %d';
-        $parameters[] = $this->config->max;
-
-        // If the result should be ordered in another way, try to create a sub-query to sort the result
-        // directly in the database query
-        $subquery_required = true;
-
-        // No subquery is needed if the order should be by count desc (it's already sorted that way)
-        if ($this->config->reverse && $this->config->order == 'count') {
-            $subquery_required = false;
-        }
-
-        // No subquery is needed if the order should be by color since the sorting is done in PHP afterwards
-        if ($this->config->order == 'color') {
-            $subquery_required = false;
-        }
-
-        if ($subquery_required) {
-            array_unshift($query, 'SELECT * FROM (');
-            $query[] = ') AS subQuery';
-
-            $order  = $this->config->reverse ? 'DESC' : 'ASC';
-            $binary = $this->config->case_sensitive ? 'BINARY ' : '';
-
-            switch ($this->config->order) {
-                case 'random':
-                    $query[] = 'ORDER BY RAND() ' . $order;
-                    break;
-                case 'name':
-                    $query[] = 'ORDER BY ' . $binary . 'name ' . $order;
-                    break;
-                case 'slug':
-                    $query[] = 'ORDER BY ' . $binary . 'slug ' . $order;
-                    break;
-                case 'id':
-                    $query[] = 'ORDER BY term_id ' . $order;
-                    break;
-                case 'count':
-                    $query[] = 'ORDER BY count ' . $order;
-                    break;
-            }
-        }
-
-        // Build query
-        $query = join("\n", $query);
-        $query = $this->db->prepare($query, $parameters);
-
-        // Fetch terms from DB
-        $result      = $this->db->get_results($query);
-        $this->query = $this->db->last_query;
-        $terms       = array();
+        $terms  = array();
+        $result = $this->strategy->getData();
 
         // Calculate sizes
         $min_count = PHP_INT_MAX;
@@ -383,5 +260,6 @@ class Data
     public function cleanupForDebug()
     {
         unset($this->db);
+        $this->strategy->cleanupForDebug();
     }
 }

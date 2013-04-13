@@ -61,6 +61,10 @@ if (UTCW_DEV) {
     require_once '/www/utcw2/src/Language/TranslationHandler.php';
     require_once '/www/utcw2/src/Language/QTranslateHandler.php';
     require_once '/www/utcw2/src/Language/WPMLHandler.php';
+    require_once '/www/utcw2/src/Selection/SelectionStrategy.php';
+    require_once '/www/utcw2/src/Selection/PopularityStrategy.php';
+    require_once '/www/utcw2/src/Selection/RandomStrategy.php';
+    require_once '/www/utcw2/src/Database/QueryBuilder.php';
 } else {
     require_once 'src/Plugin.php';
     require_once 'src/Config.php';
@@ -71,6 +75,10 @@ if (UTCW_DEV) {
     require_once 'src/Language/TranslationHandler.php';
     require_once 'src/Language/QTranslateHandler.php';
     require_once 'src/Language/WPMLHandler.php';
+    require_once 'src/Selection/SelectionStrategy.php';
+    require_once 'src/Selection/PopularityStrategy.php';
+    require_once 'src/Selection/RandomStrategy.php';
+    require_once 'src/Database/QueryBuilder.php';
 }
 
 // Instantiates the plugin

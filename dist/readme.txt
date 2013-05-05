@@ -2,8 +2,8 @@
 Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 2.1
+Tested up to: 3.6-beta2
+Stable tag: 2.2
 Donate link: https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget
 License: GPLv2 or later
 
@@ -49,16 +49,19 @@ If you have questions, please post them in the forums.
 
 = 2.2 =
 
-* Support for disabling links in tag cloud output
-* Support for loading a saved configuration from short code
+* [#19](https://github.com/rickard2/utcw/issues/19): Support for disabling links in tag cloud output
+* [#20](https://github.com/rickard2/utcw/issues/20): Support for loading a saved configuration from short code
+* [#23](https://github.com/rickard2/utcw/issues/23): Multi language support with qTranslate and WPML
+* [#24](https://github.com/rickard2/utcw/issues/24): Support for selecting a random set of tags
 
 = 2.1 =
 
-* Support for multiple taxonomies per widget
-* Improved UI for selecting authors
-* Fixed problem with authors setting not working correctly
-* Support for setting minimum post count to zero
-* Support for other measurements than pixels
+* [#4](https://github.com/rickard2/utcw/issues/4): Support for multiple taxonomies per widget
+* [#5](https://github.com/rickard2/utcw/issues/5): Improved UI for selecting authors
+* [#9](https://github.com/rickard2/utcw/issues/9): Support for setting minimum post count to zero
+* [#10](https://github.com/rickard2/utcw/issues/10): Support for removing configurations
+* [#12](https://github.com/rickard2/utcw/issues/12): Support for other measurements than pixels
+* [#15](https://github.com/rickard2/utcw/issues/15): Fixed problem with authors setting not working correctly
 
 = 2.0.1 =
 

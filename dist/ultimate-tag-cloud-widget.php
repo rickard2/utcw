@@ -5,7 +5,7 @@ use Rickard\UTCW\Plugin;
 Plugin Name: Ultimate tag cloud widget
 Plugin URI: https://www.0x539.se/wordpress/ultimate-tag-cloud-widget/
 Description: This plugin aims to be the most configurable tag cloud widget out there.
-Version: 2.2-beta1
+Version: 2.2
 Author: Rickard Andersson
 Author URI: https://www.0x539.se
 License: GPLv2
@@ -17,7 +17,7 @@ License: GPLv2
  * @var string
  * @since 2.0
  */
-define('UTCW_VERSION', '2.2-beta1');
+define('UTCW_VERSION', '2.2');
 
 /**
  * If development mode is currently enabled

@@ -1,5 +1,5 @@
 <?php
-use Rickard\UTCW\Plugin;
+//use Rickard\UTCW\Plugin;
 
 /*
 Plugin Name: Ultimate tag cloud widget

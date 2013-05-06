@@ -1,8 +1,8 @@
 <?php
 
-namespace Rickard\UTCW;
+//namespace Rickard\UTCW;
 
-use WP_Widget;
+//use WP_Widget;
 
 /**
  * Ultimate Tag Cloud Widget

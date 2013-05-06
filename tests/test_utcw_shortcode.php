@@ -1,5 +1,5 @@
 <?php
-use Rickard\UTCW\Plugin;
+//use Rickard\UTCW\Plugin;
 
 if (!defined('ABSPATH')) {
     die();
@@ -51,9 +51,8 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
 
     function test_function_loads_configuration()
     {
-        $utcw = $this->getMock('\Rickard\UTCW\Plugin', array('loadConfiguration'), array(), '', false);
+        $utcw = $this->getMock('Plugin', array('loadConfiguration'), array(), '', false);
         $utcw->expects($this->once())->method('loadConfiguration')->will($this->returnValue(array()));
         $utcw->shortcode(array('load_config' => 'test'));
-
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-use Rickard\UTCW\Render;
-use Rickard\UTCW\Data;
-use Rickard\UTCW\Config;
+//use Rickard\UTCW\Render;
+//use Rickard\UTCW\Data;
+//use Rickard\UTCW\Config;
 
 require 'dist/ultimate-tag-cloud-widget.php';
 
@@ -69,7 +69,7 @@ class MockFactory {
 		);
 
 		$mock = $this->testCase->getMock(
-			'\Rickard\UTCW\Plugin',
+			'Plugin',
 			$methods,
 			array(),
 			'',

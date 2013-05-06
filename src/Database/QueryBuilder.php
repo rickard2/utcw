@@ -1,6 +1,6 @@
 <?php
 
-namespace Rickard\UTCW\Database;
+//namespace Rickard\UTCW\Database;
 
 /**
  * Ultimate Tag Cloud Widget
@@ -13,8 +13,8 @@ namespace Rickard\UTCW\Database;
  * @since      2.2
  */
 
-use Rickard\UTCW\Plugin;
-use wpdb;
+//use Rickard\UTCW\Plugin;
+//use wpdb;
 
 /**
  * Class to handle QTranslate multi language support

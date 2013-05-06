@@ -1,6 +1,6 @@
 <?php
 
-namespace Rickard\UTCW;
+//namespace Rickard\UTCW;
 
 /**
  * Class for general plugin integration with WordPress
@@ -9,9 +9,9 @@ namespace Rickard\UTCW;
  * @package    utcw
  * @subpackage main
  */
-use Rickard\UTCW\Language\QTranslateHandler;
-use Rickard\UTCW\Language\TranslationHandler;
-use Rickard\UTCW\Language\WPMLHandler;
+//use Rickard\UTCW\Language\QTranslateHandler;
+//use Rickard\UTCW\Language\TranslationHandler;
+//use Rickard\UTCW\Language\WPMLHandler;
 
 /**
  * Ultimate Tag Cloud Widget

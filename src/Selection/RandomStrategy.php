@@ -1,6 +1,6 @@
 <?php
 
-namespace Rickard\UTCW\Selection;
+//namespace Rickard\UTCW\Selection;
 
 /**
  * Ultimate Tag Cloud Widget
@@ -13,11 +13,11 @@ namespace Rickard\UTCW\Selection;
  * @since      2.2
  */
 
-use Rickard\UTCW\Config;
-use Rickard\UTCW\Database\QueryBuilder;
-use Rickard\UTCW\Plugin;
-use stdClass;
-use wpdb;
+//use Rickard\UTCW\Config;
+//use Rickard\UTCW\Database\QueryBuilder;
+//use Rickard\UTCW\Plugin;
+//use stdClass;
+//use wpdb;
 
 /**
  * Class to select a random set of terms from the DB

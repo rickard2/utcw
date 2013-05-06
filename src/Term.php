@@ -1,8 +1,8 @@
 <?php
 
-namespace Rickard\UTCW;
+//namespace Rickard\UTCW;
 
-use stdClass;
+//use stdClass;
 
 /**
  * Ultimate Tag Cloud Widget

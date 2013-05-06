@@ -1,6 +1,6 @@
 <?php
 
-namespace Rickard\UTCW\Selection;
+//namespace Rickard\UTCW\Selection;
 
 /**
  * Ultimate Tag Cloud Widget
@@ -13,10 +13,10 @@ namespace Rickard\UTCW\Selection;
  * @since      2.2
  */
 
-use Rickard\UTCW\Config;
-use Rickard\UTCW\Plugin;
-use \stdClass;
-use wpdb;
+//use Rickard\UTCW\Config;
+//use Rickard\UTCW\Plugin;
+//use \stdClass;
+//use wpdb;
 
 /**
  * Abstract class to define selection strategy for finding terms

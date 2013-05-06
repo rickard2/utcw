@@ -1,5 +1,5 @@
 <?php
-use Rickard\UTCW\Plugin;
+//use Rickard\UTCW\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) die();
 /**

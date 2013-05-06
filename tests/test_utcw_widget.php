@@ -1,6 +1,6 @@
 <?php
 
-use Rickard\UTCW\Widget;
+//use Rickard\UTCW\Widget;
 
 if ( ! defined( 'ABSPATH' ) ) die();
 /**
@@ -20,7 +20,7 @@ class test_utcw_widget extends PHPUnit_Framework_TestCase {
 	private $utcw;
 
 	function setUp() {
-		$this->utcw = $this->getMock( '\Rickard\UTCW\Plugin', array(), array(), '', false );
+		$this->utcw = $this->getMock( 'Plugin', array(), array(), '', false );
 	}
 
 	function test_save_config() {

@@ -1,7 +1,7 @@
 <?php
-use Rickard\UTCW\Config;
-use Rickard\UTCW\Data;
-use Rickard\UTCW\QTranslateTerm;
+//use Rickard\UTCW\Config;
+//use Rickard\UTCW\Data;
+//use Rickard\UTCW\QTranslateTerm;
 
 if (!defined('ABSPATH')) {
     die();
@@ -55,7 +55,7 @@ class UTCW_Test_Translation extends WP_UnitTestCase
     public function test_lets_translation_handler_create_term_when_enabled()
     {
         $plugin  = $this->mockFactory->getUTCWMock(array('getTranslationHandler'));
-        $handler = $this->getMockForAbstractClass('\Rickard\UTCW\Language\TranslationHandler');
+        $handler = $this->getMockForAbstractClass('TranslationHandler');
 
         $this->wpdb->expects($this->once())
             ->method('get_results')

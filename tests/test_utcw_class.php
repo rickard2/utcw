@@ -1,7 +1,7 @@
 <?php
 
-use Rickard\UTCW\Widget;
-use Rickard\UTCW\Plugin;
+//use Rickard\UTCW\Widget;
+//use Rickard\UTCW\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) die();
 /**
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 class UTCW_Test_Class extends WP_UnitTestCase {
 
 	function test_class_exists() {
-		$this->assertTrue( class_exists( '\Rickard\UTCW\Widget' ) );
+		$this->assertTrue( class_exists( 'Widget' ) );
 	}
 
 	function test_class_inherits_wp_widget() {
@@ -24,11 +24,11 @@ class UTCW_Test_Class extends WP_UnitTestCase {
 	}
 
 	function test_config_class_exists() {
-		$this->assertTrue( class_exists( '\Rickard\UTCW\Config' ) );
+		$this->assertTrue( class_exists( 'Config' ) );
 	}
 
 	function test_class_plugin() {
-		$this->assertTrue( class_exists( '\Rickard\UTCW\Plugin' ) );
+		$this->assertTrue( class_exists( 'Plugin' ) );
 	}
 
 	function test_plugin_singleton() {
@@ -37,14 +37,14 @@ class UTCW_Test_Class extends WP_UnitTestCase {
 	}
 
 	function test_class_data() {
-		$this->assertTrue( class_exists( '\Rickard\UTCW\Data' ) );
+		$this->assertTrue( class_exists( 'Data' ) );
 	}
 
 	function test_class_render() {
-		$this->assertTrue( class_exists( '\Rickard\UTCW\Render' ) );
+		$this->assertTrue( class_exists( 'Render' ) );
 	}
 
 	function test_class_term() {
-		$this->assertTrue( class_exists( '\Rickard\UTCW\Term' ) );
+		$this->assertTrue( class_exists( 'Term' ) );
 	}
 }

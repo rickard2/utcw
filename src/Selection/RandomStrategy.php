@@ -6,7 +6,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.2.2
+ * @version    2.2.3
  * @license    GPLv2
  * @package    utcw
  * @subpackage language
@@ -29,18 +29,24 @@
 class UTCW_RandomStrategy extends UTCW_SelectionStrategy
 {
     /**
+     * Config class instance
+     *
      * @var UTCW_Config
      * @since 2.2
      */
     protected $config;
 
     /**
+     * Plugin class instance
+     *
      * @var UTCW_Plugin
      * @since 2.2
      */
     protected $plugin;
 
     /**
+     * WP Database class instance
+     *
      * @var wpdb
      * @since 2.2
      */
@@ -59,7 +65,7 @@ class UTCW_RandomStrategy extends UTCW_SelectionStrategy
      *
      * @param UTCW_Config $config   Current configuration
      * @param UTCW_Plugin $plugin   Main plugin instance
-     * @param wpdb   $db       WordPress DB instance
+     * @param wpdb        $db       WordPress DB instance
      *
      * @since 2.2
      */
@@ -107,6 +113,8 @@ class UTCW_RandomStrategy extends UTCW_SelectionStrategy
     }
 
     /**
+     * Clean up the internal members for debug output
+     *
      * @return void
      * @since 2.2
      */

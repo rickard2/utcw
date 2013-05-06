@@ -3,7 +3,7 @@ Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
 Tested up to: 3.6-beta2
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 Donate link: https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget
 License: GPLv2 or later
 
@@ -47,6 +47,10 @@ If you have questions, please post them in the forums.
 
 == Changelog ==
 
+= 2.2.3 =
+
+* Fixed naming collision issue with other plugins
+
 = 2.2.2 =
 
 * Fixed widget initialization issue
@@ -85,6 +89,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.2.3 =
+
+* Fixed naming collision issue with other plugins
 
 = 2.2.2 =
 

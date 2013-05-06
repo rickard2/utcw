@@ -20,6 +20,7 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="../packages/utcw.html"><i class="icon-folder-open"></i> utcw</a></li>
 </ul>
 </li>
@@ -31,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">1</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">2</span>
@@ -91,13 +92,6 @@
 </div>
 <h3>
 <i class="icon-custom icon-class"></i> Classes and interfaces</h3>
-<div id="UTCW" class="element ajax clickable class">
-<h1>UTCW<a href="../classes/UTCW.html">¶</a>
-</h1>
-<p class="short_description">Widget class for WordPress integration</p>
-<div class="details collapse"></div>
-<a href="../classes/UTCW.html" class="more">« More »</a>
-</div>
 <div id="UTCW_Config" class="element ajax clickable class">
 <h1>UTCW_Config<a href="../classes/UTCW_Config.html">¶</a>
 </h1>
@@ -115,9 +109,37 @@
 <div id="UTCW_Plugin" class="element ajax clickable class">
 <h1>UTCW_Plugin<a href="../classes/UTCW_Plugin.html">¶</a>
 </h1>
-<p class="short_description">Class for general plugin integration with WordPress</p>
+<p class="short_description">Ultimate Tag Cloud Widget</p>
 <div class="details collapse"></div>
 <a href="../classes/UTCW_Plugin.html" class="more">« More »</a>
+</div>
+<div id="UTCW_PopularityStrategy" class="element ajax clickable class">
+<h1>UTCW_PopularityStrategy<a href="../classes/UTCW_PopularityStrategy.html">¶</a>
+</h1>
+<p class="short_description">Class to select the most popular terms from the DB</p>
+<div class="details collapse"></div>
+<a href="../classes/UTCW_PopularityStrategy.html" class="more">« More »</a>
+</div>
+<div id="UTCW_QTranslateHandler" class="element ajax clickable class">
+<h1>UTCW_QTranslateHandler<a href="../classes/UTCW_QTranslateHandler.html">¶</a>
+</h1>
+<p class="short_description">Class to handle QTranslate multi language support</p>
+<div class="details collapse"></div>
+<a href="../classes/UTCW_QTranslateHandler.html" class="more">« More »</a>
+</div>
+<div id="UTCW_QueryBuilder" class="element ajax clickable class">
+<h1>UTCW_QueryBuilder<a href="../classes/UTCW_QueryBuilder.html">¶</a>
+</h1>
+<p class="short_description">Class to handle QTranslate multi language support</p>
+<div class="details collapse"></div>
+<a href="../classes/UTCW_QueryBuilder.html" class="more">« More »</a>
+</div>
+<div id="UTCW_RandomStrategy" class="element ajax clickable class">
+<h1>UTCW_RandomStrategy<a href="../classes/UTCW_RandomStrategy.html">¶</a>
+</h1>
+<p class="short_description">Class to select a random set of terms from the DB</p>
+<div class="details collapse"></div>
+<a href="../classes/UTCW_RandomStrategy.html" class="more">« More »</a>
 </div>
 <div id="UTCW_Render" class="element ajax clickable class">
 <h1>UTCW_Render<a href="../classes/UTCW_Render.html">¶</a>
@@ -126,6 +148,13 @@
 <div class="details collapse"></div>
 <a href="../classes/UTCW_Render.html" class="more">« More »</a>
 </div>
+<div id="UTCW_SelectionStrategy" class="element ajax clickable class">
+<h1>UTCW_SelectionStrategy<a href="../classes/UTCW_SelectionStrategy.html">¶</a>
+</h1>
+<p class="short_description">Abstract class to define selection strategy for finding terms</p>
+<div class="details collapse"></div>
+<a href="../classes/UTCW_SelectionStrategy.html" class="more">« More »</a>
+</div>
 <div id="UTCW_Term" class="element ajax clickable class">
 <h1>UTCW_Term<a href="../classes/UTCW_Term.html">¶</a>
 </h1>
@@ -133,63 +162,66 @@
 <div class="details collapse"></div>
 <a href="../classes/UTCW_Term.html" class="more">« More »</a>
 </div>
+<div id="UTCW_TranslationHandler" class="element ajax clickable class">
+<h1>UTCW_TranslationHandler<a href="../classes/UTCW_TranslationHandler.html">¶</a>
+</h1>
+<p class="short_description">Abstract class to handle multi language support</p>
+<div class="details collapse"></div>
+<a href="../classes/UTCW_TranslationHandler.html" class="more">« More »</a>
+</div>
+<div id="UTCW_WPMLHandler" class="element ajax clickable class">
+<h1>UTCW_WPMLHandler<a href="../classes/UTCW_WPMLHandler.html">¶</a>
+</h1>
+<p class="short_description">Class to handle WPML multi-language support</p>
+<div class="details collapse"></div>
+<a href="../classes/UTCW_WPMLHandler.html" class="more">« More »</a>
+</div>
+<div id="UTCW_Widget" class="element ajax clickable class">
+<h1>UTCW_Widget<a href="../classes/UTCW_Widget.html">¶</a>
+</h1>
+<p class="short_description">Widget class for WordPress integration</p>
+<div class="details collapse"></div>
+<a href="../classes/UTCW_Widget.html" class="more">« More »</a>
+</div>
 <h3>
 <i class="icon-custom icon-constant"></i> Constants</h3>
-<a id="constant_UTCW_DEV"> </a><div class="element clickable constant  constant_UTCW_DEV" data-toggle="collapse" data-target=".constant_UTCW_DEV .collapse">
-<h2>If development mode is currently enabled</h2>
-<pre>UTCW_DEV : bool</pre>
+<a id="constant_UTCW_DECIMAL_REGEX"> </a><div class="element clickable constant  constant_UTCW_DECIMAL_REGEX" data-toggle="collapse" data-target=".constant_UTCW_DECIMAL_REGEX .collapse">
+<h2>UTCW_DECIMAL_REGEX</h2>
+<pre>UTCW_DECIMAL_REGEX </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>2.0</td>
-</tr></table>
-</div></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="constant_UTCW_DEV"> </a><div class="element clickable constant  constant_UTCW_DEV" data-toggle="collapse" data-target=".constant_UTCW_DEV .collapse">
+<h2>UTCW_DEV</h2>
+<pre>UTCW_DEV </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="constant_UTCW_HEX_COLOR_FORMAT"> </a><div class="element clickable constant  constant_UTCW_HEX_COLOR_FORMAT" data-toggle="collapse" data-target=".constant_UTCW_HEX_COLOR_FORMAT .collapse">
-<h2>printf format for rendering hexadecimal colors</h2>
-<pre>UTCW_HEX_COLOR_FORMAT : string</pre>
+<h2>UTCW_HEX_COLOR_FORMAT</h2>
+<pre>UTCW_HEX_COLOR_FORMAT </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>2.0</td>
-</tr></table>
-</div></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="constant_UTCW_HEX_COLOR_REGEX"> </a><div class="element clickable constant  constant_UTCW_HEX_COLOR_REGEX" data-toggle="collapse" data-target=".constant_UTCW_HEX_COLOR_REGEX .collapse">
-<h2>Regular expression for matching hexadecimal colors</h2>
-<pre>UTCW_HEX_COLOR_REGEX : string</pre>
+<h2>UTCW_HEX_COLOR_REGEX</h2>
+<pre>UTCW_HEX_COLOR_REGEX </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>2.0</td>
-</tr></table>
-</div></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 <a id="constant_UTCW_VERSION"> </a><div class="element clickable constant  constant_UTCW_VERSION" data-toggle="collapse" data-target=".constant_UTCW_VERSION .collapse">
-<h2>Current version number</h2>
-<pre>UTCW_VERSION : string</pre>
+<h2>UTCW_VERSION</h2>
+<pre>UTCW_VERSION </pre>
 <div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>2.0</td>
-</tr></table>
-</div></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 </div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
-            generated on 2012-10-22T22:47:42+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-05-06T20:48:21+02:00.<br></footer></div>
 </div>
 </body>
 </html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>Ultimate Tag Cloud Widget » \UTCW_QueryBuilder</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">Ultimate Tag Cloud Widget</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/utcw.html"><i class="icon-folder-open"></i> utcw</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">2</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Creates a new instance of the QueryBuilder"><span class="description">Creates a new instance of the QueryBuilder</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_addAuthorConstraint" title="addAuthorConstraint :: Add author constraint"><span class="description">Add author constraint</span><pre>addAuthorConstraint()</pre></a></li>
+<li class="method public "><a href="#method_addDaysOldConstraint" title="addDaysOldConstraint :: Add days old constraint"><span class="description">Add days old constraint</span><pre>addDaysOldConstraint()</pre></a></li>
+<li class="method public "><a href="#method_addGrouping" title="addGrouping :: Add grouping statement"><span class="description">Add grouping statement</span><pre>addGrouping()</pre></a></li>
+<li class="method public "><a href="#method_addMaxConstraint" title="addMaxConstraint :: Add max constraint"><span class="description">Add max constraint</span><pre>addMaxConstraint()</pre></a></li>
+<li class="method public "><a href="#method_addMinimum" title="addMinimum :: Add minimum constraint"><span class="description">Add minimum constraint</span><pre>addMinimum()</pre></a></li>
+<li class="method public "><a href="#method_addPostStatusConstraint" title="addPostStatusConstraint :: Add post status constraint"><span class="description">Add post status constraint</span><pre>addPostStatusConstraint()</pre></a></li>
+<li class="method public "><a href="#method_addPostTypeConstraint" title="addPostTypeConstraint :: Add post type constraint"><span class="description">Add post type constraint</span><pre>addPostTypeConstraint()</pre></a></li>
+<li class="method public "><a href="#method_addSort" title="addSort :: Add sorting the result"><span class="description">Add sorting the result</span><pre>addSort()</pre></a></li>
+<li class="method public "><a href="#method_addStatement" title="addStatement :: Add a statement to the query"><span class="description">Add a statement to the query</span><pre>addStatement()</pre></a></li>
+<li class="method public "><a href="#method_addTagsListConstraint" title="addTagsListConstraint :: Add include or exclude constraint"><span class="description">Add include or exclude constraint</span><pre>addTagsListConstraint()</pre></a></li>
+<li class="method public "><a href="#method_addTaxonomyConstraint" title="addTaxonomyConstraint :: Add taxonomies constraint"><span class="description">Add taxonomies constraint</span><pre>addTaxonomyConstraint()</pre></a></li>
+<li class="method public "><a href="#method_getBaseQuery" title="getBaseQuery :: Returns the base query with joins"><span class="description">Returns the base query with joins</span><pre>getBaseQuery()</pre></a></li>
+<li class="method public "><a href="#method_getParameters" title="getParameters :: Returns the parameters for the resulting query"><span class="description">Returns the parameters for the resulting query</span><pre>getParameters()</pre></a></li>
+<li class="method public "><a href="#method_getQuery" title="getQuery :: Returns the resulting query"><span class="description">Returns the resulting query</span><pre>getQuery()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="property protected "><a href="#property_db" title="$db :: Database reference"><span class="description"></span><pre>$db</pre></a></li></ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\UTCW_QueryBuilder"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/UTCW_QueryBuilder.html">UTCW_QueryBuilder</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Class to handle QTranslate multi language support</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>2.2</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/utcw.database.html">utcw</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>database</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Creates a new instance of the QueryBuilder</h2>
+<pre>__construct(\UTCW_Plugin $plugin, \wpdb $db) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$plugin</h4>
+<code><a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></code>
+</div>
+<div class="subelement argument">
+<h4>$db</h4>
+<code>\wpdb</code>
+</div>
+</div></div>
+</div>
+<a id="method_addAuthorConstraint"></a><div class="element clickable method public method_addAuthorConstraint" data-toggle="collapse" data-target=".method_addAuthorConstraint .collapse">
+<h2>Add author constraint</h2>
+<pre>addAuthorConstraint(array $authors) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$authors</h4>
+<code>array</code>
+</div>
+</div></div>
+</div>
+<a id="method_addDaysOldConstraint"></a><div class="element clickable method public method_addDaysOldConstraint" data-toggle="collapse" data-target=".method_addDaysOldConstraint .collapse">
+<h2>Add days old constraint</h2>
+<pre>addDaysOldConstraint(int $days_old) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$days_old</h4>
+<code>int</code>
+</div>
+</div></div>
+</div>
+<a id="method_addGrouping"></a><div class="element clickable method public method_addGrouping" data-toggle="collapse" data-target=".method_addGrouping .collapse">
+<h2>Add grouping statement</h2>
+<pre>addGrouping() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_addMaxConstraint"></a><div class="element clickable method public method_addMaxConstraint" data-toggle="collapse" data-target=".method_addMaxConstraint .collapse">
+<h2>Add max constraint</h2>
+<pre>addMaxConstraint(int $max) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$max</h4>
+<code>int</code>
+</div>
+</div></div>
+</div>
+<a id="method_addMinimum"></a><div class="element clickable method public method_addMinimum" data-toggle="collapse" data-target=".method_addMinimum .collapse">
+<h2>Add minimum constraint</h2>
+<pre>addMinimum(int $minimum) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$minimum</h4>
+<code>int</code>
+</div>
+</div></div>
+</div>
+<a id="method_addPostStatusConstraint"></a><div class="element clickable method public method_addPostStatusConstraint" data-toggle="collapse" data-target=".method_addPostStatusConstraint .collapse">
+<h2>Add post status constraint</h2>
+<pre>addPostStatusConstraint(bool $authenticated) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$authenticated</h4>
+<code>bool</code>
+</div>
+</div></div>
+</div>
+<a id="method_addPostTypeConstraint"></a><div class="element clickable method public method_addPostTypeConstraint" data-toggle="collapse" data-target=".method_addPostTypeConstraint .collapse">
+<h2>Add post type constraint</h2>
+<pre>addPostTypeConstraint(array $post_types) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$post_types</h4>
+<code>array</code>
+</div>
+</div></div>
+</div>
+<a id="method_addSort"></a><div class="element clickable method public method_addSort" data-toggle="collapse" data-target=".method_addSort .collapse">
+<h2>Add sorting the result</h2>
+<pre>addSort(string $order, bool $reverse, bool $case_sensitive) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$order</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$reverse</h4>
+<code>bool</code>
+</div>
+<div class="subelement argument">
+<h4>$case_sensitive</h4>
+<code>bool</code>
+</div>
+</div></div>
+</div>
+<a id="method_addStatement"></a><div class="element clickable method public method_addStatement" data-toggle="collapse" data-target=".method_addStatement .collapse">
+<h2>Add a statement to the query</h2>
+<pre>addStatement(string $statement) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$statement</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_addTagsListConstraint"></a><div class="element clickable method public method_addTagsListConstraint" data-toggle="collapse" data-target=".method_addTagsListConstraint .collapse">
+<h2>Add include or exclude constraint</h2>
+<pre>addTagsListConstraint(string $type, array $list, array $taxonomy) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$list</h4>
+<code>array</code>
+</div>
+<div class="subelement argument">
+<h4>$taxonomy</h4>
+<code>array</code>
+</div>
+</div></div>
+</div>
+<a id="method_addTaxonomyConstraint"></a><div class="element clickable method public method_addTaxonomyConstraint" data-toggle="collapse" data-target=".method_addTaxonomyConstraint .collapse">
+<h2>Add taxonomies constraint</h2>
+<pre>addTaxonomyConstraint(array $taxonomies) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$taxonomies</h4>
+<code>array</code>
+</div>
+</div></div>
+</div>
+<a id="method_getBaseQuery"></a><div class="element clickable method public method_getBaseQuery" data-toggle="collapse" data-target=".method_getBaseQuery .collapse">
+<h2>Returns the base query with joins</h2>
+<pre>getBaseQuery() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getParameters"></a><div class="element clickable method public method_getParameters" data-toggle="collapse" data-target=".method_getParameters .collapse">
+<h2>Returns the parameters for the resulting query</h2>
+<pre>getParameters() : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>array</code></div>
+</div></div>
+</div>
+<a id="method_getQuery"></a><div class="element clickable method public method_getQuery" data-toggle="collapse" data-target=".method_getQuery .collapse">
+<h2>Returns the resulting query</h2>
+<pre>getQuery() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_db"> </a><div class="element clickable property protected property_db" data-toggle="collapse" data-target=".property_db .collapse">
+<h2></h2>
+<pre>$db : \wpdb</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-05-06T20:48:21+02:00.<br></footer></div>
+</div>
+</body>
+</html>

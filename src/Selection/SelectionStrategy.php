@@ -6,7 +6,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.2.2
+ * @version    2.2.3
  * @license    GPLv2
  * @package    utcw
  * @subpackage selection
@@ -32,7 +32,7 @@ abstract class UTCW_SelectionStrategy
      *
      * @param UTCW_Config $config   Current configuration
      * @param UTCW_Plugin $plugin   Main plugin instance
-     * @param wpdb   $db       WordPress DB instance
+     * @param wpdb        $db       WordPress DB instance
      *
      * @since 2.0
      */
@@ -47,6 +47,8 @@ abstract class UTCW_SelectionStrategy
     abstract public function getData();
 
     /**
+     * Clean up the internal members for debug output
+     *
      * @return void
      */
     abstract public function cleanupForDebug();

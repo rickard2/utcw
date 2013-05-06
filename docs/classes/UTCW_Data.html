@@ -20,6 +20,7 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="../packages/utcw.html"><i class="icon-folder-open"></i> utcw</a></li>
 </ul>
 </li>
@@ -31,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">1</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">2</span>
@@ -59,14 +60,15 @@
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct :: Creates a new instance"><span class="description">Creates a new instance</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_get_terms" title="getTerms :: Loads terms based on current configuration"><span class="description">Loads terms based on current configuration</span><pre>getTerms()</pre></a></li>
+<li class="method public "><a href="#method_cleanupForDebug" title="cleanupForDebug :: Cleans up sensitive data before being used in debug output"><span class="description">Cleans up sensitive data before being used in debug output</span><pre>cleanupForDebug()</pre></a></li>
+<li class="method public "><a href="#method_getTerms" title="getTerms :: Loads terms based on current configuration"><span class="description">Loads terms based on current configuration</span><pre>getTerms()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header private">» Private
                     <ul>
-<li class="method private "><a href="#method_calc_color" title="calcColor :: Calculate term color"><span class="description">Calculate term color</span><pre>calcColor()</pre></a></li>
-<li class="method private "><a href="#method_calc_size" title="calcSize :: Calculate term size"><span class="description">Calculate term size</span><pre>calcSize()</pre></a></li>
-<li class="method private "><a href="#method_calc_step" title="calcStep :: Calculate step size"><span class="description">Calculate step size</span><pre>calcStep()</pre></a></li>
+<li class="method private "><a href="#method_calcColor" title="calcColor :: Calculate term color"><span class="description">Calculate term color</span><pre>calcColor()</pre></a></li>
+<li class="method private "><a href="#method_calcSize" title="calcSize :: Calculate term size"><span class="description">Calculate term size</span><pre>calcSize()</pre></a></li>
+<li class="method private "><a href="#method_calcStep" title="calcStep :: Calculate step size"><span class="description">Calculate step size</span><pre>calcStep()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -75,9 +77,10 @@
 </li>
 <li class="nav-header protected">» Protected
                     <ul>
-<li class="property protected "><a href="#property_config" title="$config :: Reference to the current configuration"><span class="description">Reference to the current configuration</span><pre>$config</pre></a></li>
-<li class="property protected "><a href="#property_db" title="$db :: Reference to WPDB object"><span class="description">Reference to WPDB object</span><pre>$db</pre></a></li>
-<li class="property protected "><a href="#property_plugin" title="$plugin :: Reference to main plugin instance"><span class="description">Reference to main plugin instance</span><pre>$plugin</pre></a></li>
+<li class="property protected "><a href="#property_config" title="$config :: Reference to the current configuration"><span class="description"></span><pre>$config</pre></a></li>
+<li class="property protected "><a href="#property_db" title="$db :: Reference to WPDB object"><span class="description"></span><pre>$db</pre></a></li>
+<li class="property protected "><a href="#property_plugin" title="$plugin :: Reference to main plugin instance"><span class="description"></span><pre>$plugin</pre></a></li>
+<li class="property protected "><a href="#property_strategy" title="$strategy :: Reference to the selection strategy used"><span class="description"></span><pre>$strategy</pre></a></li>
 </ul>
 </li>
 </ul>
@@ -134,9 +137,15 @@
 <code>\wpdb</code><p>WordPress DB instance</p></div>
 </div></div>
 </div>
-<a id="method_get_terms"></a><div class="element clickable method public method_get_terms" data-toggle="collapse" data-target=".method_get_terms .collapse">
+<a id="method_cleanupForDebug"></a><div class="element clickable method public method_cleanupForDebug" data-toggle="collapse" data-target=".method_cleanupForDebug .collapse">
+<h2>Cleans up sensitive data before being used in debug output</h2>
+<pre>cleanupForDebug() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_getTerms"></a><div class="element clickable method public method_getTerms" data-toggle="collapse" data-target=".method_getTerms .collapse">
 <h2>Loads terms based on current configuration</h2>
-<pre>getTerms() : <a href="utcw-term.html#%5CUTCW_Term">\UTCW_Term[]</a></pre>
+<pre>getTerms() : <a href="src.Term.html#%5CUTCW_Term">\UTCW_Term[]</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
@@ -145,10 +154,10 @@
 <td>2.0</td>
 </tr></table>
 <h3>Returns</h3>
-<div class="subelement response"><code><a href="utcw-term.html#%5CUTCW_Term">\UTCW_Term[]</a></code></div>
+<div class="subelement response"><code><a href="src.Term.html#%5CUTCW_Term">\UTCW_Term[]</a></code></div>
 </div></div>
 </div>
-<a id="method_calc_color"></a><div class="element clickable method private method_calc_color" data-toggle="collapse" data-target=".method_calc_color .collapse">
+<a id="method_calcColor"></a><div class="element clickable method private method_calcColor" data-toggle="collapse" data-target=".method_calcColor .collapse">
 <h2>Calculate term color</h2>
 <pre>calcColor(int $min_count, int $max_count, \stdClass $colors, int $count) : string</pre>
 <div class="labels"></div>
@@ -176,7 +185,7 @@
 <div class="subelement response"><code>string</code></div>
 </div></div>
 </div>
-<a id="method_calc_size"></a><div class="element clickable method private method_calc_size" data-toggle="collapse" data-target=".method_calc_size .collapse">
+<a id="method_calcSize"></a><div class="element clickable method private method_calcSize" data-toggle="collapse" data-target=".method_calcSize .collapse">
 <h2>Calculate term size</h2>
 <pre>calcSize(int $size_from, int $count, int $min_count, int $font_step) : int</pre>
 <div class="labels"></div>
@@ -203,7 +212,7 @@
 <div class="subelement response"><code>int</code></div>
 </div></div>
 </div>
-<a id="method_calc_step"></a><div class="element clickable method private method_calc_step" data-toggle="collapse" data-target=".method_calc_step .collapse">
+<a id="method_calcStep"></a><div class="element clickable method private method_calcStep" data-toggle="collapse" data-target=".method_calcStep .collapse">
 <h2>Calculate step size</h2>
 <pre>calcStep(int $min, int $max, int $from, int $to) : int</pre>
 <div class="labels"></div>
@@ -233,7 +242,7 @@
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_config"> </a><div class="element clickable property protected property_config" data-toggle="collapse" data-target=".property_config .collapse">
-<h2>Reference to the current configuration</h2>
+<h2></h2>
 <pre>$config : <a href="../classes/UTCW_Config.html">\UTCW_Config</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -245,7 +254,7 @@
 </div></div>
 </div>
 <a id="property_db"> </a><div class="element clickable property protected property_db" data-toggle="collapse" data-target=".property_db .collapse">
-<h2>Reference to WPDB object</h2>
+<h2></h2>
 <pre>$db : \wpdb</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -257,7 +266,7 @@
 </div></div>
 </div>
 <a id="property_plugin"> </a><div class="element clickable property protected property_plugin" data-toggle="collapse" data-target=".property_plugin .collapse">
-<h2>Reference to main plugin instance</h2>
+<h2></h2>
 <pre>$plugin : <a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -268,14 +277,26 @@
 </tr></table>
 </div></div>
 </div>
+<a id="property_strategy"> </a><div class="element clickable property protected property_strategy" data-toggle="collapse" data-target=".property_strategy .collapse">
+<h2></h2>
+<pre>$strategy : <a href="../classes/UTCW_SelectionStrategy.html">\UTCW_SelectionStrategy</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+</div></div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
-            generated on 2012-10-22T22:47:42+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-05-06T20:48:21+02:00.<br></footer></div>
 </div>
 </body>
 </html>

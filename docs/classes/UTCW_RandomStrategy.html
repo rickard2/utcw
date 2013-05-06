@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>Ultimate Tag Cloud Widget » \UTCW_Term</title>
+<title>Ultimate Tag Cloud Widget » \UTCW_RandomStrategy</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -58,167 +58,151 @@
 <ul class="side-nav nav nav-list">
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
-                    <ul><li class="method public "><a href="#method___construct" title="__construct :: Creates a new term"><span class="description">Creates a new term</span><pre>__construct()</pre></a></li></ul>
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Creates a new instance"><span class="description">Creates a new instance</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_cleanupForDebug" title="cleanupForDebug :: Clean up the internal members for debug output"><span class="description">Clean up the internal members for debug output</span><pre>cleanupForDebug()</pre></a></li>
+<li class="method public "><a href="#method_getData" title="getData :: Returns term data based on current configuration"><span class="description">Returns term data based on current configuration</span><pre>getData()</pre></a></li>
+</ul>
 </li>
 <li class="nav-header">
 <i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
                     <ul>
-<li class="property public "><a href="#property_color" title="$color :: Term color"><span class="description"></span><pre>$color</pre></a></li>
-<li class="property public "><a href="#property_count" title="$count :: Number of posts"><span class="description"></span><pre>$count</pre></a></li>
-<li class="property public "><a href="#property_link" title="$link :: Term link"><span class="description"></span><pre>$link</pre></a></li>
-<li class="property public "><a href="#property_name" title="$name :: Term name"><span class="description"></span><pre>$name</pre></a></li>
-<li class="property public "><a href="#property_size" title="$size :: Term size"><span class="description"></span><pre>$size</pre></a></li>
-<li class="property public "><a href="#property_slug" title="$slug :: Term slug"><span class="description"></span><pre>$slug</pre></a></li>
-<li class="property public "><a href="#property_taxonomy" title="$taxonomy :: Term taxonomy"><span class="description"></span><pre>$taxonomy</pre></a></li>
-<li class="property public "><a href="#property_term_id" title="$term_id :: Term ID"><span class="description"></span><pre>$term_id</pre></a></li>
+<li class="property protected "><a href="#property_config" title="$config :: Config class instance"><span class="description"></span><pre>$config</pre></a></li>
+<li class="property protected "><a href="#property_db" title="$db :: WP Database class instance"><span class="description"></span><pre>$db</pre></a></li>
+<li class="property protected "><a href="#property_plugin" title="$plugin :: Plugin class instance"><span class="description"></span><pre>$plugin</pre></a></li>
+<li class="property protected "><a href="#property_query" title="$query :: A copy of the SQL query for debugging purposes"><span class="description"></span><pre>$query</pre></a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="span8">
-<a id="\UTCW_Term"></a><ul class="breadcrumb">
+<a id="\UTCW_RandomStrategy"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/global.html">global</a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/UTCW_Term.html">UTCW_Term</a>
+<span class="divider">\</span><a href="../classes/UTCW_RandomStrategy.html">UTCW_RandomStrategy</a>
 </li>
 </ul>
 <div class="element class">
-<p class="short_description">Class to represent a term</p>
+<p class="short_description">Class to select a random set of terms from the DB</p>
 <div class="details">
 <div class="long_description"></div>
 <table class="table table-bordered">
 <tr>
 <th>since</th>
-<td>2.0</td>
+<td>2.2</td>
 </tr>
 <tr>
 <th>package</th>
-<td><a href="../packages/utcw.main.html">utcw</a></td>
+<td><a href="../packages/utcw.selection.html">utcw</a></td>
 </tr>
 <tr>
 <th>subpackage</th>
-<td>main</td>
+<td>selection</td>
 </tr>
 </table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
 <a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>Creates a new term</h2>
-<pre>__construct(\stdClass $input, \UTCW_Plugin $plugin) </pre>
+<h2>Creates a new instance</h2>
+<pre>__construct(\UTCW_Config $config, \UTCW_Plugin $plugin, \wpdb $db) </pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <table class="table table-bordered"><tr>
 <th>since</th>
-<td>2.0</td>
+<td>2.2</td>
 </tr></table>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$input</h4>
-<code><a href="http://php.net/manual/en/class.stdclass.php">\stdClass</a></code><p>Object with properties term_id, count, slug, name, color and taxonomy</p></div>
+<h4>$config</h4>
+<code><a href="../classes/UTCW_Config.html">\UTCW_Config</a></code><p>Current configuration</p></div>
 <div class="subelement argument">
 <h4>$plugin</h4>
-<code><a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></code><p>Reference to the plugin instance</p></div>
+<code><a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></code><p>Main plugin instance</p></div>
+<div class="subelement argument">
+<h4>$db</h4>
+<code>\wpdb</code><p>WordPress DB instance</p></div>
+</div></div>
+</div>
+<a id="method_cleanupForDebug"></a><div class="element clickable method public method_cleanupForDebug" data-toggle="collapse" data-target=".method_cleanupForDebug .collapse">
+<h2>Clean up the internal members for debug output</h2>
+<pre>cleanupForDebug() : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getData"></a><div class="element clickable method public method_getData" data-toggle="collapse" data-target=".method_getData .collapse">
+<h2>Returns term data based on current configuration</h2>
+<pre>getData() : <a href="http://php.net/manual/en/class.stdclass.php">\stdClass[]</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response"><code><a href="http://php.net/manual/en/class.stdclass.php">\stdClass[]</a></code></div>
 </div></div>
 </div>
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
-<a id="property_color"> </a><div class="element clickable property public property_color" data-toggle="collapse" data-target=".property_color .collapse">
+<a id="property_config"> </a><div class="element clickable property protected property_config" data-toggle="collapse" data-target=".property_config .collapse">
 <h2></h2>
-<pre>$color : string</pre>
+<pre>$config : <a href="../classes/UTCW_Config.html">\UTCW_Config</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <table class="table table-bordered"><tr>
 <th>since</th>
-<td>2.0</td>
+<td>2.2</td>
 </tr></table>
 </div></div>
 </div>
-<a id="property_count"> </a><div class="element clickable property public property_count" data-toggle="collapse" data-target=".property_count .collapse">
+<a id="property_db"> </a><div class="element clickable property protected property_db" data-toggle="collapse" data-target=".property_db .collapse">
 <h2></h2>
-<pre>$count : int</pre>
+<pre>$db : \wpdb</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <table class="table table-bordered"><tr>
 <th>since</th>
-<td>2.0</td>
+<td>2.2</td>
 </tr></table>
 </div></div>
 </div>
-<a id="property_link"> </a><div class="element clickable property public property_link" data-toggle="collapse" data-target=".property_link .collapse">
+<a id="property_plugin"> </a><div class="element clickable property protected property_plugin" data-toggle="collapse" data-target=".property_plugin .collapse">
 <h2></h2>
-<pre>$link : string</pre>
+<pre>$plugin : <a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <table class="table table-bordered"><tr>
 <th>since</th>
-<td>2.0</td>
+<td>2.2</td>
 </tr></table>
 </div></div>
 </div>
-<a id="property_name"> </a><div class="element clickable property public property_name" data-toggle="collapse" data-target=".property_name .collapse">
+<a id="property_query"> </a><div class="element clickable property protected property_query" data-toggle="collapse" data-target=".property_query .collapse">
 <h2></h2>
-<pre>$name : string</pre>
+<pre>$query : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <table class="table table-bordered"><tr>
 <th>since</th>
-<td>2.0</td>
-</tr></table>
-</div></div>
-</div>
-<a id="property_size"> </a><div class="element clickable property public property_size" data-toggle="collapse" data-target=".property_size .collapse">
-<h2></h2>
-<pre>$size : float</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>2.0</td>
-</tr></table>
-</div></div>
-</div>
-<a id="property_slug"> </a><div class="element clickable property public property_slug" data-toggle="collapse" data-target=".property_slug .collapse">
-<h2></h2>
-<pre>$slug : string</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>2.0</td>
-</tr></table>
-</div></div>
-</div>
-<a id="property_taxonomy"> </a><div class="element clickable property public property_taxonomy" data-toggle="collapse" data-target=".property_taxonomy .collapse">
-<h2></h2>
-<pre>$taxonomy : string</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>2.0</td>
-</tr></table>
-</div></div>
-</div>
-<a id="property_term_id"> </a><div class="element clickable property public property_term_id" data-toggle="collapse" data-target=".property_term_id .collapse">
-<h2></h2>
-<pre>$term_id : int</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<table class="table table-bordered"><tr>
-<th>since</th>
-<td>2.0</td>
+<td>2.2</td>
 </tr></table>
 </div></div>
 </div>

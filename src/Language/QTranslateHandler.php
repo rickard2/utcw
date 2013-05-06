@@ -6,7 +6,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.2.2
+ * @version    2.2.3
  * @license    GPLv2
  * @package    utcw
  * @subpackage language
@@ -35,6 +35,8 @@ class UTCW_QTranslateHandler extends UTCW_TranslationHandler
     protected $nameMap;
 
     /**
+     * Initializes the class with a map of term names
+     *
      * @param array $nameMap An array of term names mapped to translated names
      *
      * @since 2.2
@@ -69,7 +71,7 @@ class UTCW_QTranslateHandler extends UTCW_TranslationHandler
     /**
      * {@inheritdoc}
      *
-     * @param stdClass $input
+     * @param stdClass      $input
      * @param UTCW_Plugin   $plugin
      *
      * @return null|UTCW_Term

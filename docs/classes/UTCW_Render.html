@@ -20,6 +20,7 @@
 <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
                                     API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
 <li><a href="../packages/utcw.html"><i class="icon-folder-open"></i> utcw</a></li>
 </ul>
 </li>
@@ -31,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">0</span></a></li>
+                <span class="label label-info">1</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">2</span>
@@ -59,14 +60,14 @@
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
 <li class="method public "><a href="#method___construct" title="__construct :: Creates a new instance of the renderer"><span class="description">Creates a new instance of the renderer</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_get_cloud" title="getCloud :: Returns the cloud as a string"><span class="description">Returns the cloud as a string</span><pre>getCloud()</pre></a></li>
+<li class="method public "><a href="#method_getCloud" title="getCloud :: Returns the cloud as a string"><span class="description">Returns the cloud as a string</span><pre>getCloud()</pre></a></li>
 <li class="method public "><a href="#method_render" title="render :: Renders the cloud as output"><span class="description">Renders the cloud as output</span><pre>render()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header private">» Private
                     <ul>
-<li class="method private "><a href="#method_build_css" title="buildCSS :: Builds the CSS needed to properly style the cloud"><span class="description">Builds the CSS needed to properly style the cloud</span><pre>buildCSS()</pre></a></li>
-<li class="method private "><a href="#method_has_default_value" title="hasDefaultValue :: Checks if option still has the default value"><span class="description">Checks if option still has the default value</span><pre>hasDefaultValue()</pre></a></li>
+<li class="method private "><a href="#method_buildCSS" title="buildCSS :: Builds the CSS needed to properly style the cloud"><span class="description">Builds the CSS needed to properly style the cloud</span><pre>buildCSS()</pre></a></li>
+<li class="method private "><a href="#method_hasDefaultValue" title="hasDefaultValue :: Checks if option still has the default value"><span class="description">Checks if option still has the default value</span><pre>hasDefaultValue()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -75,11 +76,11 @@
 </li>
 <li class="nav-header private">» Private
                     <ul>
-<li class="property private "><a href="#property_config" title="$config :: Reference to the current configuration"><span class="description">Reference to the current configuration</span><pre>$config</pre></a></li>
-<li class="property private "><a href="#property_css" title="$css :: CSS styles for this widget instance"><span class="description">CSS styles for this widget instance</span><pre>$css</pre></a></li>
-<li class="property private "><a href="#property_data" title="$data :: Reference to the Data class which contains the data to be rendered"><span class="description">Reference to the Data class which contains the data to be rendered</span><pre>$data</pre></a></li>
-<li class="property private "><a href="#property_id" title="$id :: Unique ID for this widget configuration"><span class="description">Unique ID for this widget configuration</span><pre>$id</pre></a></li>
-<li class="property private "><a href="#property_plugin" title="$plugin :: Reference to the main plugin instance"><span class="description">Reference to the main plugin instance</span><pre>$plugin</pre></a></li>
+<li class="property private "><a href="#property_config" title="$config :: Reference to the current configuration"><span class="description"></span><pre>$config</pre></a></li>
+<li class="property private "><a href="#property_css" title="$css :: CSS styles for this widget instance"><span class="description"></span><pre>$css</pre></a></li>
+<li class="property private "><a href="#property_data" title="$data :: Reference to the Data class which contains the data to be rendered"><span class="description"></span><pre>$data</pre></a></li>
+<li class="property private "><a href="#property_id" title="$id :: Unique ID for this widget configuration"><span class="description"></span><pre>$id</pre></a></li>
+<li class="property private "><a href="#property_plugin" title="$plugin :: Reference to the main plugin instance"><span class="description"></span><pre>$plugin</pre></a></li>
 </ul>
 </li>
 </ul>
@@ -136,7 +137,7 @@
 <code><a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></code><p>Main plugin instance</p></div>
 </div></div>
 </div>
-<a id="method_get_cloud"></a><div class="element clickable method public method_get_cloud" data-toggle="collapse" data-target=".method_get_cloud .collapse">
+<a id="method_getCloud"></a><div class="element clickable method public method_getCloud" data-toggle="collapse" data-target=".method_getCloud .collapse">
 <h2>Returns the cloud as a string</h2>
 <pre>getCloud() : string</pre>
 <div class="labels"></div>
@@ -162,7 +163,7 @@
 </tr></table>
 </div></div>
 </div>
-<a id="method_build_css"></a><div class="element clickable method private method_build_css" data-toggle="collapse" data-target=".method_build_css .collapse">
+<a id="method_buildCSS"></a><div class="element clickable method private method_buildCSS" data-toggle="collapse" data-target=".method_buildCSS .collapse">
 <h2>Builds the CSS needed to properly style the cloud</h2>
 <pre>buildCSS() </pre>
 <div class="labels"></div>
@@ -174,7 +175,7 @@
 </tr></table>
 </div></div>
 </div>
-<a id="method_has_default_value"></a><div class="element clickable method private method_has_default_value" data-toggle="collapse" data-target=".method_has_default_value .collapse">
+<a id="method_hasDefaultValue"></a><div class="element clickable method private method_hasDefaultValue" data-toggle="collapse" data-target=".method_hasDefaultValue .collapse">
 <h2>Checks if option still has the default value</h2>
 <pre>hasDefaultValue(string $option) : bool</pre>
 <div class="labels"></div>
@@ -196,7 +197,7 @@
 <h3>
 <i class="icon-custom icon-property"></i> Properties</h3>
 <a id="property_config"> </a><div class="element clickable property private property_config" data-toggle="collapse" data-target=".property_config .collapse">
-<h2>Reference to the current configuration</h2>
+<h2></h2>
 <pre>$config : <a href="../classes/UTCW_Config.html">\UTCW_Config</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -208,7 +209,7 @@
 </div></div>
 </div>
 <a id="property_css"> </a><div class="element clickable property private property_css" data-toggle="collapse" data-target=".property_css .collapse">
-<h2>CSS styles for this widget instance</h2>
+<h2></h2>
 <pre>$css : string</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -220,7 +221,7 @@
 </div></div>
 </div>
 <a id="property_data"> </a><div class="element clickable property private property_data" data-toggle="collapse" data-target=".property_data .collapse">
-<h2>Reference to the Data class which contains the data to be rendered</h2>
+<h2></h2>
 <pre>$data : <a href="../classes/UTCW_Data.html">\UTCW_Data</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -232,7 +233,7 @@
 </div></div>
 </div>
 <a id="property_id"> </a><div class="element clickable property private property_id" data-toggle="collapse" data-target=".property_id .collapse">
-<h2>Unique ID for this widget configuration</h2>
+<h2></h2>
 <pre>$id : int</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -244,7 +245,7 @@
 </div></div>
 </div>
 <a id="property_plugin"> </a><div class="element clickable property private property_plugin" data-toggle="collapse" data-target=".property_plugin .collapse">
-<h2>Reference to the main plugin instance</h2>
+<h2></h2>
 <pre>$plugin : <a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
@@ -261,8 +262,8 @@
 </div>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
-            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a10</a> and<br>
-            generated on 2012-10-22T22:47:42+02:00.<br></footer></div>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-05-06T20:48:21+02:00.<br></footer></div>
 </div>
 </body>
 </html>

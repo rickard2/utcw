@@ -8,7 +8,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.2.2
+ * @version    2.2.3
  * @license    GPLv2
  * @package    utcw
  * @subpackage main

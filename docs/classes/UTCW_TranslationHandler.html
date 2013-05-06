@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>Ultimate Tag Cloud Widget » Default</title>
+<title>Ultimate Tag Cloud Widget » \UTCW_TranslationHandler</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -52,82 +52,86 @@
                         </div></noscript>
 <div class="row">
 <div class="span4">
-<div class="btn-group view pull-right" data-toggle="buttons-radio">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
 <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
 </div>
-<ul class="side-nav nav nav-list">
-<li class="nav-header">
-<i class="icon-map-marker"></i> Packages</li>
-<li>
-<a href="../packages/Default.html" title="Default"><i class="icon-folder-open"></i>Default</a><ul class="nav nav-list nav-packages"></ul>
-</li>
-<li class="nav-header">
-<i class="icon-custom icon-function"></i> Functions</li>
-<li class="function  "><a href="#function_do_utcw" title="do_utcw :: Function for theme integration"><span class="description">Function for theme integration</span><pre>do_utcw</pre></a></li>
-<li class="nav-header">
-<i class="icon-custom icon-constant"></i> Constants</li>
-<li class="constant  "><a href="#constant_UTCW_DECIMAL_REGEX" title="UTCW_DECIMAL_REGEX :: "><span class="description">UTCW_DECIMAL_REGEX</span><pre>UTCW_DECIMAL_REGEX</pre></a></li>
-<li class="constant  "><a href="#constant_UTCW_DEV" title="UTCW_DEV :: "><span class="description">UTCW_DEV</span><pre>UTCW_DEV</pre></a></li>
-<li class="constant  "><a href="#constant_UTCW_HEX_COLOR_FORMAT" title="UTCW_HEX_COLOR_FORMAT :: "><span class="description">UTCW_HEX_COLOR_FORMAT</span><pre>UTCW_HEX_COLOR_FORMAT</pre></a></li>
-<li class="constant  "><a href="#constant_UTCW_HEX_COLOR_REGEX" title="UTCW_HEX_COLOR_REGEX :: "><span class="description">UTCW_HEX_COLOR_REGEX</span><pre>UTCW_HEX_COLOR_REGEX</pre></a></li>
-<li class="constant  "><a href="#constant_UTCW_VERSION" title="UTCW_VERSION :: "><span class="description">UTCW_VERSION</span><pre>UTCW_VERSION</pre></a></li>
+<ul class="side-nav nav nav-list"><li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method_createTerm" title="createTerm :: Returns a new Term or null depending on if the term should be included with the current language settings."><span class="description">Returns a new Term or null depending on if the term should be included with the current language settings.</span><pre>createTerm()</pre></a></li>
+<li class="method public "><a href="#method_isEnabled" title="isEnabled :: Returns true if this multi-language plugin is enabled"><span class="description">Returns true if this multi-language plugin is enabled</span><pre>isEnabled()</pre></a></li>
 </ul>
-</div>
-<div class="span8 package-contents">
-<ul class="breadcrumb"><li>
-<a href="../index.html"><i class="icon-folder-open"></i></a><span class="divider">\</span><li class="active"><a href="../packages/Default.html">Default</a></li>
 </li></ul>
-<div class="package-indent">
+</div>
+<div class="span8">
+<a id="\UTCW_TranslationHandler"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/UTCW_TranslationHandler.html">UTCW_TranslationHandler</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Abstract class to handle multi language support</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>since</th>
+<td>2.2</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/utcw.language.html">utcw</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>language</td>
+</tr>
+</table>
 <h3>
-<i class="icon-custom icon-function"></i> Functions</h3>
-<a id="function_do_utcw"></a><div class="element clickable function  function_do_utcw" data-toggle="collapse" data-target=".function_do_utcw .collapse">
-<h2>Function for theme integration</h2>
-<pre>do_utcw(array $args) </pre>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method_createTerm"></a><div class="element clickable method public method_createTerm" data-toggle="collapse" data-target=".method_createTerm .collapse">
+<h2>Returns a new Term or null depending on if the term should be included with the current language settings.</h2>
+<pre>createTerm(\stdClass $input, \UTCW_Plugin $plugin) : null | <a href="../classes/UTCW_Term.html">\UTCW_Term</a></pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>The returned Term will have its name translated into the current language</p></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.2</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$input</h4>
+<code><a href="http://php.net/manual/en/class.stdclass.php">\stdClass</a></code>
+</div>
+<div class="subelement argument">
+<h4>$plugin</h4>
+<code><a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>null</code><code><a href="../classes/UTCW_Term.html">\UTCW_Term</a></code>
+</div>
+</div></div>
+</div>
+<a id="method_isEnabled"></a><div class="element clickable method public method_isEnabled" data-toggle="collapse" data-target=".method_isEnabled .collapse">
+<h2>Returns true if this multi-language plugin is enabled</h2>
+<pre>isEnabled() : bool</pre>
 <div class="labels"></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <table class="table table-bordered"><tr>
 <th>since</th>
-<td>1.3</td>
+<td>2.2</td>
 </tr></table>
-<h3>Parameters</h3>
-<div class="subelement argument">
-<h4>$args</h4>
-<code>array</code>
-</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>bool</code></div>
 </div></div>
 </div>
-<h3>
-<i class="icon-custom icon-constant"></i> Constants</h3>
-<a id="constant_UTCW_DECIMAL_REGEX"> </a><div class="element clickable constant  constant_UTCW_DECIMAL_REGEX" data-toggle="collapse" data-target=".constant_UTCW_DECIMAL_REGEX .collapse">
-<h2>UTCW_DECIMAL_REGEX</h2>
-<pre>UTCW_DECIMAL_REGEX </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-<a id="constant_UTCW_DEV"> </a><div class="element clickable constant  constant_UTCW_DEV" data-toggle="collapse" data-target=".constant_UTCW_DEV .collapse">
-<h2>UTCW_DEV</h2>
-<pre>UTCW_DEV </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-<a id="constant_UTCW_HEX_COLOR_FORMAT"> </a><div class="element clickable constant  constant_UTCW_HEX_COLOR_FORMAT" data-toggle="collapse" data-target=".constant_UTCW_HEX_COLOR_FORMAT .collapse">
-<h2>UTCW_HEX_COLOR_FORMAT</h2>
-<pre>UTCW_HEX_COLOR_FORMAT </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-<a id="constant_UTCW_HEX_COLOR_REGEX"> </a><div class="element clickable constant  constant_UTCW_HEX_COLOR_REGEX" data-toggle="collapse" data-target=".constant_UTCW_HEX_COLOR_REGEX .collapse">
-<h2>UTCW_HEX_COLOR_REGEX</h2>
-<pre>UTCW_HEX_COLOR_REGEX </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
-</div>
-<a id="constant_UTCW_VERSION"> </a><div class="element clickable constant  constant_UTCW_VERSION" data-toggle="collapse" data-target=".constant_UTCW_VERSION .collapse">
-<h2>UTCW_VERSION</h2>
-<pre>UTCW_VERSION </pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
 </div>
 </div>
 </div>

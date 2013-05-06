@@ -17,7 +17,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.2.1
+ * @version    2.2.2
  * @license    GPLv2
  * @package    utcw
  * @subpackage main
@@ -59,8 +59,8 @@ class Plugin
     private function __construct()
     {
         add_action('admin_head-widgets.php', array($this, 'initAdminAssets'));
-        add_action('wpLoaded', array($this, 'wpLoaded'));
-        add_action('widgets_init', create_function('', 'return register_widget("Rickard\UTCW\Widget");'));
+        add_action('wp_loaded', array($this, 'wpLoaded'));
+        add_action('widgets_init', create_function('', 'return register_widget("Widget");'));
         add_shortcode('utcw', array($this, 'shortcode'));
     }
 

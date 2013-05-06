@@ -23,7 +23,7 @@
  * @package    utcw
  * @subpackage database
  */
-class QueryBuilder
+class UTCW_QueryBuilder
 {
 
     /**
@@ -37,12 +37,12 @@ class QueryBuilder
     /**
      * Creates a new instance of the QueryBuilder
      *
-     * @param Plugin $plugin
+     * @param UTCW_Plugin $plugin
      * @param wpdb   $db
      *
      * @since 2.2
      */
-    public function __construct(Plugin $plugin, wpdb $db)
+    public function __construct(UTCW_Plugin $plugin, wpdb $db)
     {
         $this->db         = $db;
         $this->plugin     = $plugin;

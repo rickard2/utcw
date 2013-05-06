@@ -69,7 +69,7 @@ class MockFactory {
 		);
 
 		$mock = $this->testCase->getMock(
-			'Plugin',
+			'UTCW_Plugin',
 			$methods,
 			array(),
 			'',
@@ -143,11 +143,11 @@ class DataProvider {
 			$utcw = $this->mockFactory->getUTCWNotAuthenticated();
 		}
 
-		return new Render( $this->get_config( $instance ), $this->get_data_object( $instance, $query_terms ), $utcw );
+		return new UTCW_Render( $this->get_config( $instance ), $this->get_data_object( $instance, $query_terms ), $utcw );
 	}
 
 	function get_config( array $instance ) {
-		return new Config( $instance, $this->mockFactory->getUTCWAuthenticated() );
+		return new UTCW_Config( $instance, $this->mockFactory->getUTCWAuthenticated() );
 	}
 
 	function get_data_object( array $instance, array $query_terms ) {
@@ -159,7 +159,7 @@ class DataProvider {
 			->method( 'get_results' )
 			->will( $this->testCase->returnValue( $query_terms ) );
 
-		return new Data( $config, $this->mockFactory->getUTCWMock(), $db );
+		return new UTCW_Data( $config, $this->mockFactory->getUTCWMock(), $db );
 	}
 }
 

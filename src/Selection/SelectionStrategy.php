@@ -25,18 +25,18 @@
  * @package    utcw
  * @subpackage language
  */
-abstract class SelectionStrategy
+abstract class UTCW_SelectionStrategy
 {
     /**
      * Creates a new instance
      *
-     * @param Config $config   Current configuration
-     * @param Plugin $plugin   Main plugin instance
+     * @param UTCW_Config $config   Current configuration
+     * @param UTCW_Plugin $plugin   Main plugin instance
      * @param wpdb   $db       WordPress DB instance
      *
      * @since 2.0
      */
-    abstract public function __construct(Config $config, Plugin $plugin, wpdb $db);
+    abstract public function __construct(UTCW_Config $config, UTCW_Plugin $plugin, wpdb $db);
 
     /**
      * Loads terms based on current configuration

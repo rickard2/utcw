@@ -89,10 +89,10 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input->term_id  = 10;
 		$input->taxonomy = 'post_tag';
 
-		/** @var Plugin $utcw  */
+		/** @var UTCW_Plugin $utcw  */
 		$utcw = $this->mockFactory->getUTCWMock();
         
-		$tag = new Term( $input, $utcw );
+		$tag = new UTCW_Term( $input, $utcw );
 		$this->assertEquals( $utcw->getTermLink( $input->term_id, $input->taxonomy ), $tag->link );
 	}
 
@@ -100,7 +100,7 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 	{
 		$input = new stdClass;
 
-		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertNull( $tag->link );
 	}
 
@@ -109,7 +109,7 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input          = new stdClass;
 		$input->$option = $fail_string;
 
-		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertNull( $tag->$option );
 	}
 
@@ -118,7 +118,7 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input          = new stdClass;
 		$input->$option = $ok_string;
 
-		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertEquals( $tag->$option, $input->$option );
 	}
 
@@ -127,7 +127,7 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input          = new stdClass;
 		$input->$option = $ok_int;
 
-		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertEquals( $tag->$option, $input->$option );
 	}
 
@@ -136,7 +136,7 @@ class UTCW_Test_Tag extends WP_UnitTestCase {
 		$input          = new stdClass;
 		$input->$option = $fail_int;
 
-		$tag = new Term( $input, $this->mockFactory->getUTCWMock() );
+		$tag = new UTCW_Term( $input, $this->mockFactory->getUTCWMock() );
 		$this->assertNull( $tag->$option );
 	}
 }

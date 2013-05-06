@@ -82,7 +82,7 @@ if (UTCW_DEV) {
 }
 
 // Instantiates the plugin
-Plugin::getInstance();
+UTCW_Plugin::getInstance();
 
 /**
  * Function for theme integration
@@ -93,6 +93,6 @@ Plugin::getInstance();
  */
 function do_utcw(array $args)
 {
-    $plugin = Plugin::getInstance();
+    $plugin = UTCW_Plugin::getInstance();
     echo $plugin->shortcode($args);
 }

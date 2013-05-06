@@ -44,7 +44,7 @@ class UTCW_Test_Bugs extends WP_UnitTestCase {
 	 * otherwise $instance might overwrite before_widget, after_widget, etc
 	 */
 	function test_merge_args_instance_order() {
-		$widget = new Widget();
+		$widget = new UTCW_Widget();
 
 		$args     = array( 'before_widget' => 'Hello World' );
 		$instance = array( 'before_widget' => 'Goodbye World' );

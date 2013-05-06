@@ -23,7 +23,7 @@ class UTCW_Test_Function extends WP_UnitTestCase {
 	}
 
 	function test_function_and_shortcode_is_equal() {
-		$utcw = Plugin::getInstance();
+		$utcw = UTCW_Plugin::getInstance();
 		$this->expectOutputString( $utcw->shortcode( array() ) );
 		do_utcw( array() );
 	}

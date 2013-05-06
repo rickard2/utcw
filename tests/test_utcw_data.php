@@ -83,8 +83,8 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 			->will( $this->returnValue( array() ) )
 			->with( new PHPUnit_Framework_Constraint_Not( $this->stringContains( 't.term_id IN (' ) ) );
 
-		$config = new Config( $instance, $utcw );
-		$data   = new Data( $config, $utcw, $db );
+		$config = new UTCW_Config( $instance, $utcw );
+		$data   = new UTCW_Data( $config, $utcw, $db );
 		$data->getTerms();
 	}
 
@@ -446,7 +446,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 			->will( $this->returnValue( true ) )
 			->with( $this->anything(), $this->contains( 'post_tag' ) );
 
-		$config = new Config( $instance, $utcw );
+		$config = new UTCW_Config( $instance, $utcw );
 		$db     = $this->mockFactory->getWPDBMock();
 
 		$db->expects( $this->once() )
@@ -454,7 +454,7 @@ class UTCW_Test_Data extends WP_UnitTestCase {
 			->will( $this->returnValue( array() ) )
 			->with( $this->stringContains( $string ) );
 
-		$data = new Data( $config, $utcw, $db );
+		$data = new UTCW_Data( $config, $utcw, $db );
 		$data->getTerms();
 	}
 

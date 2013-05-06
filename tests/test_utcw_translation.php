@@ -55,7 +55,7 @@ class UTCW_Test_Translation extends WP_UnitTestCase
     public function test_lets_translation_handler_create_term_when_enabled()
     {
         $plugin  = $this->mockFactory->getUTCWMock(array('getTranslationHandler'));
-        $handler = $this->getMockForAbstractClass('TranslationHandler');
+        $handler = $this->getMockForAbstractClass('UTCW_TranslationHandler');
 
         $this->wpdb->expects($this->once())
             ->method('get_results')
@@ -69,9 +69,9 @@ class UTCW_Test_Translation extends WP_UnitTestCase
             ->method('getTranslationHandler')
             ->will($this->returnValue($handler));
 
-        $config = new Config(array(), $plugin);
+        $config = new UTCW_Config(array(), $plugin);
 
-        $data = new Data($config, $plugin, $this->wpdb);
+        $data = new UTCW_Data($config, $plugin, $this->wpdb);
 
         $data->getTerms();
     }

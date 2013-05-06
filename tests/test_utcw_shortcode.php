@@ -18,13 +18,13 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
 {
 
     /**
-     * @var Plugin
+     * @var UTCW_Plugin
      */
     private $utcw;
 
     function setUp()
     {
-        $this->utcw = Plugin::getInstance();
+        $this->utcw = UTCW_Plugin::getInstance();
     }
 
     function test_function_exists()
@@ -51,7 +51,7 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
 
     function test_function_loads_configuration()
     {
-        $utcw = $this->getMock('Plugin', array('loadConfiguration'), array(), '', false);
+        $utcw = $this->getMock('UTCW_Plugin', array('loadConfiguration'), array(), '', false);
         $utcw->expects($this->once())->method('loadConfiguration')->will($this->returnValue(array()));
         $utcw->shortcode(array('load_config' => 'test'));
     }

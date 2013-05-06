@@ -24,7 +24,7 @@
  * @package    utcw
  * @subpackage language
  */
-class QTranslateHandler extends TranslationHandler
+class UTCW_QTranslateHandler extends UTCW_TranslationHandler
 {
     /**
      * An array of term names mapped to translated names
@@ -70,16 +70,16 @@ class QTranslateHandler extends TranslationHandler
      * {@inheritdoc}
      *
      * @param stdClass $input
-     * @param Plugin   $plugin
+     * @param UTCW_Plugin   $plugin
      *
-     * @return null|Term
+     * @return null|UTCW_Term
      * @since 2.2
      */
-    public function createTerm(stdClass $input, Plugin $plugin)
+    public function createTerm(stdClass $input, UTCW_Plugin $plugin)
     {
         $input->name = $this->getTermName($input->name);
 
-        return new Term($input, $plugin);
+        return new UTCW_Term($input, $plugin);
     }
 
     /**

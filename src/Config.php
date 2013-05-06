@@ -20,7 +20,7 @@
  * @package    utcw
  * @subpackage main
  */
-class Config
+class UTCW_Config
 {
 
     /**
@@ -650,11 +650,11 @@ class Config
      * Loads a configuration instance array and parses the options
      *
      * @param array  $input   Array of key => value pairs of settings and values
-     * @param Plugin $plugin  Reference to the main plugin instance
+     * @param UTCW_Plugin $plugin  Reference to the main plugin instance
      *
      * @since 2.0
      */
-    public function __construct(array $input, Plugin $plugin)
+    public function __construct(array $input, UTCW_Plugin $plugin)
     {
         $this->allowed_post_types = $plugin->getAllowedPostTypes();
         $this->allowed_taxonomies = $plugin->getAllowedTaxonomies();

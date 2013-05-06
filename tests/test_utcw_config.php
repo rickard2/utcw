@@ -19,7 +19,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
 {
 
     /**
-     * @var Plugin
+     * @var UTCW_Plugin
      */
     protected $utcw;
 
@@ -30,13 +30,13 @@ class UTCW_Test_Config extends WP_UnitTestCase
 
     function setUp()
     {
-        $this->utcw        = Plugin::getInstance();
+        $this->utcw        = UTCW_Plugin::getInstance();
         $this->mockFactory = new MockFactory($this);
     }
 
     function test_config_defaults()
     {
-        $config   = new Config(array(), $this->utcw);
+        $config   = new UTCW_Config(array(), $this->utcw);
         $options  = $config->getDefaults();
         $instance = $config->getInstance();
 
@@ -80,7 +80,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'size_to'   => 100,
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('50px', $config->size_from);
         $this->assertEquals('100px', $config->size_to);
     }
@@ -92,7 +92,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'size_to'   => 25.5,
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('12.5px', $config->size_from);
         $this->assertEquals('25.5px', $config->size_to);
     }
@@ -104,7 +104,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'size_to'   => '200em'
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals($instance['size_from'], $config->size_from);
         $this->assertNotEquals($instance['size_to'], $config->size_to);
     }
@@ -116,7 +116,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'size_to'   => '100px',
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('50px', $config->size_from);
         $this->assertEquals('100px', $config->size_to);
     }
@@ -128,7 +128,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'size_to'   => '100em',
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('50em', $config->size_from);
         $this->assertEquals('100em', $config->size_to);
     }
@@ -140,7 +140,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'size_to'   => '100%',
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('50%', $config->size_from);
         $this->assertEquals('100%', $config->size_to);
     }
@@ -152,7 +152,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'size_to'   => '100px',
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals($instance['size_from'], $config->size_from);
         $this->assertEquals($instance['size_to'], $config->size_to);
     }
@@ -164,7 +164,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'size_to'   => 'world'
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals($instance['size_from'], $config->size_from);
         $this->assertNotEquals($instance['size_to'], $config->size_to);
     }
@@ -196,7 +196,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'size_to'   => '10px',
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals(
             $instance['size_from'],
             $config->size_from,
@@ -273,14 +273,14 @@ class UTCW_Test_Config extends WP_UnitTestCase
     function test_letter_spacing_int_ok()
     {
         $instance = array('letter_spacing' => 10);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('10px', $config->letter_spacing);
     }
 
     function test_letter_spacing_float_ok()
     {
         $instance = array('letter_spacing' => 12.5);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('12.5px', $config->letter_spacing);
     }
 
@@ -306,10 +306,10 @@ class UTCW_Test_Config extends WP_UnitTestCase
 
     function test_letter_spacing_empty_default()
     {
-        $defaults = Config::getDefaults();
+        $defaults = UTCW_Config::getDefaults();
 
         $instance = array('letter_spacing' => '');
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals(
             $defaults['letter_spacing'],
             $config->letter_spacing,
@@ -320,14 +320,14 @@ class UTCW_Test_Config extends WP_UnitTestCase
     function test_word_spacing_int_ok()
     {
         $instance = array('word_spacing' => 10);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('10px', $config->word_spacing);
     }
 
     function test_word_spacing_float_ok()
     {
         $instance = array('word_spacing' => 12.5);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('12.5px', $config->word_spacing);
     }
 
@@ -353,10 +353,10 @@ class UTCW_Test_Config extends WP_UnitTestCase
 
     function test_word_spacing_empty_default()
     {
-        $defaults = Config::getDefaults();
+        $defaults = UTCW_Config::getDefaults();
 
         $instance = array('word_spacing' => '');
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals(
             $defaults['word_spacing'],
             $config->word_spacing,
@@ -482,14 +482,14 @@ class UTCW_Test_Config extends WP_UnitTestCase
     function test_link_border_width_int_ok()
     {
         $instance = array('link_border_width' => 10);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('10px', $config->link_border_width);
     }
 
     function test_link_border_width_float_ok()
     {
         $instance = array('link_border_width' => 12.5);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('12.5px', $config->link_border_width);
     }
 
@@ -586,14 +586,14 @@ class UTCW_Test_Config extends WP_UnitTestCase
     function test_hover_border_width_int_ok()
     {
         $instance = array('hover_border_width' => 10);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('10px', $config->hover_border_width);
     }
 
     function test_hover_border_width_float_ok()
     {
         $instance = array('hover_border_width' => 12.5);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('12.5px', $config->hover_border_width);
     }
 
@@ -630,14 +630,14 @@ class UTCW_Test_Config extends WP_UnitTestCase
     function test_tag_spacing_int_ok()
     {
         $instance = array('tag_spacing' => 10);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('10px', $config->tag_spacing);
     }
 
     function test_tag_spacing_float_ok()
     {
         $instance = array('tag_spacing' => 12.5);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('12.5px', $config->tag_spacing);
     }
 
@@ -663,10 +663,10 @@ class UTCW_Test_Config extends WP_UnitTestCase
 
     function test_tag_spacing_empty_default()
     {
-        $defaults = Config::getDefaults();
+        $defaults = UTCW_Config::getDefaults();
 
         $instance = array('tag_spacing' => '');
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals(
             $defaults['tag_spacing'],
             $config->tag_spacing,
@@ -702,14 +702,14 @@ class UTCW_Test_Config extends WP_UnitTestCase
     function test_line_height_int_ok()
     {
         $instance = array('line_height' => 10);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('10px', $config->line_height);
     }
 
     function test_line_height_float_ok()
     {
         $instance = array('line_height' => 12.5);
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals('12.5px', $config->line_height);
     }
 
@@ -735,10 +735,10 @@ class UTCW_Test_Config extends WP_UnitTestCase
 
     function test_line_height_empty_default()
     {
-        $defaults = Config::getDefaults();
+        $defaults = UTCW_Config::getDefaults();
 
         $instance = array('line_height' => '');
-        $config   = new Config($instance, $this->utcw);
+        $config   = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals(
             $defaults['line_height'],
             $config->line_height,
@@ -807,7 +807,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'authors' => array('1', '2', '3'),
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertTrue(is_int($config->authors[0]));
         $this->assertTrue(is_int($config->authors[1]));
         $this->assertTrue(is_int($config->authors[2]));
@@ -870,7 +870,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
             'tags_list' => array('1', '2', '3'),
         );
 
-        $config = new Config($instance, $this->utcw);
+        $config = new UTCW_Config($instance, $this->utcw);
         $this->assertTrue(is_int($config->tags_list[0]));
         $this->assertTrue(is_int($config->tags_list[1]));
         $this->assertTrue(is_int($config->tags_list[2]));
@@ -934,7 +934,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
     function test_color_set_expands()
     {
         $instance['color_set'] = array('#fff', '#fba');
-        $config                = new Config($instance, $this->utcw);
+        $config                = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals(array('#ffffff', '#ffbbaa'), $config->color_set);
     }
 
@@ -942,91 +942,91 @@ class UTCW_Test_Config extends WP_UnitTestCase
     {
         $attr            = '__unknown';
         $instance[$attr] = 'value';
-        $config          = new Config($instance, $this->utcw);
+        $config          = new UTCW_Config($instance, $this->utcw);
         $this->assertFalse(isset($config->$attr));
     }
 
     private function helper_string_ok($option, $ok_string = 'test', $message = '')
     {
         $instance[$option] = $ok_string;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_string_fail($option, $fail_string = '', $message = '')
     {
         $instance[$option] = $fail_string;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_int_ok($option, $ok_int = 10, $message = '')
     {
         $instance[$option] = $ok_int;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_int_fail($option, $fail_int = 'fail', $message = '')
     {
         $instance[$option] = $fail_int;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_bool_ok($option, $ok_bool = true, $message = '')
     {
         $instance[$option] = $ok_bool;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_bool_fail($option, $fail_bool = 'fail', $message = '')
     {
         $instance[$option] = $fail_bool;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_optional_bool_ok($option, $ok_opt_bool = 'yes', $message = '')
     {
         $instance[$option] = $ok_opt_bool;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_optional_bool_fail($option, $fail_opt_bool = 'fail', $message = '')
     {
         $instance[$option] = $fail_opt_bool;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_int_array_ok($option, $ok_int_array = array(1, 2, 3), $message = '')
     {
         $instance[$option] = $ok_int_array;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_int_array_fail($option, $fail_int_array = array('fail', 'more fail'), $message = '')
     {
         $instance[$option] = $fail_int_array;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_color_ok($option, $ok_color = '#bada55', $message = '')
     {
         $instance[$option] = $ok_color;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertEquals($instance[$option], $config->$option, $message);
     }
 
     private function helper_color_fail($option, $fail_color = 'invalid color', $message = '')
     {
         $instance[$option] = $fail_color;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals($instance[$option], $config->$option, $message);
     }
 
@@ -1039,7 +1039,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
         $expected = is_array($expected) ? $expected : explode(',', $expected);
 
         $instance[$option] = $ok_array;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
 
         $this->assertEquals($config->$option, $expected, $message);
     }
@@ -1047,7 +1047,7 @@ class UTCW_Test_Config extends WP_UnitTestCase
     private function helper_array_fail($option, $fail_array = 'not an array', $message = '')
     {
         $instance[$option] = $fail_array;
-        $config            = new Config($instance, $this->utcw);
+        $config            = new UTCW_Config($instance, $this->utcw);
         $this->assertNotEquals($instance[$option], $config->$option, $message);
     }
 }

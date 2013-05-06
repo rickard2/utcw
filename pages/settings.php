@@ -7,13 +7,13 @@
  * @package    utcw
  * @subpackage pages
  *
- * @var Config $config
+ * @var UTCW_Config $config
  * @var array $available_taxonomies
  * @var array $available_post_types
  * @var array $configurations
  * @var array $terms
  * @var array $users
- * @var Widget $this
+ * @var UTCW_Widget $this
  */
 if ( ! defined( 'ABSPATH' ) ) die();
 

@@ -26,13 +26,13 @@
  * @package    utcw
  * @subpackage main
  */
-class Data
+class UTCW_Data
 {
 
     /**
      * Reference to the current configuration
      *
-     * @var Config
+     * @var UTCW_Config
      * @since 2.0
      */
     protected $config;
@@ -48,7 +48,7 @@ class Data
     /**
      * Reference to main plugin instance
      *
-     * @var Plugin
+     * @var UTCW_Plugin
      * @since 2.0
      */
     protected $plugin;
@@ -56,7 +56,7 @@ class Data
     /**
      * Reference to the selection strategy used
      *
-     * @var SelectionStrategy
+     * @var UTCW_SelectionStrategy
      * @since 2.2
      */
     protected $strategy;
@@ -64,13 +64,13 @@ class Data
     /**
      * Creates a new instance
      *
-     * @param Config $config   Current configuration
-     * @param Plugin $plugin   Main plugin instance
+     * @param UTCW_Config $config   Current configuration
+     * @param UTCW_Plugin $plugin   Main plugin instance
      * @param wpdb   $db       WordPress DB instance
      *
      * @since 2.0
      */
-    public function __construct(Config $config, Plugin $plugin, wpdb $db)
+    public function __construct(UTCW_Config $config, UTCW_Plugin $plugin, wpdb $db)
     {
         $this->config = $config;
         $this->db     = $db;
@@ -78,10 +78,10 @@ class Data
 
         switch ($this->config->strategy) {
             case 'popularity':
-                $this->strategy = new PopularityStrategy($this->config, $this->plugin, $this->db);
+                $this->strategy = new UTCW_PopularityStrategy($this->config, $this->plugin, $this->db);
                 break;
             case 'random':
-                $this->strategy = new RandomStrategy($this->config, $this->plugin, $this->db);
+                $this->strategy = new UTCW_RandomStrategy($this->config, $this->plugin, $this->db);
                 break;
         }
     }
@@ -89,7 +89,7 @@ class Data
     /**
      * Loads terms based on current configuration
      *
-     * @return Term[]
+     * @return UTCW_Term[]
      * @since 2.0
      */
     public function getTerms()
@@ -122,7 +122,7 @@ class Data
                     $terms[] = $term;
                 }
             } else {
-                $terms[] = new Term($item, $this->plugin);
+                $terms[] = new UTCW_Term($item, $this->plugin);
             }
         }
 

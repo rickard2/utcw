@@ -20,7 +20,7 @@ class test_utcw_widget extends PHPUnit_Framework_TestCase {
 	private $utcw;
 
 	function setUp() {
-		$this->utcw = $this->getMock( 'Plugin', array(), array(), '', false );
+		$this->utcw = $this->getMock( 'UTCW_Plugin', array(), array(), '', false );
 	}
 
 	function test_save_config() {
@@ -34,7 +34,7 @@ class test_utcw_widget extends PHPUnit_Framework_TestCase {
 			->method( 'saveConfiguration' )
 			->with( '__test' );
 
-		$widget = new Widget( $this->utcw );
+		$widget = new UTCW_Widget( $this->utcw );
 		$widget->update( $instance, array() );
 	}
 
@@ -49,27 +49,27 @@ class test_utcw_widget extends PHPUnit_Framework_TestCase {
 			->method( 'loadConfiguration' )
 			->with( '__test' );
 
-		$widget = new Widget( $this->utcw );
+		$widget = new UTCW_Widget( $this->utcw );
 		$widget->update( $instance, array() );
 	}
 
 	function test_form_renders_html() {
 		$this->expectOutputRegex( UTCW_TEST_HTML_REGEX );
 
-		$widget = new Widget();
+		$widget = new UTCW_Widget();
 		$widget->form( array() );
 	}
 
 	function test_widget_renders_html() {
 		$this->expectOutputRegex( UTCW_TEST_HTML_REGEX );
 
-		$widget = new Widget();
+		$widget = new UTCW_Widget();
 		$widget->widget( array(), array() );
 	}
 
 	function test_widget_converts_empty_checkbox_values_to_false() {
 
-		$widget = new Widget();
+		$widget = new UTCW_Widget();
 
 		$instance = $widget->update( array(), array() );
 

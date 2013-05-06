@@ -26,16 +26,16 @@
  * @package    utcw
  * @subpackage selection
  */
-class PopularityStrategy extends SelectionStrategy
+class UTCW_PopularityStrategy extends UTCW_SelectionStrategy
 {
     /**
-     * @var Config
+     * @var UTCW_Config
      * @since 2.2
      */
     protected $config;
 
     /**
-     * @var Plugin
+     * @var UTCW_Plugin
      * @since 2.2
      */
     protected $plugin;
@@ -57,13 +57,13 @@ class PopularityStrategy extends SelectionStrategy
     /**
      * Creates a new instance
      *
-     * @param Config $config   Current configuration
-     * @param Plugin $plugin   Main plugin instance
+     * @param UTCW_Config $config   Current configuration
+     * @param UTCW_Plugin $plugin   Main plugin instance
      * @param wpdb   $db       WordPress DB instance
      *
      * @since 2.2
      */
-    public function __construct(Config $config, Plugin $plugin, wpdb $db)
+    public function __construct(UTCW_Config $config, UTCW_Plugin $plugin, wpdb $db)
     {
         $this->config = $config;
         $this->plugin = $plugin;
@@ -78,7 +78,7 @@ class PopularityStrategy extends SelectionStrategy
      */
     public function getData()
     {
-        $builder = new QueryBuilder($this->plugin, $this->db);
+        $builder = new UTCW_QueryBuilder($this->plugin, $this->db);
 
         $builder->addAuthorConstraint($this->config->authors);
         $builder->addPostTypeConstraint($this->config->post_type);

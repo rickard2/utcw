@@ -22,7 +22,7 @@
  * @package    utcw
  * @subpackage main
  */
-class Term
+class UTCW_Term
 {
 
     /**
@@ -93,11 +93,11 @@ class Term
      * Creates a new term
      *
      * @param stdClass    $input   Object with properties term_id, count, slug, name, color and taxonomy
-     * @param Plugin      $plugin  Reference to the plugin instance
+     * @param UTCW_Plugin      $plugin  Reference to the plugin instance
      *
      * @since 2.0
      */
-    public function __construct(stdClass $input, Plugin $plugin)
+    public function __construct(stdClass $input, UTCW_Plugin $plugin)
     {
 
         if (isset($input->term_id) && filter_var($input->term_id, FILTER_VALIDATE_INT)) {

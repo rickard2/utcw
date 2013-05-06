@@ -18,7 +18,7 @@ class UTCW_Test_Hooks extends WP_UnitTestCase
 {
     public function test_hooks()
     {
-        Plugin::getInstance();
+        UTCW_Plugin::getInstance();
 
         do_action('admin_head-widgets.php');
         do_action('wp_loaded');

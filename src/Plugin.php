@@ -23,7 +23,7 @@
  * @subpackage main
  * @since      2.0
  */
-class Plugin
+class UTCW_Plugin
 {
 
     /**
@@ -45,7 +45,7 @@ class Plugin
     /**
      * Singleton instance
      *
-     * @var Plugin
+     * @var UTCW_Plugin
      * @since 2.0
      */
     private static $instance;
@@ -60,7 +60,7 @@ class Plugin
     {
         add_action('admin_head-widgets.php', array($this, 'initAdminAssets'));
         add_action('wp_loaded', array($this, 'wpLoaded'));
-        add_action('widgets_init', create_function('', 'return register_widget("Widget");'));
+        add_action('widgets_init', create_function('', 'return register_widget("UTCW_Widget");'));
         add_shortcode('utcw', array($this, 'shortcode'));
     }
 
@@ -68,7 +68,7 @@ class Plugin
      * Returns an instance of the plugin
      *
      * @static
-     * @return Plugin
+     * @return UTCW_Plugin
      * @since 2.0
      */
     public static function getInstance()
@@ -112,9 +112,9 @@ class Plugin
             }
         }
 
-        $config = new Config($args, $this);
-        $data   = new Data($config, $this, $wpdb);
-        $render = new Render($config, $data, $this);
+        $config = new UTCW_Config($args, $this);
+        $data   = new UTCW_Data($config, $this, $wpdb);
+        $render = new UTCW_Render($config, $data, $this);
 
         return $render->getCloud();
     }
@@ -375,19 +375,19 @@ class Plugin
     /**
      * Returns a new instance of the QTranslate Handler class
      *
-     * @return null|TranslationHandler
+     * @return null|UTCW_TranslationHandler
      */
     public function getTranslationHandler()
     {
         $names      = get_option('qtranslate_term_name');
         $names      = $names ? $names : array();
-        $qTranslate = new QTranslateHandler($names);
+        $qTranslate = new UTCW_QTranslateHandler($names);
 
         if ($qTranslate->isEnabled()) {
             return $qTranslate;
         }
 
-        $WPML = new WPMLHandler();
+        $WPML = new UTCW_WPMLHandler();
 
         if ($WPML->isEnabled()) {
             return $WPML;

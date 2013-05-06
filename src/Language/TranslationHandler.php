@@ -24,7 +24,7 @@
  * @package    utcw
  * @subpackage language
  */
-abstract class TranslationHandler
+abstract class UTCW_TranslationHandler
 {
     /**
      * Returns true if this multi-language plugin is enabled
@@ -39,10 +39,10 @@ abstract class TranslationHandler
      * The returned Term will have its name translated into the current language
      *
      * @param stdClass $input
-     * @param Plugin   $plugin
+     * @param UTCW_Plugin   $plugin
      *
-     * @return null|Term
+     * @return null|UTCW_Term
      * @since 2.2
      */
-    abstract public function createTerm(stdClass $input, Plugin $plugin);
+    abstract public function createTerm(stdClass $input, UTCW_Plugin $plugin);
 }

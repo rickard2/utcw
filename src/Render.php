@@ -20,13 +20,13 @@
  * @package    utcw
  * @subpackage main
  */
-class Render
+class UTCW_Render
 {
 
     /**
      * Reference to the Data class which contains the data to be rendered
      *
-     * @var Data
+     * @var UTCW_Data
      * @since 2.0
      */
     private $data;
@@ -34,7 +34,7 @@ class Render
     /**
      * Reference to the current configuration
      *
-     * @var Config
+     * @var UTCW_Config
      * @since 2.0
      */
     private $config;
@@ -42,7 +42,7 @@ class Render
     /**
      * Reference to the main plugin instance
      *
-     * @var Plugin
+     * @var UTCW_Plugin
      * @since 2.0
      */
     private $plugin;
@@ -66,13 +66,13 @@ class Render
     /**
      * Creates a new instance of the renderer
      *
-     * @param Config $config Configuration
-     * @param Data   $data   Term data
-     * @param Plugin $plugin Main plugin instance
+     * @param UTCW_Config $config Configuration
+     * @param UTCW_Data   $data   Term data
+     * @param UTCW_Plugin $plugin Main plugin instance
      *
      * @since 2.0
      */
-    public function __construct(Config $config, Data $data, Plugin $plugin)
+    public function __construct(UTCW_Config $config, UTCW_Data $data, UTCW_Plugin $plugin)
     {
         $this->data = $data;
         $this->config = $config;

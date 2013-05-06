@@ -24,7 +24,7 @@
  * @package    utcw
  * @subpackage language
  */
-class WPMLHandler extends TranslationHandler
+class UTCW_WPMLHandler extends UTCW_TranslationHandler
 {
     /**
      * Returns true if WPML is installed and active
@@ -108,18 +108,18 @@ class WPMLHandler extends TranslationHandler
      * {@inheritdoc}
      *
      * @param stdClass $input
-     * @param Plugin   $plugin
+     * @param UTCW_Plugin   $plugin
      *
-     * @return null|Term
+     * @return null|UTCW_Term
      * @since 2.2
      */
-    public function createTerm(stdClass $input, Plugin $plugin)
+    public function createTerm(stdClass $input, UTCW_Plugin $plugin)
     {
         if ($this->isInCurrentLanguage($input)) {
 
             $input->name = $this->getTermName($input->name);
 
-            return new Term($input, $plugin);
+            return new UTCW_Term($input, $plugin);
         }
 
         return null;

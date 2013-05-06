@@ -2,18 +2,18 @@
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.2.1
+ * @version    2.2.2
  * @license    GPLv2
  * @package    utcw
  * @subpackage pages
  *
- * @var \Rickard\UTCW\Config $config
+ * @var Config $config
  * @var array $available_taxonomies
  * @var array $available_post_types
  * @var array $configurations
  * @var array $terms
  * @var array $users
- * @var \Rickard\UTCW\Widget $this
+ * @var Widget $this
  */
 if ( ! defined( 'ABSPATH' ) ) die();
 

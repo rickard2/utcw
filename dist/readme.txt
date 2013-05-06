@@ -3,7 +3,7 @@ Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
 Tested up to: 3.6-beta2
-Stable tag: 2.2
+Stable tag: 2.2.1
 Donate link: https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget
 License: GPLv2 or later
 
@@ -47,6 +47,10 @@ If you have questions, please post them in the forums.
 
 == Changelog ==
 
+= 2.2.1 =
+
+* Fixed issue with older PHP versions which doesn't support namespaces
+
 = 2.2 =
 
 * [#19](https://github.com/rickard2/utcw/issues/19): Support for disabling links in tag cloud output
@@ -77,6 +81,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.2.1 =
+
+* Fixes compatibility issue with PHP 5.2
 
 = 2.2 =
 

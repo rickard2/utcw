@@ -62,11 +62,35 @@ class UTCW_Data
     protected $strategy;
 
     /**
+     * Reference to the translation handler used
+     *
+     * @var UTCW_TranslationHandler
+     * @since 2.3
+     */
+    protected $translationHandler;
+
+    /**
+     * Contains the created terms
+     *
+     * @var UTCW_Term[]
+     * @since 2.3
+     */
+    protected $terms;
+
+    /**
+     * Contains the result from loading the terms
+     *
+     * @var stdClass[]
+     * @since 2.3
+     */
+    protected $result;
+
+    /**
      * Creates a new instance
      *
      * @param UTCW_Config $config   Current configuration
      * @param UTCW_Plugin $plugin   Main plugin instance
-     * @param wpdb   $db       WordPress DB instance
+     * @param wpdb        $db       WordPress DB instance
      *
      * @since 2.0
      */
@@ -94,17 +118,17 @@ class UTCW_Data
      */
     public function getTerms()
     {
-        $terms  = array();
-        $result = $this->strategy->getData();
+        $this->terms  = array();
+        $this->result = $this->strategy->getData();
 
         // Calculate sizes
         $min_count = PHP_INT_MAX;
         $max_count = 0;
 
         // Get translation handler if a translation plugin is active
-        $translationHandler = $this->plugin->getTranslationHandler();
+        $this->translationHandler = $this->plugin->getTranslationHandler();
 
-        foreach ($result as $item) {
+        foreach ($this->result as $item) {
             if ($item->count < $min_count) {
                 $min_count = $item->count;
             }
@@ -113,16 +137,16 @@ class UTCW_Data
                 $max_count = $item->count;
             }
 
-            if ($translationHandler) {
+            if ($this->translationHandler) {
 
                 // Let the translation handler determine if the term should be included or not
-                $term = $translationHandler->createTerm($item, $this->plugin);
+                $term = $this->translationHandler->createTerm($item, $this->plugin);
 
                 if ($term) {
-                    $terms[] = $term;
+                    $this->terms[] = $term;
                 }
             } else {
-                $terms[] = new UTCW_Term($item, $this->plugin);
+                $this->terms[] = new UTCW_Term($item, $this->plugin);
             }
         }
 
@@ -132,20 +156,20 @@ class UTCW_Data
 
         $font_step = $this->calcStep($min_count, $max_count, $size_from, $size_to);
 
-        foreach ($terms as $term) {
+        foreach ($this->terms as $term) {
             $term->size = $this->calcSize($size_from, $term->count, $min_count, $font_step) . $unit;
         }
 
         // Set colors
         switch ($this->config->color) {
             case 'random':
-                foreach ($terms as $term) {
+                foreach ($this->terms as $term) {
                     $term->color = sprintf(UTCW_HEX_COLOR_FORMAT, rand() % 255, rand() % 255, rand() % 255);
                 }
                 break;
             case 'set':
                 if ($this->config->color_set) {
-                    foreach ($terms as $term) {
+                    foreach ($this->terms as $term) {
                         $term->color = $this->config->color_set[array_rand($this->config->color_set)];
                     }
                 }
@@ -166,7 +190,7 @@ class UTCW_Data
                     $colors->blue_from  = $blue_from;
                     $colors->blue_to    = $blue_to;
 
-                    foreach ($terms as $term) {
+                    foreach ($this->terms as $term) {
                         $term->color = $this->calcColor($min_count, $max_count, $colors, $term->count);
                     }
                 }
@@ -182,10 +206,10 @@ class UTCW_Data
 
             $sort_fn = create_function($sort_fn_arguments, 'return strcmp( $a->color, $b->color );');
 
-            usort($terms, $sort_fn);
+            usort($this->terms, $sort_fn);
         }
 
-        return $terms;
+        return $this->terms;
     }
 
     /**

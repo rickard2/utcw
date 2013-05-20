@@ -7,7 +7,8 @@
  * @package    utcw
  * @subpackage pages
  *
- * @var UTCW_Config $config
+ * @var UTCW_DataConfig $dataConfig
+ * @var UTCW_RenderConfig $renderConfig
  * @var array $available_taxonomies
  * @var array $available_post_types
  * @var array $configurations
@@ -37,11 +38,11 @@ if ( ! defined( 'ABSPATH' ) ) die();
     <a class="utcw-help" title="<?php _e('How the tag cloud should find tags to display. Popularity based selection is the default strategy which shows the most popular tags.', 'utcw') ?>">?</a>
     <strong><?php _e('Selection strategy:', 'utcw') ?></strong><br>
     <label>
-        <input type="radio" name="<?php echo $this->get_field_name('strategy') ?>" value="popularity" <?php if ($config->strategy === 'popularity') echo 'checked="checked"' ?>>
+        <input type="radio" name="<?php echo $this->get_field_name('strategy') ?>" value="popularity" <?php if ($dataConfig->strategy === 'popularity') echo 'checked="checked"' ?>>
         <?php _e('Popularity','utcw') ?>
     </label><br>
     <label>
-        <input type="radio" name="<?php echo $this->get_field_name('strategy') ?>" value="random" <?php if ($config->strategy === 'random') echo 'checked="checked"' ?>>
+        <input type="radio" name="<?php echo $this->get_field_name('strategy') ?>" value="random" <?php if ($dataConfig->strategy === 'random') echo 'checked="checked"' ?>>
         <?php _e('Random','utcw') ?>
     </label><br>
     <br>
@@ -51,21 +52,21 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><?php _e( 'Authors:', 'utcw' ) ?></strong><br>
 
     <label>
-        <input type="radio" class="utcw-all-authors" name="<?php echo $this->get_field_name( 'utcw-all-authors' ) ?>" <?php if ( ! $config->authors ) echo 'checked="checked"'; ?>>
+        <input type="radio" class="utcw-all-authors" name="<?php echo $this->get_field_name( 'utcw-all-authors' ) ?>" <?php if ( ! $dataConfig->authors ) echo 'checked="checked"'; ?>>
 		<?php _e( 'All authors', 'utcw' ) ?>
 	</label>
 	<br>
     <label>
-        <input type="radio" class="utcw-selected-authors" name="<?php echo $this->get_field_name( 'utcw-all-authors' ) ?>" <?php if ( $config->authors ) echo 'checked="checked"'; ?>>
+        <input type="radio" class="utcw-selected-authors" name="<?php echo $this->get_field_name( 'utcw-all-authors' ) ?>" <?php if ( $dataConfig->authors ) echo 'checked="checked"'; ?>>
 		<?php _e( 'Selected authors only', 'utcw' ) ?>
 	</label>
 	<br>
 
-	<div class="utcw-authors <?php if (!$config->authors) echo 'hidden' ?>">
+	<div class="utcw-authors <?php if (!$dataConfig->authors) echo 'hidden' ?>">
 		<?php foreach ( $users as $user ) : ?>
         <input class="utcw-author-field" type="checkbox" name="<?php echo $this->get_field_name( 'authors' ) ?>[]"
                id="<?php echo $this->get_field_id( 'author_' . $user->ID ) ?>"
-               value="<?php echo $user->ID ?>" <?php echo  in_array( $user->ID, $config->authors, true ) ? 'checked="checked"' : ''; ?>>
+               value="<?php echo $user->ID ?>" <?php echo  in_array( $user->ID, $dataConfig->authors, true ) ? 'checked="checked"' : ''; ?>>
         <label for="<?php echo $this->get_field_id( 'author_' . $user->ID ) ?>"><?php echo $user->display_name ?></label><br>
 		<?php endforeach; ?>
 	</div>
@@ -76,33 +77,33 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><?php _e( 'Order:', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'order' ) ?>"
 		   id="<?php echo $this->get_field_id( 'order_random' ) ?>"
-		   value="random" <?php echo  $config->order == 'random' ? ' checked="checked" ' : ''; ?>>
+		   value="random" <?php echo  $dataConfig->order == 'random' ? ' checked="checked" ' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'order_random' ) ?>"><?php _e( 'Random', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'order' ) ?>"
 		   id="<?php echo $this->get_field_id( 'order_name' ) ?>"
-		   value="name" <?php echo  $config->order == 'name' ? ' checked="checked"' : ''; ?>>
+		   value="name" <?php echo  $dataConfig->order == 'name' ? ' checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'order_name' ) ?>"><?php _e( 'By name', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'order' ) ?>"
 		   id="<?php echo $this->get_field_id( 'order_slug' ) ?>"
-		   value="slug" <?php echo  $config->order == 'slug' ? ' checked="checked"' : ''; ?>>
+		   value="slug" <?php echo  $dataConfig->order == 'slug' ? ' checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'order_slug' ) ?>"><?php _e( 'By slug', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'order' ) ?>"
 		   id="<?php echo $this->get_field_id( 'order_id' ) ?>"
-		   value="id" <?php echo  $config->order == 'id' ? ' checked="checked"' : ''; ?>>
+		   value="id" <?php echo  $dataConfig->order == 'id' ? ' checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'order_id' ) ?>"><?php _e( 'By id', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'order' ) ?>"
 		   id="<?php echo $this->get_field_id( 'order_color' ) ?>"
-		   value="name" <?php echo  $config->order == 'color' ? ' checked="checked"' : ''; ?>>
+		   value="name" <?php echo  $dataConfig->order == 'color' ? ' checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'order_color' ) ?>"><?php _e( 'By color', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'order' ) ?>"
 		   id="<?php echo $this->get_field_id( 'order_count' ) ?>"
-		   value="count" <?php echo  $config->order == 'count' || strlen( $config->order ) == 0 ? ' checked="checked" ' : ''; ?>>
+		   value="count" <?php echo  $dataConfig->order == 'count' || strlen( $dataConfig->order ) == 0 ? ' checked="checked" ' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'order_count' ) ?>"><?php _e( 'Count', 'utcw' ) ?></label><br>
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'reverse' ) ?>"
-		   id="<?php echo $this->get_field_id( 'reverse' ) ?>" <?php echo  $config->reverse === true ? ' checked="checked"' : ''; ?>>
+		   id="<?php echo $this->get_field_id( 'reverse' ) ?>" <?php echo  $dataConfig->reverse === true ? ' checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'reverse' ) ?>"><?php _e( 'Reverse order', 'utcw' ) ?></label><br>
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'case_sensitive' ) ?>"
-		   id="<?php echo $this->get_field_id( 'case_sensitive' ) ?>" <?php echo $config->case_sensitive === true ? ' checked="checked"' : ''; ?>>
+		   id="<?php echo $this->get_field_id( 'case_sensitive' ) ?>" <?php echo $dataConfig->case_sensitive === true ? ' checked="checked"' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'case_sensitive' ) ?>"><?php _e( 'Case sensitive', 'utcw' ) ?></label><br>
 	<br>
@@ -113,7 +114,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		for="<?php echo $this->get_field_id( 'taxonomy' ) ?>"><?php _e( 'Taxonomies:', 'utcw' ) ?></label></strong><br>
 	<?php foreach ( $available_taxonomies as $taxonomy ) :  ?>
 	<label>
-        <input type="checkbox" class="utcw-input-taxonomy" value="<?php echo $taxonomy->name ?>" name="<?php echo $this->get_field_name( 'taxonomy' ) ?>[]" <?php if ( in_array( $taxonomy->name, $config->taxonomy ) ) echo 'checked="checked"' ?>>
+        <input type="checkbox" class="utcw-input-taxonomy" value="<?php echo $taxonomy->name ?>" name="<?php echo $this->get_field_name( 'taxonomy' ) ?>[]" <?php if ( in_array( $taxonomy->name, $dataConfig->taxonomy ) ) echo 'checked="checked"' ?>>
 		<?php echo $taxonomy->labels->name ?>
 	</label><br>
 	<?php endforeach; ?>
@@ -126,7 +127,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<?php foreach ( $available_post_types as $pt ) : $data = get_post_type_object( $pt ) ?>
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'post_type' ) ?>[]"
 		   id="<?php echo $this->get_field_id( 'post_type-' . $pt ) ?>"
-		   value="<?php echo $pt ?>" <?php if ( in_array( $pt, $config->post_type ) ) echo 'checked="checked"' ?>>
+		   value="<?php echo $pt ?>" <?php if ( in_array( $pt, $dataConfig->post_type ) ) echo 'checked="checked"' ?>>
 	<label for="<?php echo $this->get_field_id( 'post_type-' . $pt ) ?>"><?php echo $data->labels->name ?></label><br>
 	<?php endforeach ?>
 	<br>
@@ -136,7 +137,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><label for="<?php echo $this->get_field_id( 'minimum' ) ?>"
 				   title="<?php _e( 'Tags with fewer posts than this will be automatically excluded.', 'utcw' ) ?>"><?php _e( 'Minimum number of posts: ', 'utcw' ) ?></label></strong>
 	<input type="number" name="<?php echo $this->get_field_name( 'minimum' ) ?>"
-		   id="<?php echo $this->get_field_id( 'minimum' ) ?>" value="<?php echo $config->minimum; ?>"><br>
+		   id="<?php echo $this->get_field_id( 'minimum' ) ?>" value="<?php echo $dataConfig->minimum; ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -144,7 +145,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><label for="<?php echo $this->get_field_id( 'days_old' ) ?>"
 				   title="<?php _e( 'The maximum number of days back to search for posts, zero means every post.', 'utcw' )?>"><?php _e( 'Posts max age:', 'utcw' )?></label></strong><br>
 	<input type="number" name="<?php echo $this->get_field_name( 'days_old' ) ?>"
-		   id="<?php echo $this->get_field_id( 'days_old' ) ?>" value="<?php echo $config->days_old; ?>"><br>
+		   id="<?php echo $this->get_field_id( 'days_old' ) ?>" value="<?php echo $dataConfig->days_old; ?>"><br>
 </fieldset>
 
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-terms' ) ?>">
@@ -155,13 +156,13 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'tags_list_type' ) ?>"
 		   id="<?php echo $this->get_field_id( 'tags_list_type_include' ) ?>"
-		   value="include" <?php echo $config->tags_list_type == 'include' ? 'checked="checked" ' : ''; ?>>
+		   value="include" <?php echo $dataConfig->tags_list_type == 'include' ? 'checked="checked" ' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'tags_list_type_include' ) ?>"><?php _e( 'Include only selected terms', 'utcw' ) ?></label>
 	<br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'tags_list_type' ) ?>"
 		   id="<?php echo $this->get_field_id( 'tags_list_type_exclude' ) ?>"
-		   value="exclude" <?php echo $config->tags_list_type == 'exclude' ? 'checked="checked" ' : ''; ?>>
+		   value="exclude" <?php echo $dataConfig->tags_list_type == 'exclude' ? 'checked="checked" ' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'tags_list_type_exclude' ) ?>"><?php _e( 'Exclude selected terms', 'utcw' ) ?></label>
 
@@ -170,7 +171,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<a class="utcw-help" title="<?php _e( 'Which tags to include or exclude', 'utcw' ) ?>">?</a>
 	<?php foreach ( $available_taxonomies as $taxonomy ) : ?>
 
-	<div id="<?php echo $taxonomy->name ?>-terms" <?php if ( !in_array( $taxonomy->name, $config->taxonomy ) ) echo 'class="hidden"' ?>>
+	<div id="<?php echo $taxonomy->name ?>-terms" <?php if ( !in_array( $taxonomy->name, $dataConfig->taxonomy ) ) echo 'class="hidden"' ?>>
 
 		<strong><?php printf( __( 'Terms for taxonomy %s', 'utcw' ), $taxonomy->labels->name ) ?></strong>
 
@@ -183,7 +184,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 						type="checkbox"
 						name="<?php echo $this->get_field_name( 'tags_list' ) ?>[]"
 						value="<?php echo $term->term_id ?>"
-						<?php if ( in_array( $term->term_id, $config->tags_list ) ) echo 'checked="checked"' ?>>
+						<?php if ( in_array( $term->term_id, $dataConfig->tags_list ) ) echo 'checked="checked"' ?>>
 					<?php echo $term->name ?>
 				</label>
 			</li>
@@ -206,11 +207,11 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><label
 		for="<?php echo $this->get_field_id( 'title' );?>"><?php _e( 'Title:', 'utcw' ) ?></label></strong><br>
 	<input type="checkbox" id="<?php echo $this->get_field_id( 'show_title_text' ) ?>"
-		   name="<?php echo $this->get_field_name( 'show_title_text' ) ?>" <?php if ( ! isset( $config->show_title_text ) || $config->show_title_text ) echo 'checked="checked"' ?>>
+		   name="<?php echo $this->get_field_name( 'show_title_text' ) ?>" <?php if ( ! isset( $renderConfig->show_title_text ) || $renderConfig->show_title_text ) echo 'checked="checked"' ?>>
 	<label for="<?php echo $this->get_field_id( 'show_title_text' ) ?>"><?php _e( 'Show title', 'utcw' ) ?></label><br>
 	<input type="text" id="<?php echo $this->get_field_id( 'title' );?>"
 		   name="<?php echo $this->get_field_name( 'title' );?>"
-		   value="<?php echo $config->title ?>"><br>
+		   value="<?php echo $renderConfig->title ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -219,11 +220,11 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<label for="<?php echo $this->get_field_id( 'size_from' ) ?>"><?php _e( 'From', 'utcw' ) ?></label>
 	<input type="text" name="<?php echo $this->get_field_name( 'size_from' ) ?>"
 		   id="<?php echo $this->get_field_id( 'size_from' ) ?>" size="3"
-		   value="<?php echo $config->size_from ?>">
+		   value="<?php echo $dataConfig->size_from ?>">
 	<label for="<?php echo $this->get_field_id( 'size_to' ) ?>"><?php _e( 'to', 'utcw' ) ?></label>
 	<input type="text" name="<?php echo $this->get_field_name( 'size_to' ) ?>"
 		   id="<?php echo $this->get_field_id( 'size_to' ) ?>" size="3"
-		   value="<?php echo $config->size_to ?>"><br>
+		   value="<?php echo $dataConfig->size_to ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -232,7 +233,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		for="<?php echo $this->get_field_id( 'max' ) ?>"><?php _e( 'Max tags:', 'utcw' ) ?></label></strong><br>
 	<input type="number" name="<?php echo $this->get_field_name( 'max' ) ?>"
 		   id="<?php echo $this->get_field_id( 'max' ) ?>"
-		   value="<?php echo $config->max ?>"><br>
+		   value="<?php echo $dataConfig->max ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -240,40 +241,40 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><?php _e( 'Coloring:', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'color_none' ) ?>"
-		   value="none" <?php echo $config->color == 'none' ? 'checked="checked"' : ''; ?>>
+		   value="none" <?php echo $dataConfig->color == 'none' ? 'checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'color_none' ) ?>"><?php _e( 'None', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'color_random' ) ?>"
-		   value="random" <?php echo $config->color == 'random' ? 'checked="checked"' : ''; ?>>
+		   value="random" <?php echo $dataConfig->color == 'random' ? 'checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'color_random' ) ?>"><?php _e( 'Totally random', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'color_set' ) ?>"
-		   value="set" <?php echo $config->color == 'set' ? 'checked="checked"' : ''; ?>>
+		   value="set" <?php echo $dataConfig->color == 'set' ? 'checked="checked"' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'color_set' ) ?>"><?php _e( 'Random from preset values', 'utcw' ) ?></label><br>
 
 	<div
-		id="<?php echo $this->get_field_id( 'set_chooser' ) ?>" <?php echo $config->color != 'set' ? 'class="utcw-hidden"' : ''; ?>>
+		id="<?php echo $this->get_field_id( 'set_chooser' ) ?>" <?php echo $dataConfig->color != 'set' ? 'class="utcw-hidden"' : ''; ?>>
 		<label class="screen-reader-text"
 			   for="<?php echo $this->get_field_id( 'color_set_chooser' ) ?>"><?php _e( 'Random from preset values', 'utcw' ) ?></label>
 		<input type="text" name="<?php echo $this->get_field_name( 'color_set' ) ?>"
-			   id="<?php echo $this->get_field_id( 'color_set_chooser' ) ?>" value="<?php echo join( ',', $config->color_set ) ?>">
+			   id="<?php echo $this->get_field_id( 'color_set_chooser' ) ?>" value="<?php echo join( ',', $dataConfig->color_set ) ?>">
 	</div>
 	<input type="radio" name="<?php echo $this->get_field_name( 'color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'color_span' ) ?>"
-		   value="span" <?php echo  $config->color == 'span' ? 'checked="checked"' : ''; ?>>
+		   value="span" <?php echo  $dataConfig->color == 'span' ? 'checked="checked"' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'color_span' ) ?>"><?php _e( 'Spanning between values', 'utcw' ) ?></label><br>
 
 	<div
-		id="<?php echo $this->get_field_id( 'span_chooser' ) ?>" <?php echo  $config->color != 'span' ? 'class="utcw-hidden"' : ''; ?>>
+		id="<?php echo $this->get_field_id( 'span_chooser' ) ?>" <?php echo  $dataConfig->color != 'span' ? 'class="utcw-hidden"' : ''; ?>>
 		<label for="<?php echo $this->get_field_id( 'color_span_from' ) ?>"><?php _e( 'From', 'utcw' ) ?></label>
 		<input type="text" size="7" name="<?php echo $this->get_field_name( 'color_span_from' ) ?>"
-			   id="<?php echo $this->get_field_id( 'color_span_from' ) ?>" value="<?php echo $config->color_span_from ?>"><br>
+			   id="<?php echo $this->get_field_id( 'color_span_from' ) ?>" value="<?php echo $dataConfig->color_span_from ?>"><br>
 
 		<label for="<?php echo $this->get_field_id( 'color_span_to' ) ?>"><?php _e( 'to', 'utcw' ) ?></label>
 		<input type="text" size="7" name="<?php echo $this->get_field_name( 'color_span_to' ) ?>"
-			   id="<?php echo $this->get_field_id( 'color_span_to' ) ?>" value="<?php echo $config->color_span_to ?>">
+			   id="<?php echo $this->get_field_id( 'color_span_to' ) ?>" value="<?php echo $dataConfig->color_span_to ?>">
 	</div>
 	<br>
 </fieldset>
@@ -283,12 +284,12 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<a class="utcw-help"
 	   title="<?php _e( 'The title is the small (usually) yellow label which will appear when the user hovers the tag. Try to hover the text to the left to see an example of what a title text looks like.', 'utcw' ) ?>">?</a>
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_title' ) ?>"
-		   id="<?php echo $this->get_field_id( 'show_title' ) ?>" <?php echo $config->show_title === true ? 'checked="checked"' : ''?>>
+		   id="<?php echo $this->get_field_id( 'show_title' ) ?>" <?php echo $renderConfig->show_title === true ? 'checked="checked"' : ''?>>
 	<label for="<?php echo $this->get_field_id( 'show_title' ) ?>"
 		   title="<?php _e( 'This is a title', 'utcw' ) ?>"><?php _e( 'Show title (hover text)', 'utcw' ) ?></label><br>	<a class="utcw-help"
 	   title="<?php _e( 'Uncheck this option if you do not want your tag cloud to contain links to the archive page for each tag.', 'utcw' ) ?>">?</a>
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_links' ) ?>"
-		   id="<?php echo $this->get_field_id( 'show_links' ) ?>" <?php echo $config->show_links === true ? 'checked="checked"' : ''?>>
+		   id="<?php echo $this->get_field_id( 'show_links' ) ?>" <?php echo $renderConfig->show_links === true ? 'checked="checked"' : ''?>>
 	<label for="<?php echo $this->get_field_id( 'show_links' ) ?>"><?php _e( 'Show links', 'utcw' ) ?></label><br>
 	<br>
 
@@ -299,22 +300,22 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		   for="<?php echo $this->get_field_id( 'letter_spacing' ) ?>"><?php _e( 'Between letters:', 'utcw' ) ?></label>
 	<input type="text" size="5" name="<?php echo $this->get_field_name( 'letter_spacing' ) ?>"
 		   id="<?php echo $this->get_field_id( 'letter_spacing' ) ?>"
-		   value="<?php echo $config->letter_spacing ?>"><br>
+		   value="<?php echo $renderConfig->letter_spacing ?>"><br>
 	<label class="two-col"
 		   for="<?php echo $this->get_field_id( 'word_spacing' ) ?>"><?php _e( 'Between words:', 'utcw' ) ?></label>
 	<input type="text" size="5" name="<?php echo $this->get_field_name( 'word_spacing' ) ?>"
 		   id="<?php echo $this->get_field_id( 'word_spacing' ) ?>"
-		   value="<?php echo $config->word_spacing ?>"><br>
+		   value="<?php echo $renderConfig->word_spacing ?>"><br>
 	<label class="two-col"
 		   for="<?php echo $this->get_field_id( 'tag_spacing' ) ?>"><?php _e( 'Between tags:', 'utcw' ) ?></label>
 	<input type="text" size="5" name="<?php echo $this->get_field_name( 'tag_spacing' ) ?>"
 		   id="<?php echo $this->get_field_id( 'tag_spacing' ) ?>"
-		   value="<?php echo $config->tag_spacing ?>"><br>
+		   value="<?php echo $renderConfig->tag_spacing ?>"><br>
 	<label class="two-col"
 		   for="<?php echo $this->get_field_id( 'line_height' ) ?>"><?php _e( 'Between rows:', 'utcw' ) ?></label>
 	<input type="text" size="5" name="<?php echo $this->get_field_name( 'line_height' ) ?>"
 		   id="<?php echo $this->get_field_id( 'line_height' ) ?>"
-		   value="<?php echo $config->line_height ?>"><br>
+		   value="<?php echo $renderConfig->line_height ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -322,21 +323,21 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><?php _e( 'Transform tags:', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_off' ) ?>"
-		   value="off" <?php echo $config->text_transform == 'off' ? 'checked="checked"' : ''; ?>>
+		   value="off" <?php echo $renderConfig->text_transform == 'off' ? 'checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'text_transform_off' ) ?>"><?php _e( 'Off', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_lowercase' ) ?>"
-		   value="lowercase" <?php echo $config->text_transform == 'lowercase' ? ' checked="checked"' : ''; ?>>
+		   value="lowercase" <?php echo $renderConfig->text_transform == 'lowercase' ? ' checked="checked"' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'text_transform_lowercase' ) ?>"><?php _e( 'To lowercase', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_uppercase' ) ?>"
-		   value="uppercase" <?php echo $config->text_transform == 'uppercase' ? ' checked="checked"' : ''; ?>>
+		   value="uppercase" <?php echo $renderConfig->text_transform == 'uppercase' ? ' checked="checked"' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'text_transform_uppercase' ) ?>"><?php _e( 'To uppercase', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_capitalize' ) ?>"
-		   value="capitalize" <?php echo $config->text_transform == 'capitalize' ? ' checked="checked"' : ''; ?>>
+		   value="capitalize" <?php echo $renderConfig->text_transform == 'capitalize' ? ' checked="checked"' : ''; ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'text_transform_capitalize' ) ?>"><?php _e( 'Capitalize', 'utcw' ) ?></label><br>
 	<br>
@@ -348,15 +349,15 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		   for="<?php echo $this->get_field_id( 'separator' ) ?>"><?php _e( 'Separator', 'utcw' ) ?></label>
 	<input type="text" size=5 name="<?php echo $this->get_field_name( 'separator' ) ?>"
 		   id="<?php echo $this->get_field_id( 'separator' ) ?>"
-		   value="<?php echo $config->separator ?>"><br>
+		   value="<?php echo $renderConfig->separator ?>"><br>
 	<label class="two-col" for="<?php echo $this->get_field_id( 'prefix' ) ?>"><?php _e( 'Prefix', 'utcw' ) ?></label>
 	<input type="text" size=5 name="<?php echo $this->get_field_name( 'prefix' ) ?>"
 		   id="<?php echo $this->get_field_id( 'prefix' ) ?>"
-		   value="<?php echo $config->prefix ?>"><br>
+		   value="<?php echo $renderConfig->prefix ?>"><br>
 	<label class="two-col" for="<?php echo $this->get_field_id( 'suffix' ) ?>"><?php _e( 'Suffix', 'utcw' ) ?></label>
 	<input type="text" size=5 name="<?php echo $this->get_field_name( 'suffix' ) ?>"
 		   id="<?php echo $this->get_field_id( 'suffix' ) ?>"
-		   value="<?php echo $config->suffix ?>"><br>
+		   value="<?php echo $renderConfig->suffix ?>"><br>
 
 </fieldset>
 
@@ -372,15 +373,15 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><?php _e( 'Underline', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'link_underline' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_underline_yes' ) ?>"
-		   value="yes" <?php echo $config->link_underline == 'yes' ? ' checked="checked"' : '' ?>>
+		   value="yes" <?php echo $renderConfig->link_underline == 'yes' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'link_underline_yes' ) ?>"><?php _e( 'Yes', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'link_underline' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_underline_no' ) ?>"
-		   value="no" <?php echo $config->link_underline == 'no' ? ' checked="checked"' : '' ?>>
+		   value="no" <?php echo $renderConfig->link_underline == 'no' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'link_underline_no' ) ?>"><?php _e( 'No', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'link_underline' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_underline_default' ) ?>"
-		   value="default" <?php echo $config->link_underline == 'default' ? ' checked="checked"' : '' ?>>
+		   value="default" <?php echo $renderConfig->link_underline == 'default' ? ' checked="checked"' : '' ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'link_underline_default' ) ?>"><?php _e( 'Theme default', 'utcw' ) ?></label><br>
 	<br>
@@ -390,15 +391,15 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><?php _e( 'Bold', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'link_bold' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_bold_yes' ) ?>"
-		   value="yes" <?php echo $config->link_bold == 'yes' ? ' checked="checked"' : '' ?>>
+		   value="yes" <?php echo $renderConfig->link_bold == 'yes' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'link_bold_yes' ) ?>"><?php _e( 'Yes', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'link_bold' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_bold_no' ) ?>"
-		   value="no" <?php echo $config->link_bold == 'no' ? ' checked="checked"' : '' ?>>
+		   value="no" <?php echo $renderConfig->link_bold == 'no' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'link_bold_no' ) ?>"><?php _e( 'No', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'link_bold' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_bold_default' ) ?>"
-		   value="default" <?php echo $config->link_bold == 'default' ? ' checked="checked"' : '' ?>>
+		   value="default" <?php echo $renderConfig->link_bold == 'default' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'link_bold_default' ) ?>"><?php _e( 'Theme default', 'utcw' ) ?></label><br>
 	<br>
 
@@ -407,15 +408,15 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><?php _e( 'Italic', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'link_italic' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_italic_yes' ) ?>"
-		   value="yes" <?php echo $config->link_italic == 'yes' ? ' checked="checked"' : '' ?>>
+		   value="yes" <?php echo $renderConfig->link_italic == 'yes' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'link_italic_yes' ) ?>"><?php _e( 'Yes', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'link_italic' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_italic_no' ) ?>"
-		   value="no" <?php echo $config->link_italic == 'no' ? ' checked="checked"' : '' ?>>
+		   value="no" <?php echo $renderConfig->link_italic == 'no' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'link_italic_no' ) ?>"><?php _e( 'No', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'link_italic' ) ?>"
 		   id="<?php echo $this->get_field_id( 'link_italic_default' ) ?>"
-		   value="default" <?php echo $config->link_italic == 'default' ? ' checked="checked"' : '' ?>>
+		   value="default" <?php echo $renderConfig->link_italic == 'default' ? ' checked="checked"' : '' ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'link_italic_default' ) ?>"><?php _e( 'Theme default', 'utcw' ) ?></label><br>
 	<br>
@@ -425,7 +426,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><label
 		for="<?php echo $this->get_field_id( 'link_bg_color' ) ?>"><?php _e( 'Background color (hex value):', 'utcw' ) ?></label></strong><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'link_bg_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'link_bg_color' ) ?>" value="<?php echo $config->link_bg_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'link_bg_color' ) ?>" value="<?php echo $renderConfig->link_bg_color ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -435,34 +436,34 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<select name="<?php echo $this->get_field_name( 'link_border_style' ) ?>"
 			id="<?php echo $this->get_field_id( 'link_border_style' ) ?>">
 		<option
-			value="none" <?php echo $config->link_border_style == 'none' ? 'selected="selected"' : '' ?>><?php _e( 'None', 'utcw' ) ?></option>
+			value="none" <?php echo $renderConfig->link_border_style == 'none' ? 'selected="selected"' : '' ?>><?php _e( 'None', 'utcw' ) ?></option>
 		<option
-			value="dotted" <?php echo $config->link_border_style == 'dotted' ? 'selected="selected"' : '' ?>><?php _e( 'Dotted', 'utcw' ) ?></option>
+			value="dotted" <?php echo $renderConfig->link_border_style == 'dotted' ? 'selected="selected"' : '' ?>><?php _e( 'Dotted', 'utcw' ) ?></option>
 		<option
-			value="dashed" <?php echo $config->link_border_style == 'dashed' ? 'selected="selected"' : '' ?>><?php _e( 'Dashed', 'utcw' ) ?></option>
+			value="dashed" <?php echo $renderConfig->link_border_style == 'dashed' ? 'selected="selected"' : '' ?>><?php _e( 'Dashed', 'utcw' ) ?></option>
 		<option
-			value="solid" <?php echo $config->link_border_style == 'solid' ? 'selected="selected"' : '' ?>><?php _e( 'Solid', 'utcw' ) ?></option>
+			value="solid" <?php echo $renderConfig->link_border_style == 'solid' ? 'selected="selected"' : '' ?>><?php _e( 'Solid', 'utcw' ) ?></option>
 		<option
-			value="double" <?php echo $config->link_border_style == 'double' ? 'selected="selected"' : '' ?>><?php _e( 'Double', 'utcw' ) ?></option>
+			value="double" <?php echo $renderConfig->link_border_style == 'double' ? 'selected="selected"' : '' ?>><?php _e( 'Double', 'utcw' ) ?></option>
 		<option
-			value="groove" <?php echo $config->link_border_style == 'groove' ? 'selected="selected"' : '' ?>><?php _e( 'Groove', 'utcw' ) ?></option>
+			value="groove" <?php echo $renderConfig->link_border_style == 'groove' ? 'selected="selected"' : '' ?>><?php _e( 'Groove', 'utcw' ) ?></option>
 		<option
-			value="ridge" <?php echo $config->link_border_style == 'rigde' ? 'selected="selected"' : '' ?>><?php _e( 'Ridge', 'utcw' ) ?></option>
+			value="ridge" <?php echo $renderConfig->link_border_style == 'rigde' ? 'selected="selected"' : '' ?>><?php _e( 'Ridge', 'utcw' ) ?></option>
 		<option
-			value="inset" <?php echo $config->link_border_style == 'inset' ? 'selected="selected"' : '' ?>><?php _e( 'Inset', 'utcw' ) ?></option>
+			value="inset" <?php echo $renderConfig->link_border_style == 'inset' ? 'selected="selected"' : '' ?>><?php _e( 'Inset', 'utcw' ) ?></option>
 		<option
-			value="outset" <?php echo $config->link_border_style == 'outset' ? 'selected="selected"' : '' ?>><?php _e( 'Outset', 'utcw' ) ?></option>
+			value="outset" <?php echo $renderConfig->link_border_style == 'outset' ? 'selected="selected"' : '' ?>><?php _e( 'Outset', 'utcw' ) ?></option>
 	</select><br>
 	<br>
 	<label
 		for="<?php echo $this->get_field_id( 'link_border_width' ) ?>"><?php _e( 'Width:', 'utcw' ) ?></label><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'link_border_width' ) ?>"
-		   id="<?php echo $this->get_field_id( 'link_border_width' ) ?>" value="<?php echo $config->link_border_width ?>"><br>
+		   id="<?php echo $this->get_field_id( 'link_border_width' ) ?>" value="<?php echo $renderConfig->link_border_width ?>"><br>
 	<br>
 	<label
 		for="<?php echo $this->get_field_id( 'link_border_color' ) ?>"><?php _e( 'Color (hex value): ', 'utcw' ) ?></label><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'link_border_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'link_border_color' ) ?>" value="<?php echo $config->link_border_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'link_border_color' ) ?>" value="<?php echo $renderConfig->link_border_color ?>"><br>
 
 	<a class="utcw-help"
 	   title="<?php _e( 'The hover effects will only affect the style of the tag when the user hovers the tag. For details about each settings see the section above.', 'utcw' )?>">?</a>
@@ -471,98 +472,98 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><?php _e( 'Underline', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_underline' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_underline_yes' ) ?>"
-		   value="yes" <?php echo $config->hover_underline == 'yes' ? ' checked="checked"' : '' ?>>
+		   value="yes" <?php echo $renderConfig->hover_underline == 'yes' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'hover_underline_yes' ) ?>"><?php _e( 'Yes', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_underline' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_underline_no' ) ?>"
-		   value="no" <?php echo $config->hover_underline == 'no' ? ' checked="checked"' : '' ?>>
+		   value="no" <?php echo $renderConfig->hover_underline == 'no' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'hover_underline_no' ) ?>"><?php _e( 'No', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_underline' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_underline_default' ) ?>"
-		   value="default" <?php echo $config->hover_underline == 'default' ? ' checked="checked"' : '' ?>>
+		   value="default" <?php echo $renderConfig->hover_underline == 'default' ? ' checked="checked"' : '' ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'hover_underline_default' ) ?>"><?php _e( 'Theme default', 'utcw' ) ?></label><br>
 	<br>
 	<strong><?php _e( 'Bold', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_bold' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_bold_yes' ) ?>"
-		   value="yes" <?php echo $config->hover_bold == 'yes' ? ' checked="checked"' : '' ?>>
+		   value="yes" <?php echo $renderConfig->hover_bold == 'yes' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'hover_bold_yes' ) ?>"><?php _e( 'Yes', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_bold' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_bold_no' ) ?>"
-		   value="no" <?php echo $config->hover_bold == 'no' ? ' checked="checked"' : '' ?>>
+		   value="no" <?php echo $renderConfig->hover_bold == 'no' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'hover_bold_no' ) ?>"><?php _e( 'No', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_bold' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_bold_default' ) ?>"
-		   value="default" <?php echo $config->hover_bold == 'default' ? ' checked="checked"' : '' ?>>
+		   value="default" <?php echo $renderConfig->hover_bold == 'default' ? ' checked="checked"' : '' ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'hover_bold_default' ) ?>"><?php _e( 'Theme default', 'utcw' ) ?></label><br>
 	<br>
 	<strong><?php _e( 'Italic', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_italic' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_italic_yes' ) ?>"
-		   value="yes" <?php echo $config->hover_italic == 'yes' ? ' checked="checked"' : '' ?>>
+		   value="yes" <?php echo $renderConfig->hover_italic == 'yes' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'hover_italic_yes' ) ?>"><?php _e( 'Yes', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_italic' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_italic_no' ) ?>"
-		   value="no" <?php echo $config->hover_italic == 'no' ? ' checked="checked"' : '' ?>>
+		   value="no" <?php echo $renderConfig->hover_italic == 'no' ? ' checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'hover_italic_no' ) ?>"><?php _e( 'No', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'hover_italic' ) ?>"
 		   id="<?php echo $this->get_field_id( 'hover_italic_default' ) ?>"
-		   value="default" <?php echo $config->hover_italic == 'default' ? ' checked="checked"' : '' ?>>
+		   value="default" <?php echo $renderConfig->hover_italic == 'default' ? ' checked="checked"' : '' ?>>
 	<label
 		for="<?php echo $this->get_field_id( 'hover_italic_default' ) ?>"><?php _e( 'Theme default', 'utcw' ) ?></label><br>
 	<br>
 	<strong><label
 		for="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>"><?php _e( 'Background color (hex value):', 'utcw' ) ?></label></strong><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'hover_bg_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>" value="<?php echo $config->hover_bg_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>" value="<?php echo $renderConfig->hover_bg_color ?>"><br>
 	<br>
 	<strong><label
 		for="<?php echo $this->get_field_id( 'hover_color' ) ?>"><?php _e( 'Font color (hex value):', 'utcw' ) ?></label></strong><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'hover_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'hover_color' ) ?>" value="<?php echo $config->hover_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'hover_color' ) ?>" value="<?php echo $renderConfig->hover_color ?>"><br>
     <br>
     <strong><?php _e( 'Border', 'utcw' ) ?></strong><br>
 	<label for="<?php echo $this->get_field_id( 'hover_border_style' ) ?>"><?php _e( 'Style: ', 'utcw' ) ?></label><br>
 	<select name="<?php echo $this->get_field_name( 'hover_border_style' ) ?>"
 			id="<?php echo $this->get_field_id( 'hover_border_style' ) ?>">
 		<option
-			value="none" <?php echo $config->hover_border_style == 'none' ? 'selected="selected"' : '' ?>><?php _e( 'None', 'utcw' ) ?></option>
+			value="none" <?php echo $renderConfig->hover_border_style == 'none' ? 'selected="selected"' : '' ?>><?php _e( 'None', 'utcw' ) ?></option>
 		<option
-			value="dotted" <?php echo $config->hover_border_style == 'dotted' ? 'selected="selected"' : '' ?>><?php _e( 'Dotted', 'utcw' ) ?></option>
+			value="dotted" <?php echo $renderConfig->hover_border_style == 'dotted' ? 'selected="selected"' : '' ?>><?php _e( 'Dotted', 'utcw' ) ?></option>
 		<option
-			value="dashed" <?php echo $config->hover_border_style == 'dashed' ? 'selected="selected"' : '' ?>><?php _e( 'Dashed', 'utcw' ) ?></option>
+			value="dashed" <?php echo $renderConfig->hover_border_style == 'dashed' ? 'selected="selected"' : '' ?>><?php _e( 'Dashed', 'utcw' ) ?></option>
 		<option
-			value="solid" <?php echo $config->hover_border_style == 'solid' ? 'selected="selected"' : '' ?>><?php _e( 'Solid', 'utcw' ) ?></option>
+			value="solid" <?php echo $renderConfig->hover_border_style == 'solid' ? 'selected="selected"' : '' ?>><?php _e( 'Solid', 'utcw' ) ?></option>
 		<option
-			value="double" <?php echo $config->hover_border_style == 'double' ? 'selected="selected"' : '' ?>><?php _e( 'Double', 'utcw' ) ?></option>
+			value="double" <?php echo $renderConfig->hover_border_style == 'double' ? 'selected="selected"' : '' ?>><?php _e( 'Double', 'utcw' ) ?></option>
 		<option
-			value="groove" <?php echo $config->hover_border_style == 'groove' ? 'selected="selected"' : '' ?>><?php _e( 'Groove', 'utcw' ) ?></option>
+			value="groove" <?php echo $renderConfig->hover_border_style == 'groove' ? 'selected="selected"' : '' ?>><?php _e( 'Groove', 'utcw' ) ?></option>
 		<option
-			value="ridge" <?php echo $config->hover_border_style == 'rigde' ? 'selected="selected"' : '' ?>><?php _e( 'Ridge', 'utcw' ) ?></option>
+			value="ridge" <?php echo $renderConfig->hover_border_style == 'rigde' ? 'selected="selected"' : '' ?>><?php _e( 'Ridge', 'utcw' ) ?></option>
 		<option
-			value="inset" <?php echo $config->hover_border_style == 'inset' ? 'selected="selected"' : '' ?>><?php _e( 'Inset', 'utcw' ) ?></option>
+			value="inset" <?php echo $renderConfig->hover_border_style == 'inset' ? 'selected="selected"' : '' ?>><?php _e( 'Inset', 'utcw' ) ?></option>
 		<option
-			value="outset" <?php echo $config->hover_border_style == 'outset' ? 'selected="selected"' : '' ?>><?php _e( 'Outset', 'utcw' ) ?></option>
+			value="outset" <?php echo $renderConfig->hover_border_style == 'outset' ? 'selected="selected"' : '' ?>><?php _e( 'Outset', 'utcw' ) ?></option>
 	</select><br>
 	<br>
 	<label
 		for="<?php echo $this->get_field_id( 'hover_border_width' ) ?>"><?php _e( 'Width:', 'utcw' ) ?></label><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'hover_border_width' ) ?>"
-		   id="<?php echo $this->get_field_id( 'hover_border_width' ) ?>" value="<?php echo $config->hover_border_width ?>"><br>
+		   id="<?php echo $this->get_field_id( 'hover_border_width' ) ?>" value="<?php echo $renderConfig->hover_border_width ?>"><br>
 	<br>
 	<label
 		for="<?php echo $this->get_field_id( 'hover_border_color' ) ?>"><?php _e( 'Color (hex value): ', 'utcw' ) ?></label><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'hover_border_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'hover_border_color' ) ?>" value="<?php echo $config->hover_border_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'hover_border_color' ) ?>" value="<?php echo $renderConfig->hover_border_color ?>"><br>
 </fieldset>
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-advanced' ) ?>">
 	<legend></legend>
 	<a class="utcw-help"
 	   title="<?php _e( 'This will add a &lt;-- HTML comment --&gt; to the output with some debugging information, please use this information when troubleshooting. You can find the debugging information by using \'view source\' in your browser when viewing the page and searching for \'Ultimate Tag Cloud Debug information\'', 'utcw' )?>">?</a>
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'debug' ) ?>"
-		   id="<?php echo $this->get_field_id( 'debug' ) ?>" <?php echo ( $config->debug === true ) ? 'checked="checked"' : '' ?>>
+		   id="<?php echo $this->get_field_id( 'debug' ) ?>" <?php echo ( $renderConfig->debug === true ) ? 'checked="checked"' : '' ?>>
 	<label for="<?php echo $this->get_field_id( 'debug' ) ?>"><?php _e( 'Include debug output', 'utcw' )?></label><br>
 	<br>
 	<a class="utcw-help"

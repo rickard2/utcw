@@ -86,10 +86,13 @@ class UTCW_Widget extends WP_Widget
             }
         }
 
-        $config = new UTCW_Config($new_instance, $this->plugin);
+        $dataConfig   = new UTCW_DataConfig($new_instance, $this->plugin);
+        $renderConfig = new UTCW_RenderConfig($new_instance, $this->plugin);
+
+        $config = array_merge($dataConfig->getInstance(), $renderConfig->getInstance());
 
         if ($save_config) {
-            $this->plugin->saveConfiguration($new_instance['save_config_name'], $config->getInstance());
+            $this->plugin->saveConfiguration($new_instance['save_config_name'], $config);
         }
 
         if (isset($new_instance['remove_config']) && is_array($new_instance['remove_config'])) {
@@ -98,7 +101,7 @@ class UTCW_Widget extends WP_Widget
             }
         }
 
-        return $config->getInstance();
+        return $config;
     }
 
     /**
@@ -112,7 +115,9 @@ class UTCW_Widget extends WP_Widget
     public function form(array $instance)
     {
         /** @noinspection PhpUnusedLocalVariableInspection */
-        $config = new UTCW_Config($instance, $this->plugin);
+        $dataConfig = new UTCW_DataConfig($instance, $this->plugin);
+        /** @noinspection PhpUnusedLocalVariableInspection */
+        $renderConfig = new UTCW_RenderConfig($instance, $this->plugin);
         /** @noinspection PhpUnusedLocalVariableInspection */
         $configurations = $this->plugin->getConfigurations();
         /** @noinspection PhpUnusedLocalVariableInspection */
@@ -141,9 +146,11 @@ class UTCW_Widget extends WP_Widget
 
         $input = array_merge($instance, $args);
 
-        $config = new UTCW_Config($input, $this->plugin);
-        $data   = new UTCW_Data($config, $this->plugin, $wpdb);
-        $render = new UTCW_Render($config, $data, $this->plugin);
+        $dataConfig   = new UTCW_DataConfig($input, $this->plugin);
+        $renderConfig = new UTCW_RenderConfig($input, $this->plugin);
+
+        $data   = new UTCW_Data($dataConfig, $this->plugin, $wpdb);
+        $render = new UTCW_Render($renderConfig, $data, $this->plugin);
 
         $render->render();
     }

@@ -25,7 +25,15 @@ define('UTCW_VERSION', '2.3-dev');
  * @var bool
  * @since 2.0
  */
-define('UTCW_DEV', !false);
+define('UTCW_DEV', false);
+
+/**
+ * Regular expression for matching hexadecimal colors
+ *
+ * @var string
+ * @since 2.0
+ */
+define('UTCW_HEX_COLOR_REGEX', '/#([a-f0-9]{6}|[a-f0-9]{3})/i');
 
 /**
  * Regular expression for matching decimal numbers

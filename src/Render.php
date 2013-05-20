@@ -66,13 +66,13 @@ class UTCW_Render
     /**
      * Creates a new instance of the renderer
      *
-     * @param UTCW_Config $config Configuration
+     * @param UTCW_RenderConfig $config Configuration
      * @param UTCW_Data   $data   Term data
      * @param UTCW_Plugin $plugin Main plugin instance
      *
      * @since 2.0
      */
-    public function __construct(UTCW_Config $config, UTCW_Data $data, UTCW_Plugin $plugin)
+    public function __construct(UTCW_RenderConfig $config, UTCW_Data $data, UTCW_Plugin $plugin)
     {
         $this->data = $data;
         $this->config = $config;
@@ -319,7 +319,9 @@ class UTCW_Render
      */
     private function hasDefaultValue($option)
     {
-        $defaults = $this->config->getDefaults();
+        $defaultConfig = new UTCW_RenderConfig(array(), $this->plugin);
+        $defaults      = $defaultConfig->getInstance();
+
         return $this->config->$option === $defaults[$option];
     }
 }

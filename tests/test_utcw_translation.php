@@ -69,7 +69,7 @@ class UTCW_Test_Translation extends WP_UnitTestCase
             ->method('getTranslationHandler')
             ->will($this->returnValue($handler));
 
-        $config = new UTCW_Config(array(), $plugin);
+        $config = new UTCW_DataConfig(array(), $plugin);
 
         $data = new UTCW_Data($config, $plugin, $this->wpdb);
 

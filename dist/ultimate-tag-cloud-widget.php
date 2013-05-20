@@ -17,7 +17,7 @@ License: GPLv2
  * @var string
  * @since 2.0
  */
-define('UTCW_VERSION', '2.2.3');
+define('UTCW_VERSION', '2.3-dev');
 
 /**
  * If development mode is currently enabled
@@ -25,15 +25,7 @@ define('UTCW_VERSION', '2.2.3');
  * @var bool
  * @since 2.0
  */
-define('UTCW_DEV', false);
-
-/**
- * Regular expression for matching hexadecimal colors
- *
- * @var string
- * @since 2.0
- */
-define('UTCW_HEX_COLOR_REGEX', '/#([a-f0-9]{6}|[a-f0-9]{3})/i');
+define('UTCW_DEV', !false);
 
 /**
  * Regular expression for matching decimal numbers
@@ -51,35 +43,33 @@ define('UTCW_DECIMAL_REGEX', '\d+(\.\d+)?');
  */
 define('UTCW_HEX_COLOR_FORMAT', '#%02x%02x%02x');
 
-if (UTCW_DEV) {
-    require_once '/www/utcw2/src/Plugin.php';
-    require_once '/www/utcw2/src/Config.php';
-    require_once '/www/utcw2/src/Widget.php';
-    require_once '/www/utcw2/src/Data.php';
-    require_once '/www/utcw2/src/Render.php';
-    require_once '/www/utcw2/src/Term.php';
-    require_once '/www/utcw2/src/Language/TranslationHandler.php';
-    require_once '/www/utcw2/src/Language/QTranslateHandler.php';
-    require_once '/www/utcw2/src/Language/WPMLHandler.php';
-    require_once '/www/utcw2/src/Selection/SelectionStrategy.php';
-    require_once '/www/utcw2/src/Selection/PopularityStrategy.php';
-    require_once '/www/utcw2/src/Selection/RandomStrategy.php';
-    require_once '/www/utcw2/src/Database/QueryBuilder.php';
-} else {
-    require_once 'src/Plugin.php';
-    require_once 'src/Config.php';
-    require_once 'src/Widget.php';
-    require_once 'src/Data.php';
-    require_once 'src/Render.php';
-    require_once 'src/Term.php';
-    require_once 'src/Language/TranslationHandler.php';
-    require_once 'src/Language/QTranslateHandler.php';
-    require_once 'src/Language/WPMLHandler.php';
-    require_once 'src/Selection/SelectionStrategy.php';
-    require_once 'src/Selection/PopularityStrategy.php';
-    require_once 'src/Selection/RandomStrategy.php';
-    require_once 'src/Database/QueryBuilder.php';
-}
+$__prefix = UTCW_DEV ? '/www/utcw2/' : '';
+
+require_once $__prefix . 'src/Plugin.php';
+require_once $__prefix . 'src/Widget.php';
+require_once $__prefix . 'src/Data.php';
+require_once $__prefix . 'src/Render.php';
+require_once $__prefix . 'src/Term.php';
+require_once $__prefix . 'src/Language/TranslationHandler.php';
+require_once $__prefix . 'src/Language/QTranslateHandler.php';
+require_once $__prefix . 'src/Language/WPMLHandler.php';
+require_once $__prefix . 'src/Selection/SelectionStrategy.php';
+require_once $__prefix . 'src/Selection/PopularityStrategy.php';
+require_once $__prefix . 'src/Selection/RandomStrategy.php';
+require_once $__prefix . 'src/Database/QueryBuilder.php';
+require_once $__prefix . 'src/Config/Config.php';
+require_once $__prefix . 'src/Config/DataConfig.php';
+require_once $__prefix . 'src/Config/RenderConfig.php';
+require_once $__prefix . 'src/Config/Type/Type.php';
+require_once $__prefix . 'src/Config/Type/SetType.php';
+require_once $__prefix . 'src/Config/Type/ColorType.php';
+require_once $__prefix . 'src/Config/Type/ArrayType.php';
+require_once $__prefix . 'src/Config/Type/IntegerType.php';
+require_once $__prefix . 'src/Config/Type/MeasurementType.php';
+require_once $__prefix . 'src/Config/Type/StringType.php';
+require_once $__prefix . 'src/Config/Type/BooleanType.php';
+
+unset($__prefix);
 
 // Instantiates the plugin
 UTCW_Plugin::getInstance();

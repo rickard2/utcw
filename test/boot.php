@@ -6,161 +6,181 @@
 
 require 'dist/ultimate-tag-cloud-widget.php';
 
-class testWPDB extends wpdb {
+class testWPDB extends wpdb
+{
 
-	function prepare( $query, $arguments ) {
-		$query = str_replace( '%s', "'%s'", $query );
-		return vsprintf( $query, $arguments );
-	}
+    function prepare($query, $arguments)
+    {
+        $query = str_replace('%s', "'%s'", $query);
+        return vsprintf($query, $arguments);
+    }
 }
 
-class MockFactory {
+class MockFactory
+{
 
-	/**
-	 * @var WP_UnitTestCase
-	 */
-	private $testCase;
+    /**
+     * @var WP_UnitTestCase
+     */
+    private $testCase;
 
-	/**
-	 * @var PHPUnit_Framework_MockObject_MockObject
-	 */
-	protected $utcw_not_authenticated;
+    /**
+     * @var PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $utcw_not_authenticated;
 
-	/**
-	 * @var PHPUnit_Framework_MockObject_MockObject
-	 */
-	protected $utcw_authenticated;
+    /**
+     * @var PHPUnit_Framework_MockObject_MockObject
+     */
+    protected $utcw_authenticated;
 
-	function __construct( WP_UnitTestCase $testcase ) {
-		$this->testCase = $testcase;
+    function __construct(WP_UnitTestCase $testcase)
+    {
+        $this->testCase = $testcase;
 
-		$this->utcw_not_authenticated = $this->getUTCWMock();
+        $this->utcw_not_authenticated = $this->getUTCWMock();
 
-		$this->utcw_not_authenticated->expects( $this->testCase->any() )
-			->method( 'isAuthenticatedUser' )
-			->will( $this->testCase->returnValue( false ) );
+        $this->utcw_not_authenticated->expects($this->testCase->any())
+            ->method('isAuthenticatedUser')
+            ->will($this->testCase->returnValue(false));
 
-		$this->utcw_authenticated = $this->getUTCWMock();
+        $this->utcw_authenticated = $this->getUTCWMock();
 
-		$this->utcw_authenticated->expects( $this->testCase->any() )
-			->method( 'isAuthenticatedUser' )
-			->will( $this->testCase->returnValue( true ) );
-	}
+        $this->utcw_authenticated->expects($this->testCase->any())
+            ->method('isAuthenticatedUser')
+            ->will($this->testCase->returnValue(true));
+    }
 
-	function getUTCWNotAuthenticated() {
-		return $this->utcw_not_authenticated;
-	}
+    function getUTCWNotAuthenticated()
+    {
+        return $this->utcw_not_authenticated;
+    }
 
-	function getUTCWAuthenticated() {
-		return $this->utcw_authenticated;
-	}
+    function getUTCWAuthenticated()
+    {
+        return $this->utcw_authenticated;
+    }
 
-	function getUTCWMock( array $additional_methods = array() ) {
+    function getUTCWMock(array $additional_methods = array())
+    {
 
-		$methods = array_merge(
-			array(
-				 'getAllowedTaxonomies',
-				 'getAllowedPostTypes',
-				 'isAuthenticatedUser',
-				 'getTermLink',
-				 'checkTermTaxonomy',
-			),
-			$additional_methods
-		);
+        $methods = array_merge(
+            array(
+                'getAllowedTaxonomies',
+                'getAllowedPostTypes',
+                'isAuthenticatedUser',
+                'getTermLink',
+                'checkTermTaxonomy',
+            ),
+            $additional_methods
+        );
 
-		$mock = $this->testCase->getMock(
-			'UTCW_Plugin',
-			$methods,
-			array(),
-			'',
-			false
-		);
+        $mock = $this->testCase->getMock(
+            'UTCW_Plugin',
+            $methods,
+            array(),
+            '',
+            false
+        );
 
-		$mock->expects( $this->testCase->any() )
-			->method( 'getAllowedTaxonomies' )
-			->will( $this->testCase->returnValue( array( 'post_tag', 'category' ) ) );
+        $mock->expects($this->testCase->any())
+            ->method('getAllowedTaxonomies')
+            ->will($this->testCase->returnValue(array('post_tag', 'category')));
 
-		$mock->expects( $this->testCase->any() )
-			->method( 'getAllowedPostTypes' )
-			->will( $this->testCase->returnValue( array( 'post', 'page' ) ) );
+        $mock->expects($this->testCase->any())
+            ->method('getAllowedPostTypes')
+            ->will($this->testCase->returnValue(array('post', 'page')));
 
-		$mock->expects( $this->testCase->any() )
-			->method( 'getTermLink' )
-			->will( $this->testCase->returnValue( 'http://example.com/' ) );
+        $mock->expects($this->testCase->any())
+            ->method('getTermLink')
+            ->will($this->testCase->returnValue('http://example.com/'));
 
-		return $mock;
-	}
+        return $mock;
+    }
 
-	function getWPDBMock() {
-		return $this->testCase->getMock( 'testWPDB', array( 'get_results' ), array(), '', false );
-	}
+    function getWPDBMock()
+    {
+        return $this->testCase->getMock('testWPDB', array('get_results'), array(), '', false);
+    }
 }
 
-class DataProvider {
+class DataProvider
+{
 
-	/**
-	 * @var MockFactory
-	 */
-	private $mockFactory;
+    /**
+     * @var MockFactory
+     */
+    private $mockFactory;
 
-	/**
-	 * @var WP_UnitTestCase
-	 */
-	private $testCase;
+    /**
+     * @var WP_UnitTestCase
+     */
+    private $testCase;
 
-	function __construct( WP_UnitTestCase $testCase ) {
-		$this->mockFactory = new MockFactory( $testCase );
-		$this->testCase    = $testCase;
-	}
+    function __construct(WP_UnitTestCase $testCase)
+    {
+        $this->mockFactory = new MockFactory($testCase);
+        $this->testCase    = $testCase;
+    }
 
-	function termsProvider( $count = 10 ) {
-		$terms = array();
-		$count ++;
+    function termsProvider($count = 10)
+    {
+        $terms = array();
+        $count++;
 
-		for ( $x = 1; $x < $count; $x ++ ) {
-			$term = new stdClass;
+        for ($x = 1; $x < $count; $x++) {
+            $term = new stdClass;
 
-			$term->term_id  = $x;
-			$term->name     = 'Test term ' . $x;
-			$term->slug     = 'term-' . $x;
-			$term->count    = $x * 10;
-			$term->taxonomy = 'post_tag';
+            $term->term_id  = $x;
+            $term->name     = 'Test term ' . $x;
+            $term->slug     = 'term-' . $x;
+            $term->count    = $x * 10;
+            $term->taxonomy = 'post_tag';
 
-			$terms[ ] = $term;
-		}
+            $terms[] = $term;
+        }
 
-		return array( array( $terms ) );
-	}
+        return array(array($terms));
+    }
 
-	function get_terms( array $instance, array $query_terms ) {
-		$data = $this->get_data_object( $instance, $query_terms );
-		return $data->getTerms();
-	}
+    function get_terms(array $instance, array $query_terms)
+    {
+        $data = $this->get_data_object($instance, $query_terms);
+        return $data->getTerms();
+    }
 
-	function get_renderer( array $instance, array $query_terms, $utcw = null ) {
+    function get_renderer(array $instance, array $query_terms, $utcw = null)
+    {
 
-		if ( ! $utcw ) {
-			$utcw = $this->mockFactory->getUTCWNotAuthenticated();
-		}
+        if (!$utcw) {
+            $utcw = $this->mockFactory->getUTCWNotAuthenticated();
+        }
 
-		return new UTCW_Render( $this->get_config( $instance ), $this->get_data_object( $instance, $query_terms ), $utcw );
-	}
+        return new UTCW_Render($this->get_render_config($instance), $this->get_data_object($instance, $query_terms), $utcw);
+    }
 
-	function get_config( array $instance ) {
-		return new UTCW_Config( $instance, $this->mockFactory->getUTCWAuthenticated() );
-	}
+    function get_data_config(array $instance)
+    {
+        return new UTCW_DataConfig($instance, $this->mockFactory->getUTCWAuthenticated());
+    }
 
-	function get_data_object( array $instance, array $query_terms ) {
+    function get_render_config(array $instance)
+    {
+        return new UTCW_RenderConfig($instance, $this->mockFactory->getUTCWAuthenticated());
+    }
 
-		$config = $this->get_config( $instance );
-		$db     = $this->mockFactory->getWPDBMock();
+    function get_data_object(array $instance, array $query_terms)
+    {
 
-		$db->expects( $this->testCase->any() )
-			->method( 'get_results' )
-			->will( $this->testCase->returnValue( $query_terms ) );
+        $config = $this->get_data_config($instance);
+        $db     = $this->mockFactory->getWPDBMock();
 
-		return new UTCW_Data( $config, $this->mockFactory->getUTCWMock(), $db );
-	}
+        $db->expects($this->testCase->any())
+            ->method('get_results')
+            ->will($this->testCase->returnValue($query_terms));
+
+        return new UTCW_Data($config, $this->mockFactory->getUTCWMock(), $db);
+    }
 }
 
-define( 'UTCW_TEST_HTML_REGEX', '/<[a-z]+/i' );
+define('UTCW_TEST_HTML_REGEX', '/<[a-z]+/i');

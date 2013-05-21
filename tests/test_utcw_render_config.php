@@ -53,6 +53,7 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
         'before_title'       => '',
         'after_title'        => '',
         'alignment'          => '',
+        'display'            => 'inline',
     );
 
     function test_text_transform_ok()
@@ -73,6 +74,16 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
     function test_alignment_fail()
     {
         $this->helper_string_fail('alignment', 'invalid alignment');
+    }
+
+    function test_display_ok()
+    {
+        $this->helper_string_ok('display', 'list');
+    }
+
+    function test_display_fail()
+    {
+        $this->helper_string_fail('display', 'invalid display');
     }
 
     function test_link_underline_ok()

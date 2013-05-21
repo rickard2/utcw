@@ -58,6 +58,14 @@ class UTCW_RenderConfig extends UTCW_Config
     );
 
     /**
+     * Valid values for display set
+     *
+     * @var array
+     * @since 2.3
+     */
+    protected $displayValues = array('inline', 'list');
+
+    /**
      * Creates a new instance of the class and adds all the options
      *
      * @param array       $input
@@ -86,6 +94,7 @@ class UTCW_RenderConfig extends UTCW_Config
         $this->addOption('link_border_style', 'set', array('values' => $this->borderStyleValues));
         $this->addOption('hover_border_style', 'set', array('values' => $this->borderStyleValues));
         $this->addOption('alignment', 'set', array('values' => $this->alignmentValues, 'default' => ''));
+        $this->addOption('display', 'set', array('values' => $this->displayValues));
 
         $this->addOption('link_bg_color', 'color');
         $this->addOption('hover_bg_color', 'color');

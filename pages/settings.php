@@ -294,6 +294,15 @@ if ( ! defined( 'ABSPATH' ) ) die();
 </fieldset>
 
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-advanced-appearance' ) ?>">
+
+    <a class="utcw-help" title="<?php _e( 'Changes the overall display type of the output.', 'utcw' ) ?>">?</a>
+    <strong><?php _e('Display type:', 'utcw') ?></strong><br>
+    <input type="radio" name="<?php echo $this->get_field_name('display') ?>" id="<?php echo $this->get_field_id('display_inline') ?>" value="" <?php if ($renderConfig->display === 'inline') echo 'checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('display_inline') ?>"><?php _e('Regular cloud', 'utcw') ?></label><br>
+    <input type="radio" name="<?php echo $this->get_field_name('display') ?>" id="<?php echo $this->get_field_id('display_list') ?>" value="list" <?php if ($renderConfig->display === 'list') echo 'checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('display_list') ?>"><?php _e('List', 'utcw') ?></label><br>
+    <br>
+    
 	<legend></legend>
 	<a class="utcw-help"
 	   title="<?php _e( 'The title is the small (usually) yellow label which will appear when the user hovers the tag. Try to hover the text to the left to see an example of what a title text looks like.', 'utcw' ) ?>">?</a>
@@ -337,7 +346,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><?php _e( 'Transform tags:', 'utcw' ) ?></strong><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_off' ) ?>"
-		   value="off" <?php echo $renderConfig->text_transform == 'off' ? 'checked="checked"' : ''; ?>>
+		   value="off" <?php echo $renderConfig->text_transform == 'none' ? 'checked="checked"' : ''; ?>>
 	<label for="<?php echo $this->get_field_id( 'text_transform_off' ) ?>"><?php _e( 'Off', 'utcw' ) ?></label><br>
 	<input type="radio" name="<?php echo $this->get_field_name( 'text_transform' ) ?>"
 		   id="<?php echo $this->get_field_id( 'text_transform_lowercase' ) ?>"

@@ -331,6 +331,22 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $this->helper_not_contains(array(), 'text-align');
     }
 
+    function test_display_list_wrapper()
+    {
+        $this->helper_contains(array('display' => 'list'), '<ul');
+    }
+
+    /**
+     * @dataProvider terms
+     */
+    function test_display_list_items($terms) {
+        $instance = array('display' => 'list');
+
+        $expected = count($terms);
+
+        $this->helper_substr_count($instance, '<li>', $terms, $expected);
+    }
+
     /**
      * @dataProvider terms
      */

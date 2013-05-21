@@ -1,1109 +1,908 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a12" title="Ultimate Tag Cloud Widget">
-  <file path="dist/ultimate-tag-cloud-widget.php" hash="8c65bc9214a092208711d0367f934024" package="Default">
-    <include line="55" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Plugin.php</name>
-    </include>
-    <include line="56" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Config.php</name>
-    </include>
-    <include line="57" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Widget.php</name>
-    </include>
-    <include line="58" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Data.php</name>
-    </include>
-    <include line="59" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Render.php</name>
-    </include>
-    <include line="60" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Term.php</name>
-    </include>
-    <include line="61" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Language/TranslationHandler.php</name>
-    </include>
-    <include line="62" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Language/QTranslateHandler.php</name>
-    </include>
-    <include line="63" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Language/WPMLHandler.php</name>
-    </include>
-    <include line="64" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Selection/SelectionStrategy.php</name>
-    </include>
-    <include line="65" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Selection/PopularityStrategy.php</name>
-    </include>
-    <include line="66" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Selection/RandomStrategy.php</name>
-    </include>
-    <include line="67" type="Require Once" package="Default">
-      <name>/www/utcw2/src/Database/QueryBuilder.php</name>
-    </include>
-    <include line="69" type="Require Once" package="Default">
-      <name>src/Plugin.php</name>
-    </include>
-    <include line="70" type="Require Once" package="Default">
-      <name>src/Config.php</name>
-    </include>
-    <include line="71" type="Require Once" package="Default">
-      <name>src/Widget.php</name>
-    </include>
-    <include line="72" type="Require Once" package="Default">
-      <name>src/Data.php</name>
-    </include>
-    <include line="73" type="Require Once" package="Default">
-      <name>src/Render.php</name>
-    </include>
-    <include line="74" type="Require Once" package="Default">
-      <name>src/Term.php</name>
-    </include>
-    <include line="75" type="Require Once" package="Default">
-      <name>src/Language/TranslationHandler.php</name>
-    </include>
-    <include line="76" type="Require Once" package="Default">
-      <name>src/Language/QTranslateHandler.php</name>
-    </include>
-    <include line="77" type="Require Once" package="Default">
-      <name>src/Language/WPMLHandler.php</name>
-    </include>
-    <include line="78" type="Require Once" package="Default">
-      <name>src/Selection/SelectionStrategy.php</name>
-    </include>
-    <include line="79" type="Require Once" package="Default">
-      <name>src/Selection/PopularityStrategy.php</name>
-    </include>
-    <include line="80" type="Require Once" package="Default">
-      <name>src/Selection/RandomStrategy.php</name>
-    </include>
-    <include line="81" type="Require Once" package="Default">
-      <name>src/Database/QueryBuilder.php</name>
-    </include>
-    <constant namespace="global" line="20" package="Default">
-      <name>UTCW_VERSION</name>
-      <full_name>\UTCW_VERSION</full_name>
-      <value>'2.2.3'</value>
-    </constant>
-    <constant namespace="global" line="28" package="Default">
-      <name>UTCW_DEV</name>
-      <full_name>\UTCW_DEV</full_name>
-      <value>false</value>
-    </constant>
-    <constant namespace="global" line="36" package="Default">
-      <name>UTCW_HEX_COLOR_REGEX</name>
-      <full_name>\UTCW_HEX_COLOR_REGEX</full_name>
-      <value>'/#([a-f0-9]{6}|[a-f0-9]{3})/i'</value>
-    </constant>
-    <constant namespace="global" line="44" package="Default">
-      <name>UTCW_DECIMAL_REGEX</name>
-      <full_name>\UTCW_DECIMAL_REGEX</full_name>
-      <value>'\d+(\.\d+)?'</value>
-    </constant>
-    <constant namespace="global" line="52" package="Default">
-      <name>UTCW_HEX_COLOR_FORMAT</name>
-      <full_name>\UTCW_HEX_COLOR_FORMAT</full_name>
-      <value>'#%02x%02x%02x'</value>
-    </constant>
-    <function namespace="global" line="94" package="Default">
-      <name>do_utcw</name>
-      <full_name>\do_utcw</full_name>
-      <docblock line="87">
-        <description>Function for theme integration</description>
-        <long-description></long-description>
-        <tag line="87" name="param" description="" type="array" variable="$args">
-          <type by_reference="false">array</type>
-        </tag>
-        <tag line="87" name="since" description="1.3"/>
-      </docblock>
-      <argument line="94">
-        <name>$args</name>
-        <default></default>
-        <type>array</type>
-      </argument>
-    </function>
-    <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file dist/ultimate-tag-cloud-widget.php</error>
-    </parse_markers>
-  </file>
-  <file path="pages/settings.php" hash="6e4ee1ceb875b19e7d74840b2a2a421c" package="utcw\pages">
+  <file path="Config/Config.php" hash="8d8fef13439d88c7ec9ed9e6c10af6ba" package="utcw\config">
     <docblock line="2">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
       <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="2" name="version" description="2.2.3"/>
+      <tag line="2" name="version" description="2.3"/>
       <tag line="2" name="license" description="GPLv2"/>
       <tag line="2" name="package" description="utcw"/>
-      <tag line="2" name="subpackage" description="pages"/>
-      <tag line="2" name="var" description="" type="\UTCW_Config">
-        <type by_reference="false">\UTCW_Config</type>
-      </tag>
-      <tag line="2" name="var" description="" type="array">
-        <type by_reference="false">array</type>
-      </tag>
-      <tag line="2" name="var" description="" type="array">
-        <type by_reference="false">array</type>
-      </tag>
-      <tag line="2" name="var" description="" type="array">
-        <type by_reference="false">array</type>
-      </tag>
-      <tag line="2" name="var" description="" type="array">
-        <type by_reference="false">array</type>
-      </tag>
-      <tag line="2" name="var" description="" type="array">
-        <type by_reference="false">array</type>
-      </tag>
-      <tag line="2" name="var" description="" type="\UTCW_Widget">
-        <type by_reference="false">\UTCW_Widget</type>
-      </tag>
+      <tag line="2" name="subpackage" description="config"/>
+      <tag line="2" name="since" description="2.3"/>
     </docblock>
-  </file>
-  <file path="src/Config.php" hash="bc7b7103185e6533bd80f4467baba4e3" package="utcw\main">
-    <docblock line="5">
-      <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
-      <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
-      <tag line="5" name="license" description="GPLv2"/>
-      <tag line="5" name="package" description="utcw"/>
-      <tag line="5" name="subpackage" description="main"/>
-      <tag line="5" name="since" description="2.0"/>
-    </docblock>
-    <class final="false" abstract="false" namespace="global" line="23" package="utcw\main">
+    <class final="false" abstract="true" namespace="global" line="18" package="Default">
       <extends/>
       <name>UTCW_Config</name>
       <full_name>\UTCW_Config</full_name>
-      <docblock line="16">
-        <description>Configuration class for the widget.</description>
+      <docblock line="13">
+        <description>Abstract base class to represent a set of configuration options</description>
         <long-description></long-description>
-        <tag line="16" name="since" description="2.0"/>
-        <tag line="16" name="package" description="utcw"/>
-        <tag line="16" name="subpackage" description="main"/>
+        <tag line="13" name="since" description="2.3"/>
       </docblock>
-      <property final="false" static="false" visibility="public" line="33" namespace="global" package="Default">
-        <name>$title</name>
-        <default></default>
-        <docblock line="26">
-          <description>Title text of the widget.</description>
-          <long-description>&lt;p&gt;Default value: Tag cloud&lt;/p&gt;</long-description>
-          <tag line="26" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="26" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="43" namespace="global" package="Default">
-        <name>$order</name>
-        <default></default>
-        <docblock line="35">
-          <description>How the result should be ordered
-Default value: name
-Valid values: random, name, slug, id, color, count</description>
+      <property final="false" static="false" visibility="protected" line="26" namespace="global" package="Default">
+        <name>$data</name>
+        <default>array()</default>
+        <docblock line="20">
+          <description>The validated configuration option values</description>
           <long-description></long-description>
-          <tag line="35" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="35" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="52" namespace="global" package="Default">
-        <name>$size_from</name>
-        <default></default>
-        <docblock line="45">
-          <description>The smallest possible size
-Default: 10px</description>
-          <long-description></long-description>
-          <tag line="45" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="45" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="61" namespace="global" package="Default">
-        <name>$size_to</name>
-        <default></default>
-        <docblock line="54">
-          <description>The greatest possible size
-Default: 30px</description>
-          <long-description></long-description>
-          <tag line="54" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="54" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="70" namespace="global" package="Default">
-        <name>$max</name>
-        <default></default>
-        <docblock line="63">
-          <description>Maximum number of tags to display
-Default: 45</description>
-          <long-description></long-description>
-          <tag line="63" name="var" description="" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="63" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="79" namespace="global" package="Default">
-        <name>$taxonomy</name>
-        <default></default>
-        <docblock line="72">
-          <description>Which taxonomy to show tags from
-Default: [post_tag]</description>
-          <long-description></long-description>
-          <tag line="72" name="var" description="" type="array">
+          <tag line="20" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="72" name="since" description="2.0"/>
+          <tag line="20" name="since" description="2.3"/>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="public" line="88" namespace="global" package="Default">
-        <name>$reverse</name>
-        <default></default>
-        <docblock line="81">
-          <description>If the order of tags should be shown in reverse order
-Default: false</description>
-          <long-description></long-description>
-          <tag line="81" name="var" description="" type="bool">
-            <type by_reference="false">bool</type>
-          </tag>
-          <tag line="81" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="98" namespace="global" package="Default">
-        <name>$color</name>
-        <default></default>
-        <docblock line="90">
-          <description>Which coloring strategy to use
-Default: none
-Valid values: none, random, set, span</description>
-          <long-description></long-description>
-          <tag line="90" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="90" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="107" namespace="global" package="Default">
-        <name>$letter_spacing</name>
-        <default></default>
-        <docblock line="100">
-          <description>CSS letter-spacing value (in pixels)
-Default: normal</description>
-          <long-description></long-description>
-          <tag line="100" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="100" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="116" namespace="global" package="Default">
-        <name>$word_spacing</name>
-        <default></default>
-        <docblock line="109">
-          <description>CSS word-spacing value (in pixels)
-Default: normal</description>
-          <long-description></long-description>
-          <tag line="109" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="109" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="126" namespace="global" package="Default">
-        <name>$text_transform</name>
-        <default></default>
-        <docblock line="118">
-          <description>CSS text-transform value
-Default: none
-Valid values: lowercase, uppercase, capitalize</description>
-          <long-description></long-description>
-          <tag line="118" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="118" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="135" namespace="global" package="Default">
-        <name>$case_sensitive</name>
-        <default></default>
-        <docblock line="128">
-          <description>If sorting should be applied case sensitive
-Default: false</description>
-          <long-description></long-description>
-          <tag line="128" name="var" description="" type="bool">
-            <type by_reference="false">bool</type>
-          </tag>
-          <tag line="128" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="144" namespace="global" package="Default">
-        <name>$minimum</name>
-        <default></default>
-        <docblock line="137">
-          <description>How many posts a term needs to have to be shown in the cloud
-Default: 1</description>
-          <long-description></long-description>
-          <tag line="137" name="var" description="" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="137" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="154" namespace="global" package="Default">
-        <name>$tags_list_type</name>
-        <default></default>
-        <docblock line="146">
-          <description>How the $tags_list should be used
-Default: exclude
-Valid values: exclude, include</description>
-          <long-description></long-description>
-          <tag line="146" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="146" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="163" namespace="global" package="Default">
-        <name>$show_title</name>
-        <default></default>
-        <docblock line="156">
-          <description>If the title attribute should be added to links in the cloud
-Default: true</description>
-          <long-description></long-description>
-          <tag line="156" name="var" description="" type="bool">
-            <type by_reference="false">bool</type>
-          </tag>
-          <tag line="156" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="172" namespace="global" package="Default">
-        <name>$show_links</name>
-        <default></default>
-        <docblock line="165">
-          <description>If the tags should be wrapped in links
-Default: true</description>
-          <long-description></long-description>
-          <tag line="165" name="var" description="" type="bool">
-            <type by_reference="false">bool</type>
-          </tag>
-          <tag line="165" name="since" description="2.2"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="182" namespace="global" package="Default">
-        <name>$link_underline</name>
-        <default></default>
-        <docblock line="174">
-          <description>If links should be styled with underline decoration
-Default: default
-Valid values: yes, no, default</description>
-          <long-description></long-description>
-          <tag line="174" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="174" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="192" namespace="global" package="Default">
-        <name>$link_bold</name>
-        <default></default>
-        <docblock line="184">
-          <description>If links should be styled as bold
-Default: default
-Valid values: yes, no, default</description>
-          <long-description></long-description>
-          <tag line="184" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="184" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="202" namespace="global" package="Default">
-        <name>$link_italic</name>
-        <default></default>
-        <docblock line="194">
-          <description>If links should be styled as italic
-Default: default
-Valid values: yes, no, default</description>
-          <long-description></long-description>
-          <tag line="194" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="194" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="212" namespace="global" package="Default">
-        <name>$link_bg_color</name>
-        <default></default>
-        <docblock line="204">
-          <description>Background color for links
-Default: transparent
-Valid values: A hexadecimal color</description>
-          <long-description></long-description>
-          <tag line="204" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="204" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="222" namespace="global" package="Default">
-        <name>$link_border_style</name>
-        <default></default>
-        <docblock line="214">
-          <description>Border style for links
-Default: none
-Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset</description>
-          <long-description></long-description>
-          <tag line="214" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="214" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="231" namespace="global" package="Default">
-        <name>$link_border_width</name>
-        <default></default>
-        <docblock line="224">
-          <description>Border width for links
-Default: 0</description>
-          <long-description></long-description>
-          <tag line="224" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="224" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="241" namespace="global" package="Default">
-        <name>$link_border_color</name>
-        <default></default>
-        <docblock line="233">
-          <description>Border color for links
-Default: none
-Valid values: A hexadecimal color</description>
-          <long-description></long-description>
-          <tag line="233" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="233" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="251" namespace="global" package="Default">
-        <name>$hover_underline</name>
-        <default></default>
-        <docblock line="243">
-          <description>If links should be decorated with underline decoration in their hover state
-Default: default
-Valid values: yes, no, default</description>
-          <long-description></long-description>
-          <tag line="243" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="243" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="261" namespace="global" package="Default">
-        <name>$hover_bold</name>
-        <default></default>
-        <docblock line="253">
-          <description>If links should be styled as bold in their hover state
-Default: default
-Valid values: yes, no, default</description>
-          <long-description></long-description>
-          <tag line="253" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="253" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="271" namespace="global" package="Default">
-        <name>$hover_italic</name>
-        <default></default>
-        <docblock line="263">
-          <description>If links should be styled as italic in their hover state
-Default: default
-Valid values: yes, no, default</description>
-          <long-description></long-description>
-          <tag line="263" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="263" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="281" namespace="global" package="Default">
-        <name>$hover_bg_color</name>
-        <default></default>
-        <docblock line="273">
-          <description>Background color for links in their hover state
-Default: transparent
-Valid values: A hexadecimal color</description>
-          <long-description></long-description>
-          <tag line="273" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="273" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="291" namespace="global" package="Default">
-        <name>$hover_color</name>
-        <default></default>
-        <docblock line="283">
-          <description>Text color for links in their hover state
-Default: default
-Valid values: A hexadecimal color</description>
-          <long-description></long-description>
-          <tag line="283" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="283" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="301" namespace="global" package="Default">
-        <name>$hover_border_style</name>
-        <default></default>
-        <docblock line="293">
-          <description>Border style for links in their hover state
-Default: none
-Valid values: none, dotted, dashed, solid, double, groove, ridge, inset, outset</description>
-          <long-description></long-description>
-          <tag line="293" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="293" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="310" namespace="global" package="Default">
-        <name>$hover_border_width</name>
-        <default></default>
-        <docblock line="303">
-          <description>Border width for links in their hover state
-Default: 0</description>
-          <long-description></long-description>
-          <tag line="303" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="303" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="320" namespace="global" package="Default">
-        <name>$hover_border_color</name>
-        <default></default>
-        <docblock line="312">
-          <description>Border color for links in their hover state
-Default: none
-Valid values: A hexadecimal color</description>
-          <long-description></long-description>
-          <tag line="312" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="312" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="329" namespace="global" package="Default">
-        <name>$tag_spacing</name>
-        <default></default>
-        <docblock line="322">
-          <description>CSS margin between tags
-Default: auto</description>
-          <long-description></long-description>
-          <tag line="322" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="322" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="338" namespace="global" package="Default">
-        <name>$debug</name>
-        <default></default>
-        <docblock line="331">
-          <description>If debug output should be included
-Default: false</description>
-          <long-description></long-description>
-          <tag line="331" name="var" description="" type="bool">
-            <type by_reference="false">bool</type>
-          </tag>
-          <tag line="331" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="347" namespace="global" package="Default">
-        <name>$days_old</name>
-        <default></default>
-        <docblock line="340">
-          <description>How many days old a post needs to be to be included in tag size calculation
-Default: 0</description>
-          <long-description></long-description>
-          <tag line="340" name="var" description="" type="int">
-            <type by_reference="false">int</type>
-          </tag>
-          <tag line="340" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="356" namespace="global" package="Default">
-        <name>$line_height</name>
-        <default></default>
-        <docblock line="349">
-          <description>CSS line-height for the tags
-Default: inherit</description>
-          <long-description></long-description>
-          <tag line="349" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="349" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="365" namespace="global" package="Default">
-        <name>$separator</name>
-        <default></default>
-        <docblock line="358">
-          <description>Separator between tags
-Default:  (a space character)</description>
-          <long-description></long-description>
-          <tag line="358" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="358" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="374" namespace="global" package="Default">
-        <name>$prefix</name>
-        <default></default>
-        <docblock line="367">
-          <description>Prefix before each tag
-Default: (empty string)</description>
-          <long-description></long-description>
-          <tag line="367" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="367" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="383" namespace="global" package="Default">
-        <name>$suffix</name>
-        <default></default>
-        <docblock line="376">
-          <description>Suffix after each tag
-Default: (empty string)</description>
-          <long-description></long-description>
-          <tag line="376" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="376" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="392" namespace="global" package="Default">
-        <name>$show_title_text</name>
-        <default></default>
-        <docblock line="385">
-          <description>If the widget title should be shown
-Default: true</description>
-          <long-description></long-description>
-          <tag line="385" name="var" description="" type="bool">
-            <type by_reference="false">bool</type>
-          </tag>
-          <tag line="385" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="401" namespace="global" package="Default">
-        <name>$post_type</name>
-        <default></default>
-        <docblock line="394">
-          <description>An array of post type names to to include posts from in tag size calculation
-Default: [ post ]</description>
-          <long-description></long-description>
-          <tag line="394" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="394" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="410" namespace="global" package="Default">
-        <name>$tags_list</name>
-        <default></default>
-        <docblock line="403">
-          <description>A list of term IDs to be included or excluded.</description>
-          <long-description>&lt;p&gt;Inclusion or exclusion is determined by $tags_list_type
-Default: [] (an empty array)&lt;/p&gt;</long-description>
-          <tag line="403" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="403" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="419" namespace="global" package="Default">
-        <name>$color_span_to</name>
-        <default></default>
-        <docblock line="412">
-          <description>Which color value to start from in color calculation.</description>
-          <long-description>&lt;p&gt;This is the color that the smallest tag will get.
-Default: (an empty string)&lt;/p&gt;</long-description>
-          <tag line="412" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="412" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="428" namespace="global" package="Default">
-        <name>$color_span_from</name>
-        <default></default>
-        <docblock line="421">
-          <description>Which color value to end at in color calculation.</description>
-          <long-description>&lt;p&gt;This is the color that the biggest tag will get.
-Default: (an empty string)&lt;/p&gt;</long-description>
-          <tag line="421" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="421" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="437" namespace="global" package="Default">
-        <name>$authors</name>
-        <default></default>
-        <docblock line="430">
-          <description>Which authors to include posts from.</description>
-          <long-description>&lt;p&gt;An empty array will include all authors
-Default: [] (an empty array)&lt;/p&gt;</long-description>
-          <tag line="430" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="430" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="446" namespace="global" package="Default">
-        <name>$color_set</name>
-        <default></default>
-        <docblock line="439">
-          <description>A set of colors to randomly select from when coloring the tags
-Default: [] (an empty array)</description>
-          <long-description></long-description>
-          <tag line="439" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="439" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="455" namespace="global" package="Default">
-        <name>$authenticated</name>
-        <default></default>
-        <docblock line="448">
-          <description>If the current user is authenticated.</description>
-          <long-description>&lt;p&gt;Will be set internally&lt;/p&gt;</long-description>
-          <tag line="448" name="internal" description=""/>
-          <tag line="448" name="var" description="" type="bool">
-            <type by_reference="false">bool</type>
-          </tag>
-          <tag line="448" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="465" namespace="global" package="Default">
-        <name>$before_widget</name>
-        <default></default>
-        <docblock line="457">
-          <description>Text to display before the widget.</description>
-          <long-description>&lt;p&gt;The default value for this setting will probably be determined by the theme
-Default: (an empty string)&lt;/p&gt;</long-description>
-          <tag line="457" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="457" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="475" namespace="global" package="Default">
-        <name>$after_widget</name>
-        <default></default>
-        <docblock line="467">
-          <description>Text to display after the widget.</description>
-          <long-description>&lt;p&gt;The default value for this setting will probably be determined by the theme
-Default: (an empty string)&lt;/p&gt;</long-description>
-          <tag line="467" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="467" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="485" namespace="global" package="Default">
-        <name>$before_title</name>
-        <default></default>
-        <docblock line="477">
-          <description>Text to display before the widget title.</description>
-          <long-description>&lt;p&gt;The default value for this setting will probably be determined by the theme
-Default: (an empty string)&lt;/p&gt;</long-description>
-          <tag line="477" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="477" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="495" namespace="global" package="Default">
-        <name>$after_title</name>
-        <default></default>
-        <docblock line="487">
-          <description>Text to display after the widget title.</description>
-          <long-description>&lt;p&gt;The default value for this setting will probably be determined by the theme
-Default: (an empty string)&lt;/p&gt;</long-description>
-          <tag line="487" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="487" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="public" line="504" namespace="global" package="Default">
-        <name>$strategy</name>
-        <default></default>
-        <docblock line="497">
-          <description>Which strategy to use when selecting tags
-Default: popularity</description>
-          <long-description></long-description>
-          <tag line="497" name="var" description="" type="string">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="497" name="since" description="2.2"/>
-        </docblock>
-      </property>
-      <property final="false" static="true" visibility="protected" line="513" namespace="global" package="Default">
+      <property final="false" static="false" visibility="protected" line="34" namespace="global" package="Default">
         <name>$options</name>
-        <default>array('title' =&gt; 'Tag Cloud', 'order' =&gt; 'name', 'size_from' =&gt; '10px', 'size_to' =&gt; '30px', 'max' =&gt; 45, 'taxonomy' =&gt; array('post_tag'), 'reverse' =&gt; false, 'color' =&gt; 'none', 'letter_spacing' =&gt; 'normal', 'word_spacing' =&gt; 'normal', 'text_transform' =&gt; 'none', 'case_sensitive' =&gt; false, 'minimum' =&gt; 1, 'tags_list_type' =&gt; 'exclude', 'show_title' =&gt; true, 'show_links' =&gt; true, 'link_underline' =&gt; 'default', 'link_bold' =&gt; 'default', 'link_italic' =&gt; 'default', 'link_bg_color' =&gt; 'transparent', 'link_border_style' =&gt; 'none', 'link_border_width' =&gt; '0', 'link_border_color' =&gt; 'none', 'hover_underline' =&gt; 'default', 'hover_bold' =&gt; 'default', 'hover_italic' =&gt; 'default', 'hover_bg_color' =&gt; 'transparent', 'hover_color' =&gt; 'default', 'hover_border_style' =&gt; 'none', 'hover_border_width' =&gt; '0', 'hover_border_color' =&gt; 'none', 'tag_spacing' =&gt; 'auto', 'debug' =&gt; false, 'days_old' =&gt; 0, 'line_height' =&gt; 'inherit', 'separator' =&gt; ' ', 'prefix' =&gt; '', 'suffix' =&gt; '', 'show_title_text' =&gt; true, 'post_type' =&gt; array('post'), 'tags_list' =&gt; array(), 'color_span_to' =&gt; '', 'color_span_from' =&gt; '', 'authors' =&gt; array(), 'color_set' =&gt; array(), 'before_widget' =&gt; '', 'after_widget' =&gt; '', 'before_title' =&gt; '', 'after_title' =&gt; '', 'strategy' =&gt; 'popularity')</default>
-        <docblock line="506">
-          <description>Config store with default values</description>
-          <long-description></long-description>
-          <tag line="506" name="static" description=""/>
-          <tag line="506" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="506" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="572" namespace="global" package="Default">
-        <name>$allowed_orders</name>
-        <default>array('random', 'name', 'slug', 'id', 'color', 'count')</default>
-        <docblock line="566">
-          <description>Which ordering strategies are allowed</description>
-          <long-description></long-description>
-          <tag line="566" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="566" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="580" namespace="global" package="Default">
-        <name>$allowed_taxonomies</name>
         <default>array()</default>
-        <docblock line="574">
-          <description>Which taxonomies are allowed.</description>
-          <long-description>&lt;p&gt;Will be set dynamically at load&lt;/p&gt;</long-description>
-          <tag line="574" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="574" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="588" namespace="global" package="Default">
-        <name>$allowed_post_types</name>
-        <default>array()</default>
-        <docblock line="582">
-          <description>Which post types are allowed.</description>
-          <long-description>&lt;p&gt;Will be set dynamically at load&lt;/p&gt;</long-description>
-          <tag line="582" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="582" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="596" namespace="global" package="Default">
-        <name>$allowed_colors</name>
-        <default>array('none', 'random', 'set', 'span')</default>
-        <docblock line="590">
-          <description>Which coloring strategies are allowed</description>
+        <docblock line="28">
+          <description>A set of configuration options</description>
           <long-description></long-description>
-          <tag line="590" name="var" description="" type="array">
-            <type by_reference="false">array</type>
+          <tag line="28" name="var" description="" type="\UTCW_Type[]">
+            <type by_reference="false">\UTCW_Type[]</type>
           </tag>
-          <tag line="590" name="since" description="2.0"/>
+          <tag line="28" name="since" description="2.3"/>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="protected" line="604" namespace="global" package="Default">
-        <name>$allowed_text_transforms</name>
-        <default>array('lowercase', 'uppercase', 'capitalize')</default>
-        <docblock line="598">
-          <description>Which CSS text-transform values are allowed</description>
-          <long-description></long-description>
-          <tag line="598" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="598" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="612" namespace="global" package="Default">
-        <name>$allowed_tags_list_types</name>
-        <default>array('exclude', 'include')</default>
-        <docblock line="606">
-          <description>Which tags_list_type values are allowed</description>
-          <long-description></long-description>
-          <tag line="606" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="606" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="621" namespace="global" package="Default">
-        <name>$allowed_optional_booleans</name>
-        <default>array('yes', 'no', 'default')</default>
-        <docblock line="614">
-          <description>Which values are allowed for optional booleans.</description>
-          <long-description>&lt;p&gt;These are values which can be true, false or fallback to theme default (where applicable)&lt;/p&gt;</long-description>
-          <tag line="614" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="614" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="629" namespace="global" package="Default">
-        <name>$allowed_border_styles</name>
-        <default>array('none', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset')</default>
-        <docblock line="623">
-          <description>Which CSS border-style values are allowed</description>
-          <long-description></long-description>
-          <tag line="623" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="623" name="since" description="2.0"/>
-        </docblock>
-      </property>
-      <property final="false" static="false" visibility="protected" line="647" namespace="global" package="Default">
-        <name>$allowed_strategies</name>
-        <default>array('popularity', 'random')</default>
-        <docblock line="641">
-          <description>Which strategies are allowed</description>
-          <long-description></long-description>
-          <tag line="641" name="var" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="641" name="since" description="2.2"/>
-        </docblock>
-      </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="657" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="42" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="649">
-          <description>Loads a configuration instance array and parses the options</description>
+        <docblock line="36">
+          <description>Validates the input and instantiates an object with the parsed input</description>
           <long-description></long-description>
-          <tag line="649" name="param" description="Array of key =&gt; value pairs of settings and values" type="array" variable="$input">
+          <tag line="36" name="param" description="" type="array" variable="$input">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="649" name="param" description="Reference to the main plugin instance" type="\UTCW_Plugin" variable="$plugin">
+          <tag line="36" name="param" description="" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
-          <tag line="649" name="since" description="2.0"/>
         </docblock>
-        <argument line="657">
+        <argument line="42">
           <name>$input</name>
           <default></default>
           <type>array</type>
         </argument>
-        <argument line="657">
+        <argument line="42">
           <name>$plugin</name>
           <default></default>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="820" package="utcw\main">
-        <name>isArrayNumeric</name>
-        <full_name>isArrayNumeric</full_name>
-        <docblock line="812">
-          <description>Checks if every item in the array is numeric</description>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="57" package="Default">
+        <name>addOption</name>
+        <full_name>addOption</full_name>
+        <docblock line="47">
+          <description>Add a new configuration option</description>
           <long-description></long-description>
-          <tag line="812" name="param" description="" type="array" variable="$array">
+          <tag line="47" name="param" description="" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="47" name="param" description="" type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="47" name="param" description="" type="array" variable="$options">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="812" name="return" description="" type="bool">
-            <type by_reference="false">bool</type>
+          <tag line="47" name="throws" description="" type="\Exception">
+            <type by_reference="false">\Exception</type>
           </tag>
-          <tag line="812" name="since" description="2.0"/>
+          <tag line="47" name="since" description="2.3"/>
         </docblock>
-        <argument line="820">
-          <name>$array</name>
+        <argument line="57">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="57">
+          <name>$type</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="57">
+          <name>$options</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="75" package="Default">
+        <name>_validate</name>
+        <full_name>_validate</full_name>
+        <docblock line="68">
+          <description>Parses the input array, validates and normalizes all the values</description>
+          <long-description></long-description>
+          <tag line="68" name="param" description="" type="array" variable="$input">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="68" name="since" description="2.3"/>
+        </docblock>
+        <argument line="75">
+          <name>$input</name>
           <default></default>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="839" package="utcw\main">
-        <name>parseMeasurement</name>
-        <full_name>parseMeasurement</full_name>
-        <docblock line="831">
-          <description>Parses the input value as measurement</description>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="98" package="Default">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="89">
+          <description>Magic method to the return the value of a configuration option</description>
           <long-description></long-description>
-          <tag line="831" name="param" description="" type="mixed" variable="$input">
+          <tag line="89" name="param" description="" type="\" variable="$name"/>
+          <tag line="89" name="return" description="" type="mixed">
             <type by_reference="false">mixed</type>
           </tag>
-          <tag line="831" name="return" description="False on failure" type="bool|string">
-            <type by_reference="false">bool</type>
-            <type by_reference="false">string</type>
+          <tag line="89" name="throws" description="" type="\Exception">
+            <type by_reference="false">\Exception</type>
           </tag>
-          <tag line="831" name="since" description="2.1"/>
+          <tag line="89" name="since" description="2.3"/>
         </docblock>
-        <argument line="839">
-          <name>$input</name>
+        <argument line="98">
+          <name>$name</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="862" package="utcw\main">
-        <name>equalUnits</name>
-        <full_name>equalUnits</full_name>
-        <docblock line="853">
-          <description>Checks if the two measurements have the same unit</description>
-          <long-description></long-description>
-          <tag line="853" name="param" description="" type="string" variable="$measurement1">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="853" name="param" description="" type="string" variable="$measurement2">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="853" name="return" description="" type="bool">
-            <type by_reference="false">bool</type>
-          </tag>
-          <tag line="853" name="since" description="2.1"/>
-        </docblock>
-        <argument line="862">
-          <name>$measurement1</name>
-          <default></default>
-          <type/>
-        </argument>
-        <argument line="862">
-          <name>$measurement2</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="876" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="113" package="Default">
         <name>getInstance</name>
         <full_name>getInstance</full_name>
-        <docblock line="870">
-          <description>Returns an array of current configuration</description>
+        <docblock line="107">
+          <description>Returns the configuration option values</description>
           <long-description></long-description>
-          <tag line="870" name="return" description="" type="array">
+          <tag line="107" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="870" name="since" description="2.0"/>
-        </docblock>
-      </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="894" package="utcw\main">
-        <name>getDefaults</name>
-        <full_name>getDefaults</full_name>
-        <docblock line="887">
-          <description>Returns the default values for all the configuration options</description>
-          <long-description></long-description>
-          <tag line="887" name="static" description=""/>
-          <tag line="887" name="return" description="" type="array">
-            <type by_reference="false">array</type>
-          </tag>
-          <tag line="887" name="since" description="2.0"/>
+          <tag line="107" name="since" description="2.3"/>
         </docblock>
       </method>
     </class>
-    <markers>
-      <todo line="698">Allow more flexibility in color setting, like rgb/rgba/hsl/hsla and named colors</todo>
-    </markers>
   </file>
-  <file path="src/Data.php" hash="f3d9182ee104c33acc0ab341bbb62820" package="utcw\main">
+  <file path="Config/DataConfig.php" hash="221c5138468284439fefe9b225a1edb5" package="utcw\config">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+      <extends>\UTCW_Config</extends>
+      <name>UTCW_DataConfig</name>
+      <full_name>\UTCW_DataConfig</full_name>
+      <docblock line="13">
+        <description>Class to represent a the configuration options for data retrieval</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="28" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="20">
+          <description>Creates a new instance of the class and adds all the options</description>
+          <long-description></long-description>
+          <tag line="20" name="param" description="" type="array" variable="$input">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="20" name="param" description="" type="\UTCW_Plugin" variable="$plugin">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="20" name="since" description="2.3"/>
+        </docblock>
+        <argument line="28">
+          <name>$input</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="28">
+          <name>$plugin</name>
+          <default></default>
+          <type>\UTCW_Plugin</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="79" package="Default">
+        <name>checkSizes</name>
+        <full_name>checkSizes</full_name>
+        <docblock line="74">
+          <description>Checks if size_from and size_to have correct values, and reverts to defaults if they don't</description>
+          <long-description></long-description>
+          <tag line="74" name="since" description="2.3"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Config/RenderConfig.php" hash="27a05b041689b68398b3e6115f6309d5" package="utcw\config">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+      <extends>\UTCW_Config</extends>
+      <name>UTCW_RenderConfig</name>
+      <full_name>\UTCW_RenderConfig</full_name>
+      <docblock line="13">
+        <description>Class to represent a the configuration options for cloud rendering retrieval</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="27" namespace="global" package="Default">
+        <name>$optionalBooleanValues</name>
+        <default>array('default', 'yes', 'no')</default>
+        <docblock line="21">
+          <description>Valid values for optional boolean set</description>
+          <long-description></long-description>
+          <tag line="21" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="21" name="since" description="2.3"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="35" namespace="global" package="Default">
+        <name>$borderStyleValues</name>
+        <default>array('none', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset')</default>
+        <docblock line="29">
+          <description>Valid values for border style set</description>
+          <long-description></long-description>
+          <tag line="29" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="29" name="since" description="2.3"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="55" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="47">
+          <description>Creates a new instance of the class and adds all the options</description>
+          <long-description></long-description>
+          <tag line="47" name="param" description="" type="array" variable="$input">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="47" name="param" description="" type="\UTCW_Plugin" variable="$plugin">
+            <type by_reference="false">\UTCW_Plugin</type>
+          </tag>
+          <tag line="47" name="since" description="2.3"/>
+        </docblock>
+        <argument line="55">
+          <name>$input</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+        <argument line="55">
+          <name>$plugin</name>
+          <default></default>
+          <type>\UTCW_Plugin</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="Config/Type/ArrayType.php" hash="26bd143904605ac94aa0bd7d76bfe665" package="utcw\config-type">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config-type"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+      <extends>\UTCW_Type</extends>
+      <name>UTCW_ArrayType</name>
+      <full_name>\UTCW_ArrayType</full_name>
+      <docblock line="13">
+        <description>Array type configuration option</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="27" namespace="global" package="Default">
+        <name>$type</name>
+        <default></default>
+        <docblock line="21">
+          <description>Which type of option this array contains</description>
+          <long-description></long-description>
+          <tag line="21" name="var" description="" type="\UTCW_Type">
+            <type by_reference="false">\UTCW_Type</type>
+          </tag>
+          <tag line="21" name="since" description="2.3"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="37" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="29">
+          <description>Creates a new ArrayType instance</description>
+          <long-description></long-description>
+          <tag line="29" name="param" description="" type="array" variable="$options">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="29" name="since" description="2.3"/>
+          <tag line="29" name="throws" description="" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="37">
+          <name>$options</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="66" package="Default">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="58">
+          <description>Validates each item in the array with the given type</description>
+          <long-description></long-description>
+          <tag line="58" name="param" description="" type="string|array" variable="$value">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="58" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="58" name="since" description="2.3"/>
+        </docblock>
+        <argument line="66">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="94" package="Default">
+        <name>normalize</name>
+        <full_name>normalize</full_name>
+        <docblock line="86">
+          <description>Normalizes each item in the array with the given type</description>
+          <long-description></long-description>
+          <tag line="86" name="param" description="" type="string|array" variable="$value">
+            <type by_reference="false">string</type>
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="86" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="86" name="since" description="2.3"/>
+        </docblock>
+        <argument line="94">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="111" package="Default">
+        <name>getDefaultValue</name>
+        <full_name>getDefaultValue</full_name>
+        <docblock line="105">
+          <description>Returns an empty array if a default value is not given</description>
+          <long-description></long-description>
+          <tag line="105" name="return" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="105" name="since" description="2.3"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Config/Type/BooleanType.php" hash="fa732f240e90d54547a5ff248dd8c634" package="utcw\config-type">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config-type"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+      <extends>\UTCW_Type</extends>
+      <name>UTCW_BooleanType</name>
+      <full_name>\UTCW_BooleanType</full_name>
+      <docblock line="13">
+        <description>Boolean type configuration option</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="28" package="Default">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="20">
+          <description>Validates the input as a boolean</description>
+          <long-description></long-description>
+          <tag line="20" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="20" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="20" name="since" description="2.3"/>
+        </docblock>
+        <argument line="28">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="41" package="Default">
+        <name>normalize</name>
+        <full_name>normalize</full_name>
+        <docblock line="33">
+          <description>Normalizes the value into a boolean</description>
+          <long-description></long-description>
+          <tag line="33" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="33" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="33" name="since" description="2.3"/>
+        </docblock>
+        <argument line="41">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="52" package="Default">
+        <name>getDefaultValue</name>
+        <full_name>getDefaultValue</full_name>
+        <docblock line="46">
+          <description>Returns false if a default value is not given</description>
+          <long-description></long-description>
+          <tag line="46" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="46" name="since" description="2.3"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Config/Type/ColorType.php" hash="1c7b6b90621c511f48f6a1b00a8e00c6" package="utcw\config-type">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config-type"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="19" package="Default">
+      <extends>\UTCW_Type</extends>
+      <name>UTCW_ColorType</name>
+      <full_name>\UTCW_ColorType</full_name>
+      <docblock line="13">
+        <description>Color type configuration option</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+        <tag line="13" name="todo" description="Allow more flexibility in color setting, like rgb/rgba/hsl/hsla and named colors"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="29" package="Default">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="21">
+          <description>Validates the input as a color value</description>
+          <long-description></long-description>
+          <tag line="21" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="21" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="21" name="since" description="2.3"/>
+        </docblock>
+        <argument line="29">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="42" package="Default">
+        <name>normalize</name>
+        <full_name>normalize</full_name>
+        <docblock line="34">
+          <description>Normalizes the input as a color value</description>
+          <long-description></long-description>
+          <tag line="34" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="34" name="since" description="2.3"/>
+        </docblock>
+        <argument line="42">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="61" package="Default">
+        <name>getDefaultValue</name>
+        <full_name>getDefaultValue</full_name>
+        <docblock line="55">
+          <description>Returns transparent if a default value is not given</description>
+          <long-description></long-description>
+          <tag line="55" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="55" name="since" description="2.3"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Config/Type/IntegerType.php" hash="e64d27c80d3b2b496e4c5607ca275d00" package="utcw\config-type">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config-type"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+      <extends>\UTCW_Type</extends>
+      <name>UTCW_IntegerType</name>
+      <full_name>\UTCW_IntegerType</full_name>
+      <docblock line="13">
+        <description>Integer type configuration option</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="29" package="Default">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="21">
+          <description>Validates the input value as a integer</description>
+          <long-description></long-description>
+          <tag line="21" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="21" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="21" name="since" description="2.3"/>
+        </docblock>
+        <argument line="29">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="54" package="Default">
+        <name>normalize</name>
+        <full_name>normalize</full_name>
+        <docblock line="46">
+          <description>Normalizes the input value into an integer</description>
+          <long-description></long-description>
+          <tag line="46" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="46" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="46" name="since" description="2.3"/>
+        </docblock>
+        <argument line="54">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="65" package="Default">
+        <name>getDefaultValue</name>
+        <full_name>getDefaultValue</full_name>
+        <docblock line="59">
+          <description>Returns zero if a default value is not given</description>
+          <long-description></long-description>
+          <tag line="59" name="return" description="" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="59" name="since" description="2.3"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Config/Type/MeasurementType.php" hash="9379c2b655dc4853e429159b37ade998" package="utcw\config-type">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config-type"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+      <extends>\UTCW_Type</extends>
+      <name>UTCW_MeasurementType</name>
+      <full_name>\UTCW_MeasurementType</full_name>
+      <docblock line="13">
+        <description>Measurement type configuration option</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="29" package="Default">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="21">
+          <description>Validates the input value as a measurement</description>
+          <long-description></long-description>
+          <tag line="21" name="param" description="" type="string|int|float" variable="$value">
+            <type by_reference="false">string</type>
+            <type by_reference="false">int</type>
+            <type by_reference="false">float</type>
+          </tag>
+          <tag line="21" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="21" name="since" description="2.3"/>
+        </docblock>
+        <argument line="29">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="42" package="Default">
+        <name>normalize</name>
+        <full_name>normalize</full_name>
+        <docblock line="34">
+          <description>Normalizes the input value as a measurement</description>
+          <long-description></long-description>
+          <tag line="34" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="34" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="34" name="since" description="2.3"/>
+        </docblock>
+        <argument line="42">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="57" package="Default">
+        <name>getDefaultValue</name>
+        <full_name>getDefaultValue</full_name>
+        <docblock line="51">
+          <description>Returns zero if a default value is not given</description>
+          <long-description></long-description>
+          <tag line="51" name="return" description="" type="int|mixed">
+            <type by_reference="false">int</type>
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="51" name="since" description="2.3"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Config/Type/SetType.php" hash="d6ffde2402b8364b2be0d2b01950eeb9" package="utcw\config-type">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config-type"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+      <extends>\UTCW_Type</extends>
+      <name>UTCW_SetType</name>
+      <full_name>\UTCW_SetType</full_name>
+      <docblock line="13">
+        <description>Set type configuration option</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="29" package="Default">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="21">
+          <description>Validates if the value is valid for the given set</description>
+          <long-description></long-description>
+          <tag line="21" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="21" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="21" name="since" description="2.3"/>
+        </docblock>
+        <argument line="29">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="48" package="Default">
+        <name>getDefaultValue</name>
+        <full_name>getDefaultValue</full_name>
+        <docblock line="42">
+          <description>Returns the first value of the set if a default value is not given</description>
+          <long-description></long-description>
+          <tag line="42" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="42" name="since" description="2.3"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Config/Type/StringType.php" hash="8b5ea6ca1108374d982a04f5c9f99c6b" package="utcw\config-type">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config-type"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+      <extends>\UTCW_Type</extends>
+      <name>UTCW_StringType</name>
+      <full_name>\UTCW_StringType</full_name>
+      <docblock line="13">
+        <description>String type configuration option</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="30" package="Default">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="21">
+          <description>Validates the input value as a string</description>
+          <long-description></long-description>
+          <tag line="21" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="21" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="21" name="since" description="2.3"/>
+        </docblock>
+        <argument line="30">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="41" package="Default">
+        <name>getDefaultValue</name>
+        <full_name>getDefaultValue</full_name>
+        <docblock line="35">
+          <description>Returns an empty string if a default value is not given</description>
+          <long-description></long-description>
+          <tag line="35" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="35" name="since" description="2.3"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Config/Type/Type.php" hash="7b13c5ed9f31c44bab5b6e029943059a" package="utcw\config-type">
+    <docblock line="2">
+      <description>Ultimate Tag Cloud Widget</description>
+      <long-description></long-description>
+      <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
+      <tag line="2" name="version" description="2.3"/>
+      <tag line="2" name="license" description="GPLv2"/>
+      <tag line="2" name="package" description="utcw"/>
+      <tag line="2" name="subpackage" description="config-type"/>
+      <tag line="2" name="since" description="2.3"/>
+    </docblock>
+    <class final="false" abstract="true" namespace="global" line="18" package="Default">
+      <extends/>
+      <name>UTCW_Type</name>
+      <full_name>\UTCW_Type</full_name>
+      <docblock line="13">
+        <description>Abstract base class to represent a type of configuration option</description>
+        <long-description></long-description>
+        <tag line="13" name="since" description="2.3"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="26" namespace="global" package="Default">
+        <name>$options</name>
+        <default></default>
+        <docblock line="20">
+          <description>Contains type specific options</description>
+          <long-description></long-description>
+          <tag line="20" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="20" name="since" description="2.3"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="35" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="28">
+          <description>Creates a new type instance</description>
+          <long-description></long-description>
+          <tag line="28" name="param" description="" type="array" variable="$options">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="28" name="since" description="2.3"/>
+        </docblock>
+        <argument line="35">
+          <name>$options</name>
+          <default></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="48" package="Default">
+        <name>normalize</name>
+        <full_name>normalize</full_name>
+        <docblock line="40">
+          <description>Normalize configuration value</description>
+          <long-description></long-description>
+          <tag line="40" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="40" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="40" name="since" description="2.3"/>
+        </docblock>
+        <argument line="48">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="61" package="Default">
+        <name>validate</name>
+        <full_name>validate</full_name>
+        <docblock line="53">
+          <description>Returns true if the given value is valid for this type</description>
+          <long-description></long-description>
+          <tag line="53" name="param" description="" type="mixed" variable="$value">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="53" name="return" description="" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+          <tag line="53" name="since" description="2.3"/>
+        </docblock>
+        <argument line="61">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="global" line="69" package="Default">
+        <name>getDefaultValue</name>
+        <full_name>getDefaultValue</full_name>
+        <docblock line="63">
+          <description>Returns the default value to be set when the value is missing or invalid</description>
+          <long-description></long-description>
+          <tag line="63" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+          <tag line="63" name="since" description="2.3"/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="Data.php" hash="8b9f8421a564be4eaac09363e9011bde" package="utcw\main">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -1173,194 +972,230 @@ Default: popularity</description>
           <tag line="56" name="since" description="2.2"/>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="73" package="utcw\main">
+      <property final="false" static="false" visibility="protected" line="70" namespace="global" package="Default">
+        <name>$translationHandler</name>
+        <default></default>
+        <docblock line="64">
+          <description>Reference to the translation handler used</description>
+          <long-description></long-description>
+          <tag line="64" name="var" description="" type="\UTCW_TranslationHandler">
+            <type by_reference="false">\UTCW_TranslationHandler</type>
+          </tag>
+          <tag line="64" name="since" description="2.3"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="78" namespace="global" package="Default">
+        <name>$terms</name>
+        <default></default>
+        <docblock line="72">
+          <description>Contains the created terms</description>
+          <long-description></long-description>
+          <tag line="72" name="var" description="" type="\UTCW_Term[]">
+            <type by_reference="false">\UTCW_Term[]</type>
+          </tag>
+          <tag line="72" name="since" description="2.3"/>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="86" namespace="global" package="Default">
+        <name>$result</name>
+        <default></default>
+        <docblock line="80">
+          <description>Contains the result from loading the terms</description>
+          <long-description></long-description>
+          <tag line="80" name="var" description="" type="\stdClass[]">
+            <type by_reference="false">\stdClass[]</type>
+          </tag>
+          <tag line="80" name="since" description="2.3"/>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="97" package="utcw\main">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="64">
+        <docblock line="88">
           <description>Creates a new instance</description>
           <long-description></long-description>
-          <tag line="64" name="param" description="Current configuration" type="\UTCW_Config" variable="$config">
-            <type by_reference="false">\UTCW_Config</type>
+          <tag line="88" name="param" description="Current configuration" type="\UTCW_DataConfig" variable="$config">
+            <type by_reference="false">\UTCW_DataConfig</type>
           </tag>
-          <tag line="64" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
+          <tag line="88" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
-          <tag line="64" name="param" description="WordPress DB instance" type="\wpdb" variable="$db">
+          <tag line="88" name="param" description="WordPress DB instance" type="\wpdb" variable="$db">
             <type by_reference="false">\wpdb</type>
           </tag>
-          <tag line="64" name="since" description="2.0"/>
+          <tag line="88" name="since" description="2.0"/>
         </docblock>
-        <argument line="73">
+        <argument line="97">
           <name>$config</name>
           <default></default>
-          <type>\UTCW_Config</type>
+          <type>\UTCW_DataConfig</type>
         </argument>
-        <argument line="73">
+        <argument line="97">
           <name>$plugin</name>
           <default></default>
           <type>\UTCW_Plugin</type>
         </argument>
-        <argument line="73">
+        <argument line="97">
           <name>$db</name>
           <default></default>
           <type>\wpdb</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="95" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="119" package="utcw\main">
         <name>getTerms</name>
         <full_name>getTerms</full_name>
-        <docblock line="89">
+        <docblock line="113">
           <description>Loads terms based on current configuration</description>
           <long-description></long-description>
-          <tag line="89" name="return" description="" type="\UTCW_Term[]">
+          <tag line="113" name="return" description="" type="\UTCW_Term[]">
             <type by_reference="false">\UTCW_Term[]</type>
           </tag>
-          <tag line="89" name="since" description="2.0"/>
+          <tag line="113" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="202" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="226" package="utcw\main">
         <name>calcColor</name>
         <full_name>calcColor</full_name>
-        <docblock line="191">
+        <docblock line="215">
           <description>Calculate term color</description>
           <long-description></long-description>
-          <tag line="191" name="param" description="Min count of all the terms" type="int" variable="$min_count">
+          <tag line="215" name="param" description="Min count of all the terms" type="int" variable="$min_count">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="191" name="param" description="Max count of all the terms" type="int" variable="$max_count">
+          <tag line="215" name="param" description="Max count of all the terms" type="int" variable="$max_count">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="191" name="param" description="Object with red/green/blue_from/to properties" type="\stdClass" variable="$colors">
+          <tag line="215" name="param" description="Object with red/green/blue_from/to properties" type="\stdClass" variable="$colors">
             <type by_reference="false">\stdClass</type>
           </tag>
-          <tag line="191" name="param" description="Count of current term" type="int" variable="$count">
+          <tag line="215" name="param" description="Count of current term" type="int" variable="$count">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="191" name="return" description="" type="string">
+          <tag line="215" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="191" name="since" description="2.0"/>
+          <tag line="215" name="since" description="2.0"/>
         </docblock>
-        <argument line="202">
+        <argument line="226">
           <name>$min_count</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="202">
+        <argument line="226">
           <name>$max_count</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="202">
+        <argument line="226">
           <name>$colors</name>
           <default></default>
           <type>\stdClass</type>
         </argument>
-        <argument line="202">
+        <argument line="226">
           <name>$count</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="228" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="252" package="utcw\main">
         <name>calcSize</name>
         <full_name>calcSize</full_name>
-        <docblock line="217">
+        <docblock line="241">
           <description>Calculate term size</description>
           <long-description></long-description>
-          <tag line="217" name="param" description="Configured min size" type="int" variable="$size_from">
+          <tag line="241" name="param" description="Configured min size" type="int" variable="$size_from">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="217" name="param" description="Current count" type="int" variable="$count">
+          <tag line="241" name="param" description="Current count" type="int" variable="$count">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="217" name="param" description="Configured max count" type="int" variable="$min_count">
+          <tag line="241" name="param" description="Configured max count" type="int" variable="$min_count">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="217" name="param" description="Calculated step" type="int" variable="$font_step">
+          <tag line="241" name="param" description="Calculated step" type="int" variable="$font_step">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="217" name="return" description="" type="int">
+          <tag line="241" name="return" description="" type="int">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="217" name="since" description="2.0"/>
+          <tag line="241" name="since" description="2.0"/>
         </docblock>
-        <argument line="228">
+        <argument line="252">
           <name>$size_from</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="228">
+        <argument line="252">
           <name>$count</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="228">
+        <argument line="252">
           <name>$min_count</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="228">
+        <argument line="252">
           <name>$font_step</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="244" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="268" package="utcw\main">
         <name>calcStep</name>
         <full_name>calcStep</full_name>
-        <docblock line="233">
+        <docblock line="257">
           <description>Calculate step size</description>
           <long-description></long-description>
-          <tag line="233" name="param" description="Minimum count" type="int" variable="$min">
+          <tag line="257" name="param" description="Minimum count" type="int" variable="$min">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="233" name="param" description="Maximum count" type="int" variable="$max">
+          <tag line="257" name="param" description="Maximum count" type="int" variable="$max">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="233" name="param" description="Minimum size" type="int" variable="$from">
+          <tag line="257" name="param" description="Minimum size" type="int" variable="$from">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="233" name="param" description="Maximum size" type="int" variable="$to">
+          <tag line="257" name="param" description="Maximum size" type="int" variable="$to">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="233" name="return" description="" type="int">
+          <tag line="257" name="return" description="" type="int">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="233" name="since" description="2.0"/>
+          <tag line="257" name="since" description="2.0"/>
         </docblock>
-        <argument line="244">
+        <argument line="268">
           <name>$min</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="244">
+        <argument line="268">
           <name>$max</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="244">
+        <argument line="268">
           <name>$from</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="244">
+        <argument line="268">
           <name>$to</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="260" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="284" package="utcw\main">
         <name>cleanupForDebug</name>
         <full_name>cleanupForDebug</full_name>
-        <docblock line="257">
+        <docblock line="281">
           <description>Cleans up sensitive data before being used in debug output</description>
           <long-description></long-description>
         </docblock>
       </method>
     </class>
   </file>
-  <file path="src/Database/QueryBuilder.php" hash="33952f00cffc5517b670d205dd47e287" package="utcw\language">
+  <file path="Database/QueryBuilder.php" hash="33952f00cffc5517b670d205dd47e287" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -1668,7 +1503,7 @@ Default: popularity</description>
       </method>
     </class>
   </file>
-  <file path="src/Language/QTranslateHandler.php" hash="22645f77bfd988e76ea177b3cef8ece5" package="utcw\language">
+  <file path="Language/QTranslateHandler.php" hash="22645f77bfd988e76ea177b3cef8ece5" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -1795,7 +1630,7 @@ Default: popularity</description>
       </method>
     </class>
   </file>
-  <file path="src/Language/TranslationHandler.php" hash="6339aa74016576ccd3e60aa7c2070c0c" package="utcw\language">
+  <file path="Language/TranslationHandler.php" hash="6339aa74016576ccd3e60aa7c2070c0c" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -1860,7 +1695,7 @@ Default: popularity</description>
       </method>
     </class>
   </file>
-  <file path="src/Language/WPMLHandler.php" hash="c9837d39b91b53f8d1d8e28c8c208772" package="utcw\language">
+  <file path="Language/WPMLHandler.php" hash="c9837d39b91b53f8d1d8e28c8c208772" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -1990,7 +1825,7 @@ Default: popularity</description>
       </method>
     </class>
   </file>
-  <file path="src/Plugin.php" hash="5bc01874fda6f16ce8a9a4157fab0fa4" package="utcw\main">
+  <file path="Plugin.php" hash="27d1eed05a6c8c170b96642f6efcaf43" package="utcw\main">
     <docblock line="5">
       <description>Class for general plugin integration with WordPress</description>
       <long-description></long-description>
@@ -2101,281 +1936,281 @@ Loads taxonomies and post types</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="128" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="129" package="utcw\main">
         <name>initAdminAssets</name>
         <full_name>initAdminAssets</full_name>
-        <docblock line="122">
+        <docblock line="123">
           <description>Action handler for 'admin_head-widgets.php' hook
 Loads assets needed by the administration interface</description>
           <long-description></long-description>
-          <tag line="122" name="since" description="2.0"/>
+          <tag line="123" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="172" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="173" package="utcw\main">
         <name>getAllowedTaxonomies</name>
         <full_name>getAllowedTaxonomies</full_name>
-        <docblock line="166">
+        <docblock line="167">
           <description>Returns an array with the names of allowed taxonomies</description>
           <long-description></long-description>
-          <tag line="166" name="return" description="" type="array">
+          <tag line="167" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="166" name="since" description="2.0"/>
+          <tag line="167" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="183" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="184" package="utcw\main">
         <name>getAllowedTaxonomiesObjects</name>
         <full_name>getAllowedTaxonomiesObjects</full_name>
-        <docblock line="177">
+        <docblock line="178">
           <description>Returns allowed taxonomies as objects</description>
           <long-description></long-description>
-          <tag line="177" name="return" description="" type="array">
+          <tag line="178" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="177" name="since" description="2.0"/>
+          <tag line="178" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="194" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="195" package="utcw\main">
         <name>getTerms</name>
         <full_name>getTerms</full_name>
-        <docblock line="188">
+        <docblock line="189">
           <description>Returns an array with taxonomy as key and an array of term objects for each taxonomy.</description>
           <long-description>&lt;p&gt;Like:&lt;/p&gt;</long-description>
-          <tag line="188" name="return" description="" type="array">
+          <tag line="189" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="188" name="since" description="2.0"/>
+          <tag line="189" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="211" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="212" package="utcw\main">
         <name>getAllowedPostTypes</name>
         <full_name>getAllowedPostTypes</full_name>
-        <docblock line="205">
+        <docblock line="206">
           <description>Returns an array with the names of allowed post types</description>
           <long-description></long-description>
-          <tag line="205" name="return" description="" type="array">
+          <tag line="206" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="205" name="since" description="2.0"/>
+          <tag line="206" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="222" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="223" package="utcw\main">
         <name>getUsers</name>
         <full_name>getUsers</full_name>
-        <docblock line="216">
+        <docblock line="217">
           <description>Returns the users on this blog</description>
           <long-description></long-description>
-          <tag line="216" name="return" description="" type="array">
+          <tag line="217" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="216" name="since" description="2.0"/>
+          <tag line="217" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="241" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="242" package="utcw\main">
         <name>removeConfiguration</name>
         <full_name>removeConfiguration</full_name>
-        <docblock line="233">
+        <docblock line="234">
           <description>Removes a previously saved configuration</description>
           <long-description></long-description>
-          <tag line="233" name="param" description="" type="string" variable="$name">
+          <tag line="234" name="param" description="" type="string" variable="$name">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="233" name="return" description="" type="bool">
+          <tag line="234" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="233" name="since" description="2.1"/>
+          <tag line="234" name="since" description="2.1"/>
         </docblock>
-        <argument line="241">
+        <argument line="242">
           <name>$name</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="262" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="263" package="utcw\main">
         <name>saveConfiguration</name>
         <full_name>saveConfiguration</full_name>
-        <docblock line="253">
+        <docblock line="254">
           <description>Saves the configuration</description>
           <long-description></long-description>
-          <tag line="253" name="param" description="Name of configuration" type="string" variable="$name">
+          <tag line="254" name="param" description="Name of configuration" type="string" variable="$name">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="253" name="param" description="Exported configuration from Config" type="array" variable="$config">
+          <tag line="254" name="param" description="Exported configuration from Config" type="array" variable="$config">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="253" name="return" description="" type="bool">
+          <tag line="254" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="253" name="since" description="2.0"/>
+          <tag line="254" name="since" description="2.0"/>
         </docblock>
-        <argument line="262">
+        <argument line="263">
           <name>$name</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="262">
+        <argument line="263">
           <name>$config</name>
           <default></default>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="278" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="279" package="utcw\main">
         <name>loadConfiguration</name>
         <full_name>loadConfiguration</full_name>
-        <docblock line="270">
+        <docblock line="271">
           <description>Loads saved configuration</description>
           <long-description></long-description>
-          <tag line="270" name="param" description="Name of configuration" type="string" variable="$name">
+          <tag line="271" name="param" description="Name of configuration" type="string" variable="$name">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="270" name="return" description="Returns an instance array on success and boolean false on failure" type="array|bool">
+          <tag line="271" name="return" description="Returns an instance array on success and boolean false on failure" type="array|bool">
             <type by_reference="false">array</type>
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="270" name="since" description="2.0"/>
+          <tag line="271" name="since" description="2.0"/>
         </docblock>
-        <argument line="278">
+        <argument line="279">
           <name>$name</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="295" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="296" package="utcw\main">
         <name>getConfigurations</name>
         <full_name>getConfigurations</full_name>
-        <docblock line="289">
+        <docblock line="290">
           <description>Get saved configurations</description>
           <long-description></long-description>
-          <tag line="289" name="return" description="" type="array">
+          <tag line="290" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="289" name="since" description="2.0"/>
+          <tag line="290" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="308" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="309" package="utcw\main">
         <name>setConfigurations</name>
         <full_name>setConfigurations</full_name>
-        <docblock line="300">
+        <docblock line="301">
           <description>Set saved configurations</description>
           <long-description></long-description>
-          <tag line="300" name="param" description="" type="array" variable="$configs">
+          <tag line="301" name="param" description="" type="array" variable="$configs">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="300" name="return" description="" type="bool">
+          <tag line="301" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="300" name="since" description="2.1"/>
+          <tag line="301" name="since" description="2.1"/>
         </docblock>
-        <argument line="308">
+        <argument line="309">
           <name>$configs</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="319" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="320" package="utcw\main">
         <name>isAuthenticatedUser</name>
         <full_name>isAuthenticatedUser</full_name>
-        <docblock line="313">
+        <docblock line="314">
           <description>Returns boolean true if the current page request is for an authenticated user</description>
           <long-description></long-description>
-          <tag line="313" name="return" description="" type="bool">
+          <tag line="314" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="313" name="since" description="2.0"/>
+          <tag line="314" name="since" description="2.0"/>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="333" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="334" package="utcw\main">
         <name>getTermLink</name>
         <full_name>getTermLink</full_name>
-        <docblock line="324">
+        <docblock line="325">
           <description>Returns an absolute URI to the archive page for the term</description>
           <long-description></long-description>
-          <tag line="324" name="param" description="Term ID" type="int" variable="$term_id">
+          <tag line="325" name="param" description="Term ID" type="int" variable="$term_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="324" name="param" description="Taxonomy name" type="string" variable="$taxonomy">
+          <tag line="325" name="param" description="Taxonomy name" type="string" variable="$taxonomy">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="324" name="return" description="Returns URI on success and empty string on failure" type="string">
+          <tag line="325" name="return" description="Returns URI on success and empty string on failure" type="string">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="324" name="since" description="2.0"/>
+          <tag line="325" name="since" description="2.0"/>
         </docblock>
-        <argument line="333">
+        <argument line="334">
           <name>$term_id</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="333">
+        <argument line="334">
           <name>$taxonomy</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="349" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="350" package="utcw\main">
         <name>checkTermTaxonomy</name>
         <full_name>checkTermTaxonomy</full_name>
-        <docblock line="340">
+        <docblock line="341">
           <description>Check if the term exist for any of the taxonomies</description>
           <long-description></long-description>
-          <tag line="340" name="param" description="Term ID" type="int" variable="$term_id">
+          <tag line="341" name="param" description="Term ID" type="int" variable="$term_id">
             <type by_reference="false">int</type>
           </tag>
-          <tag line="340" name="param" description="Array of taxonomy names" type="array" variable="$taxonomy">
+          <tag line="341" name="param" description="Array of taxonomy names" type="array" variable="$taxonomy">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="340" name="return" description="" type="bool">
+          <tag line="341" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
-          <tag line="340" name="since" description="2.0"/>
+          <tag line="341" name="since" description="2.0"/>
         </docblock>
-        <argument line="349">
+        <argument line="350">
           <name>$term_id</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="349">
+        <argument line="350">
           <name>$taxonomy</name>
           <default></default>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="370" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="371" package="utcw\main">
         <name>applyFilters</name>
         <full_name>applyFilters</full_name>
-        <docblock line="361">
+        <docblock line="362">
           <description>Apply filters</description>
           <long-description></long-description>
-          <tag line="361" name="param" description="" type="string" variable="$tag">
+          <tag line="362" name="param" description="" type="string" variable="$tag">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="361" name="param" description="" type="mixed" variable="$value">
+          <tag line="362" name="param" description="" type="mixed" variable="$value">
             <type by_reference="false">mixed</type>
           </tag>
-          <tag line="361" name="return" description="" type="mixed|void">
+          <tag line="362" name="return" description="" type="mixed|void">
             <type by_reference="false">mixed</type>
             <type by_reference="false">void</type>
           </tag>
-          <tag line="361" name="since" description="2.0"/>
+          <tag line="362" name="since" description="2.0"/>
         </docblock>
-        <argument line="370">
+        <argument line="371">
           <name>$tag</name>
           <default></default>
           <type/>
         </argument>
-        <argument line="370">
+        <argument line="371">
           <name>$value</name>
           <default></default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="380" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="381" package="utcw\main">
         <name>getTranslationHandler</name>
         <full_name>getTranslationHandler</full_name>
-        <docblock line="375">
+        <docblock line="376">
           <description>Returns a new instance of the QTranslate Handler class</description>
           <long-description></long-description>
-          <tag line="375" name="return" description="" type="null|\UTCW_TranslationHandler">
+          <tag line="376" name="return" description="" type="null|\UTCW_TranslationHandler">
             <type by_reference="false">null</type>
             <type by_reference="false">\UTCW_TranslationHandler</type>
           </tag>
@@ -2383,7 +2218,7 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="src/Render.php" hash="49b5eac781d281e8fade881699d6b260" package="utcw\main">
+  <file path="Render.php" hash="7a736e78e996bf4d828028bc492f605d" package="utcw\main">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -2471,8 +2306,8 @@ Loads assets needed by the administration interface</description>
         <docblock line="66">
           <description>Creates a new instance of the renderer</description>
           <long-description></long-description>
-          <tag line="66" name="param" description="Configuration" type="\UTCW_Config" variable="$config">
-            <type by_reference="false">\UTCW_Config</type>
+          <tag line="66" name="param" description="Configuration" type="\UTCW_RenderConfig" variable="$config">
+            <type by_reference="false">\UTCW_RenderConfig</type>
           </tag>
           <tag line="66" name="param" description="Term data" type="\UTCW_Data" variable="$data">
             <type by_reference="false">\UTCW_Data</type>
@@ -2485,7 +2320,7 @@ Loads assets needed by the administration interface</description>
         <argument line="75">
           <name>$config</name>
           <default></default>
-          <type>\UTCW_Config</type>
+          <type>\UTCW_RenderConfig</type>
         </argument>
         <argument line="75">
           <name>$data</name>
@@ -2550,7 +2385,7 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="src/Selection/PopularityStrategy.php" hash="30d7e61cd8007b2a22e3d1dc767cf9b0" package="utcw\language">
+  <file path="Selection/PopularityStrategy.php" hash="30d7e61cd8007b2a22e3d1dc767cf9b0" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -2679,7 +2514,7 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="src/Selection/RandomStrategy.php" hash="0881e5b6bb816b79425fb132f30143f7" package="utcw\language">
+  <file path="Selection/RandomStrategy.php" hash="0881e5b6bb816b79425fb132f30143f7" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -2808,7 +2643,7 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="src/Selection/SelectionStrategy.php" hash="648fc90cb6e81f1d7c2c2354ed0cb05f" package="utcw\selection">
+  <file path="Selection/SelectionStrategy.php" hash="648fc90cb6e81f1d7c2c2354ed0cb05f" package="utcw\selection">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -2888,7 +2723,7 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="src/Term.php" hash="c548868b4a6e8baf788dae4dc5be2b6f" package="utcw\main">
+  <file path="Term.php" hash="c548868b4a6e8baf788dae4dc5be2b6f" package="utcw\main">
     <docblock line="7">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -3033,7 +2868,7 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="src/Widget.php" hash="20d280feb7ecba896124cfdb0240c7fc" package="utcw\main">
+  <file path="Widget.php" hash="08e6d4c931cbc851c297ae450f87eada" package="utcw\main">
     <docblock line="7">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
@@ -3044,7 +2879,7 @@ Loads assets needed by the administration interface</description>
       <tag line="7" name="subpackage" description="main"/>
       <tag line="7" name="since" description="2.0"/>
     </docblock>
-    <include line="128" type="Require" package="Default">
+    <include line="133" type="Require" package="Default">
       <name/>
     </include>
     <class final="false" abstract="false" namespace="global" line="25" package="utcw\main">
@@ -3118,46 +2953,46 @@ Loads assets needed by the administration interface</description>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="112" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="115" package="utcw\main">
         <name>form</name>
         <full_name>form</full_name>
-        <docblock line="104">
+        <docblock line="107">
           <description>Function for handling the widget control in admin panel</description>
           <long-description></long-description>
-          <tag line="104" name="param" description="" type="array" variable="$instance">
+          <tag line="107" name="param" description="" type="array" variable="$instance">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="104" name="return" description="" type="void|string">
+          <tag line="107" name="return" description="" type="void|string">
             <type by_reference="false">void</type>
             <type by_reference="false">string</type>
           </tag>
-          <tag line="104" name="since" description="1.0"/>
+          <tag line="107" name="since" description="1.0"/>
         </docblock>
-        <argument line="112">
+        <argument line="115">
           <name>$instance</name>
           <default></default>
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="138" package="utcw\main">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="143" package="utcw\main">
         <name>widget</name>
         <full_name>widget</full_name>
-        <docblock line="131">
+        <docblock line="136">
           <description>Function for rendering the widget</description>
           <long-description></long-description>
-          <tag line="131" name="param" description="" type="array" variable="$args">
+          <tag line="136" name="param" description="" type="array" variable="$args">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="131" name="param" description="" type="array" variable="$instance">
+          <tag line="136" name="param" description="" type="array" variable="$instance">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
-        <argument line="138">
+        <argument line="143">
           <name>$args</name>
           <default></default>
           <type>array</type>
         </argument>
-        <argument line="138">
+        <argument line="143">
           <name>$instance</name>
           <default></default>
           <type>array</type>
@@ -3167,10 +3002,11 @@ Loads assets needed by the administration interface</description>
   </file>
   <package name="Default" full_name="Default"/>
   <package name="utcw" full_name="utcw">
+    <package name="config" full_name="utcw\config"/>
+    <package name="config-type" full_name="utcw\config-type"/>
     <package name="database" full_name="utcw\database"/>
     <package name="language" full_name="utcw\language"/>
     <package name="main" full_name="utcw\main"/>
-    <package name="pages" full_name="utcw\pages"/>
     <package name="selection" full_name="utcw\selection"/>
   </package>
   <namespace name="global" full_name="global"/>

@@ -45,6 +45,19 @@ class UTCW_RenderConfig extends UTCW_Config
     );
 
     /**
+     * Valid values for alignment set
+     *
+     * @var array
+     * @since 2.3
+     */
+    protected $alignmentValues = array(
+        'left',
+        'right',
+        'center',
+        'justify',
+    );
+
+    /**
      * Creates a new instance of the class and adds all the options
      *
      * @param array       $input
@@ -72,6 +85,7 @@ class UTCW_RenderConfig extends UTCW_Config
 
         $this->addOption('link_border_style', 'set', array('values' => $this->borderStyleValues));
         $this->addOption('hover_border_style', 'set', array('values' => $this->borderStyleValues));
+        $this->addOption('alignment', 'set', array('values' => $this->alignmentValues, 'default' => ''));
 
         $this->addOption('link_bg_color', 'color');
         $this->addOption('hover_bg_color', 'color');

@@ -185,6 +185,10 @@ class UTCW_Render
             $main_styles[] = sprintf('word-spacing:%s', $this->config->word_spacing);
         }
 
+        if (!$this->hasDefaultValue('alignment')) {
+            $main_styles[] = sprintf('text-align:%s', $this->config->alignment);
+        }
+
         $link_styles = array();
 
         if (!$this->hasDefaultValue('link_underline')) {
@@ -206,9 +210,10 @@ class UTCW_Render
             $link_styles[] = sprintf('background-color:%s', $this->config->link_bg_color);
         }
 
-        if (!$this->hasDefaultValue('link_border_style') && !$this->hasDefaultValue(
-                'link_border_color'
-            ) && !$this->hasDefaultValue('link_border_width')
+        if (
+            !$this->hasDefaultValue('link_border_style') &&
+            !$this->hasDefaultValue('link_border_color') &&
+            !$this->hasDefaultValue('link_border_width')
         ) {
             $link_styles[] = sprintf(
                 'border:%s %s %s',

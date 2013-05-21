@@ -47,8 +47,11 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $this->assertRegExp('/BEFORE_WIDGETHello World/', $render->getCloud());
     }
 
-    function test_regular_tag_cloud_class_is_added_to_before_widget() {
-        $render = $this->getRenderer(array('before_widget' => '<div class="widget widget_utcw">', 'title' => 'Hello World'));
+    function test_regular_tag_cloud_class_is_added_to_before_widget()
+    {
+        $render = $this->getRenderer(
+            array('before_widget' => '<div class="widget widget_utcw">', 'title' => 'Hello World')
+        );
         $this->assertRegExp('/<div class="widget widget_utcw widget_tag_cloud">Hello World/', $render->getCloud());
     }
 
@@ -318,6 +321,16 @@ class UTCW_Test_Render extends WP_UnitTestCase
         );
     }
 
+    function test_alignment()
+    {
+        $this->helper_contains(array('alignment' => 'justify'), 'text-align:justify');
+    }
+
+    function test_no_alignment()
+    {
+        $this->helper_not_contains(array(), 'text-align');
+    }
+
     /**
      * @dataProvider terms
      */
@@ -360,9 +373,9 @@ class UTCW_Test_Render extends WP_UnitTestCase
     function test_prefix_separator_suffix_placement($terms)
     {
         $instance = array(
-            'prefix' => 'PREFIX',
+            'prefix'    => 'PREFIX',
             'separator' => 'SEPARATOR',
-            'suffix' => 'SUFFIX',
+            'suffix'    => 'SUFFIX',
         );
 
         $renderer = $this->getRenderer($instance, $terms);

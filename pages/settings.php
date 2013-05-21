@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
         <?php _e('Random','utcw') ?>
     </label><br>
     <br>
-    
+
 	<a class="utcw-help"
 	   title="<?php _e( 'Only posts from the selected authors will be used when calculating the tag cloud.', 'utcw' ) ?>">?</a>
 	<strong><?php _e( 'Authors:', 'utcw' ) ?></strong><br>
@@ -277,6 +277,20 @@ if ( ! defined( 'ABSPATH' ) ) die();
 			   id="<?php echo $this->get_field_id( 'color_span_to' ) ?>" value="<?php echo $dataConfig->color_span_to ?>">
 	</div>
 	<br>
+
+    <a class="utcw-help" title="<?php _e( 'Defines how the resulting tag should be aligned in the resulting cloud.', 'utcw' ) ?>">?</a>
+    <strong><?php _e('Text alignment:', 'utcw') ?></strong><br>
+    <input type="radio" name="<?php echo $this->get_field_name('alignment') ?>" id="<?php echo $this->get_field_id('alignment_default') ?>" value="" <?php if (!$renderConfig->alignment) echo 'checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('alignment_default') ?>"><?php _e('Theme default', 'utcw') ?></label><br>
+    <input type="radio" name="<?php echo $this->get_field_name('alignment') ?>" id="<?php echo $this->get_field_id('alignment_left') ?>" value="left" <?php if ($renderConfig->alignment === 'left') echo 'checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('alignment_left') ?>"><?php _e('Left', 'utcw') ?></label><br>
+    <input type="radio" name="<?php echo $this->get_field_name('alignment') ?>" id="<?php echo $this->get_field_id('alignment_right') ?>" value="right" <?php if ($renderConfig->alignment === 'right') echo 'checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('alignment_right') ?>"><?php _e('Right', 'utcw') ?></label><br>
+    <input type="radio" name="<?php echo $this->get_field_name('alignment') ?>" id="<?php echo $this->get_field_id('alignment_center') ?>" value="center" <?php if ($renderConfig->alignment === 'center') echo 'checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('alignment_center') ?>"><?php _e('Center', 'utcw') ?></label><br>
+    <input type="radio" name="<?php echo $this->get_field_name('alignment') ?>" id="<?php echo $this->get_field_id('alignment_justify') ?>" value="justify" <?php if ($renderConfig->alignment === 'justify') echo 'checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('alignment_justify') ?>"><?php _e('Justify', 'utcw') ?></label><br>
+
 </fieldset>
 
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-advanced-appearance' ) ?>">

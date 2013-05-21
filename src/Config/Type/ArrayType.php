@@ -1,13 +1,39 @@
 <?php
+/**
+ * Ultimate Tag Cloud Widget
+ *
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.3
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage config-type
+ * @since      2.3
+ */
 
+/**
+ * Array type configuration option
+ *
+ * @since 2.3
+ */
 class UTCW_ArrayType extends UTCW_Type
 {
 
     /**
+     * Which type of option this array contains
+     *
      * @var UTCW_Type
+     * @since 2.3
      */
     protected $type;
 
+    /**
+     * Creates a new ArrayType instance
+     *
+     * @param array $options
+     *
+     * @since 2.3
+     * @throws Exception
+     */
     public function __construct(array $options)
     {
         if (!isset($options['type'])) {
@@ -21,7 +47,7 @@ class UTCW_ArrayType extends UTCW_Type
         }
 
         $typeOptions = isset($options['typeOptions']) ? $options['typeOptions'] : array();
-        $this->type = new $typeClass($typeOptions);
+        $this->type  = new $typeClass($typeOptions);
 
         unset($options['typeOptions']);
         unset($options['type']);
@@ -29,10 +55,18 @@ class UTCW_ArrayType extends UTCW_Type
         parent::__construct($options);
     }
 
+    /**
+     * Validates each item in the array with the given type
+     *
+     * @param string|array $value
+     *
+     * @return bool
+     * @since 2.3
+     */
     function validate($value)
     {
         if (!is_array($value)) {
-            return explode(',', $value);
+            $value = explode(',', $value);
         }
 
         // Invalidate empty arrays and let the default value return an empty array if it's allowed
@@ -50,9 +84,12 @@ class UTCW_ArrayType extends UTCW_Type
     }
 
     /**
-     * @param mixed $value
+     * Normalizes each item in the array with the given type
+     *
+     * @param string|array $value
      *
      * @return array
+     * @since 2.3
      */
     public function normalize($value)
     {
@@ -60,16 +97,17 @@ class UTCW_ArrayType extends UTCW_Type
             $value = explode(',', $value);
         }
 
-        $value = array_map(array($this, 'normalizeItem'), $value);
+        $value = array_map(array($this->type, 'normalize'), $value);
 
         return $value;
     }
 
-    protected function normalizeItem($value)
-    {
-        return $this->type->normalize($value);
-    }
-
+    /**
+     * Returns an empty array if a default value is not given
+     *
+     * @return array
+     * @since 2.3
+     */
     function getDefaultValue()
     {
         if (isset($this->options['default'])) {

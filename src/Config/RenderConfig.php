@@ -1,9 +1,37 @@
 <?php
+/**
+ * Ultimate Tag Cloud Widget
+ *
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.3
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage config
+ * @since      2.3
+ */
 
+/**
+ * Class to represent a the configuration options for cloud rendering retrieval
+ *
+ * @since 2.3
+ */
 class UTCW_RenderConfig extends UTCW_Config
 {
 
+    /**
+     * Valid values for optional boolean set
+     *
+     * @var array
+     * @since 2.3
+     */
     protected $optionalBooleanValues = array('default', 'yes', 'no');
+
+    /**
+     * Valid values for border style set
+     *
+     * @var array
+     * @since 2.3
+     */
     protected $borderStyleValues = array(
         'none',
         'dotted',
@@ -16,10 +44,16 @@ class UTCW_RenderConfig extends UTCW_Config
         'outset'
     );
 
+    /**
+     * Creates a new instance of the class and adds all the options
+     *
+     * @param array       $input
+     * @param UTCW_Plugin $plugin
+     *
+     * @since 2.3
+     */
     public function __construct(array $input, UTCW_Plugin $plugin)
     {
-
-
         $this->addOption(
             'text_transform',
             'set',
@@ -68,5 +102,4 @@ class UTCW_RenderConfig extends UTCW_Config
 
         parent::__construct($input, $plugin);
     }
-
 }

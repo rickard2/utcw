@@ -1,7 +1,30 @@
 <?php
+/**
+ * Ultimate Tag Cloud Widget
+ *
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.3
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage config
+ * @since      2.3
+ */
 
+/**
+ * Class to represent a the configuration options for data retrieval
+ *
+ * @since 2.3
+ */
 class UTCW_DataConfig extends UTCW_Config
 {
+    /**
+     * Creates a new instance of the class and adds all the options
+     *
+     * @param array       $input
+     * @param UTCW_Plugin $plugin
+     *
+     * @since 2.3
+     */
     public function __construct(array $input, UTCW_Plugin $plugin)
     {
         $this->addOption('strategy', 'set', array('values' => array('popularity', 'random')));
@@ -48,6 +71,11 @@ class UTCW_DataConfig extends UTCW_Config
         $this->checkSizes();
     }
 
+    /**
+     * Checks if size_from and size_to have correct values, and reverts to defaults if they don't
+     *
+     * @since 2.3
+     */
     protected function checkSizes()
     {
         $size_from = $this->__get('size_from');

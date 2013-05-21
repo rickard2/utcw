@@ -146,11 +146,12 @@ class UTCW_Widget extends WP_Widget
 
         $input = array_merge($instance, $args);
 
-        $dataConfig   = new UTCW_DataConfig($input, $this->plugin);
-        $renderConfig = new UTCW_RenderConfig($input, $this->plugin);
+        $this->plugin->set('wpdb', $wpdb);
+        $this->plugin->set('dataConfig', new UTCW_DataConfig($input, $this->plugin));
+        $this->plugin->set('renderConfig', new UTCW_RenderConfig($input, $this->plugin));
+        $this->plugin->set('data', new UTCW_Data($this->plugin));
 
-        $data   = new UTCW_Data($dataConfig, $this->plugin, $wpdb);
-        $render = new UTCW_Render($renderConfig, $data, $this->plugin);
+        $render = new UTCW_Render($this->plugin);
 
         $render->render();
     }

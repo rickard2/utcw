@@ -30,13 +30,11 @@ abstract class UTCW_SelectionStrategy
     /**
      * Creates a new instance
      *
-     * @param UTCW_Config $config   Current configuration
-     * @param UTCW_Plugin $plugin   Main plugin instance
-     * @param wpdb        $db       WordPress DB instance
+     * @param UTCW_Plugin $plugin Main plugin instance
      *
      * @since 2.0
      */
-    abstract public function __construct(UTCW_Config $config, UTCW_Plugin $plugin, wpdb $db);
+    abstract public function __construct(UTCW_Plugin $plugin);
 
     /**
      * Loads terms based on current configuration

@@ -42,6 +42,15 @@ class UTCW_Plugin
      */
     protected $allowed_post_types = array();
 
+
+    /**
+     * An array of dependencies
+     *
+     * @var array
+     * @since 2.3
+     */
+    protected $container = array();
+
     /**
      * Singleton instance
      *
@@ -62,6 +71,44 @@ class UTCW_Plugin
         add_action('wp_loaded', array($this, 'wpLoaded'));
         add_action('widgets_init', create_function('', 'return register_widget("UTCW_Widget");'));
         add_shortcode('utcw', array($this, 'shortcode'));
+    }
+
+    /**
+     * Set dependency in the container
+     *
+     * @param string $key
+     * @param mixed  $value
+     *
+     * @since 2.3
+     */
+    public function set($key, $value)
+    {
+        $this->container[$key] = $value;
+    }
+
+    /**
+     * Get dependency from the container
+     *
+     * @param string $key
+     *
+     * @return mixed|null
+     * @since 2.3
+     */
+    public function get($key)
+    {
+        return isset($this->container[$key]) ? $this->container[$key] : null;
+    }
+
+    /**
+     * Removes the dependency from the container
+     *
+     * @param string $key
+     *
+     * @since 2.3
+     */
+    public function remove($key)
+    {
+        unset($this->container[$key]);
     }
 
     /**
@@ -112,10 +159,12 @@ class UTCW_Plugin
             }
         }
 
-        $dataConfig   = new UTCW_DataConfig($args, $this);
-        $renderConfig = new UTCW_RenderConfig($args, $this);
-        $data         = new UTCW_Data($dataConfig, $this, $wpdb);
-        $render       = new UTCW_Render($renderConfig, $data, $this);
+        $this->set('wpdb', $wpdb);
+        $this->set('dataConfig', new UTCW_DataConfig($args, $this));
+        $this->set('renderConfig', new UTCW_RenderConfig($args, $this));
+        $this->set('data', new UTCW_Data($this));
+
+        $render = new UTCW_Render($this);
 
         return $render->getCloud();
     }

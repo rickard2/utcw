@@ -88,24 +88,22 @@ class UTCW_Data
     /**
      * Creates a new instance
      *
-     * @param UTCW_DataConfig $config   Current configuration
-     * @param UTCW_Plugin $plugin   Main plugin instance
-     * @param wpdb        $db       WordPress DB instance
+     * @param UTCW_Plugin $plugin Main plugin instance
      *
      * @since 2.0
      */
-    public function __construct(UTCW_DataConfig $config, UTCW_Plugin $plugin, wpdb $db)
+    public function __construct(UTCW_Plugin $plugin)
     {
-        $this->config = $config;
-        $this->db     = $db;
+        $this->config = $plugin->get('dataConfig');
+        $this->db     = $plugin->get('wpdb');
         $this->plugin = $plugin;
 
         switch ($this->config->strategy) {
             case 'popularity':
-                $this->strategy = new UTCW_PopularityStrategy($this->config, $this->plugin, $this->db);
+                $this->strategy = new UTCW_PopularityStrategy($this->plugin);
                 break;
             case 'random':
-                $this->strategy = new UTCW_RandomStrategy($this->config, $this->plugin, $this->db);
+                $this->strategy = new UTCW_RandomStrategy($this->plugin);
                 break;
         }
     }
@@ -284,6 +282,7 @@ class UTCW_Data
     public function cleanupForDebug()
     {
         unset($this->db);
+        $this->plugin->remove('wpdb');
         $this->strategy->cleanupForDebug();
     }
 }

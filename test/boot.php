@@ -61,6 +61,11 @@ class MockFactory
         return $this->utcw_authenticated;
     }
 
+    /**
+     * @param array $additional_methods
+     *
+     * @return PHPUnit_Framework_MockObject_MockObject|UTCW_Plugin
+     */
     function getUTCWMock(array $additional_methods = array())
     {
 
@@ -151,12 +156,14 @@ class DataProvider
 
     function get_renderer(array $instance, array $query_terms, $utcw = null)
     {
-
         if (!$utcw) {
             $utcw = $this->mockFactory->getUTCWNotAuthenticated();
         }
 
-        return new UTCW_Render($this->get_render_config($instance), $this->get_data_object($instance, $query_terms), $utcw);
+        $utcw->set('renderConfig', $this->get_render_config($instance));
+        $utcw->set('data', $this->get_data_object($instance, $query_terms));
+
+        return new UTCW_Render($utcw);
     }
 
     function get_data_config(array $instance)
@@ -172,14 +179,18 @@ class DataProvider
     function get_data_object(array $instance, array $query_terms)
     {
 
-        $config = $this->get_data_config($instance);
-        $db     = $this->mockFactory->getWPDBMock();
+        $plugin = $this->mockFactory->getUTCWMock();
+        $plugin->set('dataConfig', $this->get_data_config($instance));
+
+        $db = $this->mockFactory->getWPDBMock();
 
         $db->expects($this->testCase->any())
             ->method('get_results')
             ->will($this->testCase->returnValue($query_terms));
 
-        return new UTCW_Data($config, $this->mockFactory->getUTCWMock(), $db);
+        $plugin->set('wpdb', $db);
+
+        return new UTCW_Data($plugin);
     }
 }
 

@@ -37,14 +37,13 @@ class UTCW_QueryBuilder
     /**
      * Creates a new instance of the QueryBuilder
      *
-     * @param UTCW_Plugin $plugin
-     * @param wpdb   $db
+     * @param UTCW_Plugin $plugin Main plugin instance
      *
      * @since 2.2
      */
-    public function __construct(UTCW_Plugin $plugin, wpdb $db)
+    public function __construct(UTCW_Plugin $plugin)
     {
-        $this->db         = $db;
+        $this->db         = $plugin->get('wpdb');
         $this->plugin     = $plugin;
         $this->query      = $this->getBaseQuery();
         $this->parameters = array();
@@ -218,9 +217,9 @@ class UTCW_QueryBuilder
             if ($tags_list_parameters) {
                 $tags_list_operator = $type == 'include' ? 'IN' : 'NOT IN';
                 $this->query[]      = 'AND t.term_id ' . $tags_list_operator . ' (' . join(
-                    ',',
-                    $tags_list_parameters
-                ) . ')';
+                        ',',
+                        $tags_list_parameters
+                    ) . ')';
             }
         }
     }

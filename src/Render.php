@@ -150,12 +150,7 @@ class UTCW_Render
         if ($this->config->display === 'list') {
             $markup[] = '<ul>';
 
-            $terms = array_map(
-                function ($term) {
-                    return sprintf('<li>%s</li>', $term);
-                },
-                $terms
-            );
+            $terms = array_map(create_function('$term', 'return sprintf("<li>%s</li>", $term);'), $terms);
         }
 
         $markup[] = join($this->config->separator, $terms);

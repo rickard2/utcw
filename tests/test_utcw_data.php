@@ -38,6 +38,12 @@ class UTCW_Test_Data extends WP_UnitTestCase
         $this->helper_query_contains(array('authors' => array(1, 2, 3)), 'post_author IN (1,2,3)');
     }
 
+    function test_post_term()
+    {
+        $this->helper_query_contains(array('post_term' => array(1, 2, 3)), '_tt.term_id IN (1,2,3)');
+        $this->helper_query_contains(array('post_term' => array(1, 2, 3)), 'AND p.ID IN (SELECT');
+    }
+
     function test_single_post_type()
     {
         $this->helper_query_contains(array('post_type' => 'post'), "post_type IN ('post')");

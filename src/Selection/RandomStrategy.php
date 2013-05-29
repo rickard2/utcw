@@ -94,6 +94,7 @@ class UTCW_RandomStrategy extends UTCW_SelectionStrategy
             $this->config->tags_list,
             $this->config->taxonomy
         );
+        $builder->addPostTermConstraint($this->config->post_term);
         $builder->addGrouping();
         $builder->addMinimum($this->config->minimum);
         $builder->addStatement('ORDER BY RAND()');

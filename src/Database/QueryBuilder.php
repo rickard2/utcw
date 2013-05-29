@@ -124,6 +124,31 @@ class UTCW_QueryBuilder
     }
 
     /**
+     * Add post term relationship constraint
+     *
+     * @param array $post_terms
+     *
+     * @since 2.4
+     */
+    public function addPostTermConstraint(array $post_terms)
+    {
+        if ($post_terms) {
+
+            $post_term_parameters = array();
+
+            foreach ($post_terms as $post_term) {
+                $post_term_parameters[] = '%d';
+                $this->parameters[]     = $post_term;
+            }
+
+            $this->query[] = 'AND p.ID IN (SELECT _p.ID FROM wp_posts _p';
+            $this->query[] = 'JOIN wp_term_relationships AS _tr ON _tr.object_id = _p.ID';
+            $this->query[] = 'JOIN wp_term_taxonomy AS _tt ON _tt.term_taxonomy_id = _tr.term_taxonomy_id';
+            $this->query[] = 'WHERE _tt.term_id IN (' . join(',', $post_term_parameters) . '))';
+        }
+    }
+
+    /**
      * Add post type constraint
      *
      * @param array $post_types

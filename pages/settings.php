@@ -13,6 +13,7 @@
  * @var array $available_post_types
  * @var array $configurations
  * @var array $terms
+ * @var array $terms_by_id
  * @var array $users
  * @var UTCW_Widget $this
  */
@@ -146,6 +147,29 @@ if ( ! defined( 'ABSPATH' ) ) die();
 				   title="<?php _e( 'The maximum number of days back to search for posts, zero means every post.', 'utcw' )?>"><?php _e( 'Posts max age:', 'utcw' )?></label></strong><br>
 	<input type="number" name="<?php echo $this->get_field_name( 'days_old' ) ?>"
 		   id="<?php echo $this->get_field_id( 'days_old' ) ?>" value="<?php echo $dataConfig->days_old; ?>"><br>
+    <br>
+
+    <a class="utcw-help"
+       title="<?php _e( 'Only posts which have all selected terms will be used when generating the cloud', 'utcw' ) ?>">?</a>
+    <strong><label for="<?php echo $this->get_field_id('post_term_search') ?>"><?php _e('Post term filter', 'utcw') ?></label></strong>
+    <input type="search" class="post-term-search" id="<?php echo $this->get_field_id('post_term_search') ?>"
+           data-result-selector="#<?php echo $this->get_field_id('post-term-search-result') ?>"
+           data-selected-selector="#<?php echo $this->get_field_id('post-term-search-selected') ?>"
+           data-input-name="<?php echo $this->get_field_name( 'post_term' ) ?>"
+           data-delete="<?php _e( 'Delete', 'utcw' ) ?>" />
+    <ul class="post-term-search-result" id="<?php echo $this->get_field_id('post-term-search-result') ?>"></ul>
+    <ul class="post-term-search-selected" id="<?php echo $this->get_field_id('post-term-search-selected') ?>">
+        <?php foreach ($dataConfig->post_term as $term_id) : $term = $terms_by_id[$term_id]; ?>
+            <li>
+                <?php echo $term->name ?> (<?php echo $term->taxonomy ?>)
+                <span class="submitbox">
+                    <a class="submitdelete deletion utcw-remove-term"><?php _e('Delete', 'utcw') ?></a>
+                </span>
+                <input type="hidden" name="<?php echo $this->get_field_name( 'post_term' ) ?>[]" value="<?php echo $term_id ?>" />
+            </li>
+        <?php endforeach ?>
+    </ul>
+
 </fieldset>
 
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-terms' ) ?>">

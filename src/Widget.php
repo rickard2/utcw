@@ -129,6 +129,15 @@ class UTCW_Widget extends WP_Widget
         /** @noinspection PhpUnusedLocalVariableInspection */
         $terms = $this->plugin->getTerms();
 
+        // Create a lookup table with all the terms indexed by their ID
+        $terms_by_id = array();
+
+        foreach ($terms as $taxonomyTerms) {
+            foreach ($taxonomyTerms as $term) {
+                $terms_by_id[$term->term_id] = $term;
+            }
+        }
+
         // Content of the widget settings form
         require dirname(__FILE__) . '/../pages/settings.php';
     }

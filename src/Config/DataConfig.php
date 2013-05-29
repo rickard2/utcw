@@ -55,6 +55,7 @@ class UTCW_DataConfig extends UTCW_Config
 
         $this->addOption('authors', 'array', array('type' => 'integer'));
         $this->addOption('tags_list', 'array', array('type' => 'integer'));
+        $this->addOption('post_term', 'array', array('type' => 'integer'));
 
         $this->addOption('size_from', 'measurement', array('default' => '10px'));
         $this->addOption('size_to', 'measurement', array('default' => '30px'));

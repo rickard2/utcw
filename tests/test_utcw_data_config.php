@@ -39,6 +39,7 @@ class UTCW_Test_Data_Config extends UTCW_Test_Config
         'case_sensitive'  => false,
         'minimum'         => 1,
         'days_old'        => 0,
+        'post_term'       => array(),
     );
 
     function test_strategy_ok()
@@ -343,6 +344,38 @@ class UTCW_Test_Data_Config extends UTCW_Test_Config
         $this->assertTrue(is_int($config->authors[0]));
         $this->assertTrue(is_int($config->authors[1]));
         $this->assertTrue(is_int($config->authors[2]));
+    }
+
+    function test_post_term_ok()
+    {
+        $this->helper_int_array_ok('post_term');
+    }
+
+    function test_post_term_fail()
+    {
+        $this->helper_int_array_fail('post_term');
+    }
+
+    function test_post_term_csv_ok()
+    {
+        $this->helper_array_ok('post_term', '1,2,3');
+    }
+
+    function test_post_term_empty_ok()
+    {
+        $this->helper_int_array_ok('post_term', array());
+    }
+
+    function test_post_term_converts_string_to_int()
+    {
+        $instance = array(
+            'post_term' => array('1', '2', '3'),
+        );
+
+        $config = new UTCW_DataConfig($instance, $this->utcw);
+        $this->assertTrue(is_int($config->post_term[0]));
+        $this->assertTrue(is_int($config->post_term[1]));
+        $this->assertTrue(is_int($config->post_term[2]));
     }
 
     function test_post_type_ok()

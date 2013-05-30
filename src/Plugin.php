@@ -131,7 +131,7 @@ class UTCW_Plugin
     /**
      * Outputs all the terms in JSON format
      *
-     * @since 2.4
+     * @since 2.3
      */
     public function getTermsJson() {
 

@@ -128,7 +128,7 @@ class UTCW_QueryBuilder
      *
      * @param array $post_terms
      *
-     * @since 2.4
+     * @since 2.3
      */
     public function addPostTermConstraint(array $post_terms)
     {

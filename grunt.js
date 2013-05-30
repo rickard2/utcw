@@ -40,7 +40,8 @@ module.exports = function ( grunt ) {
 			},
 			globals:{
 				jQuery:true,
-				Uri:true
+				Uri:true,
+                ajaxurl:true
 			}
 		},
 		uglify:{}

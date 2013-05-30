@@ -42,6 +42,15 @@ class UTCW_Plugin
      */
     protected $allowed_post_types = array();
 
+
+    /**
+     * An array of dependencies
+     *
+     * @var array
+     * @since 2.3
+     */
+    protected $container = array();
+
     /**
      * Singleton instance
      *
@@ -61,7 +70,46 @@ class UTCW_Plugin
         add_action('admin_head-widgets.php', array($this, 'initAdminAssets'));
         add_action('wp_loaded', array($this, 'wpLoaded'));
         add_action('widgets_init', create_function('', 'return register_widget("UTCW_Widget");'));
+        add_action('wp_ajax_utcw_get_terms', array($this, 'getTermsJson'));
         add_shortcode('utcw', array($this, 'shortcode'));
+    }
+
+    /**
+     * Set dependency in the container
+     *
+     * @param string $key
+     * @param mixed  $value
+     *
+     * @since 2.3
+     */
+    public function set($key, $value)
+    {
+        $this->container[$key] = $value;
+    }
+
+    /**
+     * Get dependency from the container
+     *
+     * @param string $key
+     *
+     * @return mixed|null
+     * @since 2.3
+     */
+    public function get($key)
+    {
+        return isset($this->container[$key]) ? $this->container[$key] : null;
+    }
+
+    /**
+     * Removes the dependency from the container
+     *
+     * @param string $key
+     *
+     * @since 2.3
+     */
+    public function remove($key)
+    {
+        unset($this->container[$key]);
     }
 
     /**
@@ -78,6 +126,22 @@ class UTCW_Plugin
         }
 
         return self::$instance;
+    }
+
+    /**
+     * Outputs all the terms in JSON format
+     *
+     * @since 2.4
+     */
+    public function getTermsJson() {
+
+        header('Content-Type: application/json');
+
+        $terms = $this->getTerms();
+
+        echo json_encode($terms);
+
+        die();
     }
 
     /**
@@ -112,9 +176,12 @@ class UTCW_Plugin
             }
         }
 
-        $config = new UTCW_Config($args, $this);
-        $data   = new UTCW_Data($config, $this, $wpdb);
-        $render = new UTCW_Render($config, $data, $this);
+        $this->set('wpdb', $wpdb);
+        $this->set('dataConfig', new UTCW_DataConfig($args, $this));
+        $this->set('renderConfig', new UTCW_RenderConfig($args, $this));
+        $this->set('data', new UTCW_Data($this));
+
+        $render = new UTCW_Render($this);
 
         return $render->getCloud();
     }

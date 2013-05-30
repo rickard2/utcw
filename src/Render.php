@@ -2,16 +2,16 @@
 
 //namespace Rickard\UTCW;
 
-    /**
-     * Ultimate Tag Cloud Widget
-     *
-     * @author     Rickard Andersson <rickard@0x539.se>
-     * @version    2.2.3
-     * @license    GPLv2
-     * @package    utcw
-     * @subpackage main
-     * @since      2.0
-     */
+/**
+ * Ultimate Tag Cloud Widget
+ *
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.2.3
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage main
+ * @since      2.0
+ */
 
 /**
  * Class for rendering the cloud
@@ -66,18 +66,16 @@ class UTCW_Render
     /**
      * Creates a new instance of the renderer
      *
-     * @param UTCW_Config $config Configuration
-     * @param UTCW_Data   $data   Term data
      * @param UTCW_Plugin $plugin Main plugin instance
      *
      * @since 2.0
      */
-    public function __construct(UTCW_Config $config, UTCW_Data $data, UTCW_Plugin $plugin)
+    public function __construct(UTCW_Plugin $plugin)
     {
-        $this->data = $data;
-        $this->config = $config;
+        $this->data   = $plugin->get('data');
+        $this->config = $plugin->get('renderConfig');
         $this->plugin = $plugin;
-        $this->id = base_convert(crc32(serialize($config)), 10, 27);
+        $this->id     = base_convert(crc32(serialize($this->config)), 10, 27);
 
         $this->buildCSS();
     }
@@ -107,7 +105,7 @@ class UTCW_Render
         }
 
         if ($this->config->before_widget) {
-            $markup[] = $this->config->before_widget;
+            $markup[] = str_replace('widget_utcw', 'widget_utcw widget_tag_cloud', $this->config->before_widget);
         }
 
         if ($this->config->show_title_text) {
@@ -122,7 +120,7 @@ class UTCW_Render
             }
         }
 
-        $markup[] = '<div class="widget_tag_cloud utcw-' . $this->id . '">';
+        $markup[] = '<div class="tagcloud utcw-' . $this->id . '">';
 
         $terms = array();
 
@@ -132,7 +130,7 @@ class UTCW_Render
                 ' title="' . _n('%s topic', '%s topics', $term->count) . '"',
                 $term->count
             ) : '';
-            $tag = $this->config->show_links ? 'a' : 'span';
+            $tag   = $this->config->show_links ? 'a' : 'span';
 
             $terms[] = sprintf(
                 '%s<%s class="tag-link-%s" href="%s" style="font-size:%s%s"%s>%s</%s>%s',
@@ -149,7 +147,17 @@ class UTCW_Render
             );
         }
 
+        if ($this->config->display === 'list') {
+            $markup[] = '<ul>';
+
+            $terms = array_map(create_function('$term', 'return sprintf("<li>%s</li>", $term);'), $terms);
+        }
+
         $markup[] = join($this->config->separator, $terms);
+
+        if ($this->config->display === 'list') {
+            $markup[] = '</ul>';
+        }
 
         $markup[] = '</div>';
 
@@ -187,6 +195,10 @@ class UTCW_Render
             $main_styles[] = sprintf('word-spacing:%s', $this->config->word_spacing);
         }
 
+        if (!$this->hasDefaultValue('alignment')) {
+            $main_styles[] = sprintf('text-align:%s', $this->config->alignment);
+        }
+
         $link_styles = array();
 
         if (!$this->hasDefaultValue('link_underline')) {
@@ -208,9 +220,10 @@ class UTCW_Render
             $link_styles[] = sprintf('background-color:%s', $this->config->link_bg_color);
         }
 
-        if (!$this->hasDefaultValue('link_border_style') && !$this->hasDefaultValue(
-            'link_border_color'
-        ) && !$this->hasDefaultValue('link_border_width')
+        if (
+            !$this->hasDefaultValue('link_border_style') &&
+            !$this->hasDefaultValue('link_border_color') &&
+            !$this->hasDefaultValue('link_border_width')
         ) {
             $link_styles[] = sprintf(
                 'border:%s %s %s',
@@ -263,8 +276,8 @@ class UTCW_Render
 
 
         if (!$this->hasDefaultValue('hover_border_style') && !$this->hasDefaultValue(
-            'hover_border_color'
-        ) && !$this->hasDefaultValue('hover_border_width')
+                'hover_border_color'
+            ) && !$this->hasDefaultValue('hover_border_width')
         ) {
             $hover_styles[] = sprintf(
                 'border:%s %s %s',
@@ -301,7 +314,12 @@ class UTCW_Render
         }
 
         if ($hover_styles) {
-            $styles[] = sprintf('.utcw-%s span:hover,.utcw-%s a:hover{%s}', $this->id, $this->id, join(';', $hover_styles));
+            $styles[] = sprintf(
+                '.utcw-%s span:hover,.utcw-%s a:hover{%s}',
+                $this->id,
+                $this->id,
+                join(';', $hover_styles)
+            );
         }
 
         if ($styles) {
@@ -319,7 +337,9 @@ class UTCW_Render
      */
     private function hasDefaultValue($option)
     {
-        $defaults = $this->config->getDefaults();
+        $defaultConfig = new UTCW_RenderConfig(array(), $this->plugin);
+        $defaults      = $defaultConfig->getInstance();
+
         return $this->config->$option === $defaults[$option];
     }
 }

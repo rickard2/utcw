@@ -38,7 +38,7 @@ class UTCW_Test_Render extends WP_UnitTestCase
     function test_title_is_outside_of_wrapper()
     {
         $render = $this->getRenderer(array('title' => 'Hello World'));
-        $this->assertRegExp('/Hello World<div class="widget_tag_cloud/', $render->getCloud());
+        $this->assertRegExp('/Hello World<div class="tagcloud utcw-/', $render->getCloud());
     }
 
     function test_title_is_inside_widget()
@@ -47,10 +47,18 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $this->assertRegExp('/BEFORE_WIDGETHello World/', $render->getCloud());
     }
 
+    function test_regular_tag_cloud_class_is_added_to_before_widget()
+    {
+        $render = $this->getRenderer(
+            array('before_widget' => '<div class="widget widget_utcw">', 'title' => 'Hello World')
+        );
+        $this->assertRegExp('/<div class="widget widget_utcw widget_tag_cloud">Hello World/', $render->getCloud());
+    }
+
     function test_output_contains_wrapper()
     {
         $render = $this->getRenderer();
-        $this->assertRegExp('/<div class="widget_tag_cloud utcw-[0-9a-z]+">.*<\/div>$/i', $render->getCloud());
+        $this->assertRegExp('/<div class="tagcloud utcw-[0-9a-z]+">.*<\/div>$/i', $render->getCloud());
     }
 
     function test_wrapper_is_inside_widget()
@@ -313,6 +321,32 @@ class UTCW_Test_Render extends WP_UnitTestCase
         );
     }
 
+    function test_alignment()
+    {
+        $this->helper_contains(array('alignment' => 'justify'), 'text-align:justify');
+    }
+
+    function test_no_alignment()
+    {
+        $this->helper_not_contains(array(), 'text-align');
+    }
+
+    function test_display_list_wrapper()
+    {
+        $this->helper_contains(array('display' => 'list'), '<ul');
+    }
+
+    /**
+     * @dataProvider terms
+     */
+    function test_display_list_items($terms) {
+        $instance = array('display' => 'list');
+
+        $expected = count($terms);
+
+        $this->helper_substr_count($instance, '<li>', $terms, $expected);
+    }
+
     /**
      * @dataProvider terms
      */
@@ -355,9 +389,9 @@ class UTCW_Test_Render extends WP_UnitTestCase
     function test_prefix_separator_suffix_placement($terms)
     {
         $instance = array(
-            'prefix' => 'PREFIX',
+            'prefix'    => 'PREFIX',
             'separator' => 'SEPARATOR',
-            'suffix' => 'SUFFIX',
+            'suffix'    => 'SUFFIX',
         );
 
         $renderer = $this->getRenderer($instance, $terms);

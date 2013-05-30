@@ -32,7 +32,7 @@
 <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
                                     Reports <b class="caret"></b></a><ul class="dropdown-menu">
 <li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
-                <span class="label label-info">1</span></a></li>
+                <span class="label label-info">0</span></a></li>
 <li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
                 <ul><li>todo 
                 <span class="label label-info">2</span>
@@ -61,6 +61,7 @@
                     <ul>
 <li class="method public "><a href="#method_applyFilters" title="applyFilters :: Apply filters"><span class="description">Apply filters</span><pre>applyFilters()</pre></a></li>
 <li class="method public "><a href="#method_checkTermTaxonomy" title="checkTermTaxonomy :: Check if the term exist for any of the taxonomies"><span class="description">Check if the term exist for any of the taxonomies</span><pre>checkTermTaxonomy()</pre></a></li>
+<li class="method public "><a href="#method_get" title="get :: Get dependency from the container"><span class="description">Get dependency from the container</span><pre>get()</pre></a></li>
 <li class="method public "><a href="#method_getAllowedPostTypes" title="getAllowedPostTypes :: Returns an array with the names of allowed post types"><span class="description">Returns an array with the names of allowed post types</span><pre>getAllowedPostTypes()</pre></a></li>
 <li class="method public "><a href="#method_getAllowedTaxonomies" title="getAllowedTaxonomies :: Returns an array with the names of allowed taxonomies"><span class="description">Returns an array with the names of allowed taxonomies</span><pre>getAllowedTaxonomies()</pre></a></li>
 <li class="method public "><a href="#method_getAllowedTaxonomiesObjects" title="getAllowedTaxonomiesObjects :: Returns allowed taxonomies as objects"><span class="description">Returns allowed taxonomies as objects</span><pre>getAllowedTaxonomiesObjects()</pre></a></li>
@@ -68,6 +69,7 @@
 <li class="method public "><a href="#method_getInstance" title="getInstance :: Returns an instance of the plugin"><span class="description">Returns an instance of the plugin</span><pre>getInstance()</pre></a></li>
 <li class="method public "><a href="#method_getTermLink" title="getTermLink :: Returns an absolute URI to the archive page for the term"><span class="description">Returns an absolute URI to the archive page for the term</span><pre>getTermLink()</pre></a></li>
 <li class="method public "><a href="#method_getTerms" title="getTerms :: Returns an array with taxonomy as key and an array of term objects for each taxonomy."><span class="description">Returns an array with taxonomy as key and an array of term objects for each taxonomy.</span><pre>getTerms()</pre></a></li>
+<li class="method public "><a href="#method_getTermsJson" title="getTermsJson :: Outputs all the terms in JSON format"><span class="description">Outputs all the terms in JSON format</span><pre>getTermsJson()</pre></a></li>
 <li class="method public "><a href="#method_getTranslationHandler" title="getTranslationHandler :: Returns a new instance of the QTranslate Handler class"><span class="description">Returns a new instance of the QTranslate Handler class</span><pre>getTranslationHandler()</pre></a></li>
 <li class="method public "><a href="#method_getUsers" title="getUsers :: Returns the users on this blog"><span class="description">Returns the users on this blog</span><pre>getUsers()</pre></a></li>
 <li class="method public "><a href="#method_initAdminAssets" title="initAdminAssets :: Action handler for 'admin_head-widgets.php' hook
@@ -75,8 +77,10 @@ Loads assets needed by the administration interface"><span class="description">A
 Loads assets needed by the administration interface</span><pre>initAdminAssets()</pre></a></li>
 <li class="method public "><a href="#method_isAuthenticatedUser" title="isAuthenticatedUser :: Returns boolean true if the current page request is for an authenticated user"><span class="description">Returns boolean true if the current page request is for an authenticated user</span><pre>isAuthenticatedUser()</pre></a></li>
 <li class="method public "><a href="#method_loadConfiguration" title="loadConfiguration :: Loads saved configuration"><span class="description">Loads saved configuration</span><pre>loadConfiguration()</pre></a></li>
+<li class="method public "><a href="#method_remove" title="remove :: Removes the dependency from the container"><span class="description">Removes the dependency from the container</span><pre>remove()</pre></a></li>
 <li class="method public "><a href="#method_removeConfiguration" title="removeConfiguration :: Removes a previously saved configuration"><span class="description">Removes a previously saved configuration</span><pre>removeConfiguration()</pre></a></li>
 <li class="method public "><a href="#method_saveConfiguration" title="saveConfiguration :: Saves the configuration"><span class="description">Saves the configuration</span><pre>saveConfiguration()</pre></a></li>
+<li class="method public "><a href="#method_set" title="set :: Set dependency in the container"><span class="description">Set dependency in the container</span><pre>set()</pre></a></li>
 <li class="method public "><a href="#method_shortcode" title="shortcode :: Shortcode handler for 'utcw' hook"><span class="description">Shortcode handler for 'utcw' hook</span><pre>shortcode()</pre></a></li>
 <li class="method public "><a href="#method_wpLoaded" title="wpLoaded :: Action handler for 'wpLoaded' hook
 Loads taxonomies and post types"><span class="description">Action handler for 'wpLoaded' hook
@@ -97,6 +101,7 @@ Loads taxonomies and post types</span><pre>wpLoaded()</pre></a></li>
                     <ul>
 <li class="property protected "><a href="#property_allowed_post_types" title="$allowed_post_types :: An array of which post types are available"><span class="description"></span><pre>$allowed_post_types</pre></a></li>
 <li class="property protected "><a href="#property_allowed_taxonomies" title="$allowed_taxonomies :: An array of which taxonomies are available"><span class="description"></span><pre>$allowed_taxonomies</pre></a></li>
+<li class="property protected "><a href="#property_container" title="$container :: An array of dependencies"><span class="description"></span><pre>$container</pre></a></li>
 </ul>
 </li>
 <li class="nav-header private">» Private
@@ -190,6 +195,27 @@ Loads taxonomies and post types</span><pre>wpLoaded()</pre></a></li>
 <code>array</code><p>Array of taxonomy names</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a id="method_get"></a><div class="element clickable method public method_get" data-toggle="collapse" data-target=".method_get .collapse">
+<h2>Get dependency from the container</h2>
+<pre>get(string $key) : mixed | null</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.3</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>mixed</code><code>null</code>
+</div>
 </div></div>
 </div>
 <a id="method_getAllowedPostTypes"></a><div class="element clickable method public method_getAllowedPostTypes" data-toggle="collapse" data-target=".method_getAllowedPostTypes .collapse">
@@ -304,6 +330,18 @@ Loads taxonomies and post types</span><pre>wpLoaded()</pre></a></li>
 <div class="subelement response"><code>array</code></div>
 </div></div>
 </div>
+<a id="method_getTermsJson"></a><div class="element clickable method public method_getTermsJson" data-toggle="collapse" data-target=".method_getTermsJson .collapse">
+<h2>Outputs all the terms in JSON format</h2>
+<pre>getTermsJson() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.4</td>
+</tr></table>
+</div></div>
+</div>
 <a id="method_getTranslationHandler"></a><div class="element clickable method public method_getTranslationHandler" data-toggle="collapse" data-target=".method_getTranslationHandler .collapse">
 <h2>Returns a new instance of the QTranslate Handler class</h2>
 <pre>getTranslationHandler() : null | <a href="../classes/UTCW_TranslationHandler.html">\UTCW_TranslationHandler</a></pre>
@@ -376,6 +414,23 @@ Loads assets needed by the administration interface</h2>
 <code>array</code><code>bool</code>Returns an instance array on success and boolean false on failure</div>
 </div></div>
 </div>
+<a id="method_remove"></a><div class="element clickable method public method_remove" data-toggle="collapse" data-target=".method_remove .collapse">
+<h2>Removes the dependency from the container</h2>
+<pre>remove(string $key) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.3</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
 <a id="method_removeConfiguration"></a><div class="element clickable method public method_removeConfiguration" data-toggle="collapse" data-target=".method_removeConfiguration .collapse">
 <h2>Removes a previously saved configuration</h2>
 <pre>removeConfiguration(string $name) : bool</pre>
@@ -414,6 +469,27 @@ Loads assets needed by the administration interface</h2>
 <code>array</code><p>Exported configuration from Config</p></div>
 <h3>Returns</h3>
 <div class="subelement response"><code>bool</code></div>
+</div></div>
+</div>
+<a id="method_set"></a><div class="element clickable method public method_set" data-toggle="collapse" data-target=".method_set .collapse">
+<h2>Set dependency in the container</h2>
+<pre>set(string $key, mixed $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.3</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>mixed</code>
+</div>
 </div></div>
 </div>
 <a id="method_shortcode"></a><div class="element clickable method public method_shortcode" data-toggle="collapse" data-target=".method_shortcode .collapse">
@@ -511,6 +587,18 @@ Loads taxonomies and post types</h2>
 </tr></table>
 </div></div>
 </div>
+<a id="property_container"> </a><div class="element clickable property protected property_container" data-toggle="collapse" data-target=".property_container .collapse">
+<h2></h2>
+<pre>$container : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>since</th>
+<td>2.3</td>
+</tr></table>
+</div></div>
+</div>
 <a id="property_instance"> </a><div class="element clickable property private property_instance" data-toggle="collapse" data-target=".property_instance .collapse">
 <h2></h2>
 <pre>$instance : <a href="../classes/UTCW_Plugin.html">\UTCW_Plugin</a></pre>
@@ -530,7 +618,7 @@ Loads taxonomies and post types</h2>
 <div class="row"><footer class="span12">
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
-            generated on 2013-05-06T20:48:21+02:00.<br></footer></div>
+            generated on 2013-05-30T23:26:54+02:00.<br></footer></div>
 </div>
 </body>
 </html>

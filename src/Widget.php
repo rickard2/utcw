@@ -86,10 +86,13 @@ class UTCW_Widget extends WP_Widget
             }
         }
 
-        $config = new UTCW_Config($new_instance, $this->plugin);
+        $dataConfig   = new UTCW_DataConfig($new_instance, $this->plugin);
+        $renderConfig = new UTCW_RenderConfig($new_instance, $this->plugin);
+
+        $config = array_merge($dataConfig->getInstance(), $renderConfig->getInstance());
 
         if ($save_config) {
-            $this->plugin->saveConfiguration($new_instance['save_config_name'], $config->getInstance());
+            $this->plugin->saveConfiguration($new_instance['save_config_name'], $config);
         }
 
         if (isset($new_instance['remove_config']) && is_array($new_instance['remove_config'])) {
@@ -98,7 +101,7 @@ class UTCW_Widget extends WP_Widget
             }
         }
 
-        return $config->getInstance();
+        return $config;
     }
 
     /**
@@ -112,7 +115,9 @@ class UTCW_Widget extends WP_Widget
     public function form(array $instance)
     {
         /** @noinspection PhpUnusedLocalVariableInspection */
-        $config = new UTCW_Config($instance, $this->plugin);
+        $dataConfig = new UTCW_DataConfig($instance, $this->plugin);
+        /** @noinspection PhpUnusedLocalVariableInspection */
+        $renderConfig = new UTCW_RenderConfig($instance, $this->plugin);
         /** @noinspection PhpUnusedLocalVariableInspection */
         $configurations = $this->plugin->getConfigurations();
         /** @noinspection PhpUnusedLocalVariableInspection */
@@ -123,6 +128,15 @@ class UTCW_Widget extends WP_Widget
         $users = $this->plugin->getUsers();
         /** @noinspection PhpUnusedLocalVariableInspection */
         $terms = $this->plugin->getTerms();
+
+        // Create a lookup table with all the terms indexed by their ID
+        $terms_by_id = array();
+
+        foreach ($terms as $taxonomyTerms) {
+            foreach ($taxonomyTerms as $term) {
+                $terms_by_id[$term->term_id] = $term;
+            }
+        }
 
         // Content of the widget settings form
         require dirname(__FILE__) . '/../pages/settings.php';
@@ -141,9 +155,12 @@ class UTCW_Widget extends WP_Widget
 
         $input = array_merge($instance, $args);
 
-        $config = new UTCW_Config($input, $this->plugin);
-        $data   = new UTCW_Data($config, $this->plugin, $wpdb);
-        $render = new UTCW_Render($config, $data, $this->plugin);
+        $this->plugin->set('wpdb', $wpdb);
+        $this->plugin->set('dataConfig', new UTCW_DataConfig($input, $this->plugin));
+        $this->plugin->set('renderConfig', new UTCW_RenderConfig($input, $this->plugin));
+        $this->plugin->set('data', new UTCW_Data($this->plugin));
+
+        $render = new UTCW_Render($this->plugin);
 
         $render->render();
     }

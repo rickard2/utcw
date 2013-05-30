@@ -63,17 +63,15 @@ class UTCW_RandomStrategy extends UTCW_SelectionStrategy
     /**
      * Creates a new instance
      *
-     * @param UTCW_Config $config   Current configuration
-     * @param UTCW_Plugin $plugin   Main plugin instance
-     * @param wpdb        $db       WordPress DB instance
+     * @param UTCW_Plugin $plugin Main plugin instance
      *
      * @since 2.2
      */
-    public function __construct(UTCW_Config $config, UTCW_Plugin $plugin, wpdb $db)
+    public function __construct(UTCW_Plugin $plugin)
     {
-        $this->config = $config;
+        $this->config = $plugin->get('dataConfig');
+        $this->db     = $plugin->get('wpdb');
         $this->plugin = $plugin;
-        $this->db     = $db;
     }
 
     /**
@@ -96,6 +94,7 @@ class UTCW_RandomStrategy extends UTCW_SelectionStrategy
             $this->config->tags_list,
             $this->config->taxonomy
         );
+        $builder->addPostTermConstraint($this->config->post_term);
         $builder->addGrouping();
         $builder->addMinimum($this->config->minimum);
         $builder->addStatement('ORDER BY RAND()');
@@ -121,5 +120,7 @@ class UTCW_RandomStrategy extends UTCW_SelectionStrategy
     public function cleanupForDebug()
     {
         unset($this->db);
+        $this->plugin->remove('wpdb');
+
     }
 }

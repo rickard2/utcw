@@ -150,7 +150,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
     <br>
 
     <a class="utcw-help"
-       title="<?php _e( 'Only posts which have all selected terms will be used when generating the cloud', 'utcw' ) ?>">?</a>
+       title="<?php _e( 'Only posts which have any of the selected terms will be used when generating the cloud', 'utcw' ) ?>">?</a>
     <strong><label for="<?php echo $this->get_field_id('post_term_search') ?>"><?php _e('Post term filter', 'utcw') ?></label></strong>
     <input type="search" class="post-term-search" id="<?php echo $this->get_field_id('post_term_search') ?>"
            data-result-selector="#<?php echo $this->get_field_id('post-term-search-result') ?>"

@@ -3,7 +3,7 @@ Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
 Tested up to: 3.6-beta2
-Stable tag: 2.2.3
+Stable tag: 2.3
 Donate link: https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget
 License: GPLv2 or later
 
@@ -47,6 +47,13 @@ If you have questions, please post them in the forums.
 
 == Changelog ==
 
+= 2.3 =
+
+* [#27](https://github.com/rickard2/utcw/issues/27): Added filtering feature to generate a cloud of posts which have a common term/terms
+* [#28](https://github.com/rickard2/utcw/issues/28): Added more styling options (center, right align, justify, display as list)
+* [#29](https://github.com/rickard2/utcw/issues/29): Changed CSS classes to match the WordPress tag cloud
+* [#25](https://github.com/rickard2/utcw/issues/25), [#26](https://github.com/rickard2/utcw/issues/26), [#31](https://github.com/rickard2/utcw/issues/31): Internal / code quality
+
 = 2.2.3 =
 
 * Fixed naming collision issue with other plugins
@@ -89,6 +96,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.3 =
+
+* New features, see plugin page at wordpress.org for full details
 
 = 2.2.3 =
 

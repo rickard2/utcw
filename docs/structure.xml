@@ -159,7 +159,7 @@
   <file path="Config/DataConfig.php" hash="325b3d3ba0075b4196817e3e15b8a95a" package="utcw\config">
     <docblock line="2">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="2" name="version" description="2.3"/>
       <tag line="2" name="license" description="GPLv2"/>
@@ -173,7 +173,7 @@
       <full_name>\UTCW_DataConfig</full_name>
       <docblock line="13">
         <description>Class to represent a the configuration options for data retrieval</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="13" name="since" description="2.3"/>
       </docblock>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="28" package="Default">
@@ -181,7 +181,7 @@
         <full_name>__construct</full_name>
         <docblock line="20">
           <description>Creates a new instance of the class and adds all the options</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="20" name="param" description="" type="array" variable="$input">
             <type by_reference="false">array</type>
           </tag>
@@ -192,12 +192,12 @@
         </docblock>
         <argument line="28">
           <name>$input</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
         <argument line="28">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -206,7 +206,7 @@
         <full_name>checkSizes</full_name>
         <docblock line="75">
           <description>Checks if size_from and size_to have correct values, and reverts to defaults if they don't</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="75" name="since" description="2.3"/>
         </docblock>
       </method>
@@ -215,7 +215,7 @@
   <file path="Config/RenderConfig.php" hash="6e06381873fcb3271c5432a3721daf1e" package="utcw\config">
     <docblock line="2">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="2" name="version" description="2.3"/>
       <tag line="2" name="license" description="GPLv2"/>
@@ -229,7 +229,7 @@
       <full_name>\UTCW_RenderConfig</full_name>
       <docblock line="13">
         <description>Class to represent a the configuration options for cloud rendering retrieval</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="13" name="since" description="2.3"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="27" namespace="global" package="Default">
@@ -237,7 +237,7 @@
         <default>array('default', 'yes', 'no')</default>
         <docblock line="21">
           <description>Valid values for optional boolean set</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="21" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -249,7 +249,7 @@
         <default>array('none', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset')</default>
         <docblock line="29">
           <description>Valid values for border style set</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="29" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -261,7 +261,7 @@
         <default>array('left', 'right', 'center', 'justify')</default>
         <docblock line="47">
           <description>Valid values for alignment set</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="47" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -273,7 +273,7 @@
         <default>array('inline', 'list')</default>
         <docblock line="60">
           <description>Valid values for display set</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="60" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -285,7 +285,7 @@
         <full_name>__construct</full_name>
         <docblock line="68">
           <description>Creates a new instance of the class and adds all the options</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="68" name="param" description="" type="array" variable="$input">
             <type by_reference="false">array</type>
           </tag>
@@ -296,12 +296,12 @@
         </docblock>
         <argument line="76">
           <name>$input</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
         <argument line="76">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -926,12 +926,12 @@
       </method>
     </class>
   </file>
-  <file path="Data.php" hash="5241daaadf7d51eff60930ed75f91eaa" package="utcw\main">
+  <file path="Data.php" hash="96a84e323162d16aa3e0dddf13daf681" package="utcw\main">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
+      <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="main"/>
@@ -1203,12 +1203,12 @@
       </method>
     </class>
   </file>
-  <file path="Database/QueryBuilder.php" hash="d7070b53a732f4f6a8eadee92f22219d" package="utcw\language">
+  <file path="Database/QueryBuilder.php" hash="1a0701de777c9c26938657113099074f" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
+      <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="language"/>
@@ -1333,7 +1333,7 @@
           <tag line="126" name="param" description="" type="array" variable="$post_terms">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="126" name="since" description="2.4"/>
+          <tag line="126" name="since" description="2.3"/>
         </docblock>
         <argument line="133">
           <name>$post_terms</name>
@@ -1520,12 +1520,12 @@
       </method>
     </class>
   </file>
-  <file path="Language/QTranslateHandler.php" hash="22645f77bfd988e76ea177b3cef8ece5" package="utcw\language">
+  <file path="Language/QTranslateHandler.php" hash="5c40bbb32c2e852637195eeedf7a656b" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
+      <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="language"/>
@@ -1537,17 +1537,17 @@
       <full_name>\UTCW_QTranslateHandler</full_name>
       <docblock line="20">
         <description>Class to handle QTranslate multi language support</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="20" name="since" description="2.2"/>
         <tag line="20" name="package" description="utcw"/>
         <tag line="20" name="subpackage" description="language"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="35" namespace="global" package="Default">
         <name>$nameMap</name>
-        <default/>
+        <default></default>
         <docblock line="29">
           <description>An array of term names mapped to translated names</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="29" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -1559,7 +1559,7 @@
         <full_name>__construct</full_name>
         <docblock line="37">
           <description>Initializes the class with a map of term names</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="37" name="param" description="An array of term names mapped to translated names" type="array" variable="$nameMap">
             <type by_reference="false">array</type>
           </tag>
@@ -1567,7 +1567,7 @@
         </docblock>
         <argument line="44">
           <name>$nameMap</name>
-          <default/>
+          <default></default>
           <type>array</type>
         </argument>
       </method>
@@ -1576,7 +1576,7 @@
         <full_name>isEnabled</full_name>
         <docblock line="49">
           <description>Returns true if QTranslate is installed and active</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="49" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
@@ -1588,7 +1588,7 @@
         <full_name>getLanguage</full_name>
         <docblock line="60">
           <description>Returns the current QTranslate language</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="60" name="return" description="" type="string|bool">
             <type by_reference="false">string</type>
             <type by_reference="false">bool</type>
@@ -1601,7 +1601,7 @@
         <full_name>createTerm</full_name>
         <docblock line="71">
           <description>{@inheritdoc}</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="71" name="param" description="" type="\stdClass" variable="$input">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -1616,12 +1616,12 @@
         </docblock>
         <argument line="80">
           <name>$input</name>
-          <default/>
+          <default></default>
           <type>\stdClass</type>
         </argument>
         <argument line="80">
           <name>$plugin</name>
-          <default/>
+          <default></default>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -1630,7 +1630,7 @@
         <full_name>getTermName</full_name>
         <docblock line="87">
           <description>Returns the QTranslate translated name for the given term name.</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="87" name="param" description="" type="string" variable="$term">
             <type by_reference="false">string</type>
           </tag>
@@ -1641,18 +1641,18 @@
         </docblock>
         <argument line="95">
           <name>$term</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
     </class>
   </file>
-  <file path="Language/TranslationHandler.php" hash="6339aa74016576ccd3e60aa7c2070c0c" package="utcw\language">
+  <file path="Language/TranslationHandler.php" hash="6c3b21fcdf9d469b46be9b44efa887f3" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
+      <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="language"/>
@@ -1664,7 +1664,7 @@
       <full_name>\UTCW_TranslationHandler</full_name>
       <docblock line="20">
         <description>Abstract class to handle multi language support</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="20" name="since" description="2.2"/>
         <tag line="20" name="package" description="utcw"/>
         <tag line="20" name="subpackage" description="language"/>
@@ -1674,7 +1674,7 @@
         <full_name>isEnabled</full_name>
         <docblock line="29">
           <description>Returns true if this multi-language plugin is enabled</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="29" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
@@ -1701,23 +1701,23 @@
         </docblock>
         <argument line="47">
           <name>$input</name>
-          <default/>
+          <default></default>
           <type>\stdClass</type>
         </argument>
         <argument line="47">
           <name>$plugin</name>
-          <default/>
+          <default></default>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
     </class>
   </file>
-  <file path="Language/WPMLHandler.php" hash="c9837d39b91b53f8d1d8e28c8c208772" package="utcw\language">
+  <file path="Language/WPMLHandler.php" hash="74f1b8df03d52ad29c2b2e73ae1416ae" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
+      <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="language"/>
@@ -1729,7 +1729,7 @@
       <full_name>\UTCW_WPMLHandler</full_name>
       <docblock line="20">
         <description>Class to handle WPML multi-language support</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="20" name="since" description="2.2"/>
         <tag line="20" name="package" description="utcw"/>
         <tag line="20" name="subpackage" description="language"/>
@@ -1739,7 +1739,7 @@
         <full_name>isEnabled</full_name>
         <docblock line="29">
           <description>Returns true if WPML is installed and active</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="29" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
@@ -1751,7 +1751,7 @@
         <full_name>getLanguage</full_name>
         <docblock line="40">
           <description>Returns the current WPML language</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="40" name="return" description="" type="bool|string">
             <type by_reference="false">bool</type>
             <type by_reference="false">string</type>
@@ -1764,7 +1764,7 @@
         <full_name>getDefaultLanguage</full_name>
         <docblock line="51">
           <description>Returns the default language for WPML</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="51" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -1776,7 +1776,7 @@
         <full_name>getTermName</full_name>
         <docblock line="64">
           <description>Returns the WPML translated name for the given term name</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="64" name="param" description="" type="string" variable="$term">
             <type by_reference="false">string</type>
           </tag>
@@ -1787,7 +1787,7 @@
         </docblock>
         <argument line="72">
           <name>$term</name>
-          <default/>
+          <default></default>
           <type/>
         </argument>
       </method>
@@ -1796,7 +1796,7 @@
         <full_name>isInCurrentLanguage</full_name>
         <docblock line="86">
           <description>Returns true if the given term input is determined to be in the current language</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="86" name="param" description="" type="\stdClass" variable="$input">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -1807,7 +1807,7 @@
         </docblock>
         <argument line="94">
           <name>$input</name>
-          <default/>
+          <default></default>
           <type>\stdClass</type>
         </argument>
       </method>
@@ -1816,7 +1816,7 @@
         <full_name>createTerm</full_name>
         <docblock line="107">
           <description>{@inheritdoc}</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="107" name="param" description="" type="\stdClass" variable="$input">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -1831,18 +1831,18 @@
         </docblock>
         <argument line="116">
           <name>$input</name>
-          <default/>
+          <default></default>
           <type>\stdClass</type>
         </argument>
         <argument line="116">
           <name>$plugin</name>
-          <default/>
+          <default></default>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
     </class>
   </file>
-  <file path="Plugin.php" hash="ae66cc81e84a1342c30eedabf3b22241" package="utcw\main">
+  <file path="Plugin.php" hash="d8f4d98ae6fb17b765497c52dbecf6ad" package="utcw\main">
     <docblock line="5">
       <description>Class for general plugin integration with WordPress</description>
       <long-description></long-description>
@@ -1858,7 +1858,7 @@
         <description>Ultimate Tag Cloud Widget</description>
         <long-description></long-description>
         <tag line="16" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-        <tag line="16" name="version" description="2.2.3"/>
+        <tag line="16" name="version" description="2.3"/>
         <tag line="16" name="license" description="GPLv2"/>
         <tag line="16" name="package" description="utcw"/>
         <tag line="16" name="subpackage" description="main"/>
@@ -2004,7 +2004,7 @@
         <docblock line="131">
           <description>Outputs all the terms in JSON format</description>
           <long-description></long-description>
-          <tag line="131" name="since" description="2.4"/>
+          <tag line="131" name="since" description="2.3"/>
         </docblock>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="153" package="utcw\main">
@@ -2319,12 +2319,12 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="Render.php" hash="03a536c2b7962675148727529f21f0cb" package="utcw\main">
+  <file path="Render.php" hash="3f84a0b80f2c538dee5d88c80bf4feee" package="utcw\main">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
+      <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="main"/>
@@ -2470,12 +2470,12 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="Selection/PopularityStrategy.php" hash="fa705eb5941bf270d3236acb15e778cb" package="utcw\language">
+  <file path="Selection/PopularityStrategy.php" hash="6bff1588c75186fd060df46de860d774" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
+      <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="language"/>
@@ -2583,12 +2583,12 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="Selection/RandomStrategy.php" hash="3193d5e2edfd35c83c4dbde49fb55fe0" package="utcw\language">
+  <file path="Selection/RandomStrategy.php" hash="4792f5de5e934ae3bcfa6e6a307abf58" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
+      <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="language"/>
@@ -2696,12 +2696,12 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="Selection/SelectionStrategy.php" hash="f40eb49a8ee3612cfb28ea6183fbbfd8" package="utcw\selection">
+  <file path="Selection/SelectionStrategy.php" hash="62a47ebb8dd0bf4c3bdd8edaa24cc440" package="utcw\selection">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="5" name="version" description="2.2.3"/>
+      <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="selection"/>
@@ -2760,12 +2760,12 @@ Loads assets needed by the administration interface</description>
       </method>
     </class>
   </file>
-  <file path="Term.php" hash="c548868b4a6e8baf788dae4dc5be2b6f" package="utcw\main">
+  <file path="Term.php" hash="aef5cebc6bc18a900143bbd24d17c0e6" package="utcw\main">
     <docblock line="7">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="7" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="7" name="version" description="2.2.3"/>
+      <tag line="7" name="version" description="2.3"/>
       <tag line="7" name="license" description="GPLv2"/>
       <tag line="7" name="package" description="utcw"/>
       <tag line="7" name="subpackage" description="main"/>
@@ -2777,17 +2777,17 @@ Loads assets needed by the administration interface</description>
       <full_name>\UTCW_Term</full_name>
       <docblock line="18">
         <description>Class to represent a term</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="18" name="since" description="2.0"/>
         <tag line="18" name="package" description="utcw"/>
         <tag line="18" name="subpackage" description="main"/>
       </docblock>
       <property final="false" static="false" visibility="public" line="34" namespace="global" package="Default">
         <name>$term_id</name>
-        <default/>
+        <default></default>
         <docblock line="28">
           <description>Term ID</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="28" name="var" description="" type="int">
             <type by_reference="false">int</type>
           </tag>
@@ -2796,10 +2796,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="42" namespace="global" package="Default">
         <name>$count</name>
-        <default/>
+        <default></default>
         <docblock line="36">
           <description>Number of posts</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="36" name="var" description="" type="int">
             <type by_reference="false">int</type>
           </tag>
@@ -2808,10 +2808,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="50" namespace="global" package="Default">
         <name>$slug</name>
-        <default/>
+        <default></default>
         <docblock line="44">
           <description>Term slug</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="44" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2820,10 +2820,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="58" namespace="global" package="Default">
         <name>$name</name>
-        <default/>
+        <default></default>
         <docblock line="52">
           <description>Term name</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="52" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2832,10 +2832,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="66" namespace="global" package="Default">
         <name>$link</name>
-        <default/>
+        <default></default>
         <docblock line="60">
           <description>Term link</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="60" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2844,10 +2844,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="74" namespace="global" package="Default">
         <name>$color</name>
-        <default/>
+        <default></default>
         <docblock line="68">
           <description>Term color</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="68" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2856,10 +2856,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="82" namespace="global" package="Default">
         <name>$taxonomy</name>
-        <default/>
+        <default></default>
         <docblock line="76">
           <description>Term taxonomy</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="76" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2868,10 +2868,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="90" namespace="global" package="Default">
         <name>$size</name>
-        <default/>
+        <default></default>
         <docblock line="84">
           <description>Term size</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="84" name="var" description="" type="float">
             <type by_reference="false">float</type>
           </tag>
@@ -2883,7 +2883,7 @@ Loads assets needed by the administration interface</description>
         <full_name>__construct</full_name>
         <docblock line="92">
           <description>Creates a new term</description>
-          <long-description/>
+          <long-description></long-description>
           <tag line="92" name="param" description="Object with properties term_id, count, slug, name, color and taxonomy" type="\stdClass" variable="$input">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -2894,23 +2894,23 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="100">
           <name>$input</name>
-          <default/>
+          <default></default>
           <type>\stdClass</type>
         </argument>
         <argument line="100">
           <name>$plugin</name>
-          <default/>
+          <default></default>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
     </class>
   </file>
-  <file path="Widget.php" hash="1b84e048afa1fbb4cb49d529ebc33151" package="utcw\main">
+  <file path="Widget.php" hash="39b5f6aeae6b87bb7344eddce2b818f4" package="utcw\main">
     <docblock line="7">
       <description>Ultimate Tag Cloud Widget</description>
       <long-description></long-description>
       <tag line="7" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
-      <tag line="7" name="version" description="2.2.3"/>
+      <tag line="7" name="version" description="2.3"/>
       <tag line="7" name="license" description="GPLv2"/>
       <tag line="7" name="package" description="utcw"/>
       <tag line="7" name="subpackage" description="main"/>

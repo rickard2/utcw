@@ -156,10 +156,10 @@
       </method>
     </class>
   </file>
-  <file path="Config/DataConfig.php" hash="325b3d3ba0075b4196817e3e15b8a95a" package="utcw\config">
+  <file path="Config/DataConfig.php" hash="96593d765152e97e40b128053c990622" package="utcw\config">
     <docblock line="2">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="2" name="version" description="2.3"/>
       <tag line="2" name="license" description="GPLv2"/>
@@ -167,55 +167,112 @@
       <tag line="2" name="subpackage" description="config"/>
       <tag line="2" name="since" description="2.3"/>
     </docblock>
-    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+    <class final="false" abstract="false" namespace="global" line="38" package="Default">
       <extends>\UTCW_Config</extends>
       <name>UTCW_DataConfig</name>
       <full_name>\UTCW_DataConfig</full_name>
       <docblock line="13">
         <description>Class to represent a the configuration options for data retrieval</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="13" name="since" description="2.3"/>
+        <tag line="13" name="property-read" description="strategy        Which strategy to use when fetching terms" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="order           How the result should be ordered" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="tags_list_type  How the $tags_list should be used" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="color           Which coloring strategy to use" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="color_span_to   Which color value to start from in color calculation. This is the color that the smallest tag will get." type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="color_span_from Which color value to end at in color calculation. This is the color that the biggest tag will get." type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="color_set       A set of colors to randomly select from when coloring the tags" type="array" variable="">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="13" name="property-read" description="taxonomy        Which taxonomy to show tags from" type="array" variable="">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="13" name="property-read" description="post_type       An array of post type names to to include posts from in tag size calculation" type="array" variable="">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="13" name="property-read" description="authors         Which authors to include posts from. An empty array will include all authors" type="array" variable="">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="13" name="property-read" description="tags_list       A list of term IDs to be included or excluded. Inclusion or exclusion is determined by $tags_list_type" type="array" variable="">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="13" name="property-read" description="post_term       A list of term IDs which the posts needs to have to be included in tag size calculation" type="array" variable="">
+          <type by_reference="false">array</type>
+        </tag>
+        <tag line="13" name="property-read" description="size_from       The smallest possible size" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="size_to         The greatest possible size" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="max             Maximum number of tags to display" type="integer" variable="">
+          <type by_reference="false">integer</type>
+        </tag>
+        <tag line="13" name="property-read" description="minimum         How many posts a term needs to have to be shown in the cloud" type="integer" variable="">
+          <type by_reference="false">integer</type>
+        </tag>
+        <tag line="13" name="property-read" description="days_old        How many days old a post needs to be to be included in tag size calculation" type="integer" variable="">
+          <type by_reference="false">integer</type>
+        </tag>
+        <tag line="13" name="property-read" description="reverse         If the order of tags should be shown in reverse order" type="bool" variable="">
+          <type by_reference="false">bool</type>
+        </tag>
+        <tag line="13" name="property-read" description="case_sensitive  If sorting should be applied case sensitive" type="bool" variable="">
+          <type by_reference="false">bool</type>
+        </tag>
       </docblock>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="28" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="48" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="20">
+        <docblock line="40">
           <description>Creates a new instance of the class and adds all the options</description>
-          <long-description/>
-          <tag line="20" name="param" description="" type="array" variable="$input">
+          <long-description></long-description>
+          <tag line="40" name="param" description="" type="array" variable="$input">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="20" name="param" description="" type="\UTCW_Plugin" variable="$plugin">
+          <tag line="40" name="param" description="" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
-          <tag line="20" name="since" description="2.3"/>
+          <tag line="40" name="since" description="2.3"/>
         </docblock>
-        <argument line="28">
+        <argument line="48">
           <name>$input</name>
-          <default/>
+          <default></default>
           <type>array</type>
         </argument>
-        <argument line="28">
+        <argument line="48">
           <name>$plugin</name>
-          <default/>
+          <default></default>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="80" package="Default">
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="100" package="Default">
         <name>checkSizes</name>
         <full_name>checkSizes</full_name>
-        <docblock line="75">
+        <docblock line="95">
           <description>Checks if size_from and size_to have correct values, and reverts to defaults if they don't</description>
-          <long-description/>
-          <tag line="75" name="since" description="2.3"/>
+          <long-description></long-description>
+          <tag line="95" name="since" description="2.3"/>
         </docblock>
       </method>
     </class>
   </file>
-  <file path="Config/RenderConfig.php" hash="6e06381873fcb3271c5432a3721daf1e" package="utcw\config">
+  <file path="Config/RenderConfig.php" hash="bae245cc95c2d84fe56db58bcfe05675" package="utcw\config">
     <docblock line="2">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description/>
+      <long-description></long-description>
       <tag line="2" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="2" name="version" description="2.3"/>
       <tag line="2" name="license" description="GPLv2"/>
@@ -223,85 +280,187 @@
       <tag line="2" name="subpackage" description="config"/>
       <tag line="2" name="since" description="2.3"/>
     </docblock>
-    <class final="false" abstract="false" namespace="global" line="18" package="Default">
+    <class final="false" abstract="false" namespace="global" line="53" package="Default">
       <extends>\UTCW_Config</extends>
       <name>UTCW_RenderConfig</name>
       <full_name>\UTCW_RenderConfig</full_name>
       <docblock line="13">
         <description>Class to represent a the configuration options for cloud rendering retrieval</description>
-        <long-description/>
+        <long-description></long-description>
         <tag line="13" name="since" description="2.3"/>
+        <tag line="13" name="property-read" description="title               Title text of the widget" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="letter_spacing      CSS letter-spacing value (in pixels)" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="word_spacing        CSS word-spacing value (in pixels)" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="text_transform      CSS text-transform value" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="show_title          If the title attribute should be added to links in the cloud" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="show_links          If the tags should be wrapped in links" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="link_underline      If links should be styled with underline decoration" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="link_bold           If links should be styled as bold" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="link_italic         If links should be styled as italic" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="link_bg_color       Background color for links" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="link_border_style   Border style for links" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="link_border_width   Border width for links" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="link_border_color   Border color for links" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="hover_underline     If links should be decorated with underline decoration in their hover state" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="hover_bold          If links should be styled as bold in their hover state" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="hover_italic        If links should be styled as italic in their hover state" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="hover_bg_color      Background color for links in their hover state" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="hover_color         Text color for links in their hover state" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="hover_border_style  Border style for links in their hover state" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="hover_border_width  Border width for links in their hover state" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="hover_border_color  Border color for links in their hover state" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="tag_spacing         CSS margin between tags" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="debug               If debug output should be included" type="bool" variable="">
+          <type by_reference="false">bool</type>
+        </tag>
+        <tag line="13" name="property-read" description="line_height         CSS line-height for the tags" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="separator           Separator between tags" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="prefix              Prefix before each tag" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="suffix              Suffix after each tag" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="show_title_text     If the widget title should be shown" type="bool" variable="">
+          <type by_reference="false">bool</type>
+        </tag>
+        <tag line="13" name="property-read" description="alignment           How the text in the resulting cloud should be aligned" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="display             How the resulting cloud should be displayed" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="before_widget       @internal" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="after_widget        @internal" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="before_title        @internal" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="13" name="property-read" description="after_title         @internal" type="string" variable="">
+          <type by_reference="false">string</type>
+        </tag>
       </docblock>
-      <property final="false" static="false" visibility="protected" line="27" namespace="global" package="Default">
+      <property final="false" static="false" visibility="protected" line="61" namespace="global" package="Default">
         <name>$optionalBooleanValues</name>
         <default>array('default', 'yes', 'no')</default>
-        <docblock line="21">
+        <docblock line="55">
           <description>Valid values for optional boolean set</description>
-          <long-description/>
-          <tag line="21" name="var" description="" type="array">
+          <long-description></long-description>
+          <tag line="55" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="21" name="since" description="2.3"/>
+          <tag line="55" name="since" description="2.3"/>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="protected" line="35" namespace="global" package="Default">
+      <property final="false" static="false" visibility="protected" line="69" namespace="global" package="Default">
         <name>$borderStyleValues</name>
         <default>array('none', 'dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset')</default>
-        <docblock line="29">
+        <docblock line="63">
           <description>Valid values for border style set</description>
-          <long-description/>
-          <tag line="29" name="var" description="" type="array">
+          <long-description></long-description>
+          <tag line="63" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="29" name="since" description="2.3"/>
+          <tag line="63" name="since" description="2.3"/>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="protected" line="53" namespace="global" package="Default">
+      <property final="false" static="false" visibility="protected" line="87" namespace="global" package="Default">
         <name>$alignmentValues</name>
         <default>array('left', 'right', 'center', 'justify')</default>
-        <docblock line="47">
+        <docblock line="81">
           <description>Valid values for alignment set</description>
-          <long-description/>
-          <tag line="47" name="var" description="" type="array">
+          <long-description></long-description>
+          <tag line="81" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="47" name="since" description="2.3"/>
+          <tag line="81" name="since" description="2.3"/>
         </docblock>
       </property>
-      <property final="false" static="false" visibility="protected" line="66" namespace="global" package="Default">
+      <property final="false" static="false" visibility="protected" line="100" namespace="global" package="Default">
         <name>$displayValues</name>
         <default>array('inline', 'list')</default>
-        <docblock line="60">
+        <docblock line="94">
           <description>Valid values for display set</description>
-          <long-description/>
-          <tag line="60" name="var" description="" type="array">
+          <long-description></long-description>
+          <tag line="94" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="60" name="since" description="2.3"/>
+          <tag line="94" name="since" description="2.3"/>
         </docblock>
       </property>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="76" package="Default">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="110" package="Default">
         <name>__construct</name>
         <full_name>__construct</full_name>
-        <docblock line="68">
+        <docblock line="102">
           <description>Creates a new instance of the class and adds all the options</description>
-          <long-description/>
-          <tag line="68" name="param" description="" type="array" variable="$input">
+          <long-description></long-description>
+          <tag line="102" name="param" description="" type="array" variable="$input">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="68" name="param" description="" type="\UTCW_Plugin" variable="$plugin">
+          <tag line="102" name="param" description="" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
-          <tag line="68" name="since" description="2.3"/>
+          <tag line="102" name="since" description="2.3"/>
         </docblock>
-        <argument line="76">
+        <argument line="110">
           <name>$input</name>
-          <default/>
+          <default></default>
           <type>array</type>
         </argument>
-        <argument line="76">
+        <argument line="110">
           <name>$plugin</name>
-          <default/>
+          <default></default>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -929,7 +1088,7 @@
   <file path="Data.php" hash="96a84e323162d16aa3e0dddf13daf681" package="utcw\main">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
@@ -943,17 +1102,17 @@
       <full_name>\UTCW_Data</full_name>
       <docblock line="22">
         <description>Class for loading data for the cloud</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="22" name="since" description="2.0"/>
         <tag line="22" name="package" description="utcw"/>
         <tag line="22" name="subpackage" description="main"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="38" namespace="global" package="Default">
         <name>$config</name>
-        <default></default>
+        <default/>
         <docblock line="32">
           <description>Reference to the current configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="32" name="var" description="" type="\UTCW_Config">
             <type by_reference="false">\UTCW_Config</type>
           </tag>
@@ -962,10 +1121,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="46" namespace="global" package="Default">
         <name>$db</name>
-        <default></default>
+        <default/>
         <docblock line="40">
           <description>Reference to WPDB object</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="40" name="var" description="" type="\wpdb">
             <type by_reference="false">\wpdb</type>
           </tag>
@@ -974,10 +1133,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="54" namespace="global" package="Default">
         <name>$plugin</name>
-        <default></default>
+        <default/>
         <docblock line="48">
           <description>Reference to main plugin instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="48" name="var" description="" type="\UTCW_Plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -986,10 +1145,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="62" namespace="global" package="Default">
         <name>$strategy</name>
-        <default></default>
+        <default/>
         <docblock line="56">
           <description>Reference to the selection strategy used</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="56" name="var" description="" type="\UTCW_SelectionStrategy">
             <type by_reference="false">\UTCW_SelectionStrategy</type>
           </tag>
@@ -998,10 +1157,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="70" namespace="global" package="Default">
         <name>$translationHandler</name>
-        <default></default>
+        <default/>
         <docblock line="64">
           <description>Reference to the translation handler used</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="64" name="var" description="" type="\UTCW_TranslationHandler">
             <type by_reference="false">\UTCW_TranslationHandler</type>
           </tag>
@@ -1010,10 +1169,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="78" namespace="global" package="Default">
         <name>$terms</name>
-        <default></default>
+        <default/>
         <docblock line="72">
           <description>Contains the created terms</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="72" name="var" description="" type="\UTCW_Term[]">
             <type by_reference="false">\UTCW_Term[]</type>
           </tag>
@@ -1022,10 +1181,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="86" namespace="global" package="Default">
         <name>$result</name>
-        <default></default>
+        <default/>
         <docblock line="80">
           <description>Contains the result from loading the terms</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="80" name="var" description="" type="\stdClass[]">
             <type by_reference="false">\stdClass[]</type>
           </tag>
@@ -1037,7 +1196,7 @@
         <full_name>__construct</full_name>
         <docblock line="88">
           <description>Creates a new instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="88" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -1045,7 +1204,7 @@
         </docblock>
         <argument line="95">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -1054,7 +1213,7 @@
         <full_name>getTerms</full_name>
         <docblock line="111">
           <description>Loads terms based on current configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="111" name="return" description="" type="\UTCW_Term[]">
             <type by_reference="false">\UTCW_Term[]</type>
           </tag>
@@ -1066,7 +1225,7 @@
         <full_name>calcColor</full_name>
         <docblock line="213">
           <description>Calculate term color</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="213" name="param" description="Min count of all the terms" type="int" variable="$min_count">
             <type by_reference="false">int</type>
           </tag>
@@ -1086,22 +1245,22 @@
         </docblock>
         <argument line="224">
           <name>$min_count</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="224">
           <name>$max_count</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="224">
           <name>$colors</name>
-          <default></default>
+          <default/>
           <type>\stdClass</type>
         </argument>
         <argument line="224">
           <name>$count</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1110,7 +1269,7 @@
         <full_name>calcSize</full_name>
         <docblock line="239">
           <description>Calculate term size</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="239" name="param" description="Configured min size" type="int" variable="$size_from">
             <type by_reference="false">int</type>
           </tag>
@@ -1130,22 +1289,22 @@
         </docblock>
         <argument line="250">
           <name>$size_from</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="250">
           <name>$count</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="250">
           <name>$min_count</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="250">
           <name>$font_step</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1154,7 +1313,7 @@
         <full_name>calcStep</full_name>
         <docblock line="255">
           <description>Calculate step size</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="255" name="param" description="Minimum count" type="int" variable="$min">
             <type by_reference="false">int</type>
           </tag>
@@ -1174,22 +1333,22 @@
         </docblock>
         <argument line="266">
           <name>$min</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="266">
           <name>$max</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="266">
           <name>$from</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="266">
           <name>$to</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1198,7 +1357,7 @@
         <full_name>cleanupForDebug</full_name>
         <docblock line="279">
           <description>Cleans up sensitive data before being used in debug output</description>
-          <long-description></long-description>
+          <long-description/>
         </docblock>
       </method>
     </class>
@@ -1206,7 +1365,7 @@
   <file path="Database/QueryBuilder.php" hash="1a0701de777c9c26938657113099074f" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
@@ -1220,17 +1379,17 @@
       <full_name>\UTCW_QueryBuilder</full_name>
       <docblock line="19">
         <description>Class to handle QTranslate multi language support</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="19" name="since" description="2.2"/>
         <tag line="19" name="package" description="utcw"/>
         <tag line="19" name="subpackage" description="database"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="35" namespace="global" package="Default">
         <name>$db</name>
-        <default></default>
+        <default/>
         <docblock line="29">
           <description>Database reference</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="29" name="var" description="" type="\wpdb">
             <type by_reference="false">\wpdb</type>
           </tag>
@@ -1242,7 +1401,7 @@
         <full_name>__construct</full_name>
         <docblock line="37">
           <description>Creates a new instance of the QueryBuilder</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="37" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -1250,7 +1409,7 @@
         </docblock>
         <argument line="44">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -1259,7 +1418,7 @@
         <full_name>getQuery</full_name>
         <docblock line="52">
           <description>Returns the resulting query</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="52" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -1271,7 +1430,7 @@
         <full_name>getParameters</full_name>
         <docblock line="63">
           <description>Returns the parameters for the resulting query</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="63" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -1283,7 +1442,7 @@
         <full_name>addStatement</full_name>
         <docblock line="74">
           <description>Add a statement to the query</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="74" name="param" description="" type="string" variable="$statement">
             <type by_reference="false">string</type>
           </tag>
@@ -1291,7 +1450,7 @@
         </docblock>
         <argument line="81">
           <name>$statement</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1300,7 +1459,7 @@
         <full_name>getBaseQuery</full_name>
         <docblock line="86">
           <description>Returns the base query with joins</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="86" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -1312,7 +1471,7 @@
         <full_name>addAuthorConstraint</full_name>
         <docblock line="105">
           <description>Add author constraint</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="105" name="param" description="" type="array" variable="$authors">
             <type by_reference="false">array</type>
           </tag>
@@ -1320,7 +1479,7 @@
         </docblock>
         <argument line="112">
           <name>$authors</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -1329,7 +1488,7 @@
         <full_name>addPostTermConstraint</full_name>
         <docblock line="126">
           <description>Add post term relationship constraint</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="126" name="param" description="" type="array" variable="$post_terms">
             <type by_reference="false">array</type>
           </tag>
@@ -1337,7 +1496,7 @@
         </docblock>
         <argument line="133">
           <name>$post_terms</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -1346,7 +1505,7 @@
         <full_name>addPostTypeConstraint</full_name>
         <docblock line="151">
           <description>Add post type constraint</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="151" name="param" description="" type="array" variable="$post_types">
             <type by_reference="false">array</type>
           </tag>
@@ -1354,7 +1513,7 @@
         </docblock>
         <argument line="158">
           <name>$post_types</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -1363,7 +1522,7 @@
         <full_name>addPostStatusConstraint</full_name>
         <docblock line="170">
           <description>Add post status constraint</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="170" name="param" description="" type="bool" variable="$authenticated">
             <type by_reference="false">bool</type>
           </tag>
@@ -1371,7 +1530,7 @@
         </docblock>
         <argument line="177">
           <name>$authenticated</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1380,7 +1539,7 @@
         <full_name>addDaysOldConstraint</full_name>
         <docblock line="187">
           <description>Add days old constraint</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="187" name="param" description="" type="int" variable="$days_old">
             <type by_reference="false">int</type>
           </tag>
@@ -1388,7 +1547,7 @@
         </docblock>
         <argument line="194">
           <name>$days_old</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1397,7 +1556,7 @@
         <full_name>addTaxonomyConstraint</full_name>
         <docblock line="202">
           <description>Add taxonomies constraint</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="202" name="param" description="" type="array" variable="$taxonomies">
             <type by_reference="false">array</type>
           </tag>
@@ -1405,7 +1564,7 @@
         </docblock>
         <argument line="209">
           <name>$taxonomies</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -1414,7 +1573,7 @@
         <full_name>addTagsListConstraint</full_name>
         <docblock line="221">
           <description>Add include or exclude constraint</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="221" name="param" description="" type="string" variable="$type">
             <type by_reference="false">string</type>
           </tag>
@@ -1428,17 +1587,17 @@
         </docblock>
         <argument line="230">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="230">
           <name>$list</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
         <argument line="230">
           <name>$taxonomy</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -1447,7 +1606,7 @@
         <full_name>addGrouping</full_name>
         <docblock line="252">
           <description>Add grouping statement</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="252" name="since" description="2.2"/>
         </docblock>
       </method>
@@ -1456,7 +1615,7 @@
         <full_name>addMinimum</full_name>
         <docblock line="262">
           <description>Add minimum constraint</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="262" name="param" description="" type="int" variable="$minimum">
             <type by_reference="false">int</type>
           </tag>
@@ -1464,7 +1623,7 @@
         </docblock>
         <argument line="269">
           <name>$minimum</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1473,7 +1632,7 @@
         <full_name>addMaxConstraint</full_name>
         <docblock line="277">
           <description>Add max constraint</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="277" name="param" description="" type="int" variable="$max">
             <type by_reference="false">int</type>
           </tag>
@@ -1481,7 +1640,7 @@
         </docblock>
         <argument line="284">
           <name>$max</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1490,7 +1649,7 @@
         <full_name>addSort</full_name>
         <docblock line="290">
           <description>Add sorting the result</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="290" name="param" description="" type="string" variable="$order">
             <type by_reference="false">string</type>
           </tag>
@@ -1504,17 +1663,17 @@
         </docblock>
         <argument line="299">
           <name>$order</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="299">
           <name>$reverse</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="299">
           <name>$case_sensitive</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1523,7 +1682,7 @@
   <file path="Language/QTranslateHandler.php" hash="5c40bbb32c2e852637195eeedf7a656b" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
@@ -1537,17 +1696,17 @@
       <full_name>\UTCW_QTranslateHandler</full_name>
       <docblock line="20">
         <description>Class to handle QTranslate multi language support</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="20" name="since" description="2.2"/>
         <tag line="20" name="package" description="utcw"/>
         <tag line="20" name="subpackage" description="language"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="35" namespace="global" package="Default">
         <name>$nameMap</name>
-        <default></default>
+        <default/>
         <docblock line="29">
           <description>An array of term names mapped to translated names</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="29" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -1559,7 +1718,7 @@
         <full_name>__construct</full_name>
         <docblock line="37">
           <description>Initializes the class with a map of term names</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="37" name="param" description="An array of term names mapped to translated names" type="array" variable="$nameMap">
             <type by_reference="false">array</type>
           </tag>
@@ -1567,7 +1726,7 @@
         </docblock>
         <argument line="44">
           <name>$nameMap</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -1576,7 +1735,7 @@
         <full_name>isEnabled</full_name>
         <docblock line="49">
           <description>Returns true if QTranslate is installed and active</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="49" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
@@ -1588,7 +1747,7 @@
         <full_name>getLanguage</full_name>
         <docblock line="60">
           <description>Returns the current QTranslate language</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="60" name="return" description="" type="string|bool">
             <type by_reference="false">string</type>
             <type by_reference="false">bool</type>
@@ -1601,7 +1760,7 @@
         <full_name>createTerm</full_name>
         <docblock line="71">
           <description>{@inheritdoc}</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="71" name="param" description="" type="\stdClass" variable="$input">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -1616,12 +1775,12 @@
         </docblock>
         <argument line="80">
           <name>$input</name>
-          <default></default>
+          <default/>
           <type>\stdClass</type>
         </argument>
         <argument line="80">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -1630,7 +1789,7 @@
         <full_name>getTermName</full_name>
         <docblock line="87">
           <description>Returns the QTranslate translated name for the given term name.</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="87" name="param" description="" type="string" variable="$term">
             <type by_reference="false">string</type>
           </tag>
@@ -1641,7 +1800,7 @@
         </docblock>
         <argument line="95">
           <name>$term</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1650,7 +1809,7 @@
   <file path="Language/TranslationHandler.php" hash="6c3b21fcdf9d469b46be9b44efa887f3" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
@@ -1664,7 +1823,7 @@
       <full_name>\UTCW_TranslationHandler</full_name>
       <docblock line="20">
         <description>Abstract class to handle multi language support</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="20" name="since" description="2.2"/>
         <tag line="20" name="package" description="utcw"/>
         <tag line="20" name="subpackage" description="language"/>
@@ -1674,7 +1833,7 @@
         <full_name>isEnabled</full_name>
         <docblock line="29">
           <description>Returns true if this multi-language plugin is enabled</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="29" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
@@ -1701,12 +1860,12 @@
         </docblock>
         <argument line="47">
           <name>$input</name>
-          <default></default>
+          <default/>
           <type>\stdClass</type>
         </argument>
         <argument line="47">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -1715,7 +1874,7 @@
   <file path="Language/WPMLHandler.php" hash="74f1b8df03d52ad29c2b2e73ae1416ae" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
@@ -1729,7 +1888,7 @@
       <full_name>\UTCW_WPMLHandler</full_name>
       <docblock line="20">
         <description>Class to handle WPML multi-language support</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="20" name="since" description="2.2"/>
         <tag line="20" name="package" description="utcw"/>
         <tag line="20" name="subpackage" description="language"/>
@@ -1739,7 +1898,7 @@
         <full_name>isEnabled</full_name>
         <docblock line="29">
           <description>Returns true if WPML is installed and active</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="29" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
@@ -1751,7 +1910,7 @@
         <full_name>getLanguage</full_name>
         <docblock line="40">
           <description>Returns the current WPML language</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="40" name="return" description="" type="bool|string">
             <type by_reference="false">bool</type>
             <type by_reference="false">string</type>
@@ -1764,7 +1923,7 @@
         <full_name>getDefaultLanguage</full_name>
         <docblock line="51">
           <description>Returns the default language for WPML</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="51" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -1776,7 +1935,7 @@
         <full_name>getTermName</full_name>
         <docblock line="64">
           <description>Returns the WPML translated name for the given term name</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="64" name="param" description="" type="string" variable="$term">
             <type by_reference="false">string</type>
           </tag>
@@ -1787,7 +1946,7 @@
         </docblock>
         <argument line="72">
           <name>$term</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1796,7 +1955,7 @@
         <full_name>isInCurrentLanguage</full_name>
         <docblock line="86">
           <description>Returns true if the given term input is determined to be in the current language</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="86" name="param" description="" type="\stdClass" variable="$input">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -1807,7 +1966,7 @@
         </docblock>
         <argument line="94">
           <name>$input</name>
-          <default></default>
+          <default/>
           <type>\stdClass</type>
         </argument>
       </method>
@@ -1816,7 +1975,7 @@
         <full_name>createTerm</full_name>
         <docblock line="107">
           <description>{@inheritdoc}</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="107" name="param" description="" type="\stdClass" variable="$input">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -1831,12 +1990,12 @@
         </docblock>
         <argument line="116">
           <name>$input</name>
-          <default></default>
+          <default/>
           <type>\stdClass</type>
         </argument>
         <argument line="116">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -1845,7 +2004,7 @@
   <file path="Plugin.php" hash="d8f4d98ae6fb17b765497c52dbecf6ad" package="utcw\main">
     <docblock line="5">
       <description>Class for general plugin integration with WordPress</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="since" description="2.0"/>
       <tag line="5" name="package" description="utcw"/>
       <tag line="5" name="subpackage" description="main"/>
@@ -1856,7 +2015,7 @@
       <full_name>\UTCW_Plugin</full_name>
       <docblock line="16">
         <description>Ultimate Tag Cloud Widget</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="16" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
         <tag line="16" name="version" description="2.3"/>
         <tag line="16" name="license" description="GPLv2"/>
@@ -1869,7 +2028,7 @@
         <default>array()</default>
         <docblock line="29">
           <description>An array of which taxonomies are available</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="29" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -1881,7 +2040,7 @@
         <default>array()</default>
         <docblock line="37">
           <description>An array of which post types are available</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="37" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -1893,7 +2052,7 @@
         <default>array()</default>
         <docblock line="46">
           <description>An array of dependencies</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="46" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -1902,10 +2061,10 @@
       </property>
       <property final="false" static="true" visibility="private" line="60" namespace="global" package="Default">
         <name>$instance</name>
-        <default></default>
+        <default/>
         <docblock line="54">
           <description>Singleton instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="54" name="var" description="" type="\UTCW_Plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -1917,7 +2076,7 @@
         <full_name>__construct</full_name>
         <docblock line="62">
           <description>Initializes the WordPress hooks needed</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="62" name="todo" description="Add tests that these hooks are set"/>
           <tag line="62" name="since" description="2.0"/>
         </docblock>
@@ -1927,7 +2086,7 @@
         <full_name>set</full_name>
         <docblock line="77">
           <description>Set dependency in the container</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="77" name="param" description="" type="string" variable="$key">
             <type by_reference="false">string</type>
           </tag>
@@ -1938,12 +2097,12 @@
         </docblock>
         <argument line="85">
           <name>$key</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="85">
           <name>$value</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1952,7 +2111,7 @@
         <full_name>get</full_name>
         <docblock line="90">
           <description>Get dependency from the container</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="90" name="param" description="" type="string" variable="$key">
             <type by_reference="false">string</type>
           </tag>
@@ -1964,7 +2123,7 @@
         </docblock>
         <argument line="98">
           <name>$key</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1973,7 +2132,7 @@
         <full_name>remove</full_name>
         <docblock line="103">
           <description>Removes the dependency from the container</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="103" name="param" description="" type="string" variable="$key">
             <type by_reference="false">string</type>
           </tag>
@@ -1981,7 +2140,7 @@
         </docblock>
         <argument line="110">
           <name>$key</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -1990,7 +2149,7 @@
         <full_name>getInstance</full_name>
         <docblock line="115">
           <description>Returns an instance of the plugin</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="115" name="static" description=""/>
           <tag line="115" name="return" description="" type="\UTCW_Plugin">
             <type by_reference="false">\UTCW_Plugin</type>
@@ -2003,7 +2162,7 @@
         <full_name>getTermsJson</full_name>
         <docblock line="131">
           <description>Outputs all the terms in JSON format</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="131" name="since" description="2.3"/>
         </docblock>
       </method>
@@ -2013,7 +2172,7 @@
         <docblock line="147">
           <description>Action handler for 'wpLoaded' hook
 Loads taxonomies and post types</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="147" name="since" description="2.0"/>
         </docblock>
       </method>
@@ -2022,7 +2181,7 @@ Loads taxonomies and post types</description>
         <full_name>shortcode</full_name>
         <docblock line="159">
           <description>Shortcode handler for 'utcw' hook</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="159" name="param" description="" type="array" variable="$args">
             <type by_reference="false">array</type>
           </tag>
@@ -2033,7 +2192,7 @@ Loads taxonomies and post types</description>
         </docblock>
         <argument line="167">
           <name>$args</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -2043,7 +2202,7 @@ Loads taxonomies and post types</description>
         <docblock line="189">
           <description>Action handler for 'admin_head-widgets.php' hook
 Loads assets needed by the administration interface</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="189" name="since" description="2.0"/>
         </docblock>
       </method>
@@ -2052,7 +2211,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getAllowedTaxonomies</full_name>
         <docblock line="233">
           <description>Returns an array with the names of allowed taxonomies</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="233" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -2064,7 +2223,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getAllowedTaxonomiesObjects</full_name>
         <docblock line="244">
           <description>Returns allowed taxonomies as objects</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="244" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -2088,7 +2247,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getAllowedPostTypes</full_name>
         <docblock line="272">
           <description>Returns an array with the names of allowed post types</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="272" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -2100,7 +2259,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getUsers</full_name>
         <docblock line="283">
           <description>Returns the users on this blog</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="283" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -2112,7 +2271,7 @@ Loads assets needed by the administration interface</description>
         <full_name>removeConfiguration</full_name>
         <docblock line="300">
           <description>Removes a previously saved configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="300" name="param" description="" type="string" variable="$name">
             <type by_reference="false">string</type>
           </tag>
@@ -2123,7 +2282,7 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="308">
           <name>$name</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -2132,7 +2291,7 @@ Loads assets needed by the administration interface</description>
         <full_name>saveConfiguration</full_name>
         <docblock line="320">
           <description>Saves the configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="320" name="param" description="Name of configuration" type="string" variable="$name">
             <type by_reference="false">string</type>
           </tag>
@@ -2146,12 +2305,12 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="329">
           <name>$name</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="329">
           <name>$config</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -2160,7 +2319,7 @@ Loads assets needed by the administration interface</description>
         <full_name>loadConfiguration</full_name>
         <docblock line="337">
           <description>Loads saved configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="337" name="param" description="Name of configuration" type="string" variable="$name">
             <type by_reference="false">string</type>
           </tag>
@@ -2172,7 +2331,7 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="345">
           <name>$name</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -2181,7 +2340,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getConfigurations</full_name>
         <docblock line="356">
           <description>Get saved configurations</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="356" name="return" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -2193,7 +2352,7 @@ Loads assets needed by the administration interface</description>
         <full_name>setConfigurations</full_name>
         <docblock line="367">
           <description>Set saved configurations</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="367" name="param" description="" type="array" variable="$configs">
             <type by_reference="false">array</type>
           </tag>
@@ -2204,7 +2363,7 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="375">
           <name>$configs</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -2213,7 +2372,7 @@ Loads assets needed by the administration interface</description>
         <full_name>isAuthenticatedUser</full_name>
         <docblock line="380">
           <description>Returns boolean true if the current page request is for an authenticated user</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="380" name="return" description="" type="bool">
             <type by_reference="false">bool</type>
           </tag>
@@ -2225,7 +2384,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getTermLink</full_name>
         <docblock line="391">
           <description>Returns an absolute URI to the archive page for the term</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="391" name="param" description="Term ID" type="int" variable="$term_id">
             <type by_reference="false">int</type>
           </tag>
@@ -2239,12 +2398,12 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="400">
           <name>$term_id</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="400">
           <name>$taxonomy</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -2253,7 +2412,7 @@ Loads assets needed by the administration interface</description>
         <full_name>checkTermTaxonomy</full_name>
         <docblock line="407">
           <description>Check if the term exist for any of the taxonomies</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="407" name="param" description="Term ID" type="int" variable="$term_id">
             <type by_reference="false">int</type>
           </tag>
@@ -2267,12 +2426,12 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="416">
           <name>$term_id</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="416">
           <name>$taxonomy</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -2281,7 +2440,7 @@ Loads assets needed by the administration interface</description>
         <full_name>applyFilters</full_name>
         <docblock line="428">
           <description>Apply filters</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="428" name="param" description="" type="string" variable="$tag">
             <type by_reference="false">string</type>
           </tag>
@@ -2296,12 +2455,12 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="437">
           <name>$tag</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="437">
           <name>$value</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -2310,7 +2469,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getTranslationHandler</full_name>
         <docblock line="442">
           <description>Returns a new instance of the QTranslate Handler class</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="442" name="return" description="" type="null|\UTCW_TranslationHandler">
             <type by_reference="false">null</type>
             <type by_reference="false">\UTCW_TranslationHandler</type>
@@ -2322,7 +2481,7 @@ Loads assets needed by the administration interface</description>
   <file path="Render.php" hash="3f84a0b80f2c538dee5d88c80bf4feee" package="utcw\main">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
@@ -2336,17 +2495,17 @@ Loads assets needed by the administration interface</description>
       <full_name>\UTCW_Render</full_name>
       <docblock line="16">
         <description>Class for rendering the cloud</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="16" name="since" description="2.0"/>
         <tag line="16" name="package" description="utcw"/>
         <tag line="16" name="subpackage" description="main"/>
       </docblock>
       <property final="false" static="false" visibility="private" line="32" namespace="global" package="Default">
         <name>$data</name>
-        <default></default>
+        <default/>
         <docblock line="26">
           <description>Reference to the Data class which contains the data to be rendered</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="26" name="var" description="" type="\UTCW_Data">
             <type by_reference="false">\UTCW_Data</type>
           </tag>
@@ -2355,10 +2514,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="private" line="40" namespace="global" package="Default">
         <name>$config</name>
-        <default></default>
+        <default/>
         <docblock line="34">
           <description>Reference to the current configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="34" name="var" description="" type="\UTCW_Config">
             <type by_reference="false">\UTCW_Config</type>
           </tag>
@@ -2367,10 +2526,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="private" line="48" namespace="global" package="Default">
         <name>$plugin</name>
-        <default></default>
+        <default/>
         <docblock line="42">
           <description>Reference to the main plugin instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="42" name="var" description="" type="\UTCW_Plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -2379,10 +2538,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="private" line="56" namespace="global" package="Default">
         <name>$id</name>
-        <default></default>
+        <default/>
         <docblock line="50">
           <description>Unique ID for this widget configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="50" name="var" description="" type="int">
             <type by_reference="false">int</type>
           </tag>
@@ -2394,7 +2553,7 @@ Loads assets needed by the administration interface</description>
         <default>''</default>
         <docblock line="58">
           <description>CSS styles for this widget instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="58" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2406,7 +2565,7 @@ Loads assets needed by the administration interface</description>
         <full_name>__construct</full_name>
         <docblock line="66">
           <description>Creates a new instance of the renderer</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="66" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -2414,7 +2573,7 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="73">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -2423,7 +2582,7 @@ Loads assets needed by the administration interface</description>
         <full_name>render</full_name>
         <docblock line="83">
           <description>Renders the cloud as output</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="83" name="since" description="2.0"/>
         </docblock>
       </method>
@@ -2432,7 +2591,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getCloud</full_name>
         <docblock line="93">
           <description>Returns the cloud as a string</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="93" name="return" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2444,7 +2603,7 @@ Loads assets needed by the administration interface</description>
         <full_name>buildCSS</full_name>
         <docblock line="177">
           <description>Builds the CSS needed to properly style the cloud</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="177" name="since" description="2.0"/>
         </docblock>
       </method>
@@ -2453,7 +2612,7 @@ Loads assets needed by the administration interface</description>
         <full_name>hasDefaultValue</full_name>
         <docblock line="330">
           <description>Checks if option still has the default value</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="330" name="param" description="" type="string" variable="$option">
             <type by_reference="false">string</type>
           </tag>
@@ -2464,7 +2623,7 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="338">
           <name>$option</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
       </method>
@@ -2473,7 +2632,7 @@ Loads assets needed by the administration interface</description>
   <file path="Selection/PopularityStrategy.php" hash="6bff1588c75186fd060df46de860d774" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
@@ -2487,17 +2646,17 @@ Loads assets needed by the administration interface</description>
       <full_name>\UTCW_PopularityStrategy</full_name>
       <docblock line="22">
         <description>Class to select the most popular terms from the DB</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="22" name="since" description="2.2"/>
         <tag line="22" name="package" description="utcw"/>
         <tag line="22" name="subpackage" description="selection"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="37" namespace="global" package="Default">
         <name>$config</name>
-        <default></default>
+        <default/>
         <docblock line="31">
           <description>Config class instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="31" name="var" description="" type="\UTCW_Config">
             <type by_reference="false">\UTCW_Config</type>
           </tag>
@@ -2506,10 +2665,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="protected" line="45" namespace="global" package="Default">
         <name>$plugin</name>
-        <default></default>
+        <default/>
         <docblock line="39">
           <description>Plugin class instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="39" name="var" description="" type="\UTCW_Plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -2518,10 +2677,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="protected" line="53" namespace="global" package="Default">
         <name>$db</name>
-        <default></default>
+        <default/>
         <docblock line="47">
           <description>WP Database class instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="47" name="var" description="" type="\wpdb">
             <type by_reference="false">\wpdb</type>
           </tag>
@@ -2530,10 +2689,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="protected" line="61" namespace="global" package="Default">
         <name>$query</name>
-        <default></default>
+        <default/>
         <docblock line="55">
           <description>A copy of the SQL query for debugging purposes</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="55" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2545,7 +2704,7 @@ Loads assets needed by the administration interface</description>
         <full_name>__construct</full_name>
         <docblock line="63">
           <description>Creates a new instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="63" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -2553,7 +2712,7 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="70">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -2562,7 +2721,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getData</full_name>
         <docblock line="77">
           <description>Returns term data based on current configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="77" name="return" description="" type="\stdClass[]">
             <type by_reference="false">\stdClass[]</type>
           </tag>
@@ -2574,7 +2733,7 @@ Loads assets needed by the administration interface</description>
         <full_name>cleanupForDebug</full_name>
         <docblock line="114">
           <description>Clean up the internal members for debug output</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="114" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
@@ -2586,7 +2745,7 @@ Loads assets needed by the administration interface</description>
   <file path="Selection/RandomStrategy.php" hash="4792f5de5e934ae3bcfa6e6a307abf58" package="utcw\language">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
@@ -2600,17 +2759,17 @@ Loads assets needed by the administration interface</description>
       <full_name>\UTCW_RandomStrategy</full_name>
       <docblock line="22">
         <description>Class to select a random set of terms from the DB</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="22" name="since" description="2.2"/>
         <tag line="22" name="package" description="utcw"/>
         <tag line="22" name="subpackage" description="selection"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="37" namespace="global" package="Default">
         <name>$config</name>
-        <default></default>
+        <default/>
         <docblock line="31">
           <description>Config class instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="31" name="var" description="" type="\UTCW_Config">
             <type by_reference="false">\UTCW_Config</type>
           </tag>
@@ -2619,10 +2778,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="protected" line="45" namespace="global" package="Default">
         <name>$plugin</name>
-        <default></default>
+        <default/>
         <docblock line="39">
           <description>Plugin class instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="39" name="var" description="" type="\UTCW_Plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -2631,10 +2790,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="protected" line="53" namespace="global" package="Default">
         <name>$db</name>
-        <default></default>
+        <default/>
         <docblock line="47">
           <description>WP Database class instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="47" name="var" description="" type="\wpdb">
             <type by_reference="false">\wpdb</type>
           </tag>
@@ -2643,10 +2802,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="protected" line="61" namespace="global" package="Default">
         <name>$query</name>
-        <default></default>
+        <default/>
         <docblock line="55">
           <description>A copy of the SQL query for debugging purposes</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="55" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2658,7 +2817,7 @@ Loads assets needed by the administration interface</description>
         <full_name>__construct</full_name>
         <docblock line="63">
           <description>Creates a new instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="63" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -2666,7 +2825,7 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="70">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -2675,7 +2834,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getData</full_name>
         <docblock line="77">
           <description>Returns term data based on current configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="77" name="return" description="" type="\stdClass[]">
             <type by_reference="false">\stdClass[]</type>
           </tag>
@@ -2687,7 +2846,7 @@ Loads assets needed by the administration interface</description>
         <full_name>cleanupForDebug</full_name>
         <docblock line="114">
           <description>Clean up the internal members for debug output</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="114" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
@@ -2699,7 +2858,7 @@ Loads assets needed by the administration interface</description>
   <file path="Selection/SelectionStrategy.php" hash="62a47ebb8dd0bf4c3bdd8edaa24cc440" package="utcw\selection">
     <docblock line="5">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="5" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="5" name="version" description="2.3"/>
       <tag line="5" name="license" description="GPLv2"/>
@@ -2713,7 +2872,7 @@ Loads assets needed by the administration interface</description>
       <full_name>\UTCW_SelectionStrategy</full_name>
       <docblock line="21">
         <description>Abstract class to define selection strategy for finding terms</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="21" name="since" description="2.2"/>
         <tag line="21" name="package" description="utcw"/>
         <tag line="21" name="subpackage" description="language"/>
@@ -2723,7 +2882,7 @@ Loads assets needed by the administration interface</description>
         <full_name>__construct</full_name>
         <docblock line="30">
           <description>Creates a new instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="30" name="param" description="Main plugin instance" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -2731,7 +2890,7 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="37">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -2740,7 +2899,7 @@ Loads assets needed by the administration interface</description>
         <full_name>getData</full_name>
         <docblock line="39">
           <description>Loads terms based on current configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="39" name="return" description="" type="\stdClass[]">
             <type by_reference="false">\stdClass[]</type>
           </tag>
@@ -2752,7 +2911,7 @@ Loads assets needed by the administration interface</description>
         <full_name>cleanupForDebug</full_name>
         <docblock line="47">
           <description>Clean up the internal members for debug output</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="47" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
@@ -2763,7 +2922,7 @@ Loads assets needed by the administration interface</description>
   <file path="Term.php" hash="aef5cebc6bc18a900143bbd24d17c0e6" package="utcw\main">
     <docblock line="7">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="7" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="7" name="version" description="2.3"/>
       <tag line="7" name="license" description="GPLv2"/>
@@ -2777,17 +2936,17 @@ Loads assets needed by the administration interface</description>
       <full_name>\UTCW_Term</full_name>
       <docblock line="18">
         <description>Class to represent a term</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="18" name="since" description="2.0"/>
         <tag line="18" name="package" description="utcw"/>
         <tag line="18" name="subpackage" description="main"/>
       </docblock>
       <property final="false" static="false" visibility="public" line="34" namespace="global" package="Default">
         <name>$term_id</name>
-        <default></default>
+        <default/>
         <docblock line="28">
           <description>Term ID</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="28" name="var" description="" type="int">
             <type by_reference="false">int</type>
           </tag>
@@ -2796,10 +2955,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="42" namespace="global" package="Default">
         <name>$count</name>
-        <default></default>
+        <default/>
         <docblock line="36">
           <description>Number of posts</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="36" name="var" description="" type="int">
             <type by_reference="false">int</type>
           </tag>
@@ -2808,10 +2967,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="50" namespace="global" package="Default">
         <name>$slug</name>
-        <default></default>
+        <default/>
         <docblock line="44">
           <description>Term slug</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="44" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2820,10 +2979,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="58" namespace="global" package="Default">
         <name>$name</name>
-        <default></default>
+        <default/>
         <docblock line="52">
           <description>Term name</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="52" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2832,10 +2991,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="66" namespace="global" package="Default">
         <name>$link</name>
-        <default></default>
+        <default/>
         <docblock line="60">
           <description>Term link</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="60" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2844,10 +3003,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="74" namespace="global" package="Default">
         <name>$color</name>
-        <default></default>
+        <default/>
         <docblock line="68">
           <description>Term color</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="68" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2856,10 +3015,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="82" namespace="global" package="Default">
         <name>$taxonomy</name>
-        <default></default>
+        <default/>
         <docblock line="76">
           <description>Term taxonomy</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="76" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -2868,10 +3027,10 @@ Loads assets needed by the administration interface</description>
       </property>
       <property final="false" static="false" visibility="public" line="90" namespace="global" package="Default">
         <name>$size</name>
-        <default></default>
+        <default/>
         <docblock line="84">
           <description>Term size</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="84" name="var" description="" type="float">
             <type by_reference="false">float</type>
           </tag>
@@ -2883,7 +3042,7 @@ Loads assets needed by the administration interface</description>
         <full_name>__construct</full_name>
         <docblock line="92">
           <description>Creates a new term</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="92" name="param" description="Object with properties term_id, count, slug, name, color and taxonomy" type="\stdClass" variable="$input">
             <type by_reference="false">\stdClass</type>
           </tag>
@@ -2894,12 +3053,12 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="100">
           <name>$input</name>
-          <default></default>
+          <default/>
           <type>\stdClass</type>
         </argument>
         <argument line="100">
           <name>$plugin</name>
-          <default></default>
+          <default/>
           <type>\UTCW_Plugin</type>
         </argument>
       </method>
@@ -2908,7 +3067,7 @@ Loads assets needed by the administration interface</description>
   <file path="Widget.php" hash="39b5f6aeae6b87bb7344eddce2b818f4" package="utcw\main">
     <docblock line="7">
       <description>Ultimate Tag Cloud Widget</description>
-      <long-description></long-description>
+      <long-description/>
       <tag line="7" name="author" description="Rickard Andersson &lt;rickard@0x539.se&gt;"/>
       <tag line="7" name="version" description="2.3"/>
       <tag line="7" name="license" description="GPLv2"/>
@@ -2925,17 +3084,17 @@ Loads assets needed by the administration interface</description>
       <full_name>\UTCW_Widget</full_name>
       <docblock line="18">
         <description>Widget class for WordPress integration</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="18" name="since" description="1.0"/>
         <tag line="18" name="package" description="utcw"/>
         <tag line="18" name="subpackage" description="main"/>
       </docblock>
       <property final="false" static="false" visibility="private" line="34" namespace="global" package="Default">
         <name>$plugin</name>
-        <default></default>
+        <default/>
         <docblock line="28">
           <description>Reference to the main plugin instance</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="28" name="var" description="" type="\UTCW_Plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -2947,7 +3106,7 @@ Loads assets needed by the administration interface</description>
         <full_name>__construct</full_name>
         <docblock line="36">
           <description>Constructor</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="36" name="param" description="Optional. UTCW_Plugin instance for dependency injection" type="\UTCW_Plugin" variable="$plugin">
             <type by_reference="false">\UTCW_Plugin</type>
           </tag>
@@ -2967,7 +3126,7 @@ Loads assets needed by the administration interface</description>
         <full_name>update</full_name>
         <docblock line="52">
           <description>Action handler for the form in the admin panel</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="52" name="param" description="" type="array" variable="$new_instance">
             <type by_reference="false">array</type>
           </tag>
@@ -2981,12 +3140,12 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="61">
           <name>$new_instance</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
         <argument line="61">
           <name>$old_instance</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -2995,7 +3154,7 @@ Loads assets needed by the administration interface</description>
         <full_name>form</full_name>
         <docblock line="107">
           <description>Function for handling the widget control in admin panel</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="107" name="param" description="" type="array" variable="$instance">
             <type by_reference="false">array</type>
           </tag>
@@ -3007,7 +3166,7 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="115">
           <name>$instance</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>
@@ -3016,7 +3175,7 @@ Loads assets needed by the administration interface</description>
         <full_name>widget</full_name>
         <docblock line="145">
           <description>Function for rendering the widget</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="145" name="param" description="" type="array" variable="$args">
             <type by_reference="false">array</type>
           </tag>
@@ -3026,12 +3185,12 @@ Loads assets needed by the administration interface</description>
         </docblock>
         <argument line="152">
           <name>$args</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
         <argument line="152">
           <name>$instance</name>
-          <default></default>
+          <default/>
           <type>array</type>
         </argument>
       </method>

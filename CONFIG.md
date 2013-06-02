@@ -1,4 +1,4 @@
-# Configuration options for theme integration and shortcode #
+# Configuration options #
 
 All the configuration options can be used both in `do_utcw()` and the shortcode.
 
@@ -311,4 +311,4 @@ Type: Boolean
 Name: `debug`  
 Default: `false`  
 
-*Configuration options auto generated at 2013-06-02 23:03:43 for version 2.3*
+*Configuration options auto generated at 2013-06-02 23:05:30 for version 2.3*

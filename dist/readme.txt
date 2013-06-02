@@ -153,11 +153,20 @@ $args = array( "title" => "Most awesome title ever" );
 
 do_utcw( $args );`
 
+To use multiple configuration options just separate them with a comma:
+
+`<?php
+$args = array( "title" => "Most awesome title ever", "max" => 10 );
+
+do_utcw( $args );`
+
 If you're not able to change your theme you can also use the shortcode `[utcw]` anywhere in your posts or pages. You can pass any of the settings along with the shortcode in the format of `key="value"`, for instance if you'd like to change the widget title:
 
 `[utcw title="Most awesome title ever"]`
 
-All the configuration options can be found in the [plugin documentation](http://barney.0x539.se/utcw/classes/UTCW_Config.html). The list of properties of `UTCW_Config` can all be used as keys to the function or shortcode.
+== Configuration ==
+
+All the configuration options can be found in the [configuration documentation at GitHub](https://github.com/rickard2/utcw/blob/master/CONFIG.md).
 
 == Breaking changes in version 2.0 ==
 

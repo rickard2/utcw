@@ -50,6 +50,21 @@ function defaultDescription($defaultValue)
     throw new Exception('Unknown default value type: ' . $defaultValue);
 }
 
+function replaceDescription($matches)
+{
+    $link = str_replace('_', '-', $matches[1]);
+    $text = $matches[2];
+
+    return sprintf('[%s](#%s)', $text, $link);
+}
+
+function parseDescription($description)
+{
+    $description = trim($description);
+    $description = preg_replace_callback('/{@link \$?([^ ]+) ([^}]+)}/', 'replaceDescription', $description);
+    return $description;
+}
+
 chdir('..');
 
 require 'dist/ultimate-tag-cloud-widget.php';
@@ -66,7 +81,7 @@ function getDocumentation($config)
     foreach ($matches[0] as $index => $match) {
         $propertyName                = $matches[1][$index];
         $description                 = $matches[2][$index];
-        $descriptions[$propertyName] = trim($description);
+        $descriptions[$propertyName] = parseDescription($description);
     }
 
     $configOptionsProperty = $configReflection->getProperty('options');

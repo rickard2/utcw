@@ -17,7 +17,7 @@ Default: `name`
 Valid values: `name`, `random`, `slug`, `id`, `color`, `count`  
 
 ## Tags list type ##
-Description: How the $tags_list should be used  
+Description: How the [tags list](#tags-list) should be used  
 Type: Set  
 Name: `tags_list_type`  
 Default: `exclude`  
@@ -67,7 +67,7 @@ Name: `authors`
 Default: None  
 
 ## Tags list ##
-Description: A list of term IDs to be included or excluded. Inclusion or exclusion is determined by $tags_list_type  
+Description: A list of term IDs to be included or excluded. Inclusion or exclusion is determined by [tags list type](#tags-list-type)  
 Type: Array  
 Name: `tags_list`  
 Default: None  
@@ -311,4 +311,4 @@ Type: Boolean
 Name: `debug`  
 Default: `false`  
 
-*Configuration options auto generated at 2013-06-02 22:47:59 for version 2.3*
+*Configuration options auto generated at 2013-06-02 23:03:43 for version 2.3*

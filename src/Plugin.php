@@ -70,7 +70,7 @@ class UTCW_Plugin
         add_action('admin_head-widgets.php', array($this, 'initAdminAssets'));
         add_action('wp_loaded', array($this, 'wpLoaded'));
         add_action('widgets_init', create_function('', 'return register_widget("UTCW_Widget");'));
-        add_action('wp_ajax_utcw_get_terms', array($this, 'getTermsJson'));
+        add_action('wp_ajax_utcw_get_terms', array($this, 'outputTermsJson'));
         add_shortcode('utcw', array($this, 'shortcode'));
     }
 
@@ -133,15 +133,28 @@ class UTCW_Plugin
      *
      * @since 2.3
      */
-    public function getTermsJson() {
-
+    public function outputTermsJson()
+    {
         header('Content-Type: application/json');
+        echo $this->getTermsJson();
+        die();
+    }
 
+    /**
+     * Returns terms in JSON format
+     *
+     * @since 2.3
+     */
+    public function getTermsJson()
+    {
         $terms = $this->getTerms();
 
-        echo json_encode($terms);
+        // Convert terms into value array
+        foreach ($terms as $taxonomy => $items) {
+            $terms[$taxonomy] = array_values($items);
+        }
 
-        die();
+        return json_encode($terms);
     }
 
     /**

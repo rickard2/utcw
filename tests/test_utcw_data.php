@@ -491,8 +491,9 @@ class UTCW_Test_Data extends WP_UnitTestCase
 
     function helper_query_contains($instance, $string, $authenticated = false)
     {
-        $utcw = $authenticated ? $this->mockFactory->getUTCWAuthenticated(
-        ) : $this->mockFactory->getUTCWNotAuthenticated();
+        $utcw = $authenticated ?
+            $this->mockFactory->getUTCWAuthenticated() :
+            $this->mockFactory->getUTCWNotAuthenticated();
 
         $utcw->expects($this->any())
             ->method('checkTermTaxonomy')

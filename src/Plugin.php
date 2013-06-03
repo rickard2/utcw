@@ -62,14 +62,23 @@ class UTCW_Plugin
     /**
      * Initializes the WordPress hooks needed
      *
-     * @todo  Add tests that these hooks are set
      * @since 2.0
      */
     private function __construct()
     {
+        $this->setHooks();
+    }
+
+    /**
+     * Sets WordPress hooks
+     *
+     * @since 2.3
+     */
+    public function setHooks()
+    {
         add_action('admin_head-widgets.php', array($this, 'initAdminAssets'));
         add_action('wp_loaded', array($this, 'wpLoaded'));
-        add_action('widgets_init', create_function('', 'return register_widget("UTCW_Widget");'));
+        add_action('widgets_init', array($this, 'widgetsInit'));
         add_action('wp_ajax_utcw_get_terms', array($this, 'outputTermsJson'));
         add_shortcode('utcw', array($this, 'shortcode'));
     }
@@ -158,7 +167,18 @@ class UTCW_Plugin
     }
 
     /**
-     * Action handler for 'wpLoaded' hook
+     * Action handler for 'widgets_init' hook
+     * Registers the widget
+     *
+     * @since 2.3
+     */
+    public function widgetsInit()
+    {
+        register_widget("UTCW_Widget");
+    }
+
+    /**
+     * Action handler for 'wp_loaded' hook
      * Loads taxonomies and post types
      *
      * @since 2.0
@@ -170,7 +190,7 @@ class UTCW_Plugin
     }
 
     /**
-     * Shortcode handler for 'utcw' hook
+     * Short code handler for 'utcw' hook
      *
      * @param array $args
      *

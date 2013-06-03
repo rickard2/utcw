@@ -99,7 +99,7 @@ The upgrade notice history for the 1.x branch is available on [GitHub](https://g
 
 = 2.3 =
 
-* New features, see plugin page at wordpress.org for full details
+* New features, see plugin page at wordpress.org for full details. Watch out for the changes in class names: https://github.com/rickard2/utcw/issues/29
 
 = 2.2.3 =
 

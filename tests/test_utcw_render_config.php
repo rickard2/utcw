@@ -534,6 +534,11 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
         $this->helper_bool_ok('show_title_text');
     }
 
+    function test_show_title_text_false_ok()
+    {
+        $this->helper_bool_ok('show_title_text', false);
+    }
+
     function test_show_title_text_fail()
     {
         $this->helper_bool_fail('show_title_text');

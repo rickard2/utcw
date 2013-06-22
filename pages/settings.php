@@ -231,7 +231,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><label
 		for="<?php echo $this->get_field_id( 'title' );?>"><?php _e( 'Title:', 'utcw' ) ?></label></strong><br>
 	<input type="checkbox" id="<?php echo $this->get_field_id( 'show_title_text' ) ?>"
-		   name="<?php echo $this->get_field_name( 'show_title_text' ) ?>" <?php if ( ! isset( $renderConfig->show_title_text ) || $renderConfig->show_title_text ) echo 'checked="checked"' ?>>
+		   name="<?php echo $this->get_field_name( 'show_title_text' ) ?>" <?php if ( $renderConfig->show_title_text ) echo 'checked="checked"' ?>>
 	<label for="<?php echo $this->get_field_id( 'show_title_text' ) ?>"><?php _e( 'Show title', 'utcw' ) ?></label><br>
 	<input type="text" id="<?php echo $this->get_field_id( 'title' );?>"
 		   name="<?php echo $this->get_field_name( 'title' );?>"

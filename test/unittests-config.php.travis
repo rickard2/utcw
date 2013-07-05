@@ -10,7 +10,7 @@ define( 'WP_TESTS_MULTISITE', (bool) getenv( 'WP_MULTISITE' ) );
 // define( 'WP_TESTS_FORCE_KNOWN_BUGS', true );
 
 // Test with WordPress debug mode on
-define( 'WP_DEBUG', true );
+define( 'WP_DEBUG', (float)WP_VERSION < 5.5 );
 
 // ** MySQL settings ** //
 

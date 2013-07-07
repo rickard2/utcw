@@ -81,6 +81,46 @@ class UTCW_Plugin
         add_action('widgets_init', array($this, 'widgetsInit'));
         add_action('wp_ajax_utcw_get_terms', array($this, 'outputTermsJson'));
         add_shortcode('utcw', array($this, 'shortcode'));
+        add_action('init', array($this, 'setCacheHandler'));
+    }
+
+    /**
+     * Returns an array of all the supported Cache Handler
+     *
+     * @return array
+     */
+    protected function getCacheHandlers()
+    {
+        return array(
+            'UTCW_WPSuperCacheHandler',
+        );
+    }
+
+    /**
+     * Sets the cache handler if any is available
+     *
+     * @return bool
+     */
+    public function setCacheHandler()
+    {
+        $handlers = $this->getCacheHandlers();
+
+        foreach ($handlers as $handler) {
+
+            /** @var UTCW_CacheHandler $instance */
+            $instance = new $handler;
+
+            if ($instance->isEnabled()) {
+
+                $instance->init();
+
+                $this->set('cacheHandler', $instance);
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -215,6 +255,8 @@ class UTCW_Plugin
         $this->set('data', new UTCW_Data($this));
 
         $render = new UTCW_Render($this);
+
+        do_action('utcw_shortcode');
 
         return $render->getCloud();
     }

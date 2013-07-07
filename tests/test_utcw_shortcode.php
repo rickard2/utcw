@@ -55,4 +55,20 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
         $utcw->expects($this->once())->method('loadConfiguration')->will($this->returnValue(array()));
         $utcw->shortcode(array('load_config' => 'test'));
     }
+
+    function test_runs_action()
+    {
+        $called = false;
+
+        add_action(
+            'utcw_shortcode',
+            function () use (&$called) {
+                $called = true;
+            }
+        );
+
+        $this->utcw->shortcode(array());
+
+        $this->assertTrue($called, 'The shortcode handler should run the action utcw_shortcode');
+    }
 }

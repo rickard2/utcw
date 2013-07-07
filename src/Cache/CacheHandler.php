@@ -15,6 +15,7 @@ abstract class UTCW_CacheHandler
      * Returns true if the caching plugin is enabled
      *
      * @return bool
+     * @since 2.4
      */
     abstract public function isEnabled();
 
@@ -22,6 +23,7 @@ abstract class UTCW_CacheHandler
      * Initializes the handler
      *
      * @return void
+     * @since 2.4
      */
     abstract public function init();
 }

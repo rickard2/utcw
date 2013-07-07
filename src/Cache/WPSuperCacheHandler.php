@@ -17,6 +17,7 @@ class UTCW_WPSuperCacheHandler extends UTCW_CacheHandler
      * Returns true if WP Super Cache is enabled
      *
      * @return bool
+     * @since 2.4
      */
     public function isEnabled()
     {
@@ -25,6 +26,8 @@ class UTCW_WPSuperCacheHandler extends UTCW_CacheHandler
 
     /**
      * Initializes the handler
+     *
+     * @since 2.4
      */
     public function init()
     {
@@ -33,6 +36,8 @@ class UTCW_WPSuperCacheHandler extends UTCW_CacheHandler
 
     /**
      * Called when the shortcode is used
+     *
+     * @since 2.4
      */
     public function onShortCode()
     {

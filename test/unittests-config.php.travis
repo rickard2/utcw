@@ -9,8 +9,8 @@ define( 'WP_TESTS_MULTISITE', (bool) getenv( 'WP_MULTISITE' ) );
 // Force known bugs
 // define( 'WP_TESTS_FORCE_KNOWN_BUGS', true );
 
-// Test with WordPress debug mode on
-define( 'WP_DEBUG', (float)WP_VERSION < 5.5 );
+// Test with WordPress debug mode off
+define( 'WP_DEBUG', false );
 
 // ** MySQL settings ** //
 

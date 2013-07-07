@@ -58,13 +58,13 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
 
     function test_runs_action()
     {
+        global $called;
+
         $called = false;
 
         add_action(
             'utcw_shortcode',
-            function () use (&$called) {
-                $called = true;
-            }
+            create_function('', 'global $called; $called = true;')
         );
 
         $this->utcw->shortcode(array());

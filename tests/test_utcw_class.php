@@ -1,8 +1,5 @@
 <?php
 
-//use Rickard\UTCW\Widget;
-//use Rickard\UTCW\Plugin;
-
 if ( ! defined( 'ABSPATH' ) ) die();
 /**
  * Ultimate Tag Cloud Widget

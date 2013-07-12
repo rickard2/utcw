@@ -1,6 +1,4 @@
 <?php
-//use Rickard\UTCW\Plugin;
-
 /*
 Plugin Name: Ultimate tag cloud widget
 Plugin URI: https://www.0x539.se/wordpress/ultimate-tag-cloud-widget/

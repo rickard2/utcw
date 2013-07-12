@@ -1,7 +1,4 @@
 <?php
-//use Rickard\UTCW\Config;
-//use Rickard\UTCW\Data;
-//use Rickard\UTCW\QTranslateTerm;
 
 if (!defined('ABSPATH')) {
     die();

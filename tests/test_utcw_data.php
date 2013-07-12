@@ -1,6 +1,4 @@
 <?php
-//use Rickard\UTCW\Config;
-//use Rickard\UTCW\Data;
 
 if (!defined('ABSPATH')) {
     die();

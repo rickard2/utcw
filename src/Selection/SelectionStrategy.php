@@ -1,7 +1,4 @@
 <?php
-
-//namespace Rickard\UTCW\Selection;
-
 /**
  * Ultimate Tag Cloud Widget
  *
@@ -12,11 +9,6 @@
  * @subpackage selection
  * @since      2.2
  */
-
-//use Rickard\UTCW\Config;
-//use Rickard\UTCW\Plugin;
-//use \stdClass;
-//use wpdb;
 
 /**
  * Abstract class to define selection strategy for finding terms

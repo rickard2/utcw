@@ -1,7 +1,4 @@
 <?php
-
-//namespace Rickard\UTCW\Language;
-
 /**
  * Ultimate Tag Cloud Widget
  *
@@ -12,10 +9,6 @@
  * @subpackage language
  * @since      2.2
  */
-
-//use Rickard\UTCW\Plugin;
-//use Rickard\UTCW\Term;
-//use stdClass;
 
 /**
  * Class to handle WPML multi-language support

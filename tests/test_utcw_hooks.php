@@ -1,5 +1,4 @@
 <?php
-////use Rickard\UTCW\Widget;
 
 if (!defined('ABSPATH')) {
     die();

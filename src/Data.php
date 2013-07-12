@@ -1,7 +1,4 @@
 <?php
-
-//namespace Rickard\UTCW;
-
 /**
  * Ultimate Tag Cloud Widget
  *
@@ -12,12 +9,6 @@
  * @subpackage main
  * @since      2.0
  */
-
-//use Rickard\UTCW\Selection\PopularityStrategy;
-//use Rickard\UTCW\Selection\RandomStrategy;
-//use Rickard\UTCW\Selection\SelectionStrategy;
-//use wpdb;
-//use stdClass;
 
 /**
  * Class for loading data for the cloud

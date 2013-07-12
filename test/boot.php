@@ -1,9 +1,5 @@
 <?php
 
-//use Rickard\UTCW\Render;
-//use Rickard\UTCW\Data;
-//use Rickard\UTCW\Config;
-
 require 'dist/ultimate-tag-cloud-widget.php';
 
 class testWPDB extends wpdb

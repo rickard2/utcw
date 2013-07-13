@@ -56,6 +56,8 @@ require_once $__prefix . 'src/Widget.php';
 require_once $__prefix . 'src/Data.php';
 require_once $__prefix . 'src/Render.php';
 require_once $__prefix . 'src/Term.php';
+require_once $__prefix . 'src/Handler/Handler.php';
+require_once $__prefix . 'src/Handler/HandlerFactory.php';
 require_once $__prefix . 'src/Language/TranslationHandler.php';
 require_once $__prefix . 'src/Language/QTranslateHandler.php';
 require_once $__prefix . 'src/Language/WPMLHandler.php';
@@ -74,8 +76,8 @@ require_once $__prefix . 'src/Config/Type/IntegerType.php';
 require_once $__prefix . 'src/Config/Type/MeasurementType.php';
 require_once $__prefix . 'src/Config/Type/StringType.php';
 require_once $__prefix . 'src/Config/Type/BooleanType.php';
-require_once $__prefix . 'src/Cache/CacheHandler.php';
 require_once $__prefix . 'src/Cache/WPSuperCacheHandler.php';
+require_once $__prefix . 'src/Cache/W3TotalCacheHandler.php';
 
 unset($__prefix);
 

@@ -76,42 +76,50 @@ class UTCW_Plugin
         add_action('wp_ajax_utcw_get_terms', array($this, 'outputTermsJson'));
         add_shortcode('utcw', array($this, 'shortcode'));
         add_action('init', array($this, 'setCacheHandler'));
+        add_action('init', array($this, 'setTranslationHandler'));
     }
 
     /**
-     * Returns an array of all the supported Cache Handler
+     * Sets the translation handler if any is available
      *
-     * @return array
+     * @return bool
+     * @since 2.4
      */
-    protected function getCacheHandlers()
+    protected function setTranslationHandler()
     {
-        return array(
-            'UTCW_WPSuperCacheHandler',
-        );
+        $factory = new UTCW_HandlerFactory(array(
+            'UTCW_QTranslateHandler',
+            'UTCW_WPMLHandler'
+        ));
+
+        $instance = $factory->getInstance();
+
+        if ($instance) {
+            $this->set('translationHandler', $instance);
+            return true;
+        }
+
+        return false;
     }
 
     /**
      * Sets the cache handler if any is available
      *
      * @return bool
+     * @since 2.4
      */
     public function setCacheHandler()
     {
-        $handlers = $this->getCacheHandlers();
+        $factory = new UTCW_HandlerFactory(array(
+            'UTCW_WPSuperCacheHandler',
+            'UTCW_W3TotalCacheHandler',
+        ));
 
-        foreach ($handlers as $handler) {
+        $instance = $factory->getInstance();
 
-            /** @var UTCW_CacheHandler $instance */
-            $instance = new $handler;
-
-            if ($instance->isEnabled()) {
-
-                $instance->init();
-
-                $this->set('cacheHandler', $instance);
-
-                return true;
-            }
+        if ($instance) {
+            $this->set('cacheHandler', $instance);
+            return true;
         }
 
         return false;
@@ -506,29 +514,5 @@ class UTCW_Plugin
     public function applyFilters($tag, $value)
     {
         return apply_filters($tag, $value);
-    }
-
-    /**
-     * Returns a new instance of the QTranslate Handler class
-     *
-     * @return null|UTCW_TranslationHandler
-     */
-    public function getTranslationHandler()
-    {
-        $names      = get_option('qtranslate_term_name');
-        $names      = $names ? $names : array();
-        $qTranslate = new UTCW_QTranslateHandler($names);
-
-        if ($qTranslate->isEnabled()) {
-            return $qTranslate;
-        }
-
-        $WPML = new UTCW_WPMLHandler();
-
-        if ($WPML->isEnabled()) {
-            return $WPML;
-        }
-
-        return null;
     }
 }

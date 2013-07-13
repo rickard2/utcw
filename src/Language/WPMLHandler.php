@@ -31,6 +31,14 @@ class UTCW_WPMLHandler extends UTCW_TranslationHandler
     }
 
     /**
+     * @since 2.4
+     */
+    public function init()
+    {
+        // void
+    }
+
+    /**
      * Returns the current WPML language
      *
      * @return bool|string
@@ -100,8 +108,8 @@ class UTCW_WPMLHandler extends UTCW_TranslationHandler
     /**
      * {@inheritdoc}
      *
-     * @param stdClass $input
-     * @param UTCW_Plugin   $plugin
+     * @param stdClass    $input
+     * @param UTCW_Plugin $plugin
      *
      * @return null|UTCW_Term
      * @since 2.2

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ultimate Tag Cloud Widget
  *
@@ -9,18 +10,18 @@
  * @subpackage cache
  * @since      2.4
  */
-class UTCW_WPSuperCacheHandler extends UTCW_Handler
+class UTCW_W3TotalCacheHandler extends UTCW_Handler
 {
 
     /**
-     * Returns true if WP Super Cache is enabled
+     * Returns true if W3 Total Cache is enabled
      *
      * @return bool
      * @since 2.4
      */
     public function isEnabled()
     {
-        return function_exists('add_cacheaction');
+        return class_exists('W3_Plugin');
     }
 
     /**

@@ -115,7 +115,7 @@ class UTCW_Data
         $max_count = 0;
 
         // Get translation handler if a translation plugin is active
-        $this->translationHandler = $this->plugin->getTranslationHandler();
+        $this->translationHandler = $this->plugin->get('translationHandler');
 
         foreach ($this->result as $item) {
             if ($item->count < $min_count) {

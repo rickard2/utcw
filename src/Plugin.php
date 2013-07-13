@@ -84,7 +84,7 @@ class UTCW_Plugin
      * @return bool
      * @since 2.4
      */
-    protected function setTranslationHandler()
+    public function setTranslationHandler()
     {
         $factory = new UTCW_HandlerFactory(array(
             'UTCW_QTranslateHandler',

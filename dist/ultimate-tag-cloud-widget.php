@@ -52,6 +52,7 @@ define('UTCW_HEX_COLOR_FORMAT', '#%02x%02x%02x');
 $__prefix = UTCW_DEV ? '/www/utcw2/' : '';
 
 require_once $__prefix . 'src/Plugin.php';
+require_once $__prefix . 'src/ShortCode.php';
 require_once $__prefix . 'src/Widget.php';
 require_once $__prefix . 'src/Data.php';
 require_once $__prefix . 'src/Render.php';
@@ -93,6 +94,8 @@ UTCW_Plugin::getInstance();
  */
 function do_utcw(array $args)
 {
-    $plugin = UTCW_Plugin::getInstance();
-    echo $plugin->shortcode($args);
+    $plugin    = UTCW_Plugin::getInstance();
+    $shortCode = new UTCW_ShortCode($plugin);
+
+    echo $shortCode->render($args);
 }

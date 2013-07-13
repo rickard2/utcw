@@ -74,7 +74,6 @@ class UTCW_Plugin
         add_action('wp_loaded', array($this, 'wpLoaded'));
         add_action('widgets_init', array($this, 'widgetsInit'));
         add_action('wp_ajax_utcw_get_terms', array($this, 'outputTermsJson'));
-        add_shortcode('utcw', array($this, 'shortcode'));
         add_action('init', array($this, 'setCacheHandler'));
         add_action('init', array($this, 'setTranslationHandler'));
     }
@@ -229,38 +228,6 @@ class UTCW_Plugin
     {
         $this->allowed_taxonomies = get_taxonomies();
         $this->allowed_post_types = get_post_types(array('public' => true));
-    }
-
-    /**
-     * Short code handler for 'utcw' hook
-     *
-     * @param array $args
-     *
-     * @return string
-     * @since 2.0
-     */
-    public function shortcode(array $args)
-    {
-        global $wpdb;
-
-        if (isset($args['load_config'])) {
-            $loaded = $this->loadConfiguration($args['load_config']);
-
-            if (is_array($loaded)) {
-                $args = $loaded;
-            }
-        }
-
-        $this->set('wpdb', $wpdb);
-        $this->set('dataConfig', new UTCW_DataConfig($args, $this));
-        $this->set('renderConfig', new UTCW_RenderConfig($args, $this));
-        $this->set('data', new UTCW_Data($this));
-
-        $render = new UTCW_Render($this);
-
-        do_action('utcw_shortcode');
-
-        return $render->getCloud();
     }
 
     /**

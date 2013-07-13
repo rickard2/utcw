@@ -19,27 +19,33 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
     /**
      * @var UTCW_Plugin
      */
-    private $utcw;
+    private $plugin;
+
+    /**
+     * @var UTCW_ShortCode
+     */
+    private $shortCode;
 
     function setUp()
     {
-        $this->utcw = UTCW_Plugin::getInstance();
+        $this->plugin    = UTCW_Plugin::getInstance();
+        $this->shortCode = new UTCW_ShortCode($this->plugin);
     }
 
-    function test_function_exists()
+    function test_class_exists()
     {
-        $this->assertTrue(method_exists($this->utcw, 'shortcode'));
+        $this->assertTrue(class_exists('UTCW_ShortCode'));
     }
 
     function test_function_returns_html()
     {
-        $this->assertRegExp(UTCW_TEST_HTML_REGEX, $this->utcw->shortcode(array()));
+        $this->assertRegExp(UTCW_TEST_HTML_REGEX, $this->shortCode->render(array()));
     }
 
     function test_function_no_output()
     {
         $this->expectOutputString('');
-        $this->utcw->shortcode(array());
+        $this->shortCode->render(array());
     }
 
     function test_function_registered_as_shortcode()
@@ -50,9 +56,12 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
 
     function test_function_loads_configuration()
     {
-        $utcw = $this->getMock('UTCW_Plugin', array('loadConfiguration'), array(), '', false);
-        $utcw->expects($this->once())->method('loadConfiguration')->will($this->returnValue(array()));
-        $utcw->shortcode(array('load_config' => 'test'));
+        $plugin = $this->getMock('UTCW_Plugin', array('loadConfiguration'), array(), '', false);
+        $plugin->expects($this->once())->method('loadConfiguration')->will($this->returnValue(array()));
+
+        $shortCode = new UTCW_ShortCode($plugin);
+
+        $shortCode->render(array('load_config' => 'test'));
     }
 
     function test_runs_action()
@@ -66,7 +75,7 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
             create_function('', 'global $called; $called = true;')
         );
 
-        $this->utcw->shortcode(array());
+        $this->shortCode->render(array());
 
         $this->assertTrue($called, 'The shortcode handler should run the action utcw_shortcode');
     }

@@ -61,6 +61,7 @@ class UTCW_Plugin
     private function __construct()
     {
         $this->setHooks();
+        $this->set('shortCode', new UTCW_ShortCode($this));
     }
 
     /**

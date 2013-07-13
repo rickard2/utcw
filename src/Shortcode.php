@@ -5,14 +5,50 @@ class UTCW_ShortCode
 
     /**
      * @var UTCW_Plugin
+     * @since 2.4
      */
     protected $plugin;
 
+    /**
+     * @param UTCW_Plugin $plugin
+     *
+     * @since 2.4
+     */
     public function __construct(UTCW_Plugin $plugin)
     {
         $this->plugin = $plugin;
 
         add_shortcode('utcw', array($this, 'render'));
+    }
+
+    /**
+     * @since 2.4
+     */
+    public function triggerPreShortCode()
+    {
+        global $post;
+
+        if ($post && isset($post->post_content) && $this->hasShortCode($post->post_content)) {
+            do_action('utcw_pre_shortcode');
+        }
+    }
+
+    /**
+     * Check if the content contains the shortcode. Will use WP 3.6+ has_shortcode if available, otherwise
+     * fall back to string matching.
+     *
+     * @param $content
+     *
+     * @return bool
+     * @since 2.4
+     */
+    protected function hasShortCode($content)
+    {
+        if (function_exists('has_shortcode')) {
+            return has_shortcode($content, 'utcw');
+        }
+
+        return strpos($content, '[utcw') !== false;
     }
 
 
@@ -22,7 +58,7 @@ class UTCW_ShortCode
      * @param array $args
      *
      * @return string
-     * @since 2.0
+     * @since 2.4
      */
     public function render(array $args)
     {

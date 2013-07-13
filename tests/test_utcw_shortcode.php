@@ -79,4 +79,25 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
 
         $this->assertTrue($called, 'The shortcode handler should run the action utcw_shortcode');
     }
+
+    function test_runs_shortcode_pre_action_when_post_has_shortcode()
+    {
+        global $post;
+        global $called;
+
+        $called = false;
+
+        add_action(
+            'utcw_pre_shortcode',
+            create_function('', 'global $called; $called = true;')
+        );
+
+        $post->post_content = 'Hello World';
+        $this->shortCode->triggerPreShortCode();
+        $this->assertFalse($called, 'Pre short code should not be called when short code is not present');
+
+        $post->post_content = 'test 123 [utcw title="wtf dude"] 123 test';
+        $this->shortCode->triggerPreShortCode();
+        $this->assertTrue($called, 'Pre short code should be called when short code is present');
+    }
 }

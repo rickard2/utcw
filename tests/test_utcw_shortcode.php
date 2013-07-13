@@ -92,6 +92,10 @@ class UTCW_Test_Shortcode extends WP_UnitTestCase
             create_function('', 'global $called; $called = true;')
         );
 
+        if (!$post) {
+            $post = new stdClass;
+        }
+
         $post->post_content = 'Hello World';
         $this->shortCode->triggerPreShortCode();
         $this->assertFalse($called, 'Pre short code should not be called when short code is not present');

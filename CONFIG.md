@@ -305,10 +305,16 @@ Type: Boolean
 Name: `show_title_text`  
 Default: `true`  
 
+## Show post count ##
+Description: If the number of posts with that term should be displayed with the name  
+Type: Boolean  
+Name: `show_post_count`  
+Default: `false`  
+
 ## Debug ##
 Description: If debug output should be included  
 Type: Boolean  
 Name: `debug`  
 Default: `false`  
 
-*Configuration options auto generated at 2013-06-02 23:05:30 for version 2.3*
+*Configuration options auto generated at 2013-08-12 21:22:26 for version 2.4*

@@ -79,8 +79,8 @@ class UTCW_ShortCode
 
         $render = new UTCW_Render($this->plugin);
 
-        do_action('utcw_shortcode');
+        do_action('utcw_shortcode', $args);
 
-        return $render->getCloud();
+        return apply_filters('filter_shortcode', $render->getCloud());
     }
 }

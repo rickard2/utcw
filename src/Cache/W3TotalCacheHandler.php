@@ -13,6 +13,8 @@
 class UTCW_W3TotalCacheHandler extends UTCW_Handler
 {
 
+    protected $args;
+
     /**
      * Returns true if W3 Total Cache is enabled
      *
@@ -21,6 +23,7 @@ class UTCW_W3TotalCacheHandler extends UTCW_Handler
      */
     public function isEnabled()
     {
+        // todo: check late init
         return class_exists('W3_Plugin');
     }
 
@@ -31,18 +34,51 @@ class UTCW_W3TotalCacheHandler extends UTCW_Handler
      */
     public function init()
     {
+        add_filter('filter_shortcode', array($this, 'filterShortCode'));
         add_action('utcw_shortcode', array($this, 'onShortCode'));
     }
 
     /**
-     * Called when the shortcode is used
+     * Called when the short code is used
      *
      * @since 2.4
      */
-    public function onShortCode()
+    public function onShortCode($args)
     {
-        if (!defined('DONOTCACHEPAGE')) {
-            define('DONOTCACHEPAGE', true);
+        $this->args = $args;
+    }
+
+    /**
+     * @param $content
+     *
+     * @return string
+     */
+    public function filterShortCode($content)
+    {
+        $return = array(
+            sprintf('<!-- mfunc %s -->', W3TC_DYNAMIC_SECURITY),
+            sprintf("echo do_utcw(%s);", $this->argsToArray($this->args)),
+            sprintf('<!-- /mfunc %s -->', W3TC_DYNAMIC_SECURITY),
+        );
+
+        return join("\r\n", $return);
+    }
+
+    /**
+     * @param array $args
+     *
+     * @return string
+     */
+    protected function argsToArray(array $args)
+    {
+        $values = array();
+
+        foreach ($args as $key => $value) {
+            $values[] = sprintf('"%s" => "%s"', $key, addslashes($value));
         }
+
+        $values[] = '"mfunc" => 1';
+
+        return sprintf('array(%s)', join(',', $values));
     }
 }

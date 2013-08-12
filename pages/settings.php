@@ -338,6 +338,9 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_links' ) ?>"
 		   id="<?php echo $this->get_field_id( 'show_links' ) ?>" <?php echo $renderConfig->show_links === true ? 'checked="checked"' : ''?>>
 	<label for="<?php echo $this->get_field_id( 'show_links' ) ?>"><?php _e( 'Show links', 'utcw' ) ?></label><br>
+	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_post_count' ) ?>"
+		   id="<?php echo $this->get_field_id( 'show_post_count' ) ?>" <?php echo $renderConfig->show_post_count === true ? 'checked="checked"' : ''?>>
+	<label for="<?php echo $this->get_field_id( 'show_post_count' ) ?>"><?php _e( 'Show post count', 'utcw' ) ?></label><br>
 	<br>
 
 	<a class="utcw-help"

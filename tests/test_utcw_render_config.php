@@ -41,6 +41,7 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
         'title'              => 'Tag Cloud',
         'show_title'         => true,
         'show_links'         => true,
+        'show_post_count'    => false,
         'debug'              => false,
         'separator'          => ' ',
         'prefix'             => '',
@@ -490,6 +491,16 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
     function test_show_links_fail()
     {
         $this->helper_bool_fail('show_links');
+    }
+
+    function test_show_post_count_ok()
+    {
+        $this->helper_bool_ok('show_post_count');
+    }
+
+    function test_show_post_count_fail()
+    {
+        $this->helper_bool_fail('show_post_count');
     }
 
     function test_debug_ok()

@@ -44,6 +44,7 @@
  * @property-read bool   show_title_text     If the widget title should be shown
  * @property-read string alignment           How the text in the resulting cloud should be aligned
  * @property-read string display             How the resulting cloud should be displayed
+ * @property-read bool   show_post_count     If the number of posts with that term should be displayed with the name
  * @property-read string before_widget       @internal
  * @property-read string after_widget        @internal
  * @property-read string before_title        @internal
@@ -155,6 +156,7 @@ class UTCW_RenderConfig extends UTCW_Config
         $this->addOption('show_title', 'boolean', array('default' => true));
         $this->addOption('show_links', 'boolean', array('default' => true));
         $this->addOption('show_title_text', 'boolean', array('default' => true));
+        $this->addOption('show_post_count', 'boolean', array('default' => false));
         $this->addOption('debug', 'boolean');
 
         parent::__construct($input, $plugin);

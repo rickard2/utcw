@@ -129,6 +129,8 @@ class UTCW_Render
             ) : '';
             $tag   = $this->config->show_links ? 'a' : 'span';
 
+            $displayName = $this->config->show_post_count ? sprintf('%s (%d)', $term->name, $term->count) : $term->name;
+
             $terms[] = sprintf(
                 '%s<%s class="tag-link-%s" href="%s" style="font-size:%s%s"%s>%s</%s>%s',
                 $this->config->prefix,
@@ -138,7 +140,7 @@ class UTCW_Render
                 $term->size,
                 $color,
                 $title,
-                $term->name,
+                $displayName,
                 $tag,
                 $this->config->suffix
             );

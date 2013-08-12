@@ -491,6 +491,28 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $this->assertNotContains('<a', $renderer->getCloud());
     }
 
+    /**
+     * @param $terms
+     *
+     * @dataProvider terms
+     */
+    function test_show_post_count($terms)
+    {
+        $renderer = $this->getRenderer(array('show_post_count' => true), $terms);
+        $this->assertContains('Test term 1 (10)', $renderer->getCloud());
+    }
+
+    /**
+     * @param $terms
+     *
+     * @dataProvider terms
+     */
+    function test_show_post_count_false_doesnt_show_post_count($terms)
+    {
+        $renderer = $this->getRenderer(array('show_post_count' => false), $terms);
+        $this->assertNotContains('Test term 1 (10)', $renderer->getCloud());
+    }
+
     function test_debug()
     {
         $this->helper_contains(array('debug' => true), '<!-- Ultimate Tag Cloud Debug information');

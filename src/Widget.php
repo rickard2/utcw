@@ -53,7 +53,7 @@ class UTCW_Widget extends WP_Widget
      * @return array
      * @since 1.0
      */
-    public function update(array $new_instance, array $old_instance)
+    public function update($new_instance, $old_instance)
     {
         $load_config = isset($new_instance['load_config']) &&
             isset($new_instance['load_config_name']) &&
@@ -107,7 +107,7 @@ class UTCW_Widget extends WP_Widget
      * @return void|string
      * @since 1.0
      */
-    public function form(array $instance)
+    public function form($instance)
     {
         /** @noinspection PhpUnusedLocalVariableInspection */
         $dataConfig = new UTCW_DataConfig($instance, $this->plugin);
@@ -144,7 +144,7 @@ class UTCW_Widget extends WP_Widget
      *
      * @param array $instance
      */
-    public function widget(array $args, array $instance)
+    public function widget($args, $instance)
     {
         global $wpdb;
 

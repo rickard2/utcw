@@ -75,7 +75,7 @@ class UTCW_Plugin
         add_action('wp_loaded', array($this, 'wpLoaded'));
         add_action('widgets_init', array($this, 'widgetsInit'));
         add_action('wp_ajax_utcw_get_terms', array($this, 'outputTermsJson'));
-        add_action('init', array($this, 'setCacheHandler'));
+//        add_action('init', array($this, 'setCacheHandler')); Disabled for now
         add_action('init', array($this, 'setTranslationHandler'));
     }
 

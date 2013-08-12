@@ -98,7 +98,7 @@ class UTCW_Render
         $markup = array();
 
         if ($this->css) {
-            $markup[] = $this->css;
+            $markup[] = $this->plugin->applyFilters('utcw_render_css', $this->css);
         }
 
         if ($this->config->before_widget) {
@@ -119,17 +119,31 @@ class UTCW_Render
 
         $markup[] = '<div class="tagcloud utcw-' . $this->id . '">';
 
+        $termObjects = $this->plugin->applyFilters('utcw_render_terms', $this->data->getTerms());
+
         $terms = array();
 
-        foreach ($this->data->getTerms() as $term) {
+        $term_title_singular = $this->plugin->applyFilters('utcw_render_term_title_singular', '%d topic');
+        $term_title_plural   = $this->plugin->applyFilters('utcw_render_term_title_plural', '%d topics');
+
+        foreach ($termObjects as $term) {
             $color = $term->color ? ';color:' . $term->color : '';
-            $title = $this->config->show_title ? sprintf(
-                ' title="' . _n('%s topic', '%s topics', $term->count) . '"',
-                $term->count
-            ) : '';
-            $tag   = $this->config->show_links ? 'a' : 'span';
+
+            $title = '';
+
+            if ($this->config->show_title) {
+                $title = _n($term_title_singular, $term_title_plural, $term->count);
+
+                if (strpos($title, '%s') !== -1) {
+                    $title = sprintf(' title="' . $title . '"', $term->count);
+                }
+            }
+
+            $tag = $this->config->show_links ? 'a' : 'span';
+            $tag = $this->plugin->applyFilters('utcw_render_tag', $tag);
 
             $displayName = $this->config->show_post_count ? sprintf('%s (%d)', $term->name, $term->count) : $term->name;
+            $displayName = $this->plugin->applyFilters('utcw_render_term_display_name', $displayName, $term->name);
 
             $terms[] = sprintf(
                 '%s<%s class="tag-link-%s" href="%s" style="font-size:%s%s"%s>%s</%s>%s',

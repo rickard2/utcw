@@ -339,7 +339,8 @@ class UTCW_Test_Render extends WP_UnitTestCase
     /**
      * @dataProvider terms
      */
-    function test_display_list_items($terms) {
+    function test_display_list_items($terms)
+    {
         $instance = array('display' => 'list');
 
         $expected = count($terms);
@@ -518,15 +519,34 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $this->helper_contains(array('debug' => true), '<!-- Ultimate Tag Cloud Debug information');
     }
 
-    function test_applies_filter_to_widget_title()
+    function test_applies_filters()
     {
         $utcw = $this->mockFactory->getUTCWMock(array('applyFilters'));
-        $utcw->expects($this->once())
-            ->method('applyFilters')
-            ->with('widget_title', 'Tag Cloud')
-            ->will($this->returnValue('Tag Cloud'));
 
-        $renderer = $this->getRenderer(array(), array(), $utcw);
+        $dp    = new DataProvider($this);
+        $terms = $dp->termsProvider(1);
+        $term  = $terms[0][0][0];
+
+        $utcw->expects($this->exactly(7))
+            ->method('applyFilters')
+            ->with(
+                $this->logicalOr(
+                    $this->equalTo('widget_title'),
+                    $this->equalTo('utcw_render_css'),
+                    $this->equalTo('utcw_render_terms'),
+                    $this->equalTo('utcw_render_term_title_singular'),
+                    $this->equalTo('utcw_render_term_title_plural'),
+                    $this->equalTo('utcw_render_tag'),
+                    $this->equalTo('utcw_render_term_display_name')
+                )
+            )
+            ->will(
+                $this->returnCallback(
+                    create_function('$filter, $value', 'return $filter === "utcw_render_terms" ? $value : "";')
+                )
+            );
+
+        $renderer = $this->getRenderer(array(), array($term), $utcw);
         $renderer->getCloud();
     }
 

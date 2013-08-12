@@ -164,6 +164,8 @@ If you're not able to change your theme you can also use the shortcode `[utcw]` 
 
 `[utcw title="Most awesome title ever"]`
 
+The plugin also uses a couple of filters for you to be able to alter the output. These are documented in the [filters documentation at GitHub](https://github.com/rickard2/utcw/blob/master/FILTERS.md).
+
 == Configuration ==
 
 All the configuration options can be found in the [configuration documentation at GitHub](https://github.com/rickard2/utcw/blob/master/CONFIG.md).

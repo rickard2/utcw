@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Ultimate tag cloud widget
+Plugin Name: Ultimate Tag Cloud Widget
 Plugin URI: https://www.0x539.se/wordpress/ultimate-tag-cloud-widget/
 Description: This plugin aims to be the most configurable tag cloud widget out there.
 Version: 2.4

@@ -274,6 +274,7 @@ class UTCW_Data
     {
         unset($this->db);
         $this->plugin->remove('wpdb');
+        $this->plugin->remove('data');
         $this->strategy->cleanupForDebug();
     }
 }

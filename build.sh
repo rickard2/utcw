@@ -48,6 +48,6 @@ cd ../..
 rm -rf build
 
 # Git tag it
-# git tag -a $VERSION -m "Tagged version $VERSION"
+git tag -a $VERSION -m "Tagged version $VERSION"
 
 echo "All done! Remember to update stable tag in SVN repo"

@@ -521,7 +521,18 @@ class UTCW_Test_Render extends WP_UnitTestCase
 
     function test_debug_output_omits_wpdb()
     {
-        $this->helper_not_contains(array('debug' => true), 'wpdb');
+        global $wpdb;
+
+        $utcw = $this->mockFactory->getUTCWNotAuthenticated();
+
+        $utcw->set('wpdb', $wpdb);
+        $utcw->set('renderConfig', new UTCW_RenderConfig(array('debug' => true), $utcw));
+        $utcw->set('dataConfig', new UTCW_DataConfig(array(), $utcw));
+        $utcw->set('data', new UTCW_Data($utcw));
+
+        $render = new UTCW_Render($utcw);
+        $cloud  = $render->getCloud();
+        $this->assertNotContains('wpdb', $cloud, $ignoreCase = true);
     }
 
     function terms()

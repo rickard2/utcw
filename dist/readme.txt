@@ -2,8 +2,8 @@
 Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
-Tested up to: 3.6-beta3
-Stable tag: 2.3
+Tested up to: 3.6
+Stable tag: 2.3.1
 Donate link: https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget
 License: GPLv2 or later
 
@@ -46,6 +46,9 @@ If you have questions, please post them in the forums.
 4. The settings page of the widget
 
 == Changelog ==
+
+= 2.3.1 =
+* Security fix for sensitive data exposed when using the debug option
 
 = 2.3 =
 
@@ -96,6 +99,9 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.3.1 =
+* Security fix for sensitive data exposed when using the debug option
 
 = 2.3 =
 

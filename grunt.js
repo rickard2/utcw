@@ -4,7 +4,7 @@ module.exports = function ( grunt ) {
 	// Project configuration.
 	grunt.initConfig( {
 		meta:{
-			version:'2.3',
+			version:'2.3.1',
 			banner:'/*! Ultimate Tag Cloud Widget - v<%= meta.version %> - ' +
 				'<%= grunt.template.today("yyyy-mm-dd") %>\n' +
 				'* https://0x539.se/wordpress/ultimate-tag-cloud-widget/\n' +

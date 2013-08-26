@@ -259,7 +259,7 @@ class UTCW_Plugin
             );
             wp_enqueue_script(
                 'utcw',
-                plugins_url('ultimate-tag-cloud-widget/js/utcw.js'),
+                plugins_url('ultimate-tag-cloud-widget/js/src/utcw.js'),
                 array('utcw-lib-jsuri', 'utcw-lib-tooltip', 'jquery'),
                 UTCW_VERSION,
                 true

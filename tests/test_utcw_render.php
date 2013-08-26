@@ -519,6 +519,45 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $this->helper_contains(array('debug' => true), '<!-- Ultimate Tag Cloud Debug information');
     }
 
+    /**
+     * @dataProvider terms
+     */
+    function test_title_type_counter($terms)
+    {
+        $renderer = $this->getRenderer(array('title_type' => 'counter'), $terms);
+        $this->assertContains('title="10 topics"', $renderer->getCloud());
+    }
+
+    /**
+     * @dataProvider terms
+     */
+    function test_title_type_name($terms)
+    {
+        $renderer = $this->getRenderer(array('title_type' => 'name'), $terms);
+        $this->assertContains('title="Test term 1"', $renderer->getCloud());
+    }
+
+    /**
+     * @dataProvider terms
+     */
+    function test_title_type_custom($terms)
+    {
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello %s World %d'), $terms);
+        $this->assertContains('title="Hello Test term 1 World 10"', $renderer->getCloud());
+
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello %d World %s'), $terms);
+        $this->assertContains('title="Hello 10 World Test term 1"', $renderer->getCloud());
+
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello World %s'), $terms);
+        $this->assertContains('title="Hello World Test term 1"', $renderer->getCloud());
+
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello World %d'), $terms);
+        $this->assertContains('title="Hello World 10"', $renderer->getCloud());
+
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello World'), $terms);
+        $this->assertContains('title="Hello World"', $renderer->getCloud());
+    }
+
     function test_applies_filters()
     {
         $utcw = $this->mockFactory->getUTCWMock(array('applyFilters'));

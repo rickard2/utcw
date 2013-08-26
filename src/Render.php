@@ -31,7 +31,7 @@ class UTCW_Render
     /**
      * Reference to the current configuration
      *
-     * @var UTCW_Config
+     * @var UTCW_RenderConfig
      * @since 2.0
      */
     private $config;
@@ -123,20 +123,13 @@ class UTCW_Render
 
         $terms = array();
 
-        $term_title_singular = $this->plugin->applyFilters('utcw_render_term_title_singular', '%d topic');
-        $term_title_plural   = $this->plugin->applyFilters('utcw_render_term_title_plural', '%d topics');
-
         foreach ($termObjects as $term) {
             $color = $term->color ? ';color:' . $term->color : '';
 
             $title = '';
 
             if ($this->config->show_title) {
-                $title = _n($term_title_singular, $term_title_plural, $term->count);
-
-                if (strpos($title, '%s') !== -1) {
-                    $title = sprintf(' title="' . $title . '"', $term->count);
-                }
+                $title = $this->getTitle($term);
             }
 
             $tag = $this->config->show_links ? 'a' : 'span';
@@ -338,6 +331,59 @@ class UTCW_Render
         if ($styles) {
             $this->css = sprintf('<style type="text/css">%s</style>', join('', $styles));
         }
+    }
+
+    /**
+     * Returns the title attribute for the given term
+     *
+     * @param UTCW_Term $term
+     *
+     * @return string
+     * @since 2.4
+     */
+    private function getTitle(UTCW_Term $term)
+    {
+        $title = '';
+
+        switch ($this->config->title_type) {
+            case 'counter':
+                $term_title_singular = $this->plugin->applyFilters('utcw_render_term_title_singular', '%d topic');
+                $term_title_plural   = $this->plugin->applyFilters('utcw_render_term_title_plural', '%d topics');
+
+                $title = _n($term_title_singular, $term_title_plural, $term->count);
+
+                if (strpos($title, '%d') !== false) {
+                    $title = sprintf(' title="' . $title . '"', $term->count);
+                }
+                break;
+
+            case 'name':
+                $title = sprintf(' title="%s"', $term->name);
+                break;
+
+            case 'custom':
+                $template       = $this->config->title_custom_template;
+                $stringPosition = strpos($template, '%s');
+                $numberPosition = strpos($template, '%d');
+                $containsString = $stringPosition !== false;
+                $containsNumber = $numberPosition !== false;
+                $stringFirst    = $stringPosition < $numberPosition;
+
+                if ($containsString && $containsNumber && $stringFirst) {
+                    $title = sprintf(' title="' . $template . '"', $term->name, $term->count);
+                } elseif ($containsString && $containsNumber) {
+                    $title = sprintf(' title="' . $template . '"', $term->count, $term->name);
+                } elseif ($containsString) {
+                    $title = sprintf(' title="' . $template . '"', $term->name);
+                } elseif ($containsNumber) {
+                    $title = sprintf(' title="' . $template . '"', $term->count);
+                } else {
+                    $title = sprintf(' title="%s"', $template);
+                }
+                break;
+        }
+
+        return $title;
     }
 
     /**

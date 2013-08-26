@@ -45,6 +45,7 @@
             var $body = $('body');
 
             $body.delegate('input[id$=-color_none], input[id$=-color_random], input[id$=-color_set], input[id$=-color_span]', 'click', this.colorClickHandler);
+            $body.delegate('input[id$=-title_type_counter], input[id$=-title_type_name], input[id$=-title_type_custom]', 'click', this.titleTypeClickHandler);
             $body.delegate('.utcw-tab-button', 'click', this.tabClickHandler);
             $body.delegate('.utcw-input-taxonomy', 'click', this.taxonomyClickHandler);
             $body.delegate('.utcw-all-authors', 'click', this.allAuthorsClickHandler);
@@ -206,6 +207,17 @@
                 $set_chooser.removeClass('utcw-hidden');
             } else if (value === 'span') {
                 $span_chooser.removeClass('utcw-hidden');
+            }
+        },
+
+        titleTypeClickHandler: function () {
+            var $template = $('div[id$="-title_custom_template_container"]');
+            var value = $(this).val();
+
+            if (value === 'custom') {
+                $template.removeClass('utcw-hidden');
+            } else {
+                $template.addClass('utcw-hidden');
             }
         },
 

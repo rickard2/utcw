@@ -1,23 +1,14 @@
 <?php
-
-//namespace Rickard\UTCW\Selection;
-
 /**
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.3.1
+ * @version    2.3
  * @license    GPLv2
  * @package    utcw
  * @subpackage language
  * @since      2.2
  */
-
-//use Rickard\UTCW\Config;
-//use Rickard\UTCW\Database\QueryBuilder;
-//use Rickard\UTCW\Plugin;
-//use \stdClass;
-//use wpdb;
 
 /**
  * Class to select the most popular terms from the DB

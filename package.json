@@ -1,0 +1,14 @@
+{
+    "name": "utcw",
+    "version": "2.4.0",
+    "description": "Ultimate Tag Cloud Widget",
+    "author": "Rickard Andersson <rickard@0x539.se>",
+    "license": "GPLv2+",
+    "devDependencies": {
+        "grunt": "~0.4.0",
+        "grunt-contrib-jshint": "~0.1.1",
+        "grunt-contrib-concat": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-contrib-watch": "*"
+    }
+}

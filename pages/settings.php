@@ -2,7 +2,7 @@
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.3.1
+ * @version    2.4
  * @license    GPLv2
  * @package    utcw
  * @subpackage pages
@@ -327,18 +327,39 @@ if ( ! defined( 'ABSPATH' ) ) die();
     <label for="<?php echo $this->get_field_id('display_list') ?>"><?php _e('List', 'utcw') ?></label><br>
     <br>
     
-	<legend></legend>
-	<a class="utcw-help"
-	   title="<?php _e( 'The title is the small (usually) yellow label which will appear when the user hovers the tag. Try to hover the text to the left to see an example of what a title text looks like.', 'utcw' ) ?>">?</a>
-	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_title' ) ?>"
-		   id="<?php echo $this->get_field_id( 'show_title' ) ?>" <?php echo $renderConfig->show_title === true ? 'checked="checked"' : ''?>>
-	<label for="<?php echo $this->get_field_id( 'show_title' ) ?>"
-		   title="<?php _e( 'This is a title', 'utcw' ) ?>"><?php _e( 'Show title (hover text)', 'utcw' ) ?></label><br>	<a class="utcw-help"
+	<strong><?php _e('Term appearance', 'utcw') ?></strong><br>
+    <a class="utcw-help"
 	   title="<?php _e( 'Uncheck this option if you do not want your tag cloud to contain links to the archive page for each tag.', 'utcw' ) ?>">?</a>
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_links' ) ?>"
 		   id="<?php echo $this->get_field_id( 'show_links' ) ?>" <?php echo $renderConfig->show_links === true ? 'checked="checked"' : ''?>>
 	<label for="<?php echo $this->get_field_id( 'show_links' ) ?>"><?php _e( 'Show links', 'utcw' ) ?></label><br>
+    <a class="utcw-help" title="<?php _e('Select this option if you would like the output to contain the number of posts associated with each term. Like: Hello World (2)', 'utcw') ?>">?</a>
+	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_post_count' ) ?>"
+		   id="<?php echo $this->get_field_id( 'show_post_count' ) ?>" <?php echo $renderConfig->show_post_count === true ? 'checked="checked"' : ''?>>
+	<label for="<?php echo $this->get_field_id( 'show_post_count' ) ?>"><?php _e( 'Show post count', 'utcw' ) ?></label><br>
 	<br>
+
+    <strong><?php _e('Term titles (hover text)', 'utcw') ?></strong><br>
+    <a class="utcw-help"
+       title="<?php _e( 'The title is the small (usually) yellow label which will appear when the user hovers the tag. Try to hover the text to the left to see an example of what a title text looks like.', 'utcw' ) ?>">?</a>
+    <input type="checkbox" name="<?php echo $this->get_field_name( 'show_title' ) ?>"
+           id="<?php echo $this->get_field_id( 'show_title' ) ?>" <?php echo $renderConfig->show_title === true ? 'checked="checked"' : ''?>>
+    <label for="<?php echo $this->get_field_id( 'show_title' ) ?>"
+           title="<?php _e( 'This is a title', 'utcw' ) ?>"><?php _e( 'Enable titles', 'utcw' ) ?></label><br>
+    <a class="utcw-help" title="<?php _e('This is the WordPress default option, it will add the post count as title like this: 2 topics', 'utcw') ?>">?</a>
+    <input type="radio" name="<?php echo $this->get_field_name('title_type') ?>" id="<?php echo $this->get_field_id('title_type_counter') ?>" value="counter" <?php if ($renderConfig->title_type === 'counter') echo ' checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('title_type_counter') ?>"><?php _e('Post count', 'utcw') ?></label><br>
+    <a class="utcw-help" title="<?php _e('This option will use the term name as title', 'utcw') ?>">?</a>
+    <input type="radio" name="<?php echo $this->get_field_name('title_type') ?>" id="<?php echo $this->get_field_id('title_type_name') ?>" value="name" <?php if ($renderConfig->title_type === 'name') echo ' checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('title_type_name') ?>"><?php _e('Term name', 'utcw') ?></label><br>
+    <a class="utcw-help" title="<?php _e('This option allows you to define a C-style printf template to be used when generating the title. You can use %d and %s to get the post count and term name. To get a title like this: <br><code>The term Hello World has been used with 14 posts</code><br><br>Use a template like this:<br><code>The term %s has been used with %d posts</code>', 'utcw') ?>">?</a>
+    <input type="radio" name="<?php echo $this->get_field_name('title_type') ?>" id="<?php echo $this->get_field_id('title_type_custom') ?>" value="custom" <?php if ($renderConfig->title_type === 'custom') echo ' checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id('title_type_custom') ?>"><?php _e('Custom template', 'utcw') ?></label><br>
+    <div id="<?php echo $this->get_field_id('title_custom_template_container') ?>" class="<?php if ($renderConfig->title_type !== 'custom') echo 'utcw-hidden' ?>">
+        <label class="utcw-hidden" for="<?php echo $this->get_field_id('title_custom_template') ?>"><?php _e('Custom title template', 'utcw') ?></label>
+        <input type="text" name="<?php echo $this->get_field_name('title_custom_template') ?>" id="<?php echo $this->get_field_id('title_custom_template') ?>" value="<?php echo $renderConfig->title_custom_template ?>"><br>
+    </div>
+    <br>
 
 	<a class="utcw-help"
 	   title="<?php _e( 'The spacing is a numerical value which controls how much space there is between letters, words, tags or rows. To use the default value for these settings just use the corresponding default value from the CSS specification: <ul><li>Letter spacing: normal</li><li>Word spacing: normal</li><li>Tag spacing (CSS margin): auto</li><li>Row spacing (CSS line height): inherit</li></ul>To use anything but the default values, just specify a number (the unit is pixels).', 'utcw' ) ?>">?</a>

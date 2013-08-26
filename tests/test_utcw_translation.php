@@ -1,7 +1,4 @@
 <?php
-//use Rickard\UTCW\Config;
-//use Rickard\UTCW\Data;
-//use Rickard\UTCW\QTranslateTerm;
 
 if (!defined('ABSPATH')) {
     die();
@@ -10,7 +7,7 @@ if (!defined('ABSPATH')) {
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.3.1
+ * @version    2.4
  * @license    GPLv2
  * @package    utcw
  * @subpackage test
@@ -54,7 +51,7 @@ class UTCW_Test_Translation extends WP_UnitTestCase
 
     public function test_lets_translation_handler_create_term_when_enabled()
     {
-        $plugin  = $this->mockFactory->getUTCWMock(array('getTranslationHandler'));
+        $plugin  = $this->mockFactory->getUTCWMock();
         $handler = $this->getMockForAbstractClass('UTCW_TranslationHandler');
 
         $this->wpdb->expects($this->once())
@@ -65,10 +62,7 @@ class UTCW_Test_Translation extends WP_UnitTestCase
             ->method('createTerm')
             ->with($this->get_term(), $plugin);
 
-        $plugin->expects($this->once())
-            ->method('getTranslationHandler')
-            ->will($this->returnValue($handler));
-
+        $plugin->set('translationHandler', $handler);
         $plugin->set('wpdb', $this->wpdb);
 
         $config = new UTCW_DataConfig(array(), $plugin);

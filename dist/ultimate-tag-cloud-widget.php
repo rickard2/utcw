@@ -1,11 +1,9 @@
 <?php
-//use Rickard\UTCW\Plugin;
-
 /*
-Plugin Name: Ultimate tag cloud widget
+Plugin Name: Ultimate Tag Cloud Widget
 Plugin URI: https://www.0x539.se/wordpress/ultimate-tag-cloud-widget/
 Description: This plugin aims to be the most configurable tag cloud widget out there.
-Version: 2.3.1
+Version: 2.4
 Author: Rickard Andersson
 Author URI: https://www.0x539.se
 License: GPLv2
@@ -17,7 +15,7 @@ License: GPLv2
  * @var string
  * @since 2.0
  */
-define('UTCW_VERSION', '2.3.1');
+define('UTCW_VERSION', '2.4');
 
 /**
  * If development mode is currently enabled
@@ -51,33 +49,47 @@ define('UTCW_DECIMAL_REGEX', '\d+(\.\d+)?');
  */
 define('UTCW_HEX_COLOR_FORMAT', '#%02x%02x%02x');
 
-$__prefix = UTCW_DEV ? '/www/utcw2/' : '';
 
-require_once $__prefix . 'src/Plugin.php';
-require_once $__prefix . 'src/Widget.php';
-require_once $__prefix . 'src/Data.php';
-require_once $__prefix . 'src/Render.php';
-require_once $__prefix . 'src/Term.php';
-require_once $__prefix . 'src/Language/TranslationHandler.php';
-require_once $__prefix . 'src/Language/QTranslateHandler.php';
-require_once $__prefix . 'src/Language/WPMLHandler.php';
-require_once $__prefix . 'src/Selection/SelectionStrategy.php';
-require_once $__prefix . 'src/Selection/PopularityStrategy.php';
-require_once $__prefix . 'src/Selection/RandomStrategy.php';
-require_once $__prefix . 'src/Database/QueryBuilder.php';
-require_once $__prefix . 'src/Config/Config.php';
-require_once $__prefix . 'src/Config/DataConfig.php';
-require_once $__prefix . 'src/Config/RenderConfig.php';
-require_once $__prefix . 'src/Config/Type/Type.php';
-require_once $__prefix . 'src/Config/Type/SetType.php';
-require_once $__prefix . 'src/Config/Type/ColorType.php';
-require_once $__prefix . 'src/Config/Type/ArrayType.php';
-require_once $__prefix . 'src/Config/Type/IntegerType.php';
-require_once $__prefix . 'src/Config/Type/MeasurementType.php';
-require_once $__prefix . 'src/Config/Type/StringType.php';
-require_once $__prefix . 'src/Config/Type/BooleanType.php';
+function utcw_load()
+{
+    $prefix = UTCW_DEV ? '/www/utcw2/src/' : 'src/';
+    $files  = array(
+        'Plugin.php',
+        'ShortCode.php',
+        'Widget.php',
+        'Data.php',
+        'Render.php',
+        'Term.php',
+        'Handler/Handler.php',
+        'Handler/HandlerFactory.php',
+        'Language/TranslationHandler.php',
+        'Language/QTranslateHandler.php',
+        'Language/WPMLHandler.php',
+        'Selection/SelectionStrategy.php',
+        'Selection/PopularityStrategy.php',
+        'Selection/RandomStrategy.php',
+        'Database/QueryBuilder.php',
+        'Config/Config.php',
+        'Config/DataConfig.php',
+        'Config/RenderConfig.php',
+        'Config/Type/Type.php',
+        'Config/Type/SetType.php',
+        'Config/Type/ColorType.php',
+        'Config/Type/ArrayType.php',
+        'Config/Type/IntegerType.php',
+        'Config/Type/MeasurementType.php',
+        'Config/Type/StringType.php',
+        'Config/Type/BooleanType.php',
+        'Cache/WPSuperCacheHandler.php',
+        'Cache/W3TotalCacheHandler.php',
+    );
 
-unset($__prefix);
+    foreach ($files as $file) {
+        require_once $prefix . $file;
+    }
+}
+
+utcw_load();
 
 // Instantiates the plugin
 UTCW_Plugin::getInstance();
@@ -91,6 +103,8 @@ UTCW_Plugin::getInstance();
  */
 function do_utcw(array $args)
 {
-    $plugin = UTCW_Plugin::getInstance();
-    echo $plugin->shortcode($args);
+    $plugin    = UTCW_Plugin::getInstance();
+    $shortCode = new UTCW_ShortCode($plugin);
+
+    echo $shortCode->render($args);
 }

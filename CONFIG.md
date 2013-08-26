@@ -197,6 +197,13 @@ Name: `display`
 Default: `inline`  
 Valid values: `inline`, `list`  
 
+## Title type ##
+Description: What type of information the title text should contain  
+Type: Set  
+Name: `title_type`  
+Default: `counter`  
+Valid values: `counter`, `name`, `custom`  
+
 ## Link bg color ##
 Description: Background color for links  
 Type: Color  
@@ -287,6 +294,12 @@ Type: String
 Name: `suffix`  
 Default: None  
 
+## Title custom template ##
+Description: A C-style printf-template for the title text. Include %d to get the post count and %s to get the term name.  
+Type: String  
+Name: `title_custom_template`  
+Default: None  
+
 ## Show title ##
 Description: If the title attribute should be added to links in the cloud  
 Type: Boolean  
@@ -305,10 +318,16 @@ Type: Boolean
 Name: `show_title_text`  
 Default: `true`  
 
+## Show post count ##
+Description: If the number of posts with that term should be displayed with the name  
+Type: Boolean  
+Name: `show_post_count`  
+Default: `false`  
+
 ## Debug ##
 Description: If debug output should be included  
 Type: Boolean  
 Name: `debug`  
 Default: `false`  
 
-*Configuration options auto generated at 2013-06-02 23:05:30 for version 2.3*
+*Configuration options auto generated at 2013-08-26 22:46:27 for version 2.4*

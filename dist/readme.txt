@@ -3,7 +3,7 @@ Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 2.3.1
+Stable tag: 2.4
 Donate link: https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget
 License: GPLv2 or later
 
@@ -46,6 +46,14 @@ If you have questions, please post them in the forums.
 4. The settings page of the widget
 
 == Changelog ==
+
+= 2.4 =
+
+* [#32](https://github.com/rickard2/utcw/issues/32): Added filters to enable developers to hook into the plugin
+* [#33](https://github.com/rickard2/utcw/issues/33): Updated JS code to support newer versions of jQuery
+* [#36](https://github.com/rickard2/utcw/issues/36), [#38](https://github.com/rickard2/utcw/issues/38): Added options for changing the value of the title attribute
+* [#37](https://github.com/rickard2/utcw/issues/37): Fixed UI issue with the show title option always being checked
+* [#39](https://github.com/rickard2/utcw/issues/39): Added option to add post count to the term name
 
 = 2.3.1 =
 * Security fix for sensitive data exposed when using the debug option
@@ -100,7 +108,12 @@ The upgrade notice history for the 1.x branch is available on [GitHub](https://g
 
 == Upgrade Notice ==
 
+= 2.4 =
+
+* New features, see plugin page at wordpress.org for full details.
+
 = 2.3.1 =
+
 * Security fix for sensitive data exposed when using the debug option
 
 = 2.3 =
@@ -169,6 +182,8 @@ do_utcw( $args );`
 If you're not able to change your theme you can also use the shortcode `[utcw]` anywhere in your posts or pages. You can pass any of the settings along with the shortcode in the format of `key="value"`, for instance if you'd like to change the widget title:
 
 `[utcw title="Most awesome title ever"]`
+
+The plugin also uses a couple of filters for you to be able to alter the output. These are documented in the [filters documentation at GitHub](https://github.com/rickard2/utcw/blob/master/FILTERS.md).
 
 == Configuration ==
 

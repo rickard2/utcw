@@ -1,13 +1,10 @@
 <?php
 
-//use Rickard\UTCW\Widget;
-//use Rickard\UTCW\Plugin;
-
 if ( ! defined( 'ABSPATH' ) ) die();
 /**
  * Ultimate Tag Cloud Widget
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.3.1
+ * @version    2.4
  * @license    GPLv2
  * @package    utcw
  * @subpackage test

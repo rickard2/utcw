@@ -1,6 +1,4 @@
 <?php
-//use Rickard\UTCW\Config;
-//use Rickard\UTCW\Plugin;
 
 if (!defined('ABSPATH')) {
     die();
@@ -9,7 +7,7 @@ if (!defined('ABSPATH')) {
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.3.1
+ * @version    2.4
  * @license    GPLv2
  * @package    utcw
  * @subpackage test
@@ -20,40 +18,43 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
     public $configClass = 'UTCW_RenderConfig';
 
     public $defaults = array(
-        'text_transform'     => 'none',
-        'link_underline'     => 'default',
-        'link_bold'          => 'default',
-        'link_italic'        => 'default',
-        'hover_underline'    => 'default',
-        'hover_bold'         => 'default',
-        'hover_italic'       => 'default',
-        'link_border_style'  => 'none',
-        'hover_border_style' => 'none',
-        'link_bg_color'      => 'transparent',
-        'link_border_color'  => 'none',
-        'hover_bg_color'     => 'transparent',
-        'hover_color'        => 'default',
-        'hover_border_color' => 'none',
-        'letter_spacing'     => 'normal',
-        'word_spacing'       => 'normal',
-        'tag_spacing'        => 'auto',
-        'line_height'        => 'inherit',
-        'link_border_width'  => 0,
-        'hover_border_width' => 0,
-        'title'              => 'Tag Cloud',
-        'show_title'         => true,
-        'show_links'         => true,
-        'debug'              => false,
-        'separator'          => ' ',
-        'prefix'             => '',
-        'suffix'             => '',
-        'show_title_text'    => true,
-        'before_widget'      => '',
-        'after_widget'       => '',
-        'before_title'       => '',
-        'after_title'        => '',
-        'alignment'          => '',
-        'display'            => 'inline',
+        'text_transform'        => 'none',
+        'link_underline'        => 'default',
+        'link_bold'             => 'default',
+        'link_italic'           => 'default',
+        'hover_underline'       => 'default',
+        'hover_bold'            => 'default',
+        'hover_italic'          => 'default',
+        'link_border_style'     => 'none',
+        'hover_border_style'    => 'none',
+        'link_bg_color'         => 'transparent',
+        'link_border_color'     => 'none',
+        'hover_bg_color'        => 'transparent',
+        'hover_color'           => 'default',
+        'hover_border_color'    => 'none',
+        'letter_spacing'        => 'normal',
+        'word_spacing'          => 'normal',
+        'tag_spacing'           => 'auto',
+        'line_height'           => 'inherit',
+        'link_border_width'     => 0,
+        'hover_border_width'    => 0,
+        'title'                 => 'Tag Cloud',
+        'show_title'            => true,
+        'show_links'            => true,
+        'show_post_count'       => false,
+        'debug'                 => false,
+        'separator'             => ' ',
+        'prefix'                => '',
+        'suffix'                => '',
+        'show_title_text'       => true,
+        'before_widget'         => '',
+        'after_widget'          => '',
+        'before_title'          => '',
+        'after_title'           => '',
+        'alignment'             => '',
+        'display'               => 'inline',
+        'title_type'            => 'counter',
+        'title_custom_template' => '',
     );
 
     function test_text_transform_ok()
@@ -494,6 +495,16 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
         $this->helper_bool_fail('show_links');
     }
 
+    function test_show_post_count_ok()
+    {
+        $this->helper_bool_ok('show_post_count');
+    }
+
+    function test_show_post_count_fail()
+    {
+        $this->helper_bool_fail('show_post_count');
+    }
+
     function test_debug_ok()
     {
         $this->helper_bool_ok('debug');
@@ -562,5 +573,20 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
     function test_after_title()
     {
         $this->helper_string_ok('after_title');
+    }
+
+    function test_title_type_ok()
+    {
+        $this->helper_string_ok('title_type', 'name');
+    }
+
+    function test_title_type_fail()
+    {
+        $this->helper_string_fail('title_type', 'invalid');
+    }
+
+    function test_title_custom_template_ok()
+    {
+        $this->helper_string_ok('title_custom_template');
     }
 }

@@ -1,23 +1,14 @@
 <?php
-
-//namespace Rickard\UTCW;
-
 /**
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.3.1
+ * @version    2.4
  * @license    GPLv2
  * @package    utcw
  * @subpackage main
  * @since      2.0
  */
-
-//use Rickard\UTCW\Selection\PopularityStrategy;
-//use Rickard\UTCW\Selection\RandomStrategy;
-//use Rickard\UTCW\Selection\SelectionStrategy;
-//use wpdb;
-//use stdClass;
 
 /**
  * Class for loading data for the cloud
@@ -124,7 +115,7 @@ class UTCW_Data
         $max_count = 0;
 
         // Get translation handler if a translation plugin is active
-        $this->translationHandler = $this->plugin->getTranslationHandler();
+        $this->translationHandler = $this->plugin->get('translationHandler');
 
         foreach ($this->result as $item) {
             if ($item->count < $min_count) {

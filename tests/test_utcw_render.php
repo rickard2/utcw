@@ -5,7 +5,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.3.1
+ * @version    2.4
  * @license    GPLv2
  * @package    utcw
  * @subpackage test
@@ -339,7 +339,8 @@ class UTCW_Test_Render extends WP_UnitTestCase
     /**
      * @dataProvider terms
      */
-    function test_display_list_items($terms) {
+    function test_display_list_items($terms)
+    {
         $instance = array('display' => 'list');
 
         $expected = count($terms);
@@ -491,20 +492,100 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $this->assertNotContains('<a', $renderer->getCloud());
     }
 
+    /**
+     * @param $terms
+     *
+     * @dataProvider terms
+     */
+    function test_show_post_count($terms)
+    {
+        $renderer = $this->getRenderer(array('show_post_count' => true), $terms);
+        $this->assertContains('Test term 1 (10)', $renderer->getCloud());
+    }
+
+    /**
+     * @param $terms
+     *
+     * @dataProvider terms
+     */
+    function test_show_post_count_false_doesnt_show_post_count($terms)
+    {
+        $renderer = $this->getRenderer(array('show_post_count' => false), $terms);
+        $this->assertNotContains('Test term 1 (10)', $renderer->getCloud());
+    }
+
     function test_debug()
     {
         $this->helper_contains(array('debug' => true), '<!-- Ultimate Tag Cloud Debug information');
     }
 
-    function test_applies_filter_to_widget_title()
+    /**
+     * @dataProvider terms
+     */
+    function test_title_type_counter($terms)
+    {
+        $renderer = $this->getRenderer(array('title_type' => 'counter'), $terms);
+        $this->assertContains('title="10 topics"', $renderer->getCloud());
+    }
+
+    /**
+     * @dataProvider terms
+     */
+    function test_title_type_name($terms)
+    {
+        $renderer = $this->getRenderer(array('title_type' => 'name'), $terms);
+        $this->assertContains('title="Test term 1"', $renderer->getCloud());
+    }
+
+    /**
+     * @dataProvider terms
+     */
+    function test_title_type_custom($terms)
+    {
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello %s World %d'), $terms);
+        $this->assertContains('title="Hello Test term 1 World 10"', $renderer->getCloud());
+
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello %d World %s'), $terms);
+        $this->assertContains('title="Hello 10 World Test term 1"', $renderer->getCloud());
+
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello World %s'), $terms);
+        $this->assertContains('title="Hello World Test term 1"', $renderer->getCloud());
+
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello World %d'), $terms);
+        $this->assertContains('title="Hello World 10"', $renderer->getCloud());
+
+        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello World'), $terms);
+        $this->assertContains('title="Hello World"', $renderer->getCloud());
+    }
+
+    function test_applies_filters()
     {
         $utcw = $this->mockFactory->getUTCWMock(array('applyFilters'));
-        $utcw->expects($this->once())
-            ->method('applyFilters')
-            ->with('widget_title', 'Tag Cloud')
-            ->will($this->returnValue('Tag Cloud'));
 
-        $renderer = $this->getRenderer(array(), array(), $utcw);
+        $dp    = new DataProvider($this);
+        $terms = $dp->termsProvider(1);
+        $term  = $terms[0][0][0];
+
+        $utcw->expects($this->exactly(7))
+            ->method('applyFilters')
+            ->with(
+                $this->logicalOr(
+                    $this->equalTo('widget_title'),
+                    $this->equalTo('utcw_render_css'),
+                    $this->equalTo('utcw_render_terms'),
+                    $this->equalTo('utcw_render_term_title_singular'),
+                    $this->equalTo('utcw_render_term_title_plural'),
+                    $this->equalTo('utcw_render_tag'),
+                    $this->equalTo('utcw_render_term_display_name')
+                )
+            )
+            ->will(
+                $this->returnCallback(
+                    create_function('$filter, $value', 'return $filter === "utcw_render_terms" ? $value : "";')
+                )
+            );
+
+        $renderer = $this->getRenderer(array(), array($term), $utcw);
         $renderer->getCloud();
     }
 

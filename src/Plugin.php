@@ -1,7 +1,4 @@
 <?php
-
-//namespace Rickard\UTCW;
-
 /**
  * Class for general plugin integration with WordPress
  *
@@ -9,15 +6,12 @@
  * @package    utcw
  * @subpackage main
  */
-//use Rickard\UTCW\Language\QTranslateHandler;
-//use Rickard\UTCW\Language\TranslationHandler;
-//use Rickard\UTCW\Language\WPMLHandler;
 
 /**
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.3.1
+ * @version    2.4
  * @license    GPLv2
  * @package    utcw
  * @subpackage main
@@ -67,6 +61,7 @@ class UTCW_Plugin
     private function __construct()
     {
         $this->setHooks();
+        $this->set('shortCode', new UTCW_ShortCode($this));
     }
 
     /**
@@ -80,7 +75,54 @@ class UTCW_Plugin
         add_action('wp_loaded', array($this, 'wpLoaded'));
         add_action('widgets_init', array($this, 'widgetsInit'));
         add_action('wp_ajax_utcw_get_terms', array($this, 'outputTermsJson'));
-        add_shortcode('utcw', array($this, 'shortcode'));
+//        add_action('init', array($this, 'setCacheHandler')); Disabled for now
+        add_action('init', array($this, 'setTranslationHandler'));
+    }
+
+    /**
+     * Sets the translation handler if any is available
+     *
+     * @return bool
+     * @since 2.4
+     */
+    public function setTranslationHandler()
+    {
+        $factory = new UTCW_HandlerFactory(array(
+            'UTCW_QTranslateHandler',
+            'UTCW_WPMLHandler'
+        ));
+
+        $instance = $factory->getInstance();
+
+        if ($instance) {
+            $this->set('translationHandler', $instance);
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Sets the cache handler if any is available
+     *
+     * @return bool
+     * @since 2.4
+     */
+    public function setCacheHandler()
+    {
+        $factory = new UTCW_HandlerFactory(array(
+            'UTCW_WPSuperCacheHandler',
+            'UTCW_W3TotalCacheHandler',
+        ));
+
+        $instance = $factory->getInstance();
+
+        if ($instance) {
+            $this->set('cacheHandler', $instance);
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -190,36 +232,6 @@ class UTCW_Plugin
     }
 
     /**
-     * Short code handler for 'utcw' hook
-     *
-     * @param array $args
-     *
-     * @return string
-     * @since 2.0
-     */
-    public function shortcode(array $args)
-    {
-        global $wpdb;
-
-        if (isset($args['load_config'])) {
-            $loaded = $this->loadConfiguration($args['load_config']);
-
-            if (is_array($loaded)) {
-                $args = $loaded;
-            }
-        }
-
-        $this->set('wpdb', $wpdb);
-        $this->set('dataConfig', new UTCW_DataConfig($args, $this));
-        $this->set('renderConfig', new UTCW_RenderConfig($args, $this));
-        $this->set('data', new UTCW_Data($this));
-
-        $render = new UTCW_Render($this);
-
-        return $render->getCloud();
-    }
-
-    /**
      * Action handler for 'admin_head-widgets.php' hook
      * Loads assets needed by the administration interface
      *
@@ -247,7 +259,7 @@ class UTCW_Plugin
             );
             wp_enqueue_script(
                 'utcw',
-                plugins_url('ultimate-tag-cloud-widget/js/utcw.js'),
+                plugins_url('ultimate-tag-cloud-widget/js/src/utcw.js'),
                 array('utcw-lib-jsuri', 'utcw-lib-tooltip', 'jquery'),
                 UTCW_VERSION,
                 true
@@ -470,29 +482,5 @@ class UTCW_Plugin
     public function applyFilters($tag, $value)
     {
         return apply_filters($tag, $value);
-    }
-
-    /**
-     * Returns a new instance of the QTranslate Handler class
-     *
-     * @return null|UTCW_TranslationHandler
-     */
-    public function getTranslationHandler()
-    {
-        $names      = get_option('qtranslate_term_name');
-        $names      = $names ? $names : array();
-        $qTranslate = new UTCW_QTranslateHandler($names);
-
-        if ($qTranslate->isEnabled()) {
-            return $qTranslate;
-        }
-
-        $WPML = new UTCW_WPMLHandler();
-
-        if ($WPML->isEnabled()) {
-            return $WPML;
-        }
-
-        return null;
     }
 }

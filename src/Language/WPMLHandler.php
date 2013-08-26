@@ -1,21 +1,14 @@
 <?php
-
-//namespace Rickard\UTCW\Language;
-
 /**
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.3.1
+ * @version    2.4
  * @license    GPLv2
  * @package    utcw
  * @subpackage language
  * @since      2.2
  */
-
-//use Rickard\UTCW\Plugin;
-//use Rickard\UTCW\Term;
-//use stdClass;
 
 /**
  * Class to handle WPML multi-language support
@@ -35,6 +28,14 @@ class UTCW_WPMLHandler extends UTCW_TranslationHandler
     public function isEnabled()
     {
         return defined('ICL_LANGUAGE_CODE');
+    }
+
+    /**
+     * @since 2.4
+     */
+    public function init()
+    {
+        // void
     }
 
     /**
@@ -107,8 +108,8 @@ class UTCW_WPMLHandler extends UTCW_TranslationHandler
     /**
      * {@inheritdoc}
      *
-     * @param stdClass $input
-     * @param UTCW_Plugin   $plugin
+     * @param stdClass    $input
+     * @param UTCW_Plugin $plugin
      *
      * @return null|UTCW_Term
      * @since 2.2

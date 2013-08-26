@@ -47,6 +47,15 @@ If you have questions, please post them in the forums.
 
 == Changelog ==
 
+= 2.4 =
+
+* [#32](https://github.com/rickard2/utcw/issues/32): Added filters to enable developers to hook into the plugin
+* [#33](https://github.com/rickard2/utcw/issues/33): Updated JS code to support newer versions of jQuery
+* [#36](https://github.com/rickard2/utcw/issues/36), [#38](https://github.com/rickard2/utcw/issues/38): Added options for changing the value of the title attribute
+* [#37](https://github.com/rickard2/utcw/issues/37): Fixed UI issue with the show title option always being checked
+* [#39](https://github.com/rickard2/utcw/issues/39): Added option to add post count to the term name
+
+
 = 2.3 =
 
 * [#27](https://github.com/rickard2/utcw/issues/27): Added filtering feature to generate a cloud of posts which have a common term/terms
@@ -96,6 +105,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.4 =
+
+* New features, see plugin page at wordpress.org for full details.
 
 = 2.3 =
 

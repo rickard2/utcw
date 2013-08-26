@@ -4,26 +4,26 @@
 
     /*
      * Compatibility info:
-     * $.live			v1.3
      * $.ready			v1.0
-     * $.ajaxSuccess		v1.0
+     * $.ajaxSuccess	v1.0
      * $.data			v1.2.3
      * $.find			v1.0
-     * $.removeClass		v1.0
+     * $.removeClass	v1.0
      * $.addClass		v1.0
      * $.parent			v1.0
-     * $.parents			v1.0
-     * $.val				v1.0
-     * $.trigger			v1.0
+     * $.parents		v1.0
+     * $.val			v1.0
+     * $.trigger		v1.0
      * $.is				v1.0
      * $.attr			v1.0
      * $.after			v1.0
+     * $.delegate       v1.4.2
      *
-     * jQuery v1.3 required
-     * WordPress 2.8 shipped jQuery 1.3.2 => http://core.trac.wordpress.org/browser/tags/2.8/wp-includes/js/jquery/jquery.js?rev=11550
-     * WordPress 2.7 shipped jQuery 1.2.6 => http://core.trac.wordpress.org/browser/tags/2.7/wp-includes/js/jquery/jquery.js?rev=10186
+     * jQuery v1.4 required
+     * WordPress 3.0 shipped jQuery 1.4.2 => http://core.trac.wordpress.org/browser/tags/3.0/wp-includes/js/jquery/jquery.js
+     * WordPress 2.9 shipped jQuery 1.3.2 => http://core.trac.wordpress.org/browser/tags/2.9/wp-includes/js/jquery/jquery.js
      *
-     * Current compatibility WordPress 2.8
+     * Current compatibility WordPress 3.0
      *
      * @type {Object}
      */
@@ -42,15 +42,17 @@
         terms: {},
 
         init: function () {
-            $('input[id$=-color_none], input[id$=-color_random], input[id$=-color_set], input[id$=-color_span]').live('click', this.colorClickHandler);
-            $('.utcw-tab-button').live('click', this.tabClickHandler);
-            $('.utcw-input-taxonomy').live('click', this.taxonomyClickHandler);
-            $('.utcw-all-authors').live('click', this.allAuthorsClickHandler);
-            $('.utcw-selected-authors').live('click', this.selectedAuthorsClickHandler);
-            $('.utcw-remove-config').live('click', this.removeConfigClickHandler);
-            $('.post-term-search').live('keyup', this.postTermSearchHandler)
-                .live('search', this.postTermSearchHandler);
-            $('.utcw-remove-term').live('click', this.removeTermClickHandler);
+            var $body = $('body');
+
+            $body.delegate('input[id$=-color_none], input[id$=-color_random], input[id$=-color_set], input[id$=-color_span]', 'click', this.colorClickHandler);
+            $body.delegate('.utcw-tab-button', 'click', this.tabClickHandler);
+            $body.delegate('.utcw-input-taxonomy', 'click', this.taxonomyClickHandler);
+            $body.delegate('.utcw-all-authors', 'click', this.allAuthorsClickHandler);
+            $body.delegate('.utcw-selected-authors', 'click', this.selectedAuthorsClickHandler);
+            $body.delegate('.utcw-remove-config', 'click', this.removeConfigClickHandler);
+            $body.delegate('.post-term-search', 'keyup', this.postTermSearchHandler);
+            $body.delegate('.post-term-search', 'search', this.postTermSearchHandler);
+            $body.delegate('.utcw-remove-term', 'click', this.removeTermClickHandler);
 
             $(document).ready(this.initTooltip);
             $(document).ajaxSuccess(this.ajaxSuccessHandler);
@@ -75,6 +77,12 @@
             var $selected = $($searchField.data('selected-selector'));
             var needle = $searchField.val().toLocaleLowerCase();
             var result = [];
+            var termIterator = function (term) {
+                if (term.name.toLocaleLowerCase().indexOf(needle) !== -1) {
+                    result.push(term);
+                }
+            };
+
             $result.text('');
 
             if (!needle) {
@@ -83,11 +91,7 @@
 
             for (var taxonomy in UTCW.terms) {
                 if (UTCW.terms.hasOwnProperty(taxonomy)) {
-                    UTCW.terms[taxonomy].forEach(function (term) {
-                        if (term.name.toLocaleLowerCase().indexOf(needle) !== -1) {
-                            result.push(term);
-                        }
-                    });
+                    UTCW.terms[taxonomy].forEach(termIterator);
                 }
             }
 
@@ -135,7 +139,7 @@
                 $target.append($term);
                 $parent.text('');
                 $field.val('');
-            }
+            };
         },
 
         removeTermClickHandler: function () {

@@ -6,3 +6,4 @@ test/unittests-config.php
 phpdoc.xml
 /grunt/
 /node_modules/
+/vendor/

@@ -94,15 +94,23 @@ class UTCW_WPMLHandler extends UTCW_TranslationHandler
      */
     public function isInCurrentLanguage(stdClass $input)
     {
-        $language        = $this->getLanguage();
-        $defaultLanguage = $this->getDefaultLanguage();
+        $icl_object_id = icl_object_id($input->term_id, $input->taxonomy);
 
-        if ($language === $defaultLanguage) {
-            return strpos($input->name, '@') === false; // Terms in the default language doesn't have a @-notation
+        // For tags, icl_object_id is null for some reason and the language is present in the term name
+        if ($icl_object_id === null) {
+            $language        = $this->getLanguage();
+            $defaultLanguage = $this->getDefaultLanguage();
+
+            if ($language === $defaultLanguage) {
+                return strpos($input->name, '@') === false; // Terms in the default language doesn't have a @-notation
+            }
+
+            // Translated terms will have @{lang} at the end
+            return strpos($input->name, '@' . $language) !== false;
         }
 
-        // Translated terms will have @{lang} at the end
-        return strpos($input->name, '@' . $language) !== false;
+        // If the returned object id is the same, it's in the current language
+        return $icl_object_id == $input->term_id;
     }
 
     /**

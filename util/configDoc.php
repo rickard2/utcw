@@ -125,7 +125,7 @@ class DocumentationGenerator
             $result[] = sprintf('Name: `%s`  ', $optionName);
             $result[] = sprintf('Default: %s  ', $this->defaultDescription($option->getDefaultValue()));
             $result[] = sprintf(
-                'Shortcode example: `[utcw %s=%s]` ',
+                'Shortcode example: `[utcw %s=%s]`  ',
                 $optionName,
                 $this->generateExample($option, $options)
             );

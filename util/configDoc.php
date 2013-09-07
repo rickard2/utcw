@@ -124,11 +124,6 @@ class DocumentationGenerator
             $result[] = sprintf('Type: %s  ', $this->typeName(get_class($option)));
             $result[] = sprintf('Name: `%s`  ', $optionName);
             $result[] = sprintf('Default: %s  ', $this->defaultDescription($option->getDefaultValue()));
-            $result[] = sprintf(
-                'Shortcode example: `[utcw %s=%s]`  ',
-                $optionName,
-                $this->generateExample($option, $options)
-            );
 
             if ($option instanceof UTCW_SetType) {
                 $setReflection      = new ReflectionObject($option);
@@ -140,13 +135,20 @@ class DocumentationGenerator
                 $result[] = sprintf('Valid values: `%s`  ', join('`, `', $setOptions['values']));
             }
 
+            $result[] = sprintf(
+                'Shortcode example: `[utcw %s=%s]`  ',
+                $optionName,
+                $this->generateExample($option)
+            );
+
+
             $result[] = '';
         }
 
         return $result;
     }
 
-    protected function generateExample(UTCW_Type $option, array $options)
+    protected function generateExample(UTCW_Type $option)
     {
         $type            = $this->typeName(get_class($option));
         $typeReflection  = new ReflectionObject($option);

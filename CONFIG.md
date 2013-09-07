@@ -7,32 +7,32 @@ Description: Which strategy to use when fetching terms
 Type: Set  
 Name: `strategy`  
 Default: `popularity`  
-Shortcode example: `[utcw strategy=random]`  
 Valid values: `popularity`, `random`  
+Shortcode example: `[utcw strategy=random]`  
 
 ## Order ##
 Description: How the result should be ordered  
 Type: Set  
 Name: `order`  
 Default: `name`  
-Shortcode example: `[utcw order=count]`  
 Valid values: `name`, `random`, `slug`, `id`, `color`, `count`  
+Shortcode example: `[utcw order=count]`  
 
 ## Tags list type ##
 Description: How the [tags list](#tags-list) should be used  
 Type: Set  
 Name: `tags_list_type`  
 Default: `exclude`  
-Shortcode example: `[utcw tags_list_type=include]`  
 Valid values: `exclude`, `include`  
+Shortcode example: `[utcw tags_list_type=include]`  
 
 ## Color ##
 Description: Which coloring strategy to use  
 Type: Set  
 Name: `color`  
 Default: `none`  
-Shortcode example: `[utcw color=span]`  
 Valid values: `none`, `random`, `set`, `span`  
+Shortcode example: `[utcw color=span]`  
 
 ## Color span to ##
 Description: Which color value to start from in color calculation. This is the color that the smallest tag will get.  
@@ -144,96 +144,96 @@ Description: CSS text-transform value
 Type: Set  
 Name: `text_transform`  
 Default: `none`  
-Shortcode example: `[utcw text_transform=capitalize]`  
 Valid values: `lowercase`, `uppercase`, `capitalize`  
+Shortcode example: `[utcw text_transform=capitalize]`  
 
 ## Link underline ##
 Description: If links should be styled with underline decoration  
 Type: Set  
 Name: `link_underline`  
 Default: `default`  
-Shortcode example: `[utcw link_underline=no]`  
 Valid values: `default`, `yes`, `no`  
+Shortcode example: `[utcw link_underline=no]`  
 
 ## Link bold ##
 Description: If links should be styled as bold  
 Type: Set  
 Name: `link_bold`  
 Default: `default`  
-Shortcode example: `[utcw link_bold=no]`  
 Valid values: `default`, `yes`, `no`  
+Shortcode example: `[utcw link_bold=no]`  
 
 ## Link italic ##
 Description: If links should be styled as italic  
 Type: Set  
 Name: `link_italic`  
 Default: `default`  
-Shortcode example: `[utcw link_italic=no]`  
 Valid values: `default`, `yes`, `no`  
+Shortcode example: `[utcw link_italic=no]`  
 
 ## Hover underline ##
 Description: If links should be decorated with underline decoration in their hover state  
 Type: Set  
 Name: `hover_underline`  
 Default: `default`  
-Shortcode example: `[utcw hover_underline=no]`  
 Valid values: `default`, `yes`, `no`  
+Shortcode example: `[utcw hover_underline=no]`  
 
 ## Hover bold ##
 Description: If links should be styled as bold in their hover state  
 Type: Set  
 Name: `hover_bold`  
 Default: `default`  
-Shortcode example: `[utcw hover_bold=no]`  
 Valid values: `default`, `yes`, `no`  
+Shortcode example: `[utcw hover_bold=no]`  
 
 ## Hover italic ##
 Description: If links should be styled as italic in their hover state  
 Type: Set  
 Name: `hover_italic`  
 Default: `default`  
-Shortcode example: `[utcw hover_italic=no]`  
 Valid values: `default`, `yes`, `no`  
+Shortcode example: `[utcw hover_italic=no]`  
 
 ## Link border style ##
 Description: Border style for links  
 Type: Set  
 Name: `link_border_style`  
 Default: `none`  
-Shortcode example: `[utcw link_border_style=outset]`  
 Valid values: `none`, `dotted`, `dashed`, `solid`, `double`, `groove`, `ridge`, `inset`, `outset`  
+Shortcode example: `[utcw link_border_style=outset]`  
 
 ## Hover border style ##
 Description: Border style for links in their hover state  
 Type: Set  
 Name: `hover_border_style`  
 Default: `none`  
-Shortcode example: `[utcw hover_border_style=outset]`  
 Valid values: `none`, `dotted`, `dashed`, `solid`, `double`, `groove`, `ridge`, `inset`, `outset`  
+Shortcode example: `[utcw hover_border_style=outset]`  
 
 ## Alignment ##
 Description: How the text in the resulting cloud should be aligned  
 Type: Set  
 Name: `alignment`  
 Default: None  
-Shortcode example: `[utcw alignment=justify]`  
 Valid values: `left`, `right`, `center`, `justify`  
+Shortcode example: `[utcw alignment=justify]`  
 
 ## Display ##
 Description: How the resulting cloud should be displayed  
 Type: Set  
 Name: `display`  
 Default: `inline`  
-Shortcode example: `[utcw display=list]`  
 Valid values: `inline`, `list`  
+Shortcode example: `[utcw display=list]`  
 
 ## Title type ##
 Description: What type of information the title text should contain  
 Type: Set  
 Name: `title_type`  
 Default: `counter`  
-Shortcode example: `[utcw title_type=custom]`  
 Valid values: `counter`, `name`, `custom`  
+Shortcode example: `[utcw title_type=custom]`  
 
 ## Link bg color ##
 Description: Background color for links  
@@ -382,4 +382,4 @@ Name: `debug`
 Default: `false`  
 Shortcode example: `[utcw debug=1]`  
 
-*Configuration options auto generated at 2013-09-07 21:58:12 for version 2.4*
+*Configuration options auto generated at 2013-09-07 21:58:54 for version 2.4*

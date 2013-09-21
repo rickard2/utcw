@@ -53,6 +53,8 @@
             $body.delegate('.utcw-remove-config', 'click', this.removeConfigClickHandler);
             $body.delegate('.post-term-search', 'keyup', this.postTermSearchHandler);
             $body.delegate('.post-term-search', 'search', this.postTermSearchHandler);
+            $body.delegate('.tags-list-search', 'keyup', this.postTermSearchHandler);
+            $body.delegate('.tags-list-search', 'search', this.postTermSearchHandler);
             $body.delegate('.utcw-remove-term', 'click', this.removeTermClickHandler);
 
             $(document).ready(this.initTooltip);

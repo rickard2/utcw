@@ -193,34 +193,24 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<br>
 	<br>
 	<a class="utcw-help" title="<?php _e( 'Which tags to include or exclude', 'utcw' ) ?>">?</a>
-	<?php foreach ( $available_taxonomies as $taxonomy ) : ?>
 
-	<div id="<?php echo $taxonomy->name ?>-terms" <?php if ( !in_array( $taxonomy->name, $dataConfig->taxonomy ) ) echo 'class="hidden"' ?>>
-
-		<strong><?php printf( __( 'Terms for taxonomy %s', 'utcw' ), $taxonomy->labels->name ) ?></strong>
-
-		<?php if ( isset( $terms[ $taxonomy->name ] ) ) : ?>
-		<ul>
-		<?php foreach ( $terms[ $taxonomy->name ] as $term ) : ?>
-			<li>
-				<label>
-					<input
-						type="checkbox"
-						name="<?php echo $this->get_field_name( 'tags_list' ) ?>[]"
-						value="<?php echo $term->term_id ?>"
-						<?php if ( in_array( $term->term_id, $dataConfig->tags_list ) ) echo 'checked="checked"' ?>>
-					<?php echo $term->name ?>
-				</label>
-			</li>
-		<?php endforeach ?>
-		</ul>
-		<?php else : ?>
-			<p><?php printf( __( 'No terms for taxonomy "%s"', 'utcw' ), $taxonomy->labels->name ) ?></p>
-		<?php endif ?>
-
-	</div>
-
-	<?php endforeach ?>
+    <input type="search" class="tags-list-search" id="<?php echo $this->get_field_id('tags_list_search') ?>"
+           data-result-selector="#<?php echo $this->get_field_id('tags-list-search-result') ?>"
+           data-selected-selector="#<?php echo $this->get_field_id('tags-list-search-selected') ?>"
+           data-input-name="<?php echo $this->get_field_name( 'tags_list' ) ?>"
+           data-delete="<?php _e( 'Delete', 'utcw' ) ?>" />
+    <ul class="tags-list-search-result" id="<?php echo $this->get_field_id('tags-list-search-result') ?>"></ul>
+    <ul class="tags-list-search-selected" id="<?php echo $this->get_field_id('tags-list-search-selected') ?>">
+        <?php foreach ($dataConfig->tags_list as $term_id) : $term = $terms_by_id[$term_id]; ?>
+            <li>
+                <?php echo $term->name ?> (<?php echo $term->taxonomy ?>)
+                <span class="submitbox">
+                    <a class="submitdelete deletion utcw-remove-term"><?php _e('Delete', 'utcw') ?></a>
+                </span>
+                <input type="hidden" name="<?php echo $this->get_field_name( 'tags_list' ) ?>[]" value="<?php echo $term_id ?>" />
+            </li>
+        <?php endforeach ?>
+    </ul>
 
 </fieldset>
 

@@ -91,7 +91,7 @@ fieldset.utcw {
         display: inline-block;
     }
 
-    .post-term-search-result {
+    .post-term-search-result, .tags-list-search-result {
         background: #fff;
         box-shadow: 0 0 6px #ccc;
         -webkit-border-radius: 3px;
@@ -116,7 +116,6 @@ fieldset.utcw {
         float: right;
         cursor: pointer;
     }
-
 }
 
 .utcw-hidden {

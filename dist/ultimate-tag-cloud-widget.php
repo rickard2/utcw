@@ -15,7 +15,7 @@ License: GPLv2
  * @var string
  * @since 2.0
  */
-define('UTCW_VERSION', '2.4');
+define('UTCW_VERSION', '2.5-dev');
 
 /**
  * If development mode is currently enabled

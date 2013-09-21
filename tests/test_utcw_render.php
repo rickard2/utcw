@@ -81,7 +81,7 @@ class UTCW_Test_Render extends WP_UnitTestCase
 
     function test_output_contains_css()
     {
-        $this->helper_contains(array(), '<style type="text/css">');
+        $this->helper_contains(array(), '<style scoped type="text/css">');
     }
 
     function test_output_contains_word_wrap()

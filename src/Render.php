@@ -329,7 +329,7 @@ class UTCW_Render
         }
 
         if ($styles) {
-            $this->css = sprintf('<style type="text/css">%s</style>', join('', $styles));
+            $this->css = sprintf('<style scoped type="text/css">%s</style>', join('', $styles));
         }
     }
 

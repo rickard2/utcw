@@ -75,6 +75,7 @@ class UTCW_Plugin
         add_action('wp_loaded', array($this, 'wpLoaded'));
         add_action('widgets_init', array($this, 'widgetsInit'));
         add_action('wp_ajax_utcw_get_terms', array($this, 'outputTermsJson'));
+        add_action('wp_ajax_utcw_get_authors', array($this, 'outputAuthorsJson'));
 //        add_action('init', array($this, 'setCacheHandler')); Disabled for now
         add_action('init', array($this, 'setTranslationHandler'));
     }
@@ -206,6 +207,39 @@ class UTCW_Plugin
         }
 
         return json_encode($terms);
+    }
+
+    /**
+     * Outputs authors in JSON format
+     *
+     * @since 2.5
+     */
+    public function outputAuthorsJson()
+    {
+        header('Content-Type: application/json');
+        echo $this->getAuthorsJson();
+        die();
+    }
+
+    /**
+     * Fetch authors and return a AJAX friendly array as a JSON object
+     *
+     * @return string
+     *
+     * @since 2.5
+     */
+    public function getAuthorsJson()
+    {
+        $authors = array();
+
+        foreach ($this->getUsers() as $author) {
+            $authors[] = array(
+                'ID'           => $author->ID,
+                'display_name' => $author->display_name
+            );
+        }
+
+        return json_encode($authors);
     }
 
     /**

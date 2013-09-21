@@ -120,7 +120,7 @@ class UTCW_Widget extends WP_Widget
         /** @noinspection PhpUnusedLocalVariableInspection */
         $available_taxonomies = $this->plugin->getAllowedTaxonomiesObjects();
         /** @noinspection PhpUnusedLocalVariableInspection */
-        $users = $this->plugin->getUsers();
+        $authors = $this->plugin->getUsers();
         /** @noinspection PhpUnusedLocalVariableInspection */
         $terms = $this->plugin->getTerms();
 
@@ -131,6 +131,12 @@ class UTCW_Widget extends WP_Widget
             foreach ($taxonomyTerms as $term) {
                 $terms_by_id[$term->term_id] = $term;
             }
+        }
+        // Create a lookup table with all the authors indexed by their ID
+        $authors_by_id = array();
+
+        foreach ($authors as $author) {
+            $authors_by_id[$author->ID] = $author;
         }
 
         // Content of the widget settings form

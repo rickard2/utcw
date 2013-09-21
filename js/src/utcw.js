@@ -40,6 +40,7 @@
 
         activeTab: {},
         terms: {},
+        authors: [],
 
         init: function () {
             var $body = $('body');
@@ -55,13 +56,19 @@
             $body.delegate('.post-term-search', 'search', this.postTermSearchHandler);
             $body.delegate('.tags-list-search', 'keyup', this.postTermSearchHandler);
             $body.delegate('.tags-list-search', 'search', this.postTermSearchHandler);
-            $body.delegate('.utcw-remove-term', 'click', this.removeTermClickHandler);
+            $body.delegate('.author-search', 'keyup', this.authorSearchHandler);
+            $body.delegate('.author-search', 'search', this.authorSearchHandler);
+            $body.delegate('.utcw-remove-item', 'click', this.removeTermClickHandler);
 
             $(document).ready(this.initTooltip);
             $(document).ajaxSuccess(this.ajaxSuccessHandler);
 
             $.post(ajaxurl, {action: 'utcw_get_terms'}, function (response) {
                 UTCW.terms = response;
+            });
+
+            $.post(ajaxurl, {action: 'utcw_get_authors'}, function (response) {
+                UTCW.authors = response;
             });
 
         },
@@ -105,7 +112,7 @@
 
                 $term.text(text);
                 $term.data('id', term.term_id);
-                $term.click(UTCW.postTermSearchClickHandler($selected, $searchField));
+                $term.click(UTCW.selectionClickHandler($selected, $searchField));
 
                 $listItem.append($term);
 
@@ -113,7 +120,7 @@
             });
         },
 
-        postTermSearchClickHandler: function ($target, $field) {
+        selectionClickHandler: function ($target, $field) {
             return function () {
                 var $resultTerm = $(this);
                 var $term = $(document.createElement('li'));
@@ -130,7 +137,7 @@
 
                 $link.addClass('submitdelete');
                 $link.addClass('deletion');
-                $link.addClass('utcw-remove-term');
+                $link.addClass('utcw-remove-item');
                 $link.text($field.data('delete')); // TODO Language
 
                 $span.addClass('submitbox');
@@ -143,6 +150,41 @@
                 $parent.text('');
                 $field.val('');
             };
+        },
+
+        authorSearchHandler: function () {
+
+            var $searchField = $(this);
+            var $result = $($searchField.data('result-selector'));
+            var $selected = $($searchField.data('selected-selector'));
+            var needle = $searchField.val().toLocaleLowerCase();
+            var result = [];
+
+            $result.text('');
+
+            if (!needle) {
+                return;
+            }
+
+            UTCW.authors.forEach(function (author) {
+                if (author.display_name.toLocaleLowerCase().indexOf(needle) !== -1) {
+                    result.push(author);
+                }
+            });
+
+            result.forEach(function (author) {
+                var $listItem = $(document.createElement('li'));
+                var $term = $(document.createElement('a'));
+                var text = author.display_name;
+
+                $term.text(text);
+                $term.data('id', author.ID);
+                $term.click(UTCW.selectionClickHandler($selected, $searchField));
+
+                $listItem.append($term);
+
+                $result.append($listItem);
+            });
         },
 
         removeTermClickHandler: function () {
@@ -169,13 +211,14 @@
             var $this = $(this);
             var $widget = UTCW.findWidgetParent($this);
             $widget.find('.utcw-authors').addClass('hidden');
-            $widget.find('.utcw-author-field').attr('checked', false);
+            $widget.find("[name*='[authors]']").attr('disabled', true);
         },
 
         selectedAuthorsClickHandler: function () {
             var $this = $(this);
             var $widget = UTCW.findWidgetParent($this);
             $widget.find('.utcw-authors').removeClass('hidden');
+            $widget.find("[name*='[authors]']").attr('disabled', false);
         },
 
         tabClickHandler: function () {

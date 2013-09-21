@@ -14,7 +14,7 @@
  * @var array $configurations
  * @var array $terms
  * @var array $terms_by_id
- * @var array $users
+ * @var array $authors_by_id
  * @var UTCW_Widget $this
  */
 if ( ! defined( 'ABSPATH' ) ) die();
@@ -64,12 +64,24 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<br>
 
 	<div class="utcw-authors <?php if (!$dataConfig->authors) echo 'hidden' ?>">
-		<?php foreach ( $users as $user ) : ?>
-        <input class="utcw-author-field" type="checkbox" name="<?php echo $this->get_field_name( 'authors' ) ?>[]"
-               id="<?php echo $this->get_field_id( 'author_' . $user->ID ) ?>"
-               value="<?php echo $user->ID ?>" <?php echo  in_array( $user->ID, $dataConfig->authors, true ) ? 'checked="checked"' : ''; ?>>
-        <label for="<?php echo $this->get_field_id( 'author_' . $user->ID ) ?>"><?php echo $user->display_name ?></label><br>
-		<?php endforeach; ?>
+
+        <input type="search" class="author-search" id="<?php echo $this->get_field_id('authors_search') ?>"
+               data-result-selector="#<?php echo $this->get_field_id('author-search-result') ?>"
+               data-selected-selector="#<?php echo $this->get_field_id('author-search-selected') ?>"
+               data-input-name="<?php echo $this->get_field_name( 'authors' ) ?>"
+               data-delete="<?php _e( 'Delete', 'utcw' ) ?>" />
+        <ul class="author-search-result" id="<?php echo $this->get_field_id('author-search-result') ?>"></ul>
+        <ul class="author-search-selected" id="<?php echo $this->get_field_id('author-search-selected') ?>">
+            <?php foreach ($dataConfig->authors as $author_id) : $author = $authors_by_id[$author_id]; ?>
+                <li>
+                    <?php echo $author->display_name ?>
+                    <span class="submitbox">
+                        <a class="submitdelete deletion utcw-remove-item"><?php _e('Delete', 'utcw') ?></a>
+                    </span>
+                    <input type="hidden" name="<?php echo $this->get_field_name( 'authors' ) ?>[]" value="<?php echo $author_id ?>" />
+                </li>
+            <?php endforeach ?>
+        </ul>
 	</div>
     <br>
 
@@ -163,7 +175,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
             <li>
                 <?php echo $term->name ?> (<?php echo $term->taxonomy ?>)
                 <span class="submitbox">
-                    <a class="submitdelete deletion utcw-remove-term"><?php _e('Delete', 'utcw') ?></a>
+                    <a class="submitdelete deletion utcw-remove-item"><?php _e('Delete', 'utcw') ?></a>
                 </span>
                 <input type="hidden" name="<?php echo $this->get_field_name( 'post_term' ) ?>[]" value="<?php echo $term_id ?>" />
             </li>
@@ -205,7 +217,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
             <li>
                 <?php echo $term->name ?> (<?php echo $term->taxonomy ?>)
                 <span class="submitbox">
-                    <a class="submitdelete deletion utcw-remove-term"><?php _e('Delete', 'utcw') ?></a>
+                    <a class="submitdelete deletion utcw-remove-item"><?php _e('Delete', 'utcw') ?></a>
                 </span>
                 <input type="hidden" name="<?php echo $this->get_field_name( 'tags_list' ) ?>[]" value="<?php echo $term_id ?>" />
             </li>

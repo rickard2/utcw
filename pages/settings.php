@@ -182,6 +182,13 @@ if ( ! defined( 'ABSPATH' ) ) die();
         <?php endforeach ?>
     </ul>
 
+    <a class="utcw-help"
+       title="<?php _e( 'When used with post term filtering the resulting link in the tag cloud will contain a query variable to try to filter out the posts that have the term given in the term filter.', 'utcw' ) ?>">?</a>
+    <input type="checkbox" id="<?php echo $this->get_field_id( 'post_term_query_var' ) ?>"
+           name="<?php echo $this->get_field_name( 'post_term_query_var' ) ?>" <?php if ( $dataConfig->post_term_query_var ) echo 'checked="checked"' ?>>
+    <label for="<?php echo $this->get_field_id( 'post_term_query_var' ) ?>"><?php _e( 'Add filter to links', 'utcw' ) ?></label><br>
+
+
 </fieldset>
 
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-terms' ) ?>">

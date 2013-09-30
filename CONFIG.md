@@ -7,8 +7,8 @@ Description: Which strategy to use when fetching terms
 Type: Set  
 Name: `strategy`  
 Default: `popularity`  
-Valid values: `popularity`, `random`  
-Shortcode example: `[utcw strategy=random]`  
+Valid values: `popularity`, `random`, `creation`, `current_list`  
+Shortcode example: `[utcw strategy=current_list]`  
 
 ## Order ##
 Description: How the result should be ordered  
@@ -138,6 +138,13 @@ Type: Boolean
 Name: `case_sensitive`  
 Default: `false`  
 Shortcode example: `[utcw case_sensitive=1]`  
+
+## Post term query var ##
+Description: If the resulting link should include query vars to filter to only the terms given in post_term  
+Type: Boolean  
+Name: `post_term_query_var`  
+Default: `false`  
+Shortcode example: `[utcw post_term_query_var=1]`  
 
 ## Text transform ##
 Description: CSS text-transform value  
@@ -382,4 +389,4 @@ Name: `debug`
 Default: `false`  
 Shortcode example: `[utcw debug=1]`  
 
-*Configuration options auto generated at 2013-09-07 21:58:54 for version 2.4*
+*Configuration options auto generated at 2013-09-30 21:00:51 for version 2.5*

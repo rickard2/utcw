@@ -555,4 +555,33 @@ class UTCW_Plugin
     {
         return apply_filters($tag, $value);
     }
+
+
+    /**
+     * Returns the terms associated with the posts in the current $wp_query
+     *
+     * @return stdClass[]
+     */
+    public function getCurrentQueryTerms()
+    {
+        global $wp_query;
+
+        $terms = array();
+
+        if (!$wp_query) {
+            return array();
+        }
+
+        foreach ($wp_query->posts as $post) {
+            $postTerms = wp_get_post_terms($post->ID);
+
+            foreach ($postTerms as $term) {
+                if (!isset($terms[$term->term_id])) {
+                    $terms[$term->term_id] = $term;
+                }
+            }
+        }
+
+        return array_values($terms);
+    }
 }

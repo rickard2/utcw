@@ -99,6 +99,9 @@ class UTCW_Data
             case 'creation':
                 $this->strategy = new UTCW_CreationTimeStrategy($this->plugin);
                 break;
+            case 'current_list':
+                $this->strategy = new UTCW_CurrentListStrategy($this->plugin);
+                break;
         }
     }
 

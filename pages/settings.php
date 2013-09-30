@@ -50,6 +50,10 @@ if ( ! defined( 'ABSPATH' ) ) die();
         <input type="radio" name="<?php echo $this->get_field_name('strategy') ?>" value="creation" <?php if ($dataConfig->strategy === 'creation') echo 'checked="checked"' ?>>
         <?php _e('Creation time','utcw') ?>
     </label><br>
+    <label>
+        <input type="radio" name="<?php echo $this->get_field_name('strategy') ?>" value="current_list" <?php if ($dataConfig->strategy === 'current_list') echo 'checked="checked"' ?>>
+        <?php _e('Only terms from the current list','utcw') ?>
+    </label><br>
     <br>
 
 	<a class="utcw-help"

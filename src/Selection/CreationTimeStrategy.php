@@ -11,7 +11,7 @@
  */
 
 /**
- * Class to select a the newest terms from the DB
+ * Class to select the newest terms from the DB
  *
  * @since      2.5
  * @package    utcw

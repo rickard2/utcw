@@ -1,5 +1,5 @@
 <?php
- 
+
 if (!defined('ABSPATH')) {
     die();
 }
@@ -442,6 +442,18 @@ class UTCW_Test_Data extends WP_UnitTestCase
         $colors->blue_to  = 0x02;
 
         $this->helper_test_color_span($instance, $colors, $query_terms);
+    }
+
+    /**
+     * @dataProvider terms
+     */
+    function test_post_term_query_var($terms)
+    {
+        $terms = $this->helper_get_terms(array('post_term' => 1, 'post_term_query_var' => true), $terms);
+
+        foreach ($terms as $term) {
+            $this->assertContains('?category_name=uncategorized', $term->link);
+        }
     }
 
     function test_query_counts_posts()

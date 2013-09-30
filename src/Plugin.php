@@ -484,6 +484,44 @@ class UTCW_Plugin
     }
 
     /**
+     * Returns the term if found
+     *
+     * @param $term_id
+     *
+     * @return bool|object
+     * @since 2.5
+     */
+    public function getTerm($term_id)
+    {
+        foreach ($this->getTerms() as $taxonomy => $terms) {
+            foreach ($terms as $term) {
+                if ($term->term_id == $term_id) {
+                    $term = get_term($term_id, $taxonomy);
+
+                    if ($term && !is_wp_error($term)) {
+                        return $term;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns the taxonomy
+     *
+     * @param $taxonomy
+     *
+     * @return bool|object
+     * @since 2.5
+     */
+    public function getTaxonomy($taxonomy)
+    {
+        return get_taxonomy($taxonomy);
+    }
+
+    /**
      * Check if the term exist for any of the taxonomies
      *
      * @param int   $term_id     Term ID

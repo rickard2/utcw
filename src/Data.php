@@ -139,6 +139,10 @@ class UTCW_Data
             }
         }
 
+        if ($this->config->post_term_query_var && $this->config->post_term) {
+            $this->addTermFilterQueryVars();
+        }
+
         $size_from = floatval($this->config->size_from);
         $size_to   = floatval($this->config->size_to);
         $unit      = preg_replace('/' . UTCW_DECIMAL_REGEX . '/', '', $this->config->size_from);
@@ -265,6 +269,60 @@ class UTCW_Data
         $step        = $font_spread / $spread;
 
         return $step;
+    }
+
+    /**
+     * Will add a term filter to the query string of every link
+     *
+     * @since 2.5
+     */
+    protected function addTermFilterQueryVars()
+    {
+        $terms = array();
+        $query = array();
+
+        // First create a map of taxonomy => terms
+        foreach ($this->config->post_term as $term_id) {
+            $term = $this->plugin->getTerm($term_id);
+
+            if (!isset($terms[$term->taxonomy])) {
+                $terms[$term->taxonomy] = array();
+            }
+
+            $terms[$term->taxonomy][] = $term;
+        }
+
+        // Create a new map of query_var => terms for each taxonomy that has a query_var
+        foreach ($terms as $taxonomy => $taxonomyTerms) {
+
+            $taxonomy = $this->plugin->getTaxonomy($taxonomy);
+
+            if ($taxonomy->query_var) {
+                $query[$taxonomy->query_var] = array();
+
+                foreach ($taxonomyTerms as $term) {
+                    $query[$taxonomy->query_var][] = $term->slug;
+                }
+            }
+        }
+
+        if (!$query) {
+            return;
+        }
+
+        // Construct query string
+        $queryString = array();
+
+        foreach ($query as $var => $termSlugs) {
+            $queryString[] = $var . '=' . join(',', $termSlugs);
+        }
+
+        $queryString = join('&', $queryString);
+
+        foreach ($this->terms as $term) {
+            $term->link .= strpos($term->link, '?') === false ? '?' : '&';
+            $term->link .= $queryString;
+        }
     }
 
     /**

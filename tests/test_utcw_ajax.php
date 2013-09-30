@@ -50,7 +50,7 @@ class UTCW_Test_Ajax extends WP_UnitTestCase
         $plugin = $this->getMock('UTCW_Plugin', array('getUsers'), array(), '', false);
 
         $authors = array(
-            new WP_User(),
+            new WP_User(0),
         );
 
         $plugin->expects($this->once())->method('getUsers')->will($this->returnValue($authors));

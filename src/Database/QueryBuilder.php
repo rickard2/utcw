@@ -66,6 +66,18 @@ class UTCW_QueryBuilder
     }
 
     /**
+     * Adds a parameter to the query
+     *
+     * @param $parameter
+     *
+     * @since 2.5
+     */
+    public function addParameter($parameter)
+    {
+        $this->parameters[] = $parameter;
+    }
+
+    /**
      * Add a statement to the query
      *
      * @param string $statement

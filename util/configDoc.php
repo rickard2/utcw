@@ -1,5 +1,7 @@
 <?php
 
+namespace UTCW;
+
 function add_action()
 {
 }

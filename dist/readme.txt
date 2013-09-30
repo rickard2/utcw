@@ -3,7 +3,7 @@ Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
 Tested up to: 3.6
-Stable tag: 2.4
+Stable tag: 2.5
 Donate link: https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget
 License: GPLv2 or later
 
@@ -46,6 +46,14 @@ If you have questions, please post them in the forums.
 4. The settings page of the widget
 
 == Changelog ==
+
+= 2.5 =
+
+* [#14](https://github.com/rickard2/utcw/issues/14): Updated UI for selecting authors
+* [#22](https://github.com/rickard2/utcw/issues/22): Option to fetch terms based on the current list of posts and term creation time
+* [#35](https://github.com/rickard2/utcw/issues/35): Updated UI for selecting post terms
+* [#41](https://github.com/rickard2/utcw/issues/41): New option to add filtering to tag cloud links
+* [#42](https://github.com/rickard2/utcw/issues/42): Added scope attribute to style tag
 
 = 2.4 =
 
@@ -108,6 +116,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.5 =
+
+* New features, see plugin page at wordpress.org for full details.
 
 = 2.4 =
 

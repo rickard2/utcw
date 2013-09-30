@@ -4,7 +4,7 @@ Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
 Tested up to: 3.7-beta1
 Stable tag: 2.5
-Donate link: https://0x539.se/donations
+Donate link: https://0x539.se/donations/
 License: GPLv2 or later
 
 This plugin aims to be the most configurable tag cloud widget out there, able to suit all your weird tag cloud needs.
@@ -18,8 +18,15 @@ This is the highly configurable tag cloud widget, the main features for this plu
 - Rules for which posts to include when fetching tags
 - Inclusion/exclusion functions
 - A bunch of ordering, coloring and styling options
+- Multiple strategies for selecting terms, like: popularity, random, recently added, from current post list
+- Short code and API for developers
 
 This plugin is under active development and my goal is to try to help everyone who have issues or suggestions for this plugin. If you find bugs or have feature requests please use [GitHub issues](https://github.com/rickard2/utcw/issues), if you need support please use the [WordPress forums](http://wordpress.org/support/plugin/ultimate-tag-cloud-widget). You're also always welcome to contact me by e-mail or Google Talk; rickard at 0x539.se
+
+Quick links:
+- Short code information: http://wordpress.org/plugins/ultimate-tag-cloud-widget/other_notes/#Theme-integration-/-Shortcode
+- Short code configuration options: https://github.com/rickard2/utcw/blob/master/CONFIG.md
+- Playground which shows some configuration options: https://0x539.se/wordpress/tag-cloud-playground/
 
 == Installation ==
 
@@ -167,10 +174,10 @@ This plugin is under active development and my goal is to try to help everyone w
 
 My contact information is
 
-* rickard (a) 0x539.se (email, gtalk, msn, you name it)
+* rickard (a) 0x539.se (email, hangouts, you name it)
 * [twitter.com/rickard2](http://twitter.com/rickard2)
 
-If you use this plugin and like it, please consider giving me some [flattr love](https://flattr.com/thing/112193/Ultimate-Tag-Cloud-Widget).
+If you use this plugin and like it, please consider [leaving a donation](https://0x539.se/donations/).
 
 == Theme integration / Shortcode == 
 

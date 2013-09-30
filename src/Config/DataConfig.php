@@ -48,7 +48,7 @@ class UTCW_DataConfig extends UTCW_Config
      */
     public function __construct(array $input, UTCW_Plugin $plugin)
     {
-        $this->addOption('strategy', 'set', array('values' => array('popularity', 'random')));
+        $this->addOption('strategy', 'set', array('values' => array('popularity', 'random', 'creation')));
         $this->addOption('order', 'set', array('values' => array('name', 'random', 'slug', 'id', 'color', 'count')));
         $this->addOption('tags_list_type', 'set', array('values' => array('exclude', 'include')));
         $this->addOption('color', 'set', array('values' => array('none', 'random', 'set', 'span')));

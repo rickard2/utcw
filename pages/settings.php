@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 <fieldset class='utcw' id="<?php echo $this->get_field_id( 'utcw-tab-data' ) ?>">
 	<legend></legend>
 
-    <a class="utcw-help" title="<?php _e('How the tag cloud should find tags to display. Popularity based selection is the default strategy which shows the most popular tags.', 'utcw') ?>">?</a>
+    <a class="utcw-help" title="<?php _e('How the tag cloud should find tags to display. Popularity based selection is the default strategy which shows the most popular tags. Creation time will display the newest terms.', 'utcw') ?>">?</a>
     <strong><?php _e('Selection strategy:', 'utcw') ?></strong><br>
     <label>
         <input type="radio" name="<?php echo $this->get_field_name('strategy') ?>" value="popularity" <?php if ($dataConfig->strategy === 'popularity') echo 'checked="checked"' ?>>
@@ -45,6 +45,10 @@ if ( ! defined( 'ABSPATH' ) ) die();
     <label>
         <input type="radio" name="<?php echo $this->get_field_name('strategy') ?>" value="random" <?php if ($dataConfig->strategy === 'random') echo 'checked="checked"' ?>>
         <?php _e('Random','utcw') ?>
+    </label><br>
+    <label>
+        <input type="radio" name="<?php echo $this->get_field_name('strategy') ?>" value="creation" <?php if ($dataConfig->strategy === 'creation') echo 'checked="checked"' ?>>
+        <?php _e('Creation time','utcw') ?>
     </label><br>
     <br>
 

@@ -96,6 +96,9 @@ class UTCW_Data
             case 'random':
                 $this->strategy = new UTCW_RandomStrategy($this->plugin);
                 break;
+            case 'creation':
+                $this->strategy = new UTCW_CreationTimeStrategy($this->plugin);
+                break;
         }
     }
 

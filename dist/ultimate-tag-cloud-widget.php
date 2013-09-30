@@ -68,6 +68,7 @@ function utcw_load()
         'Selection/SelectionStrategy.php',
         'Selection/PopularityStrategy.php',
         'Selection/RandomStrategy.php',
+        'Selection/CreationTimeStrategy.php',
         'Database/QueryBuilder.php',
         'Config/Config.php',
         'Config/DataConfig.php',

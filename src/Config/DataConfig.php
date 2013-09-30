@@ -15,25 +15,26 @@
  *
  * @since 2.3
  *
- * @property-read string  strategy        Which strategy to use when fetching terms
- * @property-read string  order           How the result should be ordered
- * @property-read string  tags_list_type  How the {@link $tags_list tags list} should be used
- * @property-read string  color           Which coloring strategy to use
- * @property-read string  color_span_to   Which color value to start from in color calculation. This is the color that the smallest tag will get.
- * @property-read string  color_span_from Which color value to end at in color calculation. This is the color that the biggest tag will get.
- * @property-read array   color_set       A set of colors to randomly select from when coloring the tags
- * @property-read array   taxonomy        Which taxonomy to show tags from
- * @property-read array   post_type       An array of post type names to to include posts from in tag size calculation
- * @property-read array   authors         Which authors to include posts from. An empty array will include all authors
- * @property-read array   tags_list       A list of term IDs to be included or excluded. Inclusion or exclusion is determined by {@link $tags_list_type tags list type}
- * @property-read array   post_term       A list of term IDs which the posts needs to have to be included in tag size calculation
- * @property-read string  size_from       The smallest possible size
- * @property-read string  size_to         The greatest possible size
- * @property-read integer max             Maximum number of tags to display
- * @property-read integer minimum         How many posts a term needs to have to be shown in the cloud
- * @property-read integer days_old        How many days old a post needs to be to be included in tag size calculation
- * @property-read bool    reverse         If the order of tags should be shown in reverse order
- * @property-read bool    case_sensitive  If sorting should be applied case sensitive
+ * @property-read string  strategy            Which strategy to use when fetching terms
+ * @property-read string  order               How the result should be ordered
+ * @property-read string  tags_list_type      How the {@link $tags_list tags list} should be used
+ * @property-read string  color               Which coloring strategy to use
+ * @property-read string  color_span_to       Which color value to start from in color calculation. This is the color that the smallest tag will get.
+ * @property-read string  color_span_from     Which color value to end at in color calculation. This is the color that the biggest tag will get.
+ * @property-read array   color_set           A set of colors to randomly select from when coloring the tags
+ * @property-read array   taxonomy            Which taxonomy to show tags from
+ * @property-read array   post_type           An array of post type names to to include posts from in tag size calculation
+ * @property-read array   authors             Which authors to include posts from. An empty array will include all authors
+ * @property-read array   tags_list           A list of term IDs to be included or excluded. Inclusion or exclusion is determined by {@link $tags_list_type tags list type}
+ * @property-read array   post_term           A list of term IDs which the posts needs to have to be included in tag size calculation
+ * @property-read string  size_from           The smallest possible size
+ * @property-read string  size_to             The greatest possible size
+ * @property-read integer max                 Maximum number of tags to display
+ * @property-read integer minimum             How many posts a term needs to have to be shown in the cloud
+ * @property-read integer days_old            How many days old a post needs to be to be included in tag size calculation
+ * @property-read bool    reverse             If the order of tags should be shown in reverse order
+ * @property-read bool    case_sensitive      If sorting should be applied case sensitive
+ * @property-read bool    post_term_query_var If the resulting link should include query vars to filter to only the terms given in post_term
  */
 class UTCW_DataConfig extends UTCW_Config
 {
@@ -86,6 +87,7 @@ class UTCW_DataConfig extends UTCW_Config
 
         $this->addOption('reverse', 'boolean');
         $this->addOption('case_sensitive', 'boolean');
+        $this->addOption('post_term_query_var', 'boolean');
 
         parent::__construct($input, $plugin);
 

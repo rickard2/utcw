@@ -235,24 +235,21 @@ class UTCW_QueryBuilder
      */
     public function addTagsListConstraint($type, array $list, array $taxonomy)
     {
-        if ($list) {
-            $tags_list_parameters = array();
+        $parameters = array();
 
-            foreach ($list as $tag_id) {
-                if ($this->plugin->checkTermTaxonomy($tag_id, $taxonomy)) {
-                    $tags_list_parameters[] = '%d';
-                    $this->parameters[]     = $tag_id;
-                }
-            }
-
-            if ($tags_list_parameters) {
-                $tags_list_operator = $type == 'include' ? 'IN' : 'NOT IN';
-                $this->query[]      = 'AND t.term_id ' . $tags_list_operator . ' (' . join(
-                        ',',
-                        $tags_list_parameters
-                    ) . ')';
+        foreach ($list as $tag_id) {
+            if ($this->plugin->checkTermTaxonomy($tag_id, $taxonomy)) {
+                $parameters[]       = '%d';
+                $this->parameters[] = $tag_id;
             }
         }
+
+        if (!$parameters) {
+            return;
+        }
+
+        $operator      = $type == 'include' ? 'IN' : 'NOT IN';
+        $this->query[] = 'AND t.term_id ' . $operator . ' (' . join(',', $parameters) . ')';
     }
 
     /**

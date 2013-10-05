@@ -304,44 +304,28 @@ class UTCW_QueryBuilder
      */
     public function addSort($order, $reverse, $case_sensitive)
     {
+        // No subquery is needed if the order should be by count desc (it's already sorted that way)
+        // No subquery is needed if the order should be by color since the sorting is done in PHP afterwards
+        if ($order == 'color' || $reverse && $order == 'count') {
+            return;
+        }
+
         // If the result should be ordered in another way, try to create a sub-query to sort the result
         // directly in the database query
-        $subquery_required = true;
+        array_unshift($this->query, 'SELECT * FROM (');
+        $this->query[] = ') AS subQuery';
 
-        // No subquery is needed if the order should be by count desc (it's already sorted that way)
-        if ($reverse && $order == 'count') {
-            $subquery_required = false;
-        }
+        $way    = $reverse ? 'DESC' : 'ASC';
+        $binary = $case_sensitive ? 'BINARY ' : '';
 
-        // No subquery is needed if the order should be by color since the sorting is done in PHP afterwards
-        if ($order == 'color') {
-            $subquery_required = false;
-        }
+        $orderStatementMap = array(
+            'random' => 'ORDER BY RAND() ' . $way,
+            'name'   => 'ORDER BY ' . $binary . 'name ' . $way,
+            'slug'   => 'ORDER BY ' . $binary . 'slug ' . $way,
+            'id'     => 'ORDER BY term_id ' . $way,
+            'count'  => 'ORDER BY count ' . $way,
+        );
 
-        if ($subquery_required) {
-            array_unshift($this->query, 'SELECT * FROM (');
-            $this->query[] = ') AS subQuery';
-
-            $way    = $reverse ? 'DESC' : 'ASC';
-            $binary = $case_sensitive ? 'BINARY ' : '';
-
-            switch ($order) {
-                case 'random':
-                    $this->query[] = 'ORDER BY RAND() ' . $way;
-                    break;
-                case 'name':
-                    $this->query[] = 'ORDER BY ' . $binary . 'name ' . $way;
-                    break;
-                case 'slug':
-                    $this->query[] = 'ORDER BY ' . $binary . 'slug ' . $way;
-                    break;
-                case 'id':
-                    $this->query[] = 'ORDER BY term_id ' . $way;
-                    break;
-                case 'count':
-                    $this->query[] = 'ORDER BY count ' . $way;
-                    break;
-            }
-        }
+        $this->query[] = $orderStatementMap[$order];
     }
 }

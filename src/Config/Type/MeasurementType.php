@@ -15,7 +15,7 @@
  *
  * @since 2.3
  */
-class UTCW_MeasurementType extends UTCW_Type
+class UTCW_MeasurementType extends UTCW_IntegerType
 {
 
     /**
@@ -26,7 +26,7 @@ class UTCW_MeasurementType extends UTCW_Type
      * @return bool
      * @since 2.3
      */
-    function validate($value)
+    public function validate($value)
     {
         return !!preg_match('/^' . UTCW_DECIMAL_REGEX . '(em|px|%)?$/i', $value);
     }
@@ -46,20 +46,5 @@ class UTCW_MeasurementType extends UTCW_Type
         }
 
         return $value;
-    }
-
-    /**
-     * Returns zero if a default value is not given
-     *
-     * @return int|mixed
-     * @since 2.3
-     */
-    function getDefaultValue()
-    {
-        if (isset($this->options['default'])) {
-            return $this->options['default'];
-        }
-
-        return 0;
     }
 }

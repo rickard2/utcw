@@ -26,7 +26,7 @@ class UTCW_IntegerType extends UTCW_Type
      * @return bool
      * @since 2.3
      */
-    function validate($value)
+    public function validate($value)
     {
         if (!is_numeric($value)) {
             return false;
@@ -62,7 +62,7 @@ class UTCW_IntegerType extends UTCW_Type
      * @return int
      * @since 2.3
      */
-    function getDefaultValue()
+    public function getDefaultValue()
     {
         if (isset($this->options['default'])) {
             return $this->options['default'];

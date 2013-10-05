@@ -109,20 +109,8 @@ class UTCW_Widget extends WP_Widget
      */
     public function form($instance)
     {
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $dataConfig = new UTCW_DataConfig($instance, $this->plugin);
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $renderConfig = new UTCW_RenderConfig($instance, $this->plugin);
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $configurations = $this->plugin->getConfigurations();
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $available_post_types = $this->plugin->getAllowedPostTypes();
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $available_taxonomies = $this->plugin->getAllowedTaxonomiesObjects();
-        /** @noinspection PhpUnusedLocalVariableInspection */
         $authors = $this->plugin->getUsers();
-        /** @noinspection PhpUnusedLocalVariableInspection */
-        $terms = $this->plugin->getTerms();
+        $terms   = $this->plugin->getTerms();
 
         // Create a lookup table with all the terms indexed by their ID
         $terms_by_id = array();
@@ -139,8 +127,32 @@ class UTCW_Widget extends WP_Widget
             $authors_by_id[$author->ID] = $author;
         }
 
-        // Content of the widget settings form
-        require dirname(__FILE__) . '/../pages/settings.php';
+        $data = array(
+            'dataConfig'           => new UTCW_DataConfig($instance, $this->plugin),
+            'renderConfig'         => new UTCW_RenderConfig($instance, $this->plugin),
+            'configurations'       => $this->plugin->getConfigurations(),
+            'available_post_types' => $this->plugin->getAllowedPostTypes(),
+            'available_taxonomies' => $this->plugin->getAllowedTaxonomiesObjects(),
+            'authors'              => $authors,
+            'terms'                => $terms,
+            'authors_by_id'        => $authors_by_id,
+            'terms_by_id'          => $terms_by_id,
+        );
+
+        $this->render('settings', $data);
+    }
+
+    /**
+     * Render a template
+     *
+     * @param string $template
+     * @param array  $data
+     */
+    protected function render($template, array $data)
+    {
+        extract($data);
+
+        require dirname(__FILE__) . '/../pages/' . $template . '.php';
     }
 
     /**

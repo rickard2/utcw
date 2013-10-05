@@ -1,6 +1,7 @@
 # Ultimate Tag Cloud Widget #
 
-Build status for master: [![Build Status (master)](https://travis-ci.org/rickard2/utcw.png?branch=master)](https://travis-ci.org/rickard2/utcw)
+[![Build Status (master)](https://travis-ci.org/rickard2/utcw.png?branch=master)](https://travis-ci.org/rickard2/utcw)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/rickard2/utcw/badges/quality-score.png?s=1af13baaa1428780cc22fd8713cc9bfb6d7302bc)](https://scrutinizer-ci.com/g/rickard2/utcw/)
 
 This is the code repository for the WordPress plugin hosted at http://wordpress.org/extend/plugins/ultimate-tag-cloud-widget
 

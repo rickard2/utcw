@@ -284,31 +284,21 @@ class UTCW_Data
      */
     protected function addTermFilterQueryVars()
     {
-        $terms = array();
         $query = array();
 
         // First create a map of taxonomy => terms
         foreach ($this->config->post_term as $term_id) {
-            $term = $this->plugin->getTerm($term_id);
 
-            if (!isset($terms[$term->taxonomy])) {
-                $terms[$term->taxonomy] = array();
-            }
-
-            $terms[$term->taxonomy][] = $term;
-        }
-
-        // Create a new map of query_var => terms for each taxonomy that has a query_var
-        foreach ($terms as $taxonomy => $taxonomyTerms) {
-
-            $taxonomy = $this->plugin->getTaxonomy($taxonomy);
+            $term     = $this->plugin->getTerm($term_id);
+            $taxonomy = $this->plugin->getTaxonomy($term->taxonomy);
 
             if ($taxonomy->query_var) {
-                $query[$taxonomy->query_var] = array();
 
-                foreach ($taxonomyTerms as $term) {
-                    $query[$taxonomy->query_var][] = $term->slug;
+                if (!isset($query[$taxonomy->query_var])) {
+                    $query[$taxonomy->query_var] = array();
                 }
+
+                $query[$taxonomy->query_var][] = $term->slug;
             }
         }
 

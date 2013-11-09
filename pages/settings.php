@@ -354,6 +354,10 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'show_post_count' ) ?>"
 		   id="<?php echo $this->get_field_id( 'show_post_count' ) ?>" <?php echo $renderConfig->show_post_count === true ? 'checked="checked"' : ''?>>
 	<label for="<?php echo $this->get_field_id( 'show_post_count' ) ?>"><?php _e( 'Show post count', 'utcw' ) ?></label><br>
+    <a class="utcw-help" title="<?php _e('This option will try to prevent terms with multiple words from breaking up into two lines.', 'utcw') ?>">?</a>
+    <input type="checkbox" name="<?php echo $this->get_field_name( 'prevent_breaking' ) ?>"
+           id="<?php echo $this->get_field_id( 'prevent_breaking' ) ?>" <?php echo $renderConfig->prevent_breaking === true ? 'checked="checked"' : ''?>>
+    <label for="<?php echo $this->get_field_id( 'prevent_breaking' ) ?>"><?php _e( 'Prevent line breaks in terms', 'utcw' ) ?></label><br>
 	<br>
 
     <strong><?php _e('Term titles (hover text)', 'utcw') ?></strong><br>

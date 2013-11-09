@@ -259,6 +259,10 @@ class UTCW_Render
             $link_styles[] = sprintf('line-height:%s', $this->config->line_height);
         }
 
+        if (!$this->hasDefaultValue('prevent_breaking')) {
+            $link_styles[] = 'white-space:nowrap';
+        }
+
         $hover_styles = array();
 
         if (!$this->hasDefaultValue('hover_underline')) {

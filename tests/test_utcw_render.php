@@ -558,6 +558,11 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $this->assertContains('title="Hello World"', $renderer->getCloud());
     }
 
+    function test_prevent_breaking() {
+        $renderer = $this->getRenderer(array('prevent_breaking' => true));
+        $this->assertContains('white-space:nowrap', $renderer->getCloud());
+    }
+
     function test_applies_filters()
     {
         $utcw = $this->mockFactory->getUTCWMock(array('applyFilters'));

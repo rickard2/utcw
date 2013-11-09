@@ -47,6 +47,7 @@
  * @property-read bool   show_post_count        If the number of posts with that term should be displayed with the name
  * @property-read string title_type             What type of information the title text should contain
  * @property-read string title_custom_template  A C-style printf-template for the title text. Include %d to get the post count and %s to get the term name.
+ * @property-read bool prevent_breaking         If wrapping lines in the middle of words should be prevented
  * @property-read string before_widget          @internal
  * @property-read string after_widget           @internal
  * @property-read string before_title           @internal
@@ -169,6 +170,7 @@ class UTCW_RenderConfig extends UTCW_Config
         $this->addOption('show_links', 'boolean', array('default' => true));
         $this->addOption('show_title_text', 'boolean', array('default' => true));
         $this->addOption('show_post_count', 'boolean', array('default' => false));
+        $this->addOption('prevent_breaking', 'boolean', array('default' => false));
         $this->addOption('debug', 'boolean');
 
         parent::__construct($input, $plugin);

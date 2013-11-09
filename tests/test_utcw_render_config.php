@@ -55,6 +55,7 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
         'display'               => 'inline',
         'title_type'            => 'counter',
         'title_custom_template' => '',
+        'prevent_breaking'      => false,
     );
 
     function test_text_transform_ok()

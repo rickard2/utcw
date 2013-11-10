@@ -71,6 +71,15 @@ class UTCW_Test_Data extends WP_UnitTestCase
         $this->helper_query_contains($instance, 't.term_id IN (1,2,3)');
     }
 
+    function test_tags_list_include_csv()
+    {
+        $instance = array(
+            'tags_list_type' => 'include',
+            'tags_list'      => '1,2,3',
+        );
+        $this->helper_query_contains($instance, 't.term_id IN (1,2,3)');
+    }
+
     function test_tags_list_exclude()
     {
         $instance = array(

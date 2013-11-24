@@ -49,6 +49,6 @@ To use your new class, use a short code with the name, or the PHP function with 
 
 `[utcw strategy=MyStrategy]`
 
-`<?php do_utcw(array('strategy' => 'MyStrategy')) ?>
+`<?php do_utcw(array('strategy' => 'MyStrategy')) ?>`
 
-`<?php do_utcw(array('strategy' => new MyStrategy()) ?>
+`<?php do_utcw(array('strategy' => new MyStrategy()) ?>`

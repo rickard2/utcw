@@ -38,6 +38,13 @@
  */
 class UTCW_DataConfig extends UTCW_Config
 {
+    protected $plugin;
+
+    public function strategyFactory($className)
+    {
+        return new $className($this->plugin);
+    }
+
     /**
      * Creates a new instance of the class and adds all the options
      *
@@ -48,7 +55,22 @@ class UTCW_DataConfig extends UTCW_Config
      */
     public function __construct(array $input, UTCW_Plugin $plugin)
     {
-        $this->addOption('strategy', 'set', array('values' => array('popularity', 'random', 'creation', 'current_list')));
+        $this->addOption(
+            'strategy',
+            'class',
+            array(
+                'classMap'  => array(
+                    'popularity'   => 'UTCW_PopularityStrategy',
+                    'random'       => 'UTCW_RandomStrategy',
+                    'creation'     => 'UTCW_CreationTimeStrategy',
+                    'current_list' => 'UTCW_CurrentListStrategy'
+                ),
+                'baseClass' => 'UTCW_SelectionStrategy',
+                'default'   => 'popularity',
+                'factory'   => array($this, 'strategyFactory'),
+            )
+        );
+
         $this->addOption('order', 'set', array('values' => array('name', 'random', 'slug', 'id', 'color', 'count')));
         $this->addOption('tags_list_type', 'set', array('values' => array('exclude', 'include')));
         $this->addOption('color', 'set', array('values' => array('none', 'random', 'set', 'span')));
@@ -88,6 +110,8 @@ class UTCW_DataConfig extends UTCW_Config
         $this->addOption('reverse', 'boolean');
         $this->addOption('case_sensitive', 'boolean');
         $this->addOption('post_term_query_var', 'boolean');
+
+        $this->plugin = $plugin;
 
         parent::__construct($input, $plugin);
 

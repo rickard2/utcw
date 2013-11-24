@@ -15,7 +15,7 @@ License: GPLv2
  * @var string
  * @since 2.0
  */
-define('UTCW_VERSION', '2.5');
+define('UTCW_VERSION', '2.6-dev');
 
 /**
  * If development mode is currently enabled
@@ -76,6 +76,7 @@ function utcw_load()
         'Config/RenderConfig.php',
         'Config/Type/Type.php',
         'Config/Type/SetType.php',
+        'Config/Type/ClassType.php',
         'Config/Type/ColorType.php',
         'Config/Type/ArrayType.php',
         'Config/Type/IntegerType.php',

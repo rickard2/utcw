@@ -20,28 +20,12 @@
 class UTCW_PopularityStrategy extends UTCW_SelectionStrategy
 {
     /**
-     * Config class instance
-     *
-     * @var UTCW_Config
-     * @since 2.2
-     */
-    protected $config;
-
-    /**
      * Plugin class instance
      *
      * @var UTCW_Plugin
      * @since 2.2
      */
     protected $plugin;
-
-    /**
-     * WP Database class instance
-     *
-     * @var wpdb
-     * @since 2.2
-     */
-    protected $db;
 
     /**
      * A copy of the SQL query for debugging purposes
@@ -60,8 +44,6 @@ class UTCW_PopularityStrategy extends UTCW_SelectionStrategy
      */
     public function __construct(UTCW_Plugin $plugin)
     {
-        $this->config = $plugin->get('dataConfig');
-        $this->db     = $plugin->get('wpdb');
         $this->plugin = $plugin;
     }
 
@@ -73,31 +55,34 @@ class UTCW_PopularityStrategy extends UTCW_SelectionStrategy
      */
     public function getData()
     {
-        $builder = new UTCW_QueryBuilder($this->plugin, $this->db);
+        $config = $this->plugin->get('dataConfig');
+        $db     = $this->plugin->get('wpdb');
 
-        $builder->addAuthorConstraint($this->config->authors);
-        $builder->addPostTypeConstraint($this->config->post_type);
+        $builder = new UTCW_QueryBuilder($this->plugin, $db);
+
+        $builder->addAuthorConstraint($config->authors);
+        $builder->addPostTypeConstraint($config->post_type);
         $builder->addPostStatusConstraint($this->plugin->isAuthenticatedUser());
-        $builder->addDaysOldConstraint($this->config->days_old);
-        $builder->addTaxonomyConstraint($this->config->taxonomy);
+        $builder->addDaysOldConstraint($config->days_old);
+        $builder->addTaxonomyConstraint($config->taxonomy);
         $builder->addTagsListConstraint(
-            $this->config->tags_list_type,
-            $this->config->tags_list,
-            $this->config->taxonomy
+            $config->tags_list_type,
+            $config->tags_list,
+            $config->taxonomy
         );
-        $builder->addPostTermConstraint($this->config->post_term);
+        $builder->addPostTermConstraint($config->post_term);
         $builder->addGrouping();
-        $builder->addMinimum($this->config->minimum);
+        $builder->addMinimum($config->minimum);
         $builder->addStatement('ORDER BY count DESC');
-        $builder->addMaxConstraint($this->config->max);
-        $builder->addSort($this->config->order, $this->config->reverse, $this->config->case_sensitive);
+        $builder->addMaxConstraint($config->max);
+        $builder->addSort($config->order, $config->reverse, $config->case_sensitive);
 
         $query      = $builder->getQuery();
         $parameters = $builder->getParameters();
-        $query      = $this->db->prepare($query, $parameters);
+        $query      = $db->prepare($query, $parameters);
 
-        $result      = $this->db->get_results($query);
-        $this->query = $this->db->last_query;
+        $result      = $db->get_results($query);
+        $this->query = $db->last_query;
 
         return $result;
     }
@@ -110,7 +95,6 @@ class UTCW_PopularityStrategy extends UTCW_SelectionStrategy
      */
     public function cleanupForDebug()
     {
-        unset($this->db);
         $this->plugin->remove('wpdb');
     }
 }

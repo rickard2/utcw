@@ -45,14 +45,6 @@ class UTCW_Data
     protected $plugin;
 
     /**
-     * Reference to the selection strategy used
-     *
-     * @var UTCW_SelectionStrategy
-     * @since 2.2
-     */
-    protected $strategy;
-
-    /**
      * Reference to the translation handler used
      *
      * @var UTCW_TranslationHandler
@@ -88,21 +80,6 @@ class UTCW_Data
         $this->config = $plugin->get('dataConfig');
         $this->db     = $plugin->get('wpdb');
         $this->plugin = $plugin;
-
-        switch ($this->config->strategy) {
-            case 'popularity':
-                $this->strategy = new UTCW_PopularityStrategy($this->plugin);
-                break;
-            case 'random':
-                $this->strategy = new UTCW_RandomStrategy($this->plugin);
-                break;
-            case 'creation':
-                $this->strategy = new UTCW_CreationTimeStrategy($this->plugin);
-                break;
-            case 'current_list':
-                $this->strategy = new UTCW_CurrentListStrategy($this->plugin);
-                break;
-        }
     }
 
     /**
@@ -114,7 +91,7 @@ class UTCW_Data
     public function getTerms()
     {
         $this->terms  = array();
-        $this->result = $this->strategy->getData();
+        $this->result = $this->config->strategy->getData();
 
         // Calculate sizes
         $min_count = PHP_INT_MAX;
@@ -329,6 +306,6 @@ class UTCW_Data
         unset($this->db);
         $this->plugin->remove('wpdb');
         $this->plugin->remove('data');
-        $this->strategy->cleanupForDebug();
+        $this->config->strategy->cleanupForDebug();
     }
 }

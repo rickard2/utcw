@@ -13,10 +13,54 @@ if (!defined('ABSPATH')) {
  * @subpackage test
  */
 
+class TestStrategy extends UTCW_SelectionStrategy
+{
+
+    /**
+     * Creates a new instance
+     *
+     * @param UTCW_Plugin $plugin Main plugin instance
+     *
+     * @since 2.0
+     */
+    public function __construct(UTCW_Plugin $plugin)
+    {
+        // TODO: Implement __construct() method.
+    }
+
+    /**
+     * Loads terms based on current configuration
+     *
+     * @return stdClass[]
+     * @since 2.0
+     */
+    public function getData()
+    {
+        // TODO: Implement getData() method.
+    }
+
+    /**
+     * Clean up the internal members for debug output
+     *
+     * @return void
+     */
+    public function cleanupForDebug()
+    {
+        // TODO: Implement cleanupForDebug() method.
+    }
+}
+
+class NotAStrategy
+{
+
+}
+
 class UTCW_Test_Data_Config extends UTCW_Test_Config
 {
 
     public $configClass = 'UTCW_DataConfig';
+
+    public $skipDefaultCheck = array('strategy');
 
     public $defaults = array(
         'order'               => 'name',
@@ -31,7 +75,7 @@ class UTCW_Test_Data_Config extends UTCW_Test_Config
         'color_span_from'     => '',
         'authors'             => array(),
         'color_set'           => array(),
-        'strategy'            => 'popularity',
+//        'strategy'            => 'popularity',
         'max'                 => 45,
         'reverse'             => false,
         'case_sensitive'      => false,
@@ -43,12 +87,32 @@ class UTCW_Test_Data_Config extends UTCW_Test_Config
 
     function test_strategy_ok()
     {
-        $this->helper_string_ok('strategy', 'random');
+        $this->helper_instance_ok('strategy', 'random', 'UTCW_RandomStrategy');
     }
 
     function test_strategy_fail()
     {
-        $this->helper_string_fail('strategy', 'invalid');
+        $this->helper_instance_ok('strategy', 'invalid', 'UTCW_PopularityStrategy');
+    }
+
+    function test_strategy_class_name()
+    {
+        $this->helper_instance_ok('strategy', 'TestStrategy', 'TestStrategy');
+    }
+
+    function test_strategy_class_instance()
+    {
+        $this->helper_instance_ok('strategy', new TestStrategy($this->utcw), 'TestStrategy');
+    }
+
+    function test_strategy_class_name_invalid()
+    {
+        $this->helper_instance_ok('strategy', 'NotAStrategy', 'UTCW_PopularityStrategy');
+    }
+
+    function test_strategy_class_instance_invalid()
+    {
+        $this->helper_string_fail('strategy', new NotAStrategy(), 'UTCW_PopularityStrategy');
     }
 
     function test_order_ok()

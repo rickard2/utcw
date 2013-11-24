@@ -60,8 +60,6 @@ class UTCW_CurrentListStrategy extends UTCW_SelectionStrategy
      */
     public function __construct(UTCW_Plugin $plugin)
     {
-        $this->config = $plugin->get('dataConfig');
-        $this->db     = $plugin->get('wpdb');
         $this->plugin = $plugin;
     }
 
@@ -73,6 +71,9 @@ class UTCW_CurrentListStrategy extends UTCW_SelectionStrategy
      */
     public function getData()
     {
+        $this->config = $this->plugin->get('dataConfig');
+        $this->db     = $this->plugin->get('wpdb');
+
         $terms = $this->plugin->getCurrentQueryTerms();
 
         if (!$terms) {

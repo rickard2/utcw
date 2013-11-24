@@ -26,6 +26,8 @@ class UTCW_Test_Config extends WP_UnitTestCase
      */
     public $mockFactory;
 
+    public $skipDefaultCheck = array();
+
     public $configClass = '';
 
     public $defaults = array();
@@ -52,6 +54,10 @@ class UTCW_Test_Config extends WP_UnitTestCase
             $config   = new $this->configClass(array(), $this->utcw);
             $instance = $config->getInstance();
 
+            foreach ($this->skipDefaultCheck as $key) {
+                unset($instance[$key]);
+            }
+
             $this->assertEquals($this->defaults, $instance);
         }
     }
@@ -68,6 +74,20 @@ class UTCW_Test_Config extends WP_UnitTestCase
         $instance[$option] = $fail_string;
         $config            = new $this->configClass($instance, $this->utcw);
         $this->assertNotEquals($instance[$option], $config->$option, $message);
+    }
+
+    public function helper_instance_ok($option, $ok_value, $expected_class, $message = '')
+    {
+        $instance[$option] = $ok_value;
+        $config            = new $this->configClass($instance, $this->utcw);
+        $this->assertInstanceOf($expected_class, $config->$option, $message);
+    }
+
+    public function helper_instance_fail($option, $fail_value, $expected_class, $message = '')
+    {
+        $instance[$option] = $fail_value;
+        $config            = new $this->configClass($instance, $this->utcw);
+        $this->assertInstanceOf($expected_class, $config->$option, $message);
     }
 
     public function helper_int_ok($option, $ok_int = 10, $message = '')

@@ -27,13 +27,13 @@ class UTCW_Test_Hooks extends WP_UnitTestCase
 
         $plugin->expects($this->once())->method('initAdminAssets');
         $plugin->expects($this->once())->method('wpLoaded');
-        $plugin->expects($this->once())->method('widgetsInit');
+//        $plugin->expects($this->once())->method('widgetsInit');
 
         /** @var UTCW_Plugin $plugin */
         $plugin->setHooks();
 
         do_action('admin_head-widgets.php');
         do_action('wp_loaded');
-        do_action('widgets_init');
+//        do_action('widgets_init');
     }
 }

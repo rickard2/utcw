@@ -45,14 +45,14 @@ class UTCW_Widget extends WP_Widget
     }
 
     /**
-     * Load a saved configuration if given by the settings
+     * Loads a saved configuration if given by the settings
      *
      * @param array $new_instance
      *
      * @return array
      * @since 2.6
      */
-    protected function load($new_instance)
+    protected function load_config($new_instance)
     {
         $load_config = isset($new_instance['load_config']) &&
             isset($new_instance['load_config_name']) &&
@@ -71,14 +71,14 @@ class UTCW_Widget extends WP_Widget
     }
 
     /**
-     * Save configuration if given by the settings
+     * Saves the configuration if given by the settings
      *
      * @param array $new_instance
      * @param array $config
      *
      * @since 2.6
      */
-    protected function save($new_instance, $config)
+    protected function save_config($new_instance, $config)
     {
         $save_config = isset($new_instance['save_config']) &&
             isset($new_instance['save_config_name']) &&
@@ -96,13 +96,47 @@ class UTCW_Widget extends WP_Widget
      *
      * @since 2.6
      */
-    protected function remove($new_instance)
+    protected function remove_configs($new_instance)
     {
         if (isset($new_instance['remove_config']) && is_array($new_instance['remove_config'])) {
             foreach ($new_instance['remove_config'] as $configuration) {
                 $this->plugin->removeConfiguration($configuration);
             }
         }
+    }
+
+    /**
+     * Will iterate all the checkboxes and set the value to false if it is unchecked.
+     *
+     * @param $new_instance
+     *
+     * @since 2.6
+     *
+     * @return array
+     */
+    protected function check_booleans($new_instance)
+    {
+        // Checkbox inputs which are unchecked, will not be set in $new_instance. Set them manually to false
+        $checkbox_settings = array(
+            'show_title_text',
+            'show_links',
+            'show_title',
+            'debug',
+            'reverse',
+            'case_sensitive',
+            'post_term_query_var',
+            'show_post_count',
+            'prevent_breaking',
+            'avoid_theme_styling',
+        );
+
+        foreach ($checkbox_settings as $checkbox_setting) {
+            if (!isset($new_instance[$checkbox_setting])) {
+                $new_instance[$checkbox_setting] = false;
+            }
+        }
+
+        return $new_instance;
     }
 
     /**
@@ -116,24 +150,16 @@ class UTCW_Widget extends WP_Widget
      */
     public function update($new_instance, $old_instance)
     {
-        $new_instance = $this->load($new_instance);
-
-        // Checkbox inputs which are unchecked, will not be set in $new_instance. Set them manually to false
-        $checkbox_settings = array('show_title_text', 'show_links', 'show_title', 'debug', 'reverse', 'case_sensitive');
-
-        foreach ($checkbox_settings as $checkbox_setting) {
-            if (!isset($new_instance[$checkbox_setting])) {
-                $new_instance[$checkbox_setting] = false;
-            }
-        }
+        $new_instance = $this->load_config($new_instance);
+        $new_instance = $this->check_booleans($new_instance);
 
         $dataConfig   = new UTCW_DataConfig($new_instance, $this->plugin);
         $renderConfig = new UTCW_RenderConfig($new_instance, $this->plugin);
 
         $config = array_merge($dataConfig->getInstance(), $renderConfig->getInstance());
 
-        $this->save($new_instance, $config);
-        $this->remove($new_instance);
+        $this->save_config($new_instance, $config);
+        $this->remove_configs($new_instance);
 
         return $config;
     }

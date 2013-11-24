@@ -277,20 +277,4 @@ class UTCW_Render
 
         return $title;
     }
-
-    /**
-     * Checks if option still has the default value
-     *
-     * @param string $option
-     *
-     * @return bool
-     * @since 2.0
-     */
-    private function hasDefaultValue($option)
-    {
-        $defaultConfig = new UTCW_RenderConfig(array(), $this->plugin);
-        $defaults      = $defaultConfig->getInstance();
-
-        return $this->config->$option === $defaults[$option];
-    }
 }

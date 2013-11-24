@@ -17,7 +17,7 @@
  * @package    utcw
  * @subpackage language
  */
-abstract class UTCW_SelectionStrategy
+class UTCW_SelectionStrategy
 {
     /**
      * Plugin class instance
@@ -26,6 +26,14 @@ abstract class UTCW_SelectionStrategy
      * @since 2.2
      */
     protected $plugin;
+
+    /**
+     * A copy of the SQL query for debugging purposes
+     *
+     * @var string
+     * @since 2.2
+     */
+    protected $query;
 
     /**
      * Creates a new instance
@@ -45,7 +53,67 @@ abstract class UTCW_SelectionStrategy
      * @return stdClass[]
      * @since 2.2
      */
-    abstract public function getData();
+    public function getData()
+    {
+        $db    = $this->plugin->get('wpdb');
+        $query = $this->getQuery();
+
+        $result      = $db->get_results($query);
+        $this->query = $db->last_query;
+
+        return $result;
+    }
+
+    /**
+     * Returns the SQL query to be used when fetching terms
+     *
+     * @return string
+     * @since 2.6
+     */
+    protected function getQuery()
+    {
+        $config = $this->plugin->get('dataConfig');
+        $db     = $this->plugin->get('wpdb');
+
+        $builder = new UTCW_QueryBuilder($this->plugin);
+
+        $builder->addAuthorConstraint($config->authors);
+        $builder->addPostTypeConstraint($config->post_type);
+        $builder->addPostStatusConstraint($this->plugin->isAuthenticatedUser());
+        $builder->addDaysOldConstraint($config->days_old);
+        $builder->addTaxonomyConstraint($config->taxonomy);
+        $builder->addTagsListConstraint(
+            $config->tags_list_type,
+            $config->tags_list,
+            $config->taxonomy
+        );
+        $builder->addPostTermConstraint($config->post_term);
+        $builder->addGrouping();
+        $builder->addMinimum($config->minimum);
+
+        // Add statements from the strategy
+        $this->buildQuery($builder);
+
+        $builder->addMaxConstraint($config->max);
+        $builder->addSort($config->order, $config->reverse, $config->case_sensitive);
+
+        $query      = $builder->getQuery();
+        $parameters = $builder->getParameters();
+
+        return $db->prepare($query, $parameters);
+    }
+
+    /**
+     * @param UTCW_QueryBuilder $builder
+     *
+     * @return void
+     * @since 2.6
+     * @throws Exception
+     */
+    protected function buildQuery(UTCW_QueryBuilder $builder)
+    {
+        throw new Exception('You need to implement buildQuery() to use the default getData method');
+    }
 
     /**
      * Clean up the internal members for debug output

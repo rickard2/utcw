@@ -19,48 +19,18 @@
  */
 class UTCW_CurrentListStrategy extends UTCW_SelectionStrategy
 {
-    /**
-     * A copy of the SQL query for debugging purposes
-     *
-     * @var string
-     * @since 2.5
-     */
-    protected $query;
 
     /**
-     * Returns term data based on current configuration
+     * Add constraint to only contain the terms associated with the terms in the current list
      *
-     * @return stdClass[]
-     * @since 2.5
+     * @param UTCW_QueryBuilder $builder
+     *
+     * @since 2.6
      */
-    public function getData()
+    public function buildQuery(UTCW_QueryBuilder $builder)
     {
-        $config = $this->plugin->get('dataConfig');
-        $db     = $this->plugin->get('wpdb');
-
-        $terms = $this->plugin->getCurrentQueryTerms();
-
-        if (!$terms) {
-            return array();
-        }
-
+        $terms   = $this->plugin->getCurrentQueryTerms();
         $termIds = array_map(create_function('$term', 'return $term->term_id;'), $terms);
-
-        $builder = new UTCW_QueryBuilder($this->plugin);
-
-        $builder->addAuthorConstraint($config->authors);
-        $builder->addPostTypeConstraint($config->post_type);
-        $builder->addPostStatusConstraint($this->plugin->isAuthenticatedUser());
-        $builder->addDaysOldConstraint($config->days_old);
-        $builder->addTaxonomyConstraint($config->taxonomy);
-        $builder->addTagsListConstraint(
-            $config->tags_list_type,
-            $config->tags_list,
-            $config->taxonomy
-        );
-        $builder->addPostTermConstraint($config->post_term);
-        $builder->addGrouping();
-        $builder->addMinimum($config->minimum);
 
         $parameters = array();
 
@@ -70,17 +40,22 @@ class UTCW_CurrentListStrategy extends UTCW_SelectionStrategy
         }
 
         $builder->addStatement('AND term_id IN (' . join(',', $parameters) . ')');
+    }
 
-        $builder->addMaxConstraint($config->max);
-        $builder->addSort($config->order, $config->reverse, $config->case_sensitive);
+    /**
+     * Returns an empty array if no terms could be found in the current list
+     *
+     * @return stdClass[]
+     * @since 2.5
+     */
+    public function getData()
+    {
+        $terms = $this->plugin->getCurrentQueryTerms();
 
-        $query      = $builder->getQuery();
-        $parameters = $builder->getParameters();
-        $query      = $db->prepare($query, $parameters);
+        if (!$terms) {
+            return array();
+        }
 
-        $result      = $db->get_results($query);
-        $this->query = $db->last_query;
-
-        return $result;
+        return parent::getData();
     }
 }

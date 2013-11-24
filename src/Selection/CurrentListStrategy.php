@@ -82,7 +82,7 @@ class UTCW_CurrentListStrategy extends UTCW_SelectionStrategy
 
         $termIds = array_map(create_function('$term', 'return $term->term_id;'), $terms);
 
-        $builder = new UTCW_QueryBuilder($this->plugin, $this->db);
+        $builder = new UTCW_QueryBuilder($this->plugin);
 
         $builder->addAuthorConstraint($this->config->authors);
         $builder->addPostTypeConstraint($this->config->post_type);

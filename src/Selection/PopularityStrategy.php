@@ -58,7 +58,7 @@ class UTCW_PopularityStrategy extends UTCW_SelectionStrategy
         $config = $this->plugin->get('dataConfig');
         $db     = $this->plugin->get('wpdb');
 
-        $builder = new UTCW_QueryBuilder($this->plugin, $db);
+        $builder = new UTCW_QueryBuilder($this->plugin);
 
         $builder->addAuthorConstraint($config->authors);
         $builder->addPostTypeConstraint($config->post_type);

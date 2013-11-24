@@ -74,7 +74,7 @@ class UTCW_CreationTimeStrategy extends UTCW_SelectionStrategy
         $this->config = $this->plugin->get('dataConfig');
         $this->db     = $this->plugin->get('wpdb');
 
-        $builder = new UTCW_QueryBuilder($this->plugin, $this->db);
+        $builder = new UTCW_QueryBuilder($this->plugin);
 
         $builder->addAuthorConstraint($this->config->authors);
         $builder->addPostTypeConstraint($this->config->post_type);

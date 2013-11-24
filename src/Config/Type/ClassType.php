@@ -62,7 +62,7 @@ class UTCW_ClassType extends UTCW_Type
     {
         if (is_string($value)) {
 
-            $className = $this->options['classMap'][$value];
+            $className = isset($this->options['classMap'][$value]) ? $this->options['classMap'][$value] : $value;
 
             return call_user_func($this->options['factory'], $className);
         }

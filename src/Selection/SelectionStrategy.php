@@ -20,19 +20,30 @@
 abstract class UTCW_SelectionStrategy
 {
     /**
+     * Plugin class instance
+     *
+     * @var UTCW_Plugin
+     * @since 2.2
+     */
+    protected $plugin;
+
+    /**
      * Creates a new instance
      *
      * @param UTCW_Plugin $plugin Main plugin instance
      *
-     * @since 2.0
+     * @since 2.2
      */
-    abstract public function __construct(UTCW_Plugin $plugin);
+    public function __construct(UTCW_Plugin $plugin)
+    {
+        $this->plugin = $plugin;
+    }
 
     /**
      * Loads terms based on current configuration
      *
      * @return stdClass[]
-     * @since 2.0
+     * @since 2.2
      */
     abstract public function getData();
 
@@ -41,5 +52,8 @@ abstract class UTCW_SelectionStrategy
      *
      * @return void
      */
-    abstract public function cleanupForDebug();
+    public function cleanupForDebug()
+    {
+        $this->plugin->remove('wpdb');
+    }
 }

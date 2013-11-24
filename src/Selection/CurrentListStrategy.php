@@ -20,32 +20,12 @@
 class UTCW_CurrentListStrategy extends UTCW_SelectionStrategy
 {
     /**
-     * Plugin class instance
-     *
-     * @var UTCW_Plugin
-     * @since 2.5
-     */
-    protected $plugin;
-
-    /**
      * A copy of the SQL query for debugging purposes
      *
      * @var string
      * @since 2.5
      */
     protected $query;
-
-    /**
-     * Creates a new instance
-     *
-     * @param UTCW_Plugin $plugin Main plugin instance
-     *
-     * @since 2.5
-     */
-    public function __construct(UTCW_Plugin $plugin)
-    {
-        $this->plugin = $plugin;
-    }
 
     /**
      * Returns term data based on current configuration
@@ -102,16 +82,5 @@ class UTCW_CurrentListStrategy extends UTCW_SelectionStrategy
         $this->query = $db->last_query;
 
         return $result;
-    }
-
-    /**
-     * Clean up the internal members for debug output
-     *
-     * @return void
-     * @since 2.5
-     */
-    public function cleanupForDebug()
-    {
-        $this->plugin->remove('wpdb');
     }
 }

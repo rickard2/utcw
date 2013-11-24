@@ -26,6 +26,12 @@ abstract class UTCW_StyleProvider
     protected $plugin;
 
     /**
+     * @var array
+     * @since 2.6
+     */
+    protected $styles = array();
+
+    /**
      * @param UTCW_Plugin $plugin
      *
      * @since 2.6
@@ -66,5 +72,25 @@ abstract class UTCW_StyleProvider
         $config        = $this->plugin->get('renderConfig');
 
         return $config->$option === $defaults[$option];
+    }
+
+    /**
+     * Will add the style to the internal array if the option doesn't have is default value
+     *
+     * @param string $option
+     * @param string $template
+     * @param string $value
+     *
+     * @since 2.6
+     */
+    protected function addStyle($option, $template, $value = '')
+    {
+        if (!$value) {
+            $value = $this->plugin->get('renderConfig')->$option;
+        }
+
+        if (!$this->hasDefaultValue($option)) {
+            $this->styles[] = sprintf($template, $value);
+        }
     }
 }

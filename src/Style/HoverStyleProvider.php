@@ -27,57 +27,38 @@ class UTCW_HoverStyleProvider extends UTCW_StyleProvider
     public function getStyles()
     {
         $config       = $this->plugin->get('renderConfig');
-        $hover_styles = array();
+        $this->styles = array();
 
-        if (!$this->hasDefaultValue('hover_underline')) {
-            $hover_styles[] = sprintf(
-                'text-decoration:%s',
-                $config->hover_underline === 'yes' ? 'underline' : 'none'
-            );
-        }
+        $this->addStyle(
+            'hover_underline',
+            'text-decoration:%s',
+            $config->hover_underline === 'yes' ? 'underline' : 'none'
+        );
 
-        if (!$this->hasDefaultValue('hover_bold')) {
-            $hover_styles[] = sprintf('font-weight:%s', $config->hover_bold === 'yes' ? 'bold' : 'normal');
-        }
+        $this->addStyle('hover_bold', 'font-weight:%s', $config->hover_bold === 'yes' ? 'bold' : 'normal');
+        $this->addStyle('hover_italic', 'font-style:%s', $config->hover_italic === 'yes' ? 'italic' : 'normal');
+        $this->addStyle('hover_bg_color', 'background-color:%s');
 
-        if (!$this->hasDefaultValue('hover_italic')) {
-            $hover_styles[] = sprintf('font-style:%s', $config->hover_italic === 'yes' ? 'italic' : 'normal');
-        }
-
-        if (!$this->hasDefaultValue('hover_bg_color')) {
-            $hover_styles[] = sprintf('background-color:%s', $config->hover_bg_color);
-        }
-
-
-        if (!$this->hasDefaultValue('hover_border_style') && !$this->hasDefaultValue(
-                'hover_border_color'
-            ) && !$this->hasDefaultValue('hover_border_width')
+        if (
+            !$this->hasDefaultValue('hover_border_style') &&
+            !$this->hasDefaultValue('hover_border_color') &&
+            !$this->hasDefaultValue('hover_border_width')
         ) {
-            $hover_styles[] = sprintf(
+            $this->styles[] = sprintf(
                 'border:%s %s %s',
                 $config->hover_border_style,
                 $config->hover_border_width,
                 $config->hover_border_color
             );
         } else {
-            if (!$this->hasDefaultValue('hover_border_style')) {
-                $hover_styles[] = sprintf('border-style:%s', $config->hover_border_style);
-            }
-
-            if (!$this->hasDefaultValue('hover_border_color')) {
-                $hover_styles[] = sprintf('border-color:%s', $config->hover_border_color);
-            }
-
-            if (!$this->hasDefaultValue('hover_border_width')) {
-                $hover_styles[] = sprintf('border-width:%s', $config->hover_border_width);
-            }
+            $this->addStyle('hover_border_style', 'border-style:%s');
+            $this->addStyle('hover_border_color', 'border-color:%s');
+            $this->addStyle('hover_border_width', 'border-width:%s');
         }
 
-        if (!$this->hasDefaultValue('hover_color')) {
-            $hover_styles[] = sprintf('color:%s', $config->hover_color);
-        }
+        $this->addStyle('hover_color', 'color:%s');
 
-        return $hover_styles;
+        return $this->styles;
     }
 
     /**

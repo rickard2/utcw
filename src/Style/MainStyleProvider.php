@@ -25,27 +25,14 @@ class UTCW_MainStyleProvider extends UTCW_StyleProvider
      */
     public function getStyles()
     {
-        $config = $this->plugin->get('renderConfig');
+        $this->styles = array('word-wrap:break-word');
 
-        $main_styles = array('word-wrap:break-word');
+        $this->addStyle('text_transform', 'text-transform:%s');
+        $this->addStyle('letter_spacing', 'letter-spacing:%s');
+        $this->addStyle('word_spacing', 'word-spacing:%s');
+        $this->addStyle('alignment', 'text-align:%s');
 
-        if (!$this->hasDefaultValue('text_transform')) {
-            $main_styles[] = sprintf('text-transform:%s', $config->text_transform);
-        }
-
-        if (!$this->hasDefaultValue('letter_spacing')) {
-            $main_styles[] = sprintf('letter-spacing:%s', $config->letter_spacing);
-        }
-
-        if (!$this->hasDefaultValue('word_spacing')) {
-            $main_styles[] = sprintf('word-spacing:%s', $config->word_spacing);
-        }
-
-        if (!$this->hasDefaultValue('alignment')) {
-            $main_styles[] = sprintf('text-align:%s', $config->alignment);
-        }
-
-        return $main_styles;
+        return $this->styles;
     }
 
     /**

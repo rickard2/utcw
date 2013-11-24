@@ -6,7 +6,7 @@
  * @version    2.5
  * @license    GPLv2
  * @package    utcw
- * @subpackage language
+ * @subpackage selection
  * @since      2.5
  */
 

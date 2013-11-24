@@ -15,7 +15,7 @@
  *
  * @since      2.2
  * @package    utcw
- * @subpackage language
+ * @subpackage selection
  */
 class UTCW_SelectionStrategy
 {

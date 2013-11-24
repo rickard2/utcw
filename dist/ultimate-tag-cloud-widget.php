@@ -85,6 +85,10 @@ function utcw_load()
         'Config/Type/BooleanType.php',
         'Cache/WPSuperCacheHandler.php',
         'Cache/W3TotalCacheHandler.php',
+        'Style/StyleProvider.php',
+        'Style/HoverStyleProvider.php',
+        'Style/MainStyleProvider.php',
+        'Style/LinkStyleProvider.php',
     );
 
     foreach ($files as $file) {

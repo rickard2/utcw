@@ -193,153 +193,35 @@ class UTCW_Render
      */
     private function buildCSS()
     {
-        $main_styles = array('word-wrap:break-word');
+        /** @var UTCW_StyleProvider[] $providers */
+        $providers = array(
+            new UTCW_MainStyleProvider($this->plugin),
+            new UTCW_LinkStyleProvider($this->plugin),
+            new UTCW_HoverStyleProvider($this->plugin),
+        );
 
-        if (!$this->hasDefaultValue('text_transform')) {
-            $main_styles[] = sprintf('text-transform:%s', $this->config->text_transform);
-        }
+        $css = array();
 
-        if (!$this->hasDefaultValue('letter_spacing')) {
-            $main_styles[] = sprintf('letter-spacing:%s', $this->config->letter_spacing);
-        }
+        foreach ($providers as $provider) {
 
-        if (!$this->hasDefaultValue('word_spacing')) {
-            $main_styles[] = sprintf('word-spacing:%s', $this->config->word_spacing);
-        }
+            $selectors = $provider->getSelectors();
+            $styles    = $provider->getStyles();
 
-        if (!$this->hasDefaultValue('alignment')) {
-            $main_styles[] = sprintf('text-align:%s', $this->config->alignment);
-        }
+            if ($styles) {
 
-        $link_styles = array();
+                // Add base class to each selector
+                foreach ($selectors as $key => $selector) {
+                    $selectors[$key] = sprintf('.utcw-%s %s', $this->id, $selector);
+                }
 
-        if (!$this->hasDefaultValue('link_underline')) {
-            $link_styles[] = sprintf(
-                'text-decoration:%s',
-                $this->config->link_underline === 'yes' ? 'underline' : 'none'
-            );
-        }
-
-        if (!$this->hasDefaultValue('link_bold')) {
-            $link_styles[] = sprintf('font-weight:%s', $this->config->link_bold === 'yes' ? 'bold' : 'normal');
-        }
-
-        if (!$this->hasDefaultValue('link_italic')) {
-            $link_styles[] = sprintf('font-style:%s', $this->config->link_italic === 'yes' ? 'italic' : 'normal');
-        }
-
-        if (!$this->hasDefaultValue('link_bg_color')) {
-            $link_styles[] = sprintf('background-color:%s', $this->config->link_bg_color);
-        }
-
-        if (
-            !$this->hasDefaultValue('link_border_style') &&
-            !$this->hasDefaultValue('link_border_color') &&
-            !$this->hasDefaultValue('link_border_width')
-        ) {
-            $link_styles[] = sprintf(
-                'border:%s %s %s',
-                $this->config->link_border_style,
-                $this->config->link_border_width,
-                $this->config->link_border_color
-            );
-        } else {
-            if (!$this->hasDefaultValue('link_border_style')) {
-                $link_styles[] = sprintf('border-style:%s', $this->config->link_border_style);
+                // Construct CSS with comma separated selectors and the styles
+                $css[] = sprintf('%s{%s}', join(',', $selectors), join(';', $styles));
             }
 
-            if (!$this->hasDefaultValue('link_border_color')) {
-                $link_styles[] = sprintf('border-color:%s', $this->config->link_border_color);
-            }
-
-            if (!$this->hasDefaultValue('link_border_width')) {
-                $link_styles[] = sprintf('border-width:%s', $this->config->link_border_width);
-            }
         }
 
-        if (!$this->hasDefaultValue('tag_spacing')) {
-            $link_styles[] = sprintf('margin-right:%s', $this->config->tag_spacing);
-        }
-
-        if (!$this->hasDefaultValue('line_height')) {
-            $link_styles[] = sprintf('line-height:%s', $this->config->line_height);
-        }
-
-        if (!$this->hasDefaultValue('prevent_breaking')) {
-            $link_styles[] = 'white-space:nowrap';
-        }
-
-        $hover_styles = array();
-
-        if (!$this->hasDefaultValue('hover_underline')) {
-            $hover_styles[] = sprintf(
-                'text-decoration:%s',
-                $this->config->hover_underline === 'yes' ? 'underline' : 'none'
-            );
-        }
-
-        if (!$this->hasDefaultValue('hover_bold')) {
-            $hover_styles[] = sprintf('font-weight:%s', $this->config->hover_bold === 'yes' ? 'bold' : 'normal');
-        }
-
-        if (!$this->hasDefaultValue('hover_italic')) {
-            $hover_styles[] = sprintf('font-style:%s', $this->config->hover_italic === 'yes' ? 'italic' : 'normal');
-        }
-
-        if (!$this->hasDefaultValue('hover_bg_color')) {
-            $hover_styles[] = sprintf('background-color:%s', $this->config->hover_bg_color);
-        }
-
-
-        if (!$this->hasDefaultValue('hover_border_style') && !$this->hasDefaultValue(
-                'hover_border_color'
-            ) && !$this->hasDefaultValue('hover_border_width')
-        ) {
-            $hover_styles[] = sprintf(
-                'border:%s %s %s',
-                $this->config->hover_border_style,
-                $this->config->hover_border_width,
-                $this->config->hover_border_color
-            );
-        } else {
-            if (!$this->hasDefaultValue('hover_border_style')) {
-                $hover_styles[] = sprintf('border-style:%s', $this->config->hover_border_style);
-            }
-
-            if (!$this->hasDefaultValue('hover_border_color')) {
-                $hover_styles[] = sprintf('border-color:%s', $this->config->hover_border_color);
-            }
-
-            if (!$this->hasDefaultValue('hover_border_width')) {
-                $hover_styles[] = sprintf('border-width:%s', $this->config->hover_border_width);
-            }
-        }
-
-        if (!$this->hasDefaultValue('hover_color')) {
-            $hover_styles[] = sprintf('color:%s', $this->config->hover_color);
-        }
-
-        $styles = array();
-
-        if ($main_styles) {
-            $styles[] = sprintf('.utcw-%s{%s}', $this->id, join(';', $main_styles));
-        }
-
-        if ($link_styles) {
-            $styles[] = sprintf('.utcw-%s span,.utcw-%s a{%s}', $this->id, $this->id, join(';', $link_styles));
-        }
-
-        if ($hover_styles) {
-            $styles[] = sprintf(
-                '.utcw-%s span:hover,.utcw-%s a:hover{%s}',
-                $this->id,
-                $this->id,
-                join(';', $hover_styles)
-            );
-        }
-
-        if ($styles) {
-            $this->css = sprintf('<style scoped type="text/css">%s</style>', join('', $styles));
+        if ($css) {
+            $this->css = sprintf('<style scoped type="text/css">%s</style>', join('', $css));
         }
     }
 

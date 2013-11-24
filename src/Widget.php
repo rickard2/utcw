@@ -31,7 +31,7 @@ class UTCW_Widget extends WP_Widget
     /**
      * Constructor
      *
-     * @param UTCW_Plugin $plugin  Optional. UTCW_Plugin instance for dependency injection
+     * @param UTCW_Plugin $plugin Optional. UTCW_Plugin instance for dependency injection
      *
      * @return UTCW_Widget
      * @since 1.0
@@ -45,6 +45,67 @@ class UTCW_Widget extends WP_Widget
     }
 
     /**
+     * Load a saved configuration if given by the settings
+     *
+     * @param array $new_instance
+     *
+     * @return array
+     * @since 2.6
+     */
+    protected function load($new_instance)
+    {
+        $load_config = isset($new_instance['load_config']) &&
+            isset($new_instance['load_config_name']) &&
+            $new_instance['load_config_name'];
+
+        // Overwrite the form values with the saved configuration
+        if ($load_config) {
+            $loaded_configuration = $this->plugin->loadConfiguration($new_instance['load_config_name']);
+
+            if ($loaded_configuration) {
+                return $loaded_configuration;
+            }
+        }
+
+        return $new_instance;
+    }
+
+    /**
+     * Save configuration if given by the settings
+     *
+     * @param array $new_instance
+     * @param array $config
+     *
+     * @since 2.6
+     */
+    protected function save($new_instance, $config)
+    {
+        $save_config = isset($new_instance['save_config']) &&
+            isset($new_instance['save_config_name']) &&
+            $new_instance['save_config_name'];
+
+        if ($save_config) {
+            $this->plugin->saveConfiguration($new_instance['save_config_name'], $config);
+        }
+    }
+
+    /**
+     * Remove configurations if given by the settings
+     *
+     * @param array $new_instance
+     *
+     * @since 2.6
+     */
+    protected function remove($new_instance)
+    {
+        if (isset($new_instance['remove_config']) && is_array($new_instance['remove_config'])) {
+            foreach ($new_instance['remove_config'] as $configuration) {
+                $this->plugin->removeConfiguration($configuration);
+            }
+        }
+    }
+
+    /**
      * Action handler for the form in the admin panel
      *
      * @param array $new_instance
@@ -55,22 +116,7 @@ class UTCW_Widget extends WP_Widget
      */
     public function update($new_instance, $old_instance)
     {
-        $load_config = isset($new_instance['load_config']) &&
-            isset($new_instance['load_config_name']) &&
-            $new_instance['load_config_name'];
-
-        $save_config = isset($new_instance['save_config']) &&
-            isset($new_instance['save_config_name']) &&
-            $new_instance['save_config_name'];
-
-        // Overwrite the form values with the saved configuration
-        if ($load_config) {
-            $loaded_configuration = $this->plugin->loadConfiguration($new_instance['load_config_name']);
-
-            if ($loaded_configuration) {
-                $new_instance = $loaded_configuration;
-            }
-        }
+        $new_instance = $this->load($new_instance);
 
         // Checkbox inputs which are unchecked, will not be set in $new_instance. Set them manually to false
         $checkbox_settings = array('show_title_text', 'show_links', 'show_title', 'debug', 'reverse', 'case_sensitive');
@@ -86,15 +132,8 @@ class UTCW_Widget extends WP_Widget
 
         $config = array_merge($dataConfig->getInstance(), $renderConfig->getInstance());
 
-        if ($save_config) {
-            $this->plugin->saveConfiguration($new_instance['save_config_name'], $config);
-        }
-
-        if (isset($new_instance['remove_config']) && is_array($new_instance['remove_config'])) {
-            foreach ($new_instance['remove_config'] as $configuration) {
-                $this->plugin->removeConfiguration($configuration);
-            }
-        }
+        $this->save($new_instance, $config);
+        $this->remove($new_instance);
 
         return $config;
     }

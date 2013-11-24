@@ -38,7 +38,7 @@ class UTCW_Test_Render extends WP_UnitTestCase
     function test_title_is_outside_of_wrapper()
     {
         $render = $this->getRenderer(array('title' => 'Hello World'));
-        $this->assertRegExp('/Hello World<div class="tagcloud utcw-/', $render->getCloud());
+        $this->assertRegExp('/Hello World<div class="utcw-/', $render->getCloud());
     }
 
     function test_title_is_inside_widget()
@@ -58,7 +58,19 @@ class UTCW_Test_Render extends WP_UnitTestCase
     function test_output_contains_wrapper()
     {
         $render = $this->getRenderer();
-        $this->assertRegExp('/<div class="tagcloud utcw-[0-9a-z]+">.*<\/div>$/i', $render->getCloud());
+        $this->assertRegExp('/<div class="utcw-[0-9a-z]+ tagcloud">.*<\/div>$/i', $render->getCloud());
+    }
+
+    function test_avoid_theme_styling() {
+        $render = $this->getRenderer(array(
+                'avoid_theme_styling' => true,
+                'before_widget' => '<section class="widget widget_utcw">',
+                'after_widget'  => '</section>',
+            )
+        );
+
+        $this->assertNotContains('widget_tag_cloud', $render->getCloud(), $render->getCloud());
+        $this->assertNotContains('tagcloud', $render->getCloud(), $render->getCloud());
     }
 
     function test_wrapper_is_inside_widget()

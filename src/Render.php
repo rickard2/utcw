@@ -101,7 +101,7 @@ class UTCW_Render
             $markup[] = $this->plugin->applyFilters('utcw_render_css', $this->css);
         }
 
-        if ($this->config->before_widget) {
+        if ($this->config->before_widget && !$this->config->avoid_theme_styling) {
             $markup[] = str_replace('widget_utcw', 'widget_utcw widget_tag_cloud', $this->config->before_widget);
         }
 
@@ -117,7 +117,13 @@ class UTCW_Render
             }
         }
 
-        $markup[] = '<div class="tagcloud utcw-' . $this->id . '">';
+        $classes = array('utcw-' . $this->id);
+
+        if (!$this->config->avoid_theme_styling) {
+            $classes[] = 'tagcloud';
+        }
+
+        $markup[] = '<div class="' . join(' ', $classes) . '">';
 
         $termObjects = $this->plugin->applyFilters('utcw_render_terms', $this->data->getTerms());
 

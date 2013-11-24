@@ -343,6 +343,13 @@ if ( ! defined( 'ABSPATH' ) ) die();
     <input type="radio" name="<?php echo $this->get_field_name('display') ?>" id="<?php echo $this->get_field_id('display_list') ?>" value="list" <?php if ($renderConfig->display === 'list') echo 'checked="checked"' ?>>
     <label for="<?php echo $this->get_field_id('display_list') ?>"><?php _e('List', 'utcw') ?></label><br>
     <br>
+    <a class="utcw-help"
+       title="<?php _e( 'This option will remove some CSS classes commonly used by themes to apply their own styles to the tag cloud. If the options aren\'t displaying correctly, try enabling this feature. This will make styles closer match the appearance before version 2.3.', 'utcw' ) ?>">?</a>
+    <input type="checkbox" name="<?php echo $this->get_field_name( 'avoid_theme_styling' ) ?>"
+           id="<?php echo $this->get_field_id( 'avoid_theme_styling' ) ?>" <?php echo $renderConfig->avoid_theme_styling === true ? 'checked="checked"' : ''?>>
+    <label for="<?php echo $this->get_field_id( 'avoid_theme_styling' ) ?>"><?php _e( 'Avoid theme styling', 'utcw' ) ?></label><br>
+    <br>
+
     
 	<strong><?php _e('Term appearance', 'utcw') ?></strong><br>
     <a class="utcw-help"
@@ -433,7 +440,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 
 	<a class="utcw-help"
 	   title="<?php _e( 'The tags can be surrounded by a prefix and/or suffix and separated with a separator. The default separator is just a space but can be changed to anything you\'d like. Remember to add a space before and after the separator, this is not automatically added by the plugin.<br><br>A short example, these settings:<ul><li>Separator: &nbsp;-&nbsp; </li><li>Prefix: (</li><li>Suffix: )</li></ul>… would produce a tag cloud like this: <br><br>(first tag) - (second tag) - (third tag)<br><br>Prefix and suffix characters will have the same size and color as the tag, but the separator will not.', 'utcw' ) ?>">?</a>
-	<strong><?php _e( 'Tag separators:', 'utcw' )?></strong>
+	<strong><?php _e( 'Tag separators:', 'utcw' )?></strong><br>
 	<label class="two-col"
 		   for="<?php echo $this->get_field_id( 'separator' ) ?>"><?php _e( 'Separator', 'utcw' ) ?></label>
 	<input type="text" size=5 name="<?php echo $this->get_field_name( 'separator' ) ?>"

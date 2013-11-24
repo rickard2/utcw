@@ -156,27 +156,25 @@ class DataProvider
             $utcw = $this->mockFactory->getUTCWNotAuthenticated();
         }
 
-        $utcw->set('renderConfig', $this->get_render_config($instance));
+        $utcw->set('renderConfig', $this->get_render_config($instance, $utcw));
         $utcw->set('data', $this->get_data_object($instance, $query_terms));
 
         return new UTCW_Render($utcw);
     }
 
-    function get_data_config(array $instance)
+    function get_data_config(array $instance, $plugin)
     {
-        return new UTCW_DataConfig($instance, $this->mockFactory->getUTCWAuthenticated());
+        return new UTCW_DataConfig($instance, $plugin);
     }
 
-    function get_render_config(array $instance)
+    function get_render_config(array $instance, $plugin)
     {
-        return new UTCW_RenderConfig($instance, $this->mockFactory->getUTCWAuthenticated());
+        return new UTCW_RenderConfig($instance, $plugin);
     }
 
     function get_data_object(array $instance, array $query_terms)
     {
-
         $plugin = $this->mockFactory->getUTCWMock();
-        $plugin->set('dataConfig', $this->get_data_config($instance));
 
         $db = $this->mockFactory->getWPDBMock();
 
@@ -185,6 +183,7 @@ class DataProvider
             ->will($this->testCase->returnValue($query_terms));
 
         $plugin->set('wpdb', $db);
+        $plugin->set('dataConfig', $this->get_data_config($instance, $plugin));
 
         return new UTCW_Data($plugin);
     }

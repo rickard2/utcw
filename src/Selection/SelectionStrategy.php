@@ -36,6 +36,28 @@ class UTCW_SelectionStrategy
     protected $query;
 
     /**
+     * Don't serialize any of the members
+     *
+     * @return array
+     *
+     * @since 2.6
+     */
+    public function __sleep()
+    {
+        return array();
+    }
+
+    /**
+     * Request a new plugin instance when unserialized
+     *
+     * @since 2.6
+     */
+    public function __wakeup()
+    {
+        $this->plugin = UTCW_Plugin::getInstance();
+    }
+
+    /**
      * Creates a new instance
      *
      * @param UTCW_Plugin $plugin Main plugin instance

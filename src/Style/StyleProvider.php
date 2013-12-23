@@ -32,6 +32,28 @@ abstract class UTCW_StyleProvider
     protected $styles = array();
 
     /**
+     * Only save styles when serializing
+     *
+     * @return array
+     *
+     * @since 2.6
+     */
+    public function __sleep()
+    {
+        return array('styles');
+    }
+
+    /**
+     * Get a new copy of the plugin instance when waking up
+     *
+     * @since 2.6
+     */
+    public function __wakeup()
+    {
+        $this->plugin = UTCW_Plugin::getInstance();
+    }
+
+    /**
      * @param UTCW_Plugin $plugin
      *
      * @since 2.6

@@ -2,12 +2,33 @@
 
 class UTCW_ShortCode
 {
-
     /**
      * @var UTCW_Plugin
      * @since 2.4
      */
     protected $plugin;
+
+    /**
+     * Never serialize private members
+     *
+     * @return array
+     *
+     * @since 2.6
+     */
+    public function __sleep()
+    {
+        return array();
+    }
+
+    /**
+     * Fetch a new copy of the plugin when waking up
+     *
+     * @since 2.6
+     */
+    public function __wakeup()
+    {
+        $this->plugin = UTCW_Plugin::getInstance();
+    }
 
     /**
      * @param UTCW_Plugin $plugin

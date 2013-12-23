@@ -69,6 +69,24 @@ class UTCW_Data
     protected $result;
 
     /**
+     * Never serialize any of the private members
+     *
+     * @return array
+     */
+    public function __sleep()
+    {
+        return array();
+    }
+
+    /**
+     * Reinitialize the private members when waking up
+     */
+    public function __wakeup()
+    {
+        $this->init(UTCW_Plugin::getInstance());
+    }
+
+    /**
      * Creates a new instance
      *
      * @param UTCW_Plugin $plugin Main plugin instance
@@ -76,6 +94,18 @@ class UTCW_Data
      * @since 2.0
      */
     public function __construct(UTCW_Plugin $plugin)
+    {
+        $this->init($plugin);
+    }
+
+    /**
+     * Set up dependencies
+     *
+     * @param UTCW_Plugin $plugin
+     *
+     * @since 2.6
+     */
+    protected function init(UTCW_Plugin $plugin)
     {
         $this->config = $plugin->get('dataConfig');
         $this->db     = $plugin->get('wpdb');

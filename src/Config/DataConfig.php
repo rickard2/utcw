@@ -38,7 +38,33 @@
  */
 class UTCW_DataConfig extends UTCW_Config
 {
+
+    /**
+     * @var UTCW_Plugin
+     */
     protected $plugin;
+
+    /**
+     * Never serialize the plugin instance
+     *
+     * @return array
+     *
+     * @since 2.6
+     */
+    public function __sleep()
+    {
+        return array('data', 'options');
+    }
+
+    /**
+     * Get a new instance of the plugin
+     *
+     * @since 2.6
+     */
+    public function __wakeup()
+    {
+        $this->plugin = UTCW_Plugin::getInstance();
+    }
 
     public function strategyFactory($className)
     {

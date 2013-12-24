@@ -32,6 +32,7 @@ env:
 
 # Setup test environment
 before_script:
+    - phpenv config-add travis.php.ini
     - source test/setup.sh
 
 script: phpunit -c test

@@ -170,7 +170,7 @@ class UTCW_Data
         switch ($this->config->color) {
             case 'random':
                 foreach ($this->terms as $term) {
-                    $term->color = sprintf(UTCW_HEX_COLOR_FORMAT, rand() % 255, rand() % 255, rand() % 255);
+                    $term->color = sprintf(UTCW_HEX_COLOR_FORMAT, rand() % 256, rand() % 256, rand() % 256);
                 }
                 break;
             case 'set':

@@ -54,12 +54,18 @@ class UTCW_Test_Data extends WP_UnitTestCase
 
     function test_post_status_not_authenticated()
     {
-        $this->helper_query_contains(array(), "post_status = 'publish'");
+        $this->helper_query_contains(array(), "post_status IN ('publish')");
     }
 
     function test_post_status_authenticated()
     {
         $this->helper_query_contains(array(), "post_status IN ('publish','private')", 'authenticated');
+    }
+
+    function test_post_status_attachments()
+    {
+        $this->helper_query_contains(array('post_type' => 'attachment'), "'publish'");
+        $this->helper_query_contains(array('post_type' => 'attachment'), "'inherit'");
     }
 
     function test_tags_list_include()

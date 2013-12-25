@@ -101,7 +101,7 @@ class UTCW_SelectionStrategy
 
         $builder->addAuthorConstraint($config->authors);
         $builder->addPostTypeConstraint($config->post_type);
-        $builder->addPostStatusConstraint($this->plugin->isAuthenticatedUser());
+        $builder->addPostStatusConstraint($this->plugin->isAuthenticatedUser(), $config->post_type);
         $builder->addDaysOldConstraint($config->days_old);
         $builder->addTaxonomyConstraint($config->taxonomy);
         $builder->addTagsListConstraint(

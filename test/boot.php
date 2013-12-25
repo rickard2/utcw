@@ -90,7 +90,7 @@ class MockFactory
 
         $mock->expects($this->testCase->any())
             ->method('getAllowedPostTypes')
-            ->will($this->testCase->returnValue(array('post', 'page')));
+            ->will($this->testCase->returnValue(array('post', 'page', 'attachment')));
 
         $mock->expects($this->testCase->any())
             ->method('getTermLink')

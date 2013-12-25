@@ -34,8 +34,8 @@ class UTCW_Test_Config extends WP_UnitTestCase
 
     function setUp()
     {
-        $this->utcw        = UTCW_Plugin::getInstance();
         $this->mockFactory = new MockFactory($this);
+        $this->utcw        = $this->mockFactory->getUTCWNotAuthenticated();
     }
 
     function test_unknown_attribute()

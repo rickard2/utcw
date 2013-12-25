@@ -176,17 +176,36 @@ class UTCW_QueryBuilder
     /**
      * Add post status constraint
      *
-     * @param bool $authenticated
+     * @param bool  $authenticated
+     * @param array $post_types
      *
      * @since 2.2
      */
-    public function addPostStatusConstraint($authenticated)
+    public function addPostStatusConstraint($authenticated, array $post_types)
     {
+        $statuses           = array('publish');
+        $containsAttachment = in_array('attachment', $post_types);
+        $singlePostType     = count($post_types) === 1;
+        $multiPostType      = count($post_types) > 1;
+
         // Authenticated users are allowed to view tags for private posts
         if ($authenticated) {
-            $this->query[] = "AND p.post_status IN ('publish','private')";
+            $statuses[] = 'private';
+        }
+
+        // If attachment is the only post type its safe to include inherit in the IN clause
+        if ($containsAttachment && $singlePostType) {
+            $statuses[] = 'inherit';
+        }
+
+        $condition = "p.post_status IN ('" . join("','", $statuses) . "')";
+
+        // If attachment is one of the post types in a multi post type cloud
+        // check that only attachments are allowed the post status inherit
+        if ($containsAttachment && $multiPostType) {
+            $this->query[] = "AND (" . $condition . " OR (post_type = 'attachment' AND post_status = 'inherit'))";
         } else {
-            $this->query[] = "AND p.post_status = 'publish'";
+            $this->query[] = "AND " . $condition;
         }
     }
 

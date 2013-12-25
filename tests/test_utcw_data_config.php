@@ -443,7 +443,7 @@ class UTCW_Test_Data_Config extends UTCW_Test_Config
 
     function test_post_type_ok()
     {
-        $this->helper_array_ok('post_type', array('post'));
+        $this->helper_array_ok('post_type', array('attachment'));
     }
 
     function test_post_type_fail()

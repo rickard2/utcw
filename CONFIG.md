@@ -391,6 +391,13 @@ Name: `prevent_breaking`
 Default: `false`  
 Shortcode example: `[utcw prevent_breaking=1]`  
 
+## Avoid theme styling ##
+Description: Try to avoid styles applied to the tag cloud from themes  
+Type: Boolean  
+Name: `avoid_theme_styling`  
+Default: `false`  
+Shortcode example: `[utcw avoid_theme_styling=1]`  
+
 ## Debug ##
 Description: If debug output should be included  
 Type: Boolean  
@@ -398,4 +405,4 @@ Name: `debug`
 Default: `false`  
 Shortcode example: `[utcw debug=1]`  
 
-*Configuration options auto generated at 2013-11-24 17:03:59 for version 2.6*
+*Configuration options auto generated at 2013-12-26 11:00:43 for version 2.6-beta1*

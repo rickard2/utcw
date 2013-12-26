@@ -150,8 +150,8 @@ class DocumentationGenerator
                 $classMap = $classOptions['classMap'];
 
                 $result[] = sprintf('Predefined values: `%s`  ', join('`, `', array_keys($classMap)));
-                $result[] = sprintf('Predefined classes: `%s` ', join('`, `', $classMap));
-                $result[] = sprintf('Base class to extend: `%s`', $classOptions['baseClass']);
+                $result[] = sprintf('Predefined classes: `%s`  ', join('`, `', $classMap));
+                $result[] = sprintf('Base class to extend: `%s`  ', $classOptions['baseClass']);
             }
 
             $result[] = sprintf(

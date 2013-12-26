@@ -8,8 +8,8 @@ Type: Class
 Name: `strategy`  
 Default: `UTCW_PopularityStrategy`  
 Predefined values: `popularity`, `random`, `creation`, `current_list`  
-Predefined classes: `UTCW_PopularityStrategy`, `UTCW_RandomStrategy`, `UTCW_CreationTimeStrategy`, `UTCW_CurrentListStrategy` 
-Base class to extend: `UTCW_SelectionStrategy`
+Predefined classes: `UTCW_PopularityStrategy`, `UTCW_RandomStrategy`, `UTCW_CreationTimeStrategy`, `UTCW_CurrentListStrategy`  
+Base class to extend: `UTCW_SelectionStrategy`  
 Shortcode example: `[utcw strategy=ClassName]`  
 
 ## Order ##
@@ -405,4 +405,4 @@ Name: `debug`
 Default: `false`  
 Shortcode example: `[utcw debug=1]`  
 
-*Configuration options auto generated at 2013-12-26 11:00:43 for version 2.6-beta1*
+*Configuration options auto generated at 2013-12-26 15:05:08 for version 2.6-beta1*

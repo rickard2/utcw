@@ -3,7 +3,7 @@
 All the configuration options can be used both in `do_utcw()` and the shortcode.
 
 ## Strategy ##
-Description: Which strategy to use when fetching terms  
+Description: Which strategy to use when fetching terms. [Detailed custom strategy documentation](https://github.com/rickard2/utcw/blob/master/STRATEGY.md)  
 Type: Class  
 Name: `strategy`  
 Default: `UTCW_PopularityStrategy`  
@@ -405,4 +405,4 @@ Name: `debug`
 Default: `false`  
 Shortcode example: `[utcw debug=1]`  
 
-*Configuration options auto generated at 2013-12-26 15:05:08 for version 2.6-beta1*
+*Configuration options auto generated at 2013-12-26 15:10:26 for version 2.6*

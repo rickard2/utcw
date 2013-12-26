@@ -15,7 +15,7 @@
  *
  * @since 2.3
  *
- * @property-read string  strategy            Which strategy to use when fetching terms
+ * @property-read string  strategy            Which strategy to use when fetching terms. [Detailed custom strategy documentation](https://github.com/rickard2/utcw/blob/master/STRATEGY.md)
  * @property-read string  order               How the result should be ordered
  * @property-read string  tags_list_type      How the {@link $tags_list tags list} should be used
  * @property-read string  color               Which coloring strategy to use

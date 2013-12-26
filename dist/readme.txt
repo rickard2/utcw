@@ -2,8 +2,8 @@
 Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
-Tested up to: 3.8-beta1
-Stable tag: 2.5
+Tested up to: 3.8
+Stable tag: 2.6
 Donate link: https://0x539.se/donations/
 License: GPLv2 or later
 
@@ -18,7 +18,7 @@ This is the highly configurable tag cloud widget, the main features for this plu
 - Rules for which posts to include when fetching tags
 - Inclusion/exclusion functions
 - A bunch of ordering, coloring and styling options
-- Multiple strategies for selecting terms, like: popularity, random, recently added, from current post list
+- Multiple strategies for selecting terms with the option to [create your own](https://github.com/rickard2/utcw/blob/master/STRATEGY.md). Built in strategies for most popular, random, recently added, from current list of posts
 - Short code and API for developers
 
 This plugin is under active development and my goal is to try to help everyone who have issues or suggestions for this plugin. If you find bugs or have feature requests please use [GitHub issues](https://github.com/rickard2/utcw/issues), if you need support please use the [WordPress forums](http://wordpress.org/support/plugin/ultimate-tag-cloud-widget). You're also always welcome to contact me by e-mail or Google Talk; rickard at 0x539.se
@@ -27,6 +27,7 @@ Quick links:
 - Short code information: http://wordpress.org/plugins/ultimate-tag-cloud-widget/other_notes/#Theme-integration-/-Shortcode
 - Short code configuration options: https://github.com/rickard2/utcw/blob/master/CONFIG.md
 - Playground which shows some configuration options: https://0x539.se/wordpress/tag-cloud-playground/
+- Custom selection strategy documentation: https://github.com/rickard2/utcw/blob/master/STRATEGY.md
 
 == Installation ==
 
@@ -53,6 +54,14 @@ If you have questions, please post them in the forums.
 4. The settings page of the widget
 
 == Changelog ==
+
+= 2.6
+
+* [#46](https://github.com/rickard2/utcw/issues/46): Bring back styling behavior of <= v2.2 with a [configuration option](https://github.com/rickard2/utcw/blob/master/CONFIG.md#avoid-theme-styling)
+* [#48](https://github.com/rickard2/utcw/issues/48): Support for custom selection strategies to enable clouds with custom data sources. [Detailed documentation for defining your own strategy](https://github.com/rickard2/utcw/blob/master/STRATEGY.md).
+* [#50](https://github.com/rickard2/utcw/issues/50): Added translation files
+* [#51](https://github.com/rickard2/utcw/issues/51): Try to prevent line breaks in terms with multiple words
+* [#54](https://github.com/rickard2/utcw/issues/54): Support for attachment as custom post type
 
 = 2.5 =
 
@@ -123,6 +132,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.6 =
+
+* New features, see plugin page at wordpress.org for full details.
 
 = 2.5 =
 

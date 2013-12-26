@@ -7,3 +7,4 @@ phpdoc.xml
 /grunt/
 /node_modules/
 /vendor/
+composer.lock

@@ -31,11 +31,8 @@ cp -v css/*.css build/tags/$VERSION/css
 mkdir -v build/tags/$VERSION/js
 cp -v js/*.min.js build/tags/$VERSION/js
 
-# Pages
-cp -Rv pages build/tags/$VERSION/
-
-# PHP files
-cp -Rv src build/tags/$VERSION/
+# Directories
+cp -Rv pages src language build/tags/$VERSION/
 
 # Add and commit
 svn add build/tags/$VERSION

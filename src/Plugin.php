@@ -78,6 +78,16 @@ class UTCW_Plugin
         add_action('wp_ajax_utcw_get_authors', array($this, 'outputAuthorsJson'));
 //        add_action('init', array($this, 'setCacheHandler')); Disabled for now
         add_action('init', array($this, 'setTranslationHandler'));
+        add_action('init', array($this, 'initLocalisation'));
+    }
+
+    /**
+     * Initializes localisation
+     *
+     * @since 2.6
+     */
+    public function initLocalisation() {
+        load_plugin_textdomain('utcw', false, '/ultimate-tag-cloud-widget/language/');
     }
 
     /**

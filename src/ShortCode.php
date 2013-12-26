@@ -1,5 +1,22 @@
 <?php
+/**
+ * Ultimate Tag Cloud Widget
+ *
+ * @author     Rickard Andersson <rickard@0x539.se>
+ * @version    2.6
+ * @license    GPLv2
+ * @package    utcw
+ * @subpackage main
+ * @since      2.4
+ */
 
+/**
+ * Class to handle short code
+ *
+ * @since      2.4
+ * @package    utcw
+ * @subpackage main
+ */
 class UTCW_ShortCode
 {
     /**

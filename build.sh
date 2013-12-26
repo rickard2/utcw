@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo "Running git pre-commit hook ..."
-./.git/hooks/pre-commit &> /dev/null
+echo "Running unit tests"
+php vendor/bin/phpunit -c test &> /dev/null
 
 if [ ! $? -eq 0 ]; then
-	echo "Refusing to build without succeeding git pre-commit hooks";
+	echo "Refusing to build without successful unit tests";
 	exit 1
 fi
 

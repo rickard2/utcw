@@ -273,7 +273,7 @@ class UTCW_Data
      */
     private function calcStep($min, $max, $from, $to)
     {
-        if ($min === $max) {
+        if ($min == $max) {
             return 0;
         }
 

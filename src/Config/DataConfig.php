@@ -3,7 +3,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.5
+ * @version    2.6
  * @license    GPLv2
  * @package    utcw
  * @subpackage config
@@ -15,7 +15,7 @@
  *
  * @since 2.3
  *
- * @property-read string  strategy            Which strategy to use when fetching terms
+ * @property-read string  strategy            Which strategy to use when fetching terms. [Detailed custom strategy documentation](https://github.com/rickard2/utcw/blob/master/STRATEGY.md)
  * @property-read string  order               How the result should be ordered
  * @property-read string  tags_list_type      How the {@link $tags_list tags list} should be used
  * @property-read string  color               Which coloring strategy to use
@@ -38,6 +38,39 @@
  */
 class UTCW_DataConfig extends UTCW_Config
 {
+
+    /**
+     * @var UTCW_Plugin
+     */
+    protected $plugin;
+
+    /**
+     * Never serialize the plugin instance
+     *
+     * @return array
+     *
+     * @since 2.6
+     */
+    public function __sleep()
+    {
+        return array('data', 'options');
+    }
+
+    /**
+     * Get a new instance of the plugin
+     *
+     * @since 2.6
+     */
+    public function __wakeup()
+    {
+        $this->plugin = UTCW_Plugin::getInstance();
+    }
+
+    public function strategyFactory($className)
+    {
+        return new $className($this->plugin);
+    }
+
     /**
      * Creates a new instance of the class and adds all the options
      *
@@ -48,7 +81,22 @@ class UTCW_DataConfig extends UTCW_Config
      */
     public function __construct(array $input, UTCW_Plugin $plugin)
     {
-        $this->addOption('strategy', 'set', array('values' => array('popularity', 'random', 'creation', 'current_list')));
+        $this->addOption(
+            'strategy',
+            'class',
+            array(
+                'classMap'  => array(
+                    'popularity'   => 'UTCW_PopularityStrategy',
+                    'random'       => 'UTCW_RandomStrategy',
+                    'creation'     => 'UTCW_CreationTimeStrategy',
+                    'current_list' => 'UTCW_CurrentListStrategy'
+                ),
+                'baseClass' => 'UTCW_SelectionStrategy',
+                'default'   => 'popularity',
+                'factory'   => array($this, 'strategyFactory'),
+            )
+        );
+
         $this->addOption('order', 'set', array('values' => array('name', 'random', 'slug', 'id', 'color', 'count')));
         $this->addOption('tags_list_type', 'set', array('values' => array('exclude', 'include')));
         $this->addOption('color', 'set', array('values' => array('none', 'random', 'set', 'span')));
@@ -88,6 +136,8 @@ class UTCW_DataConfig extends UTCW_Config
         $this->addOption('reverse', 'boolean');
         $this->addOption('case_sensitive', 'boolean');
         $this->addOption('post_term_query_var', 'boolean');
+
+        $this->plugin = $plugin;
 
         parent::__construct($input, $plugin);
 

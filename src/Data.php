@@ -3,7 +3,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.5
+ * @version    2.6
  * @license    GPLv2
  * @package    utcw
  * @subpackage main
@@ -45,14 +45,6 @@ class UTCW_Data
     protected $plugin;
 
     /**
-     * Reference to the selection strategy used
-     *
-     * @var UTCW_SelectionStrategy
-     * @since 2.2
-     */
-    protected $strategy;
-
-    /**
      * Reference to the translation handler used
      *
      * @var UTCW_TranslationHandler
@@ -77,6 +69,24 @@ class UTCW_Data
     protected $result;
 
     /**
+     * Never serialize any of the private members
+     *
+     * @return array
+     */
+    public function __sleep()
+    {
+        return array();
+    }
+
+    /**
+     * Reinitialize the private members when waking up
+     */
+    public function __wakeup()
+    {
+        $this->init(UTCW_Plugin::getInstance());
+    }
+
+    /**
      * Creates a new instance
      *
      * @param UTCW_Plugin $plugin Main plugin instance
@@ -85,24 +95,21 @@ class UTCW_Data
      */
     public function __construct(UTCW_Plugin $plugin)
     {
+        $this->init($plugin);
+    }
+
+    /**
+     * Set up dependencies
+     *
+     * @param UTCW_Plugin $plugin
+     *
+     * @since 2.6
+     */
+    protected function init(UTCW_Plugin $plugin)
+    {
         $this->config = $plugin->get('dataConfig');
         $this->db     = $plugin->get('wpdb');
         $this->plugin = $plugin;
-
-        switch ($this->config->strategy) {
-            case 'popularity':
-                $this->strategy = new UTCW_PopularityStrategy($this->plugin);
-                break;
-            case 'random':
-                $this->strategy = new UTCW_RandomStrategy($this->plugin);
-                break;
-            case 'creation':
-                $this->strategy = new UTCW_CreationTimeStrategy($this->plugin);
-                break;
-            case 'current_list':
-                $this->strategy = new UTCW_CurrentListStrategy($this->plugin);
-                break;
-        }
     }
 
     /**
@@ -114,7 +121,7 @@ class UTCW_Data
     public function getTerms()
     {
         $this->terms  = array();
-        $this->result = $this->strategy->getData();
+        $this->result = $this->config->strategy->getData();
 
         // Calculate sizes
         $min_count = PHP_INT_MAX;
@@ -163,7 +170,7 @@ class UTCW_Data
         switch ($this->config->color) {
             case 'random':
                 foreach ($this->terms as $term) {
-                    $term->color = sprintf(UTCW_HEX_COLOR_FORMAT, rand() % 255, rand() % 255, rand() % 255);
+                    $term->color = sprintf(UTCW_HEX_COLOR_FORMAT, rand() % 256, rand() % 256, rand() % 256);
                 }
                 break;
             case 'set':
@@ -266,7 +273,7 @@ class UTCW_Data
      */
     private function calcStep($min, $max, $from, $to)
     {
-        if ($min === $max) {
+        if ($min == $max) {
             return 0;
         }
 
@@ -329,6 +336,6 @@ class UTCW_Data
         unset($this->db);
         $this->plugin->remove('wpdb');
         $this->plugin->remove('data');
-        $this->strategy->cleanupForDebug();
+        $this->config->strategy->cleanupForDebug();
     }
 }

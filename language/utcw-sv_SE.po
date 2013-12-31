@@ -1,0 +1,716 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate Tag Cloud Widget\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-26 10:47+0100\n"
+"PO-Revision-Date: 2013-12-26 10:49+0100\n"
+"Last-Translator: Rickard Andersson <rickard@montania.se>\n"
+"Language-Team: 0x539.se <rickard@0x539.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e;_n;_x\n"
+"X-Poedit-Basepath: /www/utcw2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-SearchPath-0: /www/utcw2/src\n"
+"X-Poedit-SearchPath-1: /www/utcw2/pages\n"
+
+#: /www/utcw2/src/Widget.php:41
+msgid "Highly configurable tag cloud"
+msgstr ""
+
+#: /www/utcw2/src/Widget.php:42
+msgid "Ultimate Tag Cloud"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:24
+msgid "Data"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:26
+msgid "Terms"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:28
+msgid "Basic appearance"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:30
+msgid "Advanced appearance"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:32
+msgid "Links"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:34
+msgid "Adv."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:39
+msgid ""
+"How the tag cloud should find tags to display. Popularity based selection is "
+"the default strategy which shows the most popular tags. Creation time will "
+"display the newest terms."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:40
+msgid "Selection strategy:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:43
+msgid "Popularity"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:47 /www/utcw2/pages/settings.php:102
+msgid "Random"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:51
+msgid "Creation time"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:55
+msgid "Only terms from the current list"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:60
+msgid ""
+"Only posts from the selected authors will be used when calculating the tag "
+"cloud."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:61
+msgid "Authors:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:65
+msgid "All authors"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:70
+msgid "Selected authors only"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:80 /www/utcw2/pages/settings.php:87
+#: /www/utcw2/pages/settings.php:179 /www/utcw2/pages/settings.php:186
+#: /www/utcw2/pages/settings.php:228 /www/utcw2/pages/settings.php:235
+#: /www/utcw2/pages/settings.php:703
+msgid "Delete"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:97
+msgid ""
+"Which property of the tag should be used when determining the order of the "
+"tags in the cloud."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:98
+msgid "Order:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:106
+msgid "By name"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:110
+msgid "By slug"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:114
+msgid "By id"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:118
+msgid "By color"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:122
+msgid "Count"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:125
+msgid "Reverse order"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:129
+msgid "Case sensitive"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:133
+msgid ""
+"Which taxonomy should be used in the cloud. You should be able to choose a "
+"custom taxonomy as well."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:135
+msgid "Taxonomies:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:145
+msgid ""
+"Which post types should be used in the cloud. Only tags from posts from "
+"these post types will be used in the tag cloud."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:157
+msgid ""
+"Only tags which have been used with this many posts will be visible in the "
+"cloud"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:159
+msgid "Tags with fewer posts than this will be automatically excluded."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:159
+msgid "Minimum number of posts: "
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:165
+msgid ""
+"Only posts which are posted within this number of days will be used when "
+"generating the cloud"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:167
+msgid ""
+"The maximum number of days back to search for posts, zero means every post."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:167
+msgid "Posts max age:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:173
+msgid ""
+"Only posts which have any of the selected terms will be used when generating "
+"the cloud"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:174
+msgid "Post term filter"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:194
+msgid ""
+"When used with post term filtering the resulting link in the tag cloud will "
+"contain a query variable to try to filter out the posts that have the term "
+"given in the term filter."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:197
+msgid "Add filter to links"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:205
+msgid ""
+"This setting controls how the tag cloud should handle the selected terms. If "
+"the selected terms below should be the only ones included, or if the "
+"selected terms should be the ones being excluded from the result."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:206
+msgid "Selection type"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:212
+msgid "Include only selected terms"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:218
+msgid "Exclude selected terms"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:222
+msgid "Which tags to include or exclude"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:247
+msgid "The title is the text which is shown above the tag cloud."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:249
+msgid "Title:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:252
+msgid "Show title"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:259
+msgid ""
+"The tag with the least number of posts will be the smallest, and the tag "
+"with the most number of posts will be the biggest."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:260
+msgid "Tag size:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:261 /www/utcw2/pages/settings.php:312
+msgid "From"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:265 /www/utcw2/pages/settings.php:316
+msgid "to"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:272
+msgid ""
+"If the total number of tags exceeds this number, only this many tags will be "
+"shown in the cloud."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:274
+msgid "Max tags:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:281
+msgid ""
+"This setting controls how the tags are colored.<ul><li>Totaly random will "
+"choose between all the 16 million colors available.</li><li>Random from "
+"preset values will choose colors from a predefined set of colors</"
+"li><li>Spanning between values will calculate the corresponding color based "
+"upon how many posts each tag has, similar to how the size is calculated. The "
+"tag with the least number of posts will have the first color and the tag "
+"with the most number of posts will have the second color. All tags in "
+"between will have a color calculated between the first and the second color."
+"</li></ul>The colors for the choice 'Random from preset values' has to be "
+"specified as a comma separated list."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:282
+msgid "Coloring:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:286 /www/utcw2/pages/settings.php:535
+#: /www/utcw2/pages/settings.php:628
+msgid "None"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:290
+msgid "Totally random"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:295 /www/utcw2/pages/settings.php:300
+msgid "Random from preset values"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:308
+msgid "Spanning between values"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:322
+msgid "Defines how the resulting tag should be aligned in the resulting cloud."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:323
+msgid "Text alignment:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:325 /www/utcw2/pages/settings.php:482
+#: /www/utcw2/pages/settings.php:499 /www/utcw2/pages/settings.php:517
+#: /www/utcw2/pages/settings.php:581 /www/utcw2/pages/settings.php:596
+#: /www/utcw2/pages/settings.php:611
+msgid "Theme default"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:327
+msgid "Left"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:329
+msgid "Right"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:331
+msgid "Center"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:333
+msgid "Justify"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:339
+msgid "Changes the overall display type of the output."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:340
+msgid "Display type:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:342
+msgid "Regular cloud"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:344
+msgid "List"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:347
+msgid ""
+"This option will remove some CSS classes commonly used by themes to apply "
+"their own styles to the tag cloud. If the options aren't displaying "
+"correctly, try enabling this feature. This will make styles closer match the "
+"appearance before version 2.3."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:350
+msgid "Avoid theme styling"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:354
+msgid "Term appearance"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:356
+msgid ""
+"Uncheck this option if you do not want your tag cloud to contain links to "
+"the archive page for each tag."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:359
+msgid "Show links"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:360
+msgid ""
+"Select this option if you would like the output to contain the number of "
+"posts associated with each term. Like: Hello World (2)"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:363
+msgid "Show post count"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:364
+msgid ""
+"This option will try to prevent terms with multiple words from breaking up "
+"into two lines."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:367
+msgid "Prevent line breaks in terms"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:370
+msgid "Term titles (hover text)"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:372
+msgid ""
+"The title is the small (usually) yellow label which will appear when the "
+"user hovers the tag. Try to hover the text to the left to see an example of "
+"what a title text looks like."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:376
+msgid "This is a title"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:376
+msgid "Enable titles"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:377
+msgid ""
+"This is the WordPress default option, it will add the post count as title "
+"like this: 2 topics"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:379
+msgid "Post count"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:380
+msgid "This option will use the term name as title"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:382
+msgid "Term name"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:383
+#, php-format
+msgid ""
+"This option allows you to define a C-style printf template to be used when "
+"generating the title. You can use %d and %s to get the post count and term "
+"name. To get a title like this: <br><code>The term Hello World has been used "
+"with 14 posts</code><br><br>Use a template like this:<br><code>The term %s "
+"has been used with %d posts</code>"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:385
+msgid "Custom template"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:387
+msgid "Custom title template"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:393
+msgid ""
+"The spacing is a numerical value which controls how much space there is "
+"between letters, words, tags or rows. To use the default value for these "
+"settings just use the corresponding default value from the CSS "
+"specification: <ul><li>Letter spacing: normal</li><li>Word spacing: normal</"
+"li><li>Tag spacing (CSS margin): auto</li><li>Row spacing (CSS line height): "
+"inherit</li></ul>To use anything but the default values, just specify a "
+"number (the unit is pixels)."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:394
+msgid "Spacing:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:396
+msgid "Between letters:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:401
+msgid "Between words:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:406
+msgid "Between tags:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:411
+msgid "Between rows:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:418
+msgid ""
+"The tags can be transformed in a number of different ways. lowercase, "
+"UPPERCASE or Capitalized."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:419
+msgid "Transform tags:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:423
+msgid "Off"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:428
+msgid "To lowercase"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:433
+msgid "To uppercase"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:438
+msgid "Capitalize"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:442
+msgid ""
+"The tags can be surrounded by a prefix and/or suffix and separated with a "
+"separator. The default separator is just a space but can be changed to "
+"anything you'd like. Remember to add a space before and after the separator, "
+"this is not automatically added by the plugin.<br><br>A short example, these "
+"settings:<ul><li>Separator: &nbsp;-&nbsp; </li><li>Prefix: (</"
+"li><li>Suffix: )</li></ul>… would produce a tag cloud like this: "
+"<br><br>(first tag) - (second tag) - (third tag)<br><br>Prefix and suffix "
+"characters will have the same size and color as the tag, but the separator "
+"will not."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:443
+msgid "Tag separators:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:445
+msgid "Separator"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:449
+msgid "Prefix"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:453
+msgid "Suffix"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:464
+msgid ""
+"The normal styles will apply to the tags when the user is <b>not</b> "
+"hovering the link."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:466
+msgid "Normal styles"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:468
+msgid ""
+"Yes or no will force the tag setting for the <u>underline</u> style, theme "
+"default will let the blog theme decide."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:469 /www/utcw2/pages/settings.php:568
+msgid "Underline"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:473 /www/utcw2/pages/settings.php:491
+#: /www/utcw2/pages/settings.php:508 /www/utcw2/pages/settings.php:572
+#: /www/utcw2/pages/settings.php:587 /www/utcw2/pages/settings.php:602
+msgid "Yes"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:477 /www/utcw2/pages/settings.php:495
+#: /www/utcw2/pages/settings.php:512 /www/utcw2/pages/settings.php:576
+#: /www/utcw2/pages/settings.php:591 /www/utcw2/pages/settings.php:606
+msgid "No"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:486
+msgid ""
+"Yes or no will force the tag setting for the <b>bold</b> style, theme "
+"default will let the blog theme decide."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:487 /www/utcw2/pages/settings.php:583
+msgid "Bold"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:503
+msgid ""
+"Yes or no will force the tag setting for the <i>italic</i> style, theme "
+"default will let the blog theme decide."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:504 /www/utcw2/pages/settings.php:598
+msgid "Italic"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:521
+msgid ""
+"This setting will change the background color of <b>the link only</b>, not "
+"the whole cloud. The color has to be specified in hexadeximal format, like "
+"ffffff for white, 0000ff for blue or 000000 for black."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:523 /www/utcw2/pages/settings.php:614
+msgid "Background color (hex value):"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:529
+msgid ""
+"This setting will change the border of <b>the link only</b>, not the whole "
+"cloud. <ul><li>The width of the border is a numerical value (in the unit "
+"pixels).</li><li>The color has to be specified in hexadeximal format, like "
+"ffffff for white, 0000ff for blue or 000000 for black.</li></ul>"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:530 /www/utcw2/pages/settings.php:623
+msgid "Border"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:531 /www/utcw2/pages/settings.php:624
+msgid "Style: "
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:537 /www/utcw2/pages/settings.php:630
+msgid "Dotted"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:539 /www/utcw2/pages/settings.php:632
+msgid "Dashed"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:541 /www/utcw2/pages/settings.php:634
+msgid "Solid"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:543 /www/utcw2/pages/settings.php:636
+msgid "Double"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:545 /www/utcw2/pages/settings.php:638
+msgid "Groove"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:547 /www/utcw2/pages/settings.php:640
+msgid "Ridge"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:549 /www/utcw2/pages/settings.php:642
+msgid "Inset"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:551 /www/utcw2/pages/settings.php:644
+msgid "Outset"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:555 /www/utcw2/pages/settings.php:648
+msgid "Width:"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:560 /www/utcw2/pages/settings.php:653
+msgid "Color (hex value): "
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:565
+msgid ""
+"The hover effects will only affect the style of the tag when the user hovers "
+"the tag. For details about each settings see the section above."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:567
+msgid "Hover effects"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:619
+msgid "Font color (hex value):"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:660
+msgid ""
+"This will add a &lt;-- HTML comment --&gt; to the output with some debugging "
+"information, please use this information when troubleshooting. You can find "
+"the debugging information by using 'view source' in your browser when "
+"viewing the page and searching for 'Ultimate Tag Cloud Debug information'"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:663
+msgid "Include debug output"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:666
+msgid ""
+"This will save the current configuration which enables you to load this "
+"configuration at a later time. Check this box, choose a name in the text "
+"field below and press 'Save' to save the configuration."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:670
+msgid "Save configuration"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:673
+msgid ""
+"This is the name which will be used for the current configuration if you "
+"check the option 'Save configuration' above. If the name is omitted the "
+"current date and time will be used."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:675 /www/utcw2/pages/settings.php:691
+msgid "Configuration name"
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:684
+msgid ""
+"This will load the selected configuration to the state which the widget was "
+"when the configuration was saved."
+msgstr ""
+
+#: /www/utcw2/pages/settings.php:687
+msgid "Load configuration"
+msgstr ""

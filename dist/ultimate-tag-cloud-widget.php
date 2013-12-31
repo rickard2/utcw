@@ -3,7 +3,7 @@
 Plugin Name: Ultimate Tag Cloud Widget
 Plugin URI: https://www.0x539.se/wordpress/ultimate-tag-cloud-widget/
 Description: This plugin aims to be the most configurable tag cloud widget out there.
-Version: 2.5
+Version: 2.6-beta1
 Author: Rickard Andersson
 Author URI: https://www.0x539.se
 License: GPLv2
@@ -15,7 +15,7 @@ License: GPLv2
  * @var string
  * @since 2.0
  */
-define('UTCW_VERSION', '2.5');
+define('UTCW_VERSION', '2.6-beta1');
 
 /**
  * If development mode is currently enabled
@@ -76,6 +76,7 @@ function utcw_load()
         'Config/RenderConfig.php',
         'Config/Type/Type.php',
         'Config/Type/SetType.php',
+        'Config/Type/ClassType.php',
         'Config/Type/ColorType.php',
         'Config/Type/ArrayType.php',
         'Config/Type/IntegerType.php',
@@ -84,6 +85,10 @@ function utcw_load()
         'Config/Type/BooleanType.php',
         'Cache/WPSuperCacheHandler.php',
         'Cache/W3TotalCacheHandler.php',
+        'Style/StyleProvider.php',
+        'Style/HoverStyleProvider.php',
+        'Style/MainStyleProvider.php',
+        'Style/LinkStyleProvider.php',
     );
 
     foreach ($files as $file) {

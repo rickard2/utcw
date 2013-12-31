@@ -5,7 +5,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.5
+ * @version    2.6
  * @license    GPLv2
  * @package    utcw
  * @subpackage test
@@ -38,7 +38,7 @@ class UTCW_Test_Render extends WP_UnitTestCase
     function test_title_is_outside_of_wrapper()
     {
         $render = $this->getRenderer(array('title' => 'Hello World'));
-        $this->assertRegExp('/Hello World<div class="tagcloud utcw-/', $render->getCloud());
+        $this->assertRegExp('/Hello World<div class="utcw-/', $render->getCloud());
     }
 
     function test_title_is_inside_widget()
@@ -58,7 +58,21 @@ class UTCW_Test_Render extends WP_UnitTestCase
     function test_output_contains_wrapper()
     {
         $render = $this->getRenderer();
-        $this->assertRegExp('/<div class="tagcloud utcw-[0-9a-z]+">.*<\/div>$/i', $render->getCloud());
+        $this->assertRegExp('/<div class="utcw-[0-9a-z]+ tagcloud">.*<\/div>$/i', $render->getCloud());
+    }
+
+    function test_avoid_theme_styling()
+    {
+        $render = $this->getRenderer(
+            array(
+                'avoid_theme_styling' => true,
+                'before_widget'       => '<section class="widget widget_utcw">',
+                'after_widget'        => '</section>',
+            )
+        );
+
+        $this->assertNotContains('widget_tag_cloud', $render->getCloud(), $render->getCloud());
+        $this->assertNotContains('tagcloud', $render->getCloud(), $render->getCloud());
     }
 
     function test_wrapper_is_inside_widget()
@@ -87,6 +101,11 @@ class UTCW_Test_Render extends WP_UnitTestCase
     function test_output_contains_word_wrap()
     {
         $this->helper_contains(array(), 'word-wrap:break-word');
+    }
+
+    function test_output_contains_selector()
+    {
+        $this->helper_contains(array(), '.utcw-');
     }
 
     function test_text_transform()
@@ -542,23 +561,39 @@ class UTCW_Test_Render extends WP_UnitTestCase
      */
     function test_title_type_custom($terms)
     {
-        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello %s World %d'), $terms);
+        $renderer = $this->getRenderer(
+            array('title_type' => 'custom', 'title_custom_template' => 'Hello %s World %d'),
+            $terms
+        );
         $this->assertContains('title="Hello Test term 1 World 10"', $renderer->getCloud());
 
-        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello %d World %s'), $terms);
+        $renderer = $this->getRenderer(
+            array('title_type' => 'custom', 'title_custom_template' => 'Hello %d World %s'),
+            $terms
+        );
         $this->assertContains('title="Hello 10 World Test term 1"', $renderer->getCloud());
 
-        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello World %s'), $terms);
+        $renderer = $this->getRenderer(
+            array('title_type' => 'custom', 'title_custom_template' => 'Hello World %s'),
+            $terms
+        );
         $this->assertContains('title="Hello World Test term 1"', $renderer->getCloud());
 
-        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello World %d'), $terms);
+        $renderer = $this->getRenderer(
+            array('title_type' => 'custom', 'title_custom_template' => 'Hello World %d'),
+            $terms
+        );
         $this->assertContains('title="Hello World 10"', $renderer->getCloud());
 
-        $renderer = $this->getRenderer(array('title_type' => 'custom', 'title_custom_template' => 'Hello World'), $terms);
+        $renderer = $this->getRenderer(
+            array('title_type' => 'custom', 'title_custom_template' => 'Hello World'),
+            $terms
+        );
         $this->assertContains('title="Hello World"', $renderer->getCloud());
     }
 
-    function test_prevent_breaking() {
+    function test_prevent_breaking()
+    {
         $renderer = $this->getRenderer(array('prevent_breaking' => true));
         $this->assertContains('white-space:nowrap', $renderer->getCloud());
     }

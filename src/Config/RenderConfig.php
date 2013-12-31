@@ -3,7 +3,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.5
+ * @version    2.6
  * @license    GPLv2
  * @package    utcw
  * @subpackage config
@@ -14,44 +14,45 @@
  * Class to represent a the configuration options for cloud rendering retrieval
  *
  * @since 2.3
- * @property-read string title                  Title text of the widget
- * @property-read string letter_spacing         CSS letter-spacing value (in pixels)
- * @property-read string word_spacing           CSS word-spacing value (in pixels)
- * @property-read string text_transform         CSS text-transform value
- * @property-read string show_title             If the title attribute should be added to links in the cloud
- * @property-read string show_links             If the tags should be wrapped in links
- * @property-read string link_underline         If links should be styled with underline decoration
- * @property-read string link_bold              If links should be styled as bold
- * @property-read string link_italic            If links should be styled as italic
- * @property-read string link_bg_color          Background color for links
- * @property-read string link_border_style      Border style for links
- * @property-read string link_border_width      Border width for links
- * @property-read string link_border_color      Border color for links
- * @property-read string hover_underline        If links should be decorated with underline decoration in their hover state
- * @property-read string hover_bold             If links should be styled as bold in their hover state
- * @property-read string hover_italic           If links should be styled as italic in their hover state
- * @property-read string hover_bg_color         Background color for links in their hover state
- * @property-read string hover_color            Text color for links in their hover state
- * @property-read string hover_border_style     Border style for links in their hover state
- * @property-read string hover_border_width     Border width for links in their hover state
- * @property-read string hover_border_color     Border color for links in their hover state
- * @property-read string tag_spacing            CSS margin between tags
- * @property-read bool   debug                  If debug output should be included
- * @property-read string line_height            CSS line-height for the tags
- * @property-read string separator              Separator between tags
- * @property-read string prefix                 Prefix before each tag
- * @property-read string suffix                 Suffix after each tag
- * @property-read bool   show_title_text        If the widget title should be shown
- * @property-read string alignment              How the text in the resulting cloud should be aligned
- * @property-read string display                How the resulting cloud should be displayed
- * @property-read bool   show_post_count        If the number of posts with that term should be displayed with the name
- * @property-read string title_type             What type of information the title text should contain
- * @property-read string title_custom_template  A C-style printf-template for the title text. Include %d to get the post count and %s to get the term name.
- * @property-read bool prevent_breaking         If wrapping lines in the middle of words should be prevented
- * @property-read string before_widget          @internal
- * @property-read string after_widget           @internal
- * @property-read string before_title           @internal
- * @property-read string after_title            @internal
+ * @property-read string title                    Title text of the widget
+ * @property-read string letter_spacing           CSS letter-spacing value (in pixels)
+ * @property-read string word_spacing             CSS word-spacing value (in pixels)
+ * @property-read string text_transform           CSS text-transform value
+ * @property-read string show_title               If the title attribute should be added to links in the cloud
+ * @property-read string show_links               If the tags should be wrapped in links
+ * @property-read string link_underline           If links should be styled with underline decoration
+ * @property-read string link_bold                If links should be styled as bold
+ * @property-read string link_italic              If links should be styled as italic
+ * @property-read string link_bg_color            Background color for links
+ * @property-read string link_border_style        Border style for links
+ * @property-read string link_border_width        Border width for links
+ * @property-read string link_border_color        Border color for links
+ * @property-read string hover_underline          If links should be decorated with underline decoration in their hover state
+ * @property-read string hover_bold               If links should be styled as bold in their hover state
+ * @property-read string hover_italic             If links should be styled as italic in their hover state
+ * @property-read string hover_bg_color           Background color for links in their hover state
+ * @property-read string hover_color              Text color for links in their hover state
+ * @property-read string hover_border_style       Border style for links in their hover state
+ * @property-read string hover_border_width       Border width for links in their hover state
+ * @property-read string hover_border_color       Border color for links in their hover state
+ * @property-read string tag_spacing              CSS margin between tags
+ * @property-read bool   debug                    If debug output should be included
+ * @property-read string line_height              CSS line-height for the tags
+ * @property-read string separator                Separator between tags
+ * @property-read string prefix                   Prefix before each tag
+ * @property-read string suffix                   Suffix after each tag
+ * @property-read bool   show_title_text          If the widget title should be shown
+ * @property-read string alignment                How the text in the resulting cloud should be aligned
+ * @property-read string display                  How the resulting cloud should be displayed
+ * @property-read bool   show_post_count          If the number of posts with that term should be displayed with the name
+ * @property-read string title_type               What type of information the title text should contain
+ * @property-read string title_custom_template    A C-style printf-template for the title text. Include %d to get the post count and %s to get the term name.
+ * @property-read bool   prevent_breaking         If wrapping lines in the middle of words should be prevented
+ * @property-read bool   avoid_theme_styling      Try to avoid styles applied to the tag cloud from themes
+ * @property-read string before_widget            @internal
+ * @property-read string after_widget             @internal
+ * @property-read string before_title             @internal
+ * @property-read string after_title              @internal
  */
 
 class UTCW_RenderConfig extends UTCW_Config
@@ -171,6 +172,7 @@ class UTCW_RenderConfig extends UTCW_Config
         $this->addOption('show_title_text', 'boolean', array('default' => true));
         $this->addOption('show_post_count', 'boolean', array('default' => false));
         $this->addOption('prevent_breaking', 'boolean', array('default' => false));
+        $this->addOption('avoid_theme_styling', 'boolean', array('default' => false));
         $this->addOption('debug', 'boolean');
 
         parent::__construct($input, $plugin);

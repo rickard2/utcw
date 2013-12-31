@@ -11,7 +11,7 @@
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.5
+ * @version    2.6
  * @license    GPLv2
  * @package    utcw
  * @subpackage main
@@ -78,6 +78,16 @@ class UTCW_Plugin
         add_action('wp_ajax_utcw_get_authors', array($this, 'outputAuthorsJson'));
 //        add_action('init', array($this, 'setCacheHandler')); Disabled for now
         add_action('init', array($this, 'setTranslationHandler'));
+        add_action('init', array($this, 'initLocalisation'));
+    }
+
+    /**
+     * Initializes localisation
+     *
+     * @since 2.6
+     */
+    public function initLocalisation() {
+        load_plugin_textdomain('utcw', false, '/ultimate-tag-cloud-widget/language/');
     }
 
     /**

@@ -1,7 +1,5 @@
 <?php
 
-namespace UTCW;
-
 function add_action()
 {
 }
@@ -61,6 +59,10 @@ class DocumentationGenerator
 
         if (is_string($defaultValue) || is_integer($defaultValue)) {
             return sprintf('`%s`', $defaultValue);
+        }
+
+        if (is_object($defaultValue)) {
+            return sprintf('`%s`', get_class($defaultValue));
         }
 
         throw new Exception('Unknown default value type: ' . $defaultValue);
@@ -137,6 +139,21 @@ class DocumentationGenerator
                 $result[] = sprintf('Valid values: `%s`  ', join('`, `', $setOptions['values']));
             }
 
+            if ($option instanceof UTCW_ClassType) {
+
+                $classReflection      = new ReflectionObject($option);
+                $classOptionsProperty = $classReflection->getProperty('options');
+                $classOptionsProperty->setAccessible(true);
+
+                $classOptions = $classOptionsProperty->getValue($option);
+
+                $classMap = $classOptions['classMap'];
+
+                $result[] = sprintf('Predefined values: `%s`  ', join('`, `', array_keys($classMap)));
+                $result[] = sprintf('Predefined classes: `%s`  ', join('`, `', $classMap));
+                $result[] = sprintf('Base class to extend: `%s`  ', $classOptions['baseClass']);
+            }
+
             $result[] = sprintf(
                 'Shortcode example: `[utcw %s=%s]`  ',
                 $optionName,
@@ -198,6 +215,9 @@ class DocumentationGenerator
 
             case 'String':
                 return '"foo"';
+
+            case 'Class':
+                return 'ClassName';
 
 
             default:

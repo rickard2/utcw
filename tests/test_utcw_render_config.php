@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
  * Ultimate Tag Cloud Widget
  *
  * @author     Rickard Andersson <rickard@0x539.se>
- * @version    2.5
+ * @version    2.6
  * @license    GPLv2
  * @package    utcw
  * @subpackage test
@@ -56,6 +56,7 @@ class UTCW_Test_Render_Config extends UTCW_Test_Config
         'title_type'            => 'counter',
         'title_custom_template' => '',
         'prevent_breaking'      => false,
+        'avoid_theme_styling'   => false,
     );
 
     function test_text_transform_ok()

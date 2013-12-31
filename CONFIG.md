@@ -3,12 +3,14 @@
 All the configuration options can be used both in `do_utcw()` and the shortcode.
 
 ## Strategy ##
-Description: Which strategy to use when fetching terms  
-Type: Set  
+Description: Which strategy to use when fetching terms. [Detailed custom strategy documentation](https://github.com/rickard2/utcw/blob/master/STRATEGY.md)  
+Type: Class  
 Name: `strategy`  
-Default: `popularity`  
-Valid values: `popularity`, `random`, `creation`, `current_list`  
-Shortcode example: `[utcw strategy=current_list]`  
+Default: `UTCW_PopularityStrategy`  
+Predefined values: `popularity`, `random`, `creation`, `current_list`  
+Predefined classes: `UTCW_PopularityStrategy`, `UTCW_RandomStrategy`, `UTCW_CreationTimeStrategy`, `UTCW_CurrentListStrategy`  
+Base class to extend: `UTCW_SelectionStrategy`  
+Shortcode example: `[utcw strategy=ClassName]`  
 
 ## Order ##
 Description: How the result should be ordered  
@@ -382,6 +384,20 @@ Name: `show_post_count`
 Default: `false`  
 Shortcode example: `[utcw show_post_count=1]`  
 
+## Prevent breaking ##
+Description: If wrapping lines in the middle of words should be prevented  
+Type: Boolean  
+Name: `prevent_breaking`  
+Default: `false`  
+Shortcode example: `[utcw prevent_breaking=1]`  
+
+## Avoid theme styling ##
+Description: Try to avoid styles applied to the tag cloud from themes  
+Type: Boolean  
+Name: `avoid_theme_styling`  
+Default: `false`  
+Shortcode example: `[utcw avoid_theme_styling=1]`  
+
 ## Debug ##
 Description: If debug output should be included  
 Type: Boolean  
@@ -389,4 +405,4 @@ Name: `debug`
 Default: `false`  
 Shortcode example: `[utcw debug=1]`  
 
-*Configuration options auto generated at 2013-09-30 21:00:51 for version 2.5*
+*Configuration options auto generated at 2013-12-26 15:10:26 for version 2.6*

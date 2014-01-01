@@ -71,8 +71,12 @@ class UTCW_Test_Render extends WP_UnitTestCase
             )
         );
 
-        $this->assertNotContains('widget_tag_cloud', $render->getCloud(), $render->getCloud());
-        $this->assertNotContains('tagcloud', $render->getCloud(), $render->getCloud());
+        $result = $render->getCloud();
+
+        $this->assertContains('<section class="', $result);
+
+        $this->assertNotContains('widget_tag_cloud', $result);
+        $this->assertNotContains('tagcloud', $result);
     }
 
     function test_wrapper_is_inside_widget()

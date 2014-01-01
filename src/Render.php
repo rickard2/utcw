@@ -101,8 +101,17 @@ class UTCW_Render
             $markup[] = $this->plugin->applyFilters('utcw_render_css', $this->css);
         }
 
-        if ($this->config->before_widget && !$this->config->avoid_theme_styling) {
-            $markup[] = str_replace('widget_utcw', 'widget_utcw widget_tag_cloud', $this->config->before_widget);
+        if ($this->config->before_widget) {
+
+            // If theme styling should be avoided, keep the utcw specific classes
+            if ($this->config->avoid_theme_styling) {
+                $markup[] = $this->config->before_widget;
+            }
+
+            // If theme styling should be enforced, swap classes to the regular tag cloud classes
+            else {
+                $markup[] = str_replace('widget_utcw', 'widget_utcw widget_tag_cloud', $this->config->before_widget);
+            }
         }
 
         if ($this->config->show_title_text) {

@@ -59,7 +59,7 @@ If you have questions, please post them in the forums.
 
 * [BUGFIX](http://wordpress.org/support/topic/bug-53): Fixed issue with widget markup when using avoid theme styling option
 
-= 2.6
+= 2.6 =
 
 * [#46](https://github.com/rickard2/utcw/issues/46): Bring back styling behavior of <= v2.2 with a [configuration option](https://github.com/rickard2/utcw/blob/master/CONFIG.md#avoid-theme-styling)
 * [#48](https://github.com/rickard2/utcw/issues/48): Support for custom selection strategies to enable clouds with custom data sources. [Detailed documentation for defining your own strategy](https://github.com/rickard2/utcw/blob/master/STRATEGY.md).

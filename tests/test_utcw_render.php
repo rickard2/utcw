@@ -669,6 +669,12 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $this->assertContains('utcw-tag-term-1', $renderer->getCloud());
     }
 
+    function test_shortcodes()
+    {
+        $renderer = $this->getRenderer(array('title' => '[caption]what[/caption]'), array());
+        $this->assertNotContains('[caption]', $renderer->getCloud());
+    }
+
     function terms()
     {
         $dp = new DataProvider($this);

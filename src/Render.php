@@ -106,9 +106,7 @@ class UTCW_Render
             // If theme styling should be avoided, keep the utcw specific classes
             if ($this->config->avoid_theme_styling) {
                 $markup[] = $this->config->before_widget;
-            }
-
-            // If theme styling should be enforced, swap classes to the regular tag cloud classes
+            } // If theme styling should be enforced, swap classes to the regular tag cloud classes
             else {
                 $markup[] = str_replace('widget_utcw', 'widget_utcw widget_tag_cloud', $this->config->before_widget);
             }
@@ -193,7 +191,7 @@ class UTCW_Render
             $markup[] = $this->config->after_widget;
         }
 
-        return join('', $markup);
+        return do_shortcode(join('', $markup));
     }
 
     /**

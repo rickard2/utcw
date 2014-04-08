@@ -251,7 +251,7 @@ class UTCW_Render
                 $term_title_singular = $this->plugin->applyFilters('utcw_render_term_title_singular', '%d topic');
                 $term_title_plural   = $this->plugin->applyFilters('utcw_render_term_title_plural', '%d topics');
 
-                $title = _n($term_title_singular, $term_title_plural, $term->count);
+                $title = _n($term_title_singular, $term_title_plural, $term->count, 'utcw');
 
                 if (strpos($title, '%d') !== false) {
                     $title = sprintf(' title="' . $title . '"', $term->count);

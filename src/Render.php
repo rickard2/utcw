@@ -154,10 +154,11 @@ class UTCW_Render
             $displayName = $this->plugin->applyFilters('utcw_render_term_display_name', $displayName, $term->name);
 
             $terms[] = sprintf(
-                '%s<%s class="tag-link-%s" href="%s" style="font-size:%s%s"%s>%s</%s>%s',
+                '%s<%s class="tag-link-%s utcw-tag utcw-tag-%s" href="%s" style="font-size:%s%s"%s>%s</%s>%s',
                 $this->config->prefix,
                 $tag,
                 $term->term_id,
+                $term->slug,
                 $term->link,
                 $term->size,
                 $color,

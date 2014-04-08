@@ -1,6 +1,7 @@
 <?php if (!defined('ABSPATH')) {
     die();
 }
+
 /**
  * Ultimate Tag Cloud Widget
  *
@@ -10,7 +11,6 @@
  * @package    utcw
  * @subpackage test
  */
-
 class UTCW_Test_Render extends WP_UnitTestCase
 {
 
@@ -457,7 +457,7 @@ class UTCW_Test_Render extends WP_UnitTestCase
     function test_output_links_contains_class($terms)
     {
         $renderer = $this->getRenderer(array(), $terms);
-        $this->assertRegexp('/class="tag-link-[0-9]+"/', $renderer->getCloud());
+        $this->assertRegexp('/class="tag-link-[0-9]+/', $renderer->getCloud());
     }
 
     /**
@@ -658,6 +658,15 @@ class UTCW_Test_Render extends WP_UnitTestCase
         $render = new UTCW_Render($utcw);
         $cloud  = $render->getCloud();
         $this->assertNotContains('wpdb', $cloud, $ignoreCase = true);
+    }
+
+    /**
+     * @dataProvider terms
+     */
+    function test_per_term_css_class($terms)
+    {
+        $renderer = $this->getRenderer(array(), $terms);
+        $this->assertContains('utcw-tag-term-1', $renderer->getCloud());
     }
 
     function terms()

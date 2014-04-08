@@ -3,7 +3,7 @@ Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
 Tested up to: 3.8
-Stable tag: 2.6.1
+Stable tag: 2.7
 Donate link: https://0x539.se/donations/
 License: GPLv2 or later
 

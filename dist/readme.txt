@@ -24,6 +24,7 @@ This is the highly configurable tag cloud widget, the main features for this plu
 This plugin is under active development and my goal is to try to help everyone who have issues or suggestions for this plugin. If you find bugs or have feature requests please use [GitHub issues](https://github.com/rickard2/utcw/issues), if you need support please use the [WordPress forums](http://wordpress.org/support/plugin/ultimate-tag-cloud-widget). You're also always welcome to contact me by e-mail or Google Talk; rickard at 0x539.se
 
 Quick links:
+
 - Short code information: http://wordpress.org/plugins/ultimate-tag-cloud-widget/other_notes/#Theme-integration-/-Shortcode
 - Short code configuration options: https://github.com/rickard2/utcw/blob/master/CONFIG.md
 - Playground which shows some configuration options: https://0x539.se/wordpress/tag-cloud-playground/

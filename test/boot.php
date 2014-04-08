@@ -101,7 +101,10 @@ class MockFactory
 
     function getWPDBMock()
     {
-        return $this->testCase->getMock('testWPDB', array('get_results'), array(), '', false);
+        $wpdb = $this->testCase->getMock('testWPDB', array('get_results'), array(), '', false);
+        $wpdb->posts = 'wp_posts';
+
+        return $wpdb;
     }
 }
 

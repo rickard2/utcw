@@ -136,6 +136,11 @@ class UTCW_Test_Data extends WP_UnitTestCase
         $this->helper_query_contains(array('minimum' => 5), 'HAVING count >= 5');
     }
 
+    function test_minimum_zero()
+    {
+        $this->helper_query_contains(array('minimum' => 0), 'LEFT JOIN `wp_posts');
+    }
+
     function test_order_name()
     {
         $instance = array('order' => 'name', 'reverse' => false);

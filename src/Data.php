@@ -131,14 +131,6 @@ class UTCW_Data
         $this->translationHandler = $this->plugin->get('translationHandler');
 
         foreach ($this->result as $item) {
-            if ($item->count < $min_count) {
-                $min_count = $item->count;
-            }
-
-            if ($item->count > $max_count) {
-                $max_count = $item->count;
-            }
-
             if ($this->translationHandler) {
 
                 // Let the translation handler determine if the term should be included or not
@@ -149,6 +141,20 @@ class UTCW_Data
                 }
             } else {
                 $this->terms[] = new UTCW_Term($item, $this->plugin);
+            }
+        }
+
+        if ($this->config->max) {
+            $this->terms = array_slice($this->terms, 0, $this->config->max);
+        }
+
+        foreach ($this->terms as $item) {
+            if ($item->count < $min_count) {
+                $min_count = $item->count;
+            }
+
+            if ($item->count > $max_count) {
+                $max_count = $item->count;
             }
         }
 

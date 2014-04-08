@@ -116,7 +116,6 @@ class UTCW_SelectionStrategy
         // Add statements from the strategy
         $this->buildQuery($builder);
 
-        $builder->addMaxConstraint($config->max);
         $builder->addSort($config->order, $config->reverse, $config->case_sensitive);
 
         $query      = $builder->getQuery();

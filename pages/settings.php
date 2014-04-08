@@ -82,11 +82,11 @@ if ( ! defined( 'ABSPATH' ) ) die();
         <ul class="author-search-selected" id="<?php echo $this->get_field_id('author-search-selected') ?>">
             <?php foreach ($dataConfig->authors as $author_id) : $author = $authors_by_id[$author_id]; ?>
                 <li>
-                    <?php echo $author->display_name ?>
+                    <?php echo esc_html( $author->display_name ) ?>
                     <span class="submitbox">
                         <a class="submitdelete deletion utcw-remove-item"><?php _e('Delete', 'utcw') ?></a>
                     </span>
-                    <input type="hidden" name="<?php echo $this->get_field_name( 'authors' ) ?>[]" value="<?php echo $author_id ?>" />
+                    <input type="hidden" name="<?php echo $this->get_field_name( 'authors' ) ?>[]" value="<?php echo esc_attr( $author_id ) ?>" />
                 </li>
             <?php endforeach ?>
         </ul>
@@ -135,8 +135,8 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		for="<?php echo $this->get_field_id( 'taxonomy' ) ?>"><?php _e( 'Taxonomies:', 'utcw' ) ?></label></strong><br>
 	<?php foreach ( $available_taxonomies as $taxonomy ) :  ?>
 	<label>
-        <input type="checkbox" class="utcw-input-taxonomy" value="<?php echo $taxonomy->name ?>" name="<?php echo $this->get_field_name( 'taxonomy' ) ?>[]" <?php if ( in_array( $taxonomy->name, $dataConfig->taxonomy ) ) echo 'checked="checked"' ?>>
-		<?php echo $taxonomy->labels->name ?>
+        <input type="checkbox" class="utcw-input-taxonomy" value="<?php echo esc_attr( $taxonomy->name ) ?>" name="<?php echo $this->get_field_name( 'taxonomy' ) ?>[]" <?php if ( in_array( $taxonomy->name, $dataConfig->taxonomy ) ) echo 'checked="checked"' ?>>
+		<?php echo esc_attr( $taxonomy->labels->name ) ?>
 	</label><br>
 	<?php endforeach; ?>
     <br>
@@ -148,8 +148,8 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<?php foreach ( $available_post_types as $pt ) : $data = get_post_type_object( $pt ) ?>
 	<input type="checkbox" name="<?php echo $this->get_field_name( 'post_type' ) ?>[]"
 		   id="<?php echo $this->get_field_id( 'post_type-' . $pt ) ?>"
-		   value="<?php echo $pt ?>" <?php if ( in_array( $pt, $dataConfig->post_type ) ) echo 'checked="checked"' ?>>
-	<label for="<?php echo $this->get_field_id( 'post_type-' . $pt ) ?>"><?php echo $data->labels->name ?></label><br>
+		   value="<?php echo esc_attr( $pt ) ?>" <?php if ( in_array( $pt, $dataConfig->post_type ) ) echo 'checked="checked"' ?>>
+	<label for="<?php echo $this->get_field_id( 'post_type-' . $pt ) ?>"><?php echo esc_attr( $data->labels->name ) ?></label><br>
 	<?php endforeach ?>
 	<br>
 
@@ -158,7 +158,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><label for="<?php echo $this->get_field_id( 'minimum' ) ?>"
 				   title="<?php _e( 'Tags with fewer posts than this will be automatically excluded.', 'utcw' ) ?>"><?php _e( 'Minimum number of posts: ', 'utcw' ) ?></label></strong>
 	<input type="number" name="<?php echo $this->get_field_name( 'minimum' ) ?>"
-		   id="<?php echo $this->get_field_id( 'minimum' ) ?>" value="<?php echo $dataConfig->minimum; ?>"><br>
+		   id="<?php echo $this->get_field_id( 'minimum' ) ?>" value="<?php echo esc_attr( $dataConfig->minimum ) ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -166,7 +166,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><label for="<?php echo $this->get_field_id( 'days_old' ) ?>"
 				   title="<?php _e( 'The maximum number of days back to search for posts, zero means every post.', 'utcw' )?>"><?php _e( 'Posts max age:', 'utcw' )?></label></strong><br>
 	<input type="number" name="<?php echo $this->get_field_name( 'days_old' ) ?>"
-		   id="<?php echo $this->get_field_id( 'days_old' ) ?>" value="<?php echo $dataConfig->days_old; ?>"><br>
+		   id="<?php echo $this->get_field_id( 'days_old' ) ?>" value="<?php echo esc_attr( $dataConfig->days_old ) ?>"><br>
     <br>
 
     <a class="utcw-help"
@@ -181,11 +181,11 @@ if ( ! defined( 'ABSPATH' ) ) die();
     <ul class="post-term-search-selected" id="<?php echo $this->get_field_id('post-term-search-selected') ?>">
         <?php foreach ($dataConfig->post_term as $term_id) : $term = $terms_by_id[$term_id]; ?>
             <li>
-                <?php echo $term->name ?> (<?php echo $term->taxonomy ?>)
+                <?php echo esc_html( $term->name ) ?> (<?php echo esc_html( $term->taxonomy ) ?>)
                 <span class="submitbox">
                     <a class="submitdelete deletion utcw-remove-item"><?php _e('Delete', 'utcw') ?></a>
                 </span>
-                <input type="hidden" name="<?php echo $this->get_field_name( 'post_term' ) ?>[]" value="<?php echo $term_id ?>" />
+                <input type="hidden" name="<?php echo $this->get_field_name( 'post_term' ) ?>[]" value="<?php echo esc_attr( $term_id ) ?>" />
             </li>
         <?php endforeach ?>
     </ul>
@@ -230,11 +230,11 @@ if ( ! defined( 'ABSPATH' ) ) die();
     <ul class="tags-list-search-selected" id="<?php echo $this->get_field_id('tags-list-search-selected') ?>">
         <?php foreach ($dataConfig->tags_list as $term_id) : $term = $terms_by_id[$term_id]; ?>
             <li>
-                <?php echo $term->name ?> (<?php echo $term->taxonomy ?>)
+                <?php echo esc_html( $term->name ) ?> (<?php echo esc_html( $term->taxonomy ) ?>)
                 <span class="submitbox">
                     <a class="submitdelete deletion utcw-remove-item"><?php _e('Delete', 'utcw') ?></a>
                 </span>
-                <input type="hidden" name="<?php echo $this->get_field_name( 'tags_list' ) ?>[]" value="<?php echo $term_id ?>" />
+                <input type="hidden" name="<?php echo $this->get_field_name( 'tags_list' ) ?>[]" value="<?php echo esc_attr( $term_id ) ?>" />
             </li>
         <?php endforeach ?>
     </ul>
@@ -252,7 +252,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<label for="<?php echo $this->get_field_id( 'show_title_text' ) ?>"><?php _e( 'Show title', 'utcw' ) ?></label><br>
 	<input type="text" id="<?php echo $this->get_field_id( 'title' );?>"
 		   name="<?php echo $this->get_field_name( 'title' );?>"
-		   value="<?php echo $renderConfig->title ?>"><br>
+		   value="<?php echo esc_attr( $renderConfig->title ) ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -261,11 +261,11 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<label for="<?php echo $this->get_field_id( 'size_from' ) ?>"><?php _e( 'From', 'utcw' ) ?></label>
 	<input type="text" name="<?php echo $this->get_field_name( 'size_from' ) ?>"
 		   id="<?php echo $this->get_field_id( 'size_from' ) ?>" size="3"
-		   value="<?php echo $dataConfig->size_from ?>">
+		   value="<?php echo esc_attr( $dataConfig->size_from ) ?>">
 	<label for="<?php echo $this->get_field_id( 'size_to' ) ?>"><?php _e( 'to', 'utcw' ) ?></label>
 	<input type="text" name="<?php echo $this->get_field_name( 'size_to' ) ?>"
 		   id="<?php echo $this->get_field_id( 'size_to' ) ?>" size="3"
-		   value="<?php echo $dataConfig->size_to ?>"><br>
+		   value="<?php echo esc_attr( $dataConfig->size_to ) ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -274,7 +274,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		for="<?php echo $this->get_field_id( 'max' ) ?>"><?php _e( 'Max tags:', 'utcw' ) ?></label></strong><br>
 	<input type="number" name="<?php echo $this->get_field_name( 'max' ) ?>"
 		   id="<?php echo $this->get_field_id( 'max' ) ?>"
-		   value="<?php echo $dataConfig->max ?>"><br>
+		   value="<?php echo esc_attr( $dataConfig->max ) ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -299,7 +299,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		<label class="screen-reader-text"
 			   for="<?php echo $this->get_field_id( 'color_set_chooser' ) ?>"><?php _e( 'Random from preset values', 'utcw' ) ?></label>
 		<input type="text" name="<?php echo $this->get_field_name( 'color_set' ) ?>"
-			   id="<?php echo $this->get_field_id( 'color_set_chooser' ) ?>" value="<?php echo join( ',', $dataConfig->color_set ) ?>">
+			   id="<?php echo $this->get_field_id( 'color_set_chooser' ) ?>" value="<?php echo esc_attr( join( ',', $dataConfig->color_set ) ) ?>">
 	</div>
 	<input type="radio" name="<?php echo $this->get_field_name( 'color' ) ?>"
 		   id="<?php echo $this->get_field_id( 'color_span' ) ?>"
@@ -311,11 +311,11 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		id="<?php echo $this->get_field_id( 'span_chooser' ) ?>" <?php echo  $dataConfig->color != 'span' ? 'class="utcw-hidden"' : ''; ?>>
 		<label for="<?php echo $this->get_field_id( 'color_span_from' ) ?>"><?php _e( 'From', 'utcw' ) ?></label>
 		<input type="text" size="7" name="<?php echo $this->get_field_name( 'color_span_from' ) ?>"
-			   id="<?php echo $this->get_field_id( 'color_span_from' ) ?>" value="<?php echo $dataConfig->color_span_from ?>"><br>
+			   id="<?php echo $this->get_field_id( 'color_span_from' ) ?>" value="<?php echo esc_attr( $dataConfig->color_span_from ) ?>"><br>
 
 		<label for="<?php echo $this->get_field_id( 'color_span_to' ) ?>"><?php _e( 'to', 'utcw' ) ?></label>
 		<input type="text" size="7" name="<?php echo $this->get_field_name( 'color_span_to' ) ?>"
-			   id="<?php echo $this->get_field_id( 'color_span_to' ) ?>" value="<?php echo $dataConfig->color_span_to ?>">
+			   id="<?php echo $this->get_field_id( 'color_span_to' ) ?>" value="<?php echo esc_attr( $dataConfig->color_span_to ) ?>">
 	</div>
 	<br>
 
@@ -396,22 +396,22 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		   for="<?php echo $this->get_field_id( 'letter_spacing' ) ?>"><?php _e( 'Between letters:', 'utcw' ) ?></label>
 	<input type="text" size="5" name="<?php echo $this->get_field_name( 'letter_spacing' ) ?>"
 		   id="<?php echo $this->get_field_id( 'letter_spacing' ) ?>"
-		   value="<?php echo $renderConfig->letter_spacing ?>"><br>
+		   value="<?php echo esc_attr( $renderConfig->letter_spacing ) ?>"><br>
 	<label class="two-col"
 		   for="<?php echo $this->get_field_id( 'word_spacing' ) ?>"><?php _e( 'Between words:', 'utcw' ) ?></label>
 	<input type="text" size="5" name="<?php echo $this->get_field_name( 'word_spacing' ) ?>"
 		   id="<?php echo $this->get_field_id( 'word_spacing' ) ?>"
-		   value="<?php echo $renderConfig->word_spacing ?>"><br>
+		   value="<?php echo esc_attr( $renderConfig->word_spacing ) ?>"><br>
 	<label class="two-col"
 		   for="<?php echo $this->get_field_id( 'tag_spacing' ) ?>"><?php _e( 'Between tags:', 'utcw' ) ?></label>
 	<input type="text" size="5" name="<?php echo $this->get_field_name( 'tag_spacing' ) ?>"
 		   id="<?php echo $this->get_field_id( 'tag_spacing' ) ?>"
-		   value="<?php echo $renderConfig->tag_spacing ?>"><br>
+		   value="<?php echo esc_attr( $renderConfig->tag_spacing ) ?>"><br>
 	<label class="two-col"
 		   for="<?php echo $this->get_field_id( 'line_height' ) ?>"><?php _e( 'Between rows:', 'utcw' ) ?></label>
 	<input type="text" size="5" name="<?php echo $this->get_field_name( 'line_height' ) ?>"
 		   id="<?php echo $this->get_field_id( 'line_height' ) ?>"
-		   value="<?php echo $renderConfig->line_height ?>"><br>
+		   value="<?php echo esc_attr( $renderConfig->line_height ) ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -445,15 +445,15 @@ if ( ! defined( 'ABSPATH' ) ) die();
 		   for="<?php echo $this->get_field_id( 'separator' ) ?>"><?php _e( 'Separator', 'utcw' ) ?></label>
 	<input type="text" size=5 name="<?php echo $this->get_field_name( 'separator' ) ?>"
 		   id="<?php echo $this->get_field_id( 'separator' ) ?>"
-		   value="<?php echo $renderConfig->separator ?>"><br>
+		   value="<?php echo esc_attr( $renderConfig->separator ) ?>"><br>
 	<label class="two-col" for="<?php echo $this->get_field_id( 'prefix' ) ?>"><?php _e( 'Prefix', 'utcw' ) ?></label>
 	<input type="text" size=5 name="<?php echo $this->get_field_name( 'prefix' ) ?>"
 		   id="<?php echo $this->get_field_id( 'prefix' ) ?>"
-		   value="<?php echo $renderConfig->prefix ?>"><br>
+		   value="<?php echo esc_attr( $renderConfig->prefix ) ?>"><br>
 	<label class="two-col" for="<?php echo $this->get_field_id( 'suffix' ) ?>"><?php _e( 'Suffix', 'utcw' ) ?></label>
 	<input type="text" size=5 name="<?php echo $this->get_field_name( 'suffix' ) ?>"
 		   id="<?php echo $this->get_field_id( 'suffix' ) ?>"
-		   value="<?php echo $renderConfig->suffix ?>"><br>
+		   value="<?php echo esc_attr( $renderConfig->suffix ) ?>"><br>
 
 </fieldset>
 
@@ -522,7 +522,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><label
 		for="<?php echo $this->get_field_id( 'link_bg_color' ) ?>"><?php _e( 'Background color (hex value):', 'utcw' ) ?></label></strong><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'link_bg_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'link_bg_color' ) ?>" value="<?php echo $renderConfig->link_bg_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'link_bg_color' ) ?>" value="<?php echo esc_attr( $renderConfig->link_bg_color ) ?>"><br>
 	<br>
 
 	<a class="utcw-help"
@@ -554,12 +554,12 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<label
 		for="<?php echo $this->get_field_id( 'link_border_width' ) ?>"><?php _e( 'Width:', 'utcw' ) ?></label><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'link_border_width' ) ?>"
-		   id="<?php echo $this->get_field_id( 'link_border_width' ) ?>" value="<?php echo $renderConfig->link_border_width ?>"><br>
+		   id="<?php echo $this->get_field_id( 'link_border_width' ) ?>" value="<?php echo esc_attr( $renderConfig->link_border_width ) ?>"><br>
 	<br>
 	<label
 		for="<?php echo $this->get_field_id( 'link_border_color' ) ?>"><?php _e( 'Color (hex value): ', 'utcw' ) ?></label><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'link_border_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'link_border_color' ) ?>" value="<?php echo $renderConfig->link_border_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'link_border_color' ) ?>" value="<?php echo esc_attr( $renderConfig->link_border_color ) ?>"><br>
 
 	<a class="utcw-help"
 	   title="<?php _e( 'The hover effects will only affect the style of the tag when the user hovers the tag. For details about each settings see the section above.', 'utcw' )?>">?</a>
@@ -613,12 +613,12 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<strong><label
 		for="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>"><?php _e( 'Background color (hex value):', 'utcw' ) ?></label></strong><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'hover_bg_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>" value="<?php echo $renderConfig->hover_bg_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'hover_bg_color' ) ?>" value="<?php echo esc_attr( $renderConfig->hover_bg_color ) ?>"><br>
 	<br>
 	<strong><label
 		for="<?php echo $this->get_field_id( 'hover_color' ) ?>"><?php _e( 'Font color (hex value):', 'utcw' ) ?></label></strong><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'hover_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'hover_color' ) ?>" value="<?php echo $renderConfig->hover_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'hover_color' ) ?>" value="<?php echo esc_attr( $renderConfig->hover_color ) ?>"><br>
     <br>
     <strong><?php _e( 'Border', 'utcw' ) ?></strong><br>
 	<label for="<?php echo $this->get_field_id( 'hover_border_style' ) ?>"><?php _e( 'Style: ', 'utcw' ) ?></label><br>
@@ -647,12 +647,12 @@ if ( ! defined( 'ABSPATH' ) ) die();
 	<label
 		for="<?php echo $this->get_field_id( 'hover_border_width' ) ?>"><?php _e( 'Width:', 'utcw' ) ?></label><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'hover_border_width' ) ?>"
-		   id="<?php echo $this->get_field_id( 'hover_border_width' ) ?>" value="<?php echo $renderConfig->hover_border_width ?>"><br>
+		   id="<?php echo $this->get_field_id( 'hover_border_width' ) ?>" value="<?php echo esc_attr( $renderConfig->hover_border_width ) ?>"><br>
 	<br>
 	<label
 		for="<?php echo $this->get_field_id( 'hover_border_color' ) ?>"><?php _e( 'Color (hex value): ', 'utcw' ) ?></label><br>
 	<input type="text" name="<?php echo $this->get_field_name( 'hover_border_color' ) ?>"
-		   id="<?php echo $this->get_field_id( 'hover_border_color' ) ?>" value="<?php echo $renderConfig->hover_border_color ?>"><br>
+		   id="<?php echo $this->get_field_id( 'hover_border_color' ) ?>" value="<?php echo esc_attr( $renderConfig->hover_border_color ) ?>"><br>
 </fieldset>
 <fieldset class="utcw hidden" id="<?php echo $this->get_field_id( 'utcw-tab-advanced' ) ?>">
 	<legend></legend>
@@ -694,7 +694,7 @@ if ( ! defined( 'ABSPATH' ) ) die();
 			id="<?php echo $this->get_field_id( 'load_config_name' ) ?>">
 
 		<?php foreach ( $configurations as $name => $config ) : ?>
-		<option value="<?php echo $name ?>"><?php echo $name ?></option>
+		<option value="<?php echo esc_attr( $name ) ?>"><?php echo esc_html( $name ) ?></option>
 		<?php endforeach ?>
 
 	</select>

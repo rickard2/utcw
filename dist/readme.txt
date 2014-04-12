@@ -56,6 +56,14 @@ If you have questions, please post them in the forums.
 
 == Changelog ==
 
+= 2.7
+
+* [#60](https://github.com/rickard2/utcw/issues/60): Add css classes to target individual terms
+* [#61](https://github.com/rickard2/utcw/issues/61): Adds missing translation
+* [#62](https://github.com/rickard2/utcw/issues/62): Fix formatting issue in settings page
+* [#63](https://github.com/rickard2/utcw/issues/63): Support shortcodes in prefix and suffix
+* [#65](https://github.com/rickard2/utcw/issues/65): Fix issue with WPML displaying no (or too few) terms
+
 = 2.6.1 =
 
 * [BUGFIX](http://wordpress.org/support/topic/bug-53): Fixed issue with widget markup when using avoid theme styling option
@@ -137,6 +145,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.7 =
+
+* New features and bugs fixed, see plugin page at wordpress.org for full details.
 
 = 2.6.1 =
 

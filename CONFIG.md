@@ -405,4 +405,4 @@ Name: `debug`
 Default: `false`  
 Shortcode example: `[utcw debug=1]`  
 
-*Configuration options auto generated at 2014-04-12 17:38:19 for version 2.7*
+*Configuration options auto generated at 2014-04-18 11:32:30 for version 2.7.1*

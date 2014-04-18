@@ -2,8 +2,8 @@
 Contributors: exz
 Tags: widget, tags, configurable, tag cloud
 Requires at least: 3.0
-Tested up to: 3.8
-Stable tag: 2.7
+Tested up to: 3.9
+Stable tag: 2.7.1
 Donate link: https://0x539.se/donations/
 License: GPLv2 or later
 
@@ -56,7 +56,11 @@ If you have questions, please post them in the forums.
 
 == Changelog ==
 
-= 2.7
+= 2.7.1 =
+
+* [#66](https://github.com/rickard2/utcw/issues/66): Fix issues with theme customizer in 3.9
+
+= 2.7 =
 
 * [#60](https://github.com/rickard2/utcw/issues/60): Add css classes to target individual terms
 * [#61](https://github.com/rickard2/utcw/issues/61): Adds missing translation
@@ -145,6 +149,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.7.1 =
+
+* Fix issues with theme customizer in 3.9
 
 = 2.7 =
 

@@ -79,14 +79,34 @@ class UTCW_Plugin
 //        add_action('init', array($this, 'setCacheHandler')); Disabled for now
         add_action('init', array($this, 'setTranslationHandler'));
         add_action('init', array($this, 'initLocalisation'));
+
+        // Theme customizer support
+        add_action('load-customize.php', array($this, 'initAdminAssets'));
+        add_action('admin_footer-widgets.php', array($this, 'printCustomizerScript'));
     }
+
+    /**
+     * Temporary function to output the script in the footer of the customize.php page
+     *
+     * @since 2.7.1
+     */
+    public function printCustomizerScript()
+    {
+        $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
+        if (strpos($request_uri, 'customize.php') !== false) {
+            echo '<script src="' . plugins_url('ultimate-tag-cloud-widget/js/utcw.min.js') . '"></script>';
+        }
+    }
+
 
     /**
      * Initializes localisation
      *
      * @since 2.6
      */
-    public function initLocalisation() {
+    public function initLocalisation()
+    {
         load_plugin_textdomain('utcw', false, '/ultimate-tag-cloud-widget/language/');
     }
 
@@ -480,8 +500,8 @@ class UTCW_Plugin
     /**
      * Returns an absolute URI to the archive page for the term
      *
-     * @param int    $term_id     Term ID
-     * @param string $taxonomy    Taxonomy name
+     * @param int    $term_id  Term ID
+     * @param string $taxonomy Taxonomy name
      *
      * @return string Returns URI on success and empty string on failure
      * @since 2.0
@@ -534,8 +554,8 @@ class UTCW_Plugin
     /**
      * Check if the term exist for any of the taxonomies
      *
-     * @param int   $term_id     Term ID
-     * @param array $taxonomy    Array of taxonomy names
+     * @param int   $term_id  Term ID
+     * @param array $taxonomy Array of taxonomy names
      *
      * @return bool
      * @since 2.0

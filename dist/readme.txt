@@ -21,7 +21,9 @@ This is the highly configurable tag cloud widget, the main features for this plu
 - Multiple strategies for selecting terms with the option to [create your own](https://github.com/rickard2/utcw/blob/master/STRATEGY.md). Built in strategies for most popular, random, recently added, from current list of posts
 - Short code and API for developers
 
-This plugin is under active development and my goal is to try to help everyone who have issues or suggestions for this plugin. If you find bugs or have feature requests please use [GitHub issues](https://github.com/rickard2/utcw/issues), if you need support please use the [WordPress forums](http://wordpress.org/support/plugin/ultimate-tag-cloud-widget). You're also always welcome to contact me by e-mail or Google Talk; rickard at 0x539.se
+The development of this plugin has stopped. I will make sure that the basic features still work with upcoming WordPress versions, but no new features or changes will be made.
+
+The [code is available on github](https://github.com/rickard2/utcw) and if you're in need of new features, you're welcome to submit a pull request for it.
 
 Quick links:
 
@@ -55,6 +57,10 @@ If you have questions, please post them in the forums.
 4. The settings page of the widget
 
 == Changelog ==
+
+= 2.7.2 =
+
+* [#69](https://github.com/rickard2/utcw/issues/69): Fix issues selection strategies
 
 = 2.7.1 =
 
@@ -149,6 +155,10 @@ The changelog history for the 1.x branch is available on [GitHub](https://github
 The upgrade notice history for the 1.x branch is available on [GitHub](https://github.com/rickard2/utcw/blob/master/UPGRADE.md)
 
 == Upgrade Notice ==
+
+= 2.7.2 =
+
+* Fix issues selection strategies
 
 = 2.7.1 =
 

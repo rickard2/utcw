@@ -297,6 +297,19 @@ class UTCW_QueryBuilder
     }
 
     /**
+     * Add max constraint
+     *
+     * @param int $max
+     *
+     * @since 2.2
+     */
+    public function addMaxConstraint($max)
+    {
+        $this->query[]      = 'LIMIT %d';
+        $this->parameters[] = $max;
+    }
+
+    /**
      * Add sorting the result
      *
      * @param string $order

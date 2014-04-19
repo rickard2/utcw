@@ -3,7 +3,6 @@
 if (!defined('ABSPATH')) {
     die();
 }
-
 /**
  * Ultimate Tag Cloud Widget
  *
@@ -13,6 +12,7 @@ if (!defined('ABSPATH')) {
  * @package    utcw
  * @subpackage test
  */
+
 class UTCW_Test_Data extends WP_UnitTestCase
 {
 
@@ -479,28 +479,6 @@ class UTCW_Test_Data extends WP_UnitTestCase
     function test_query_counts_posts()
     {
         $this->helper_query_contains(array(), 'COUNT(p.ID) AS `count`');
-    }
-
-    function test_limit_is_done_in_php()
-    {
-        $plugin = $this->mockFactory->getUTCWMock();
-
-        $strategy = $this->getMockBuilder('UTCW_SelectionStrategy')
-            ->disableOriginalConstructor()
-            ->setMethods(array('getData'))
-            ->getMock();
-
-        $dataProvider = new DataProvider($this);
-        $terms        = $dataProvider->termsProvider(10);
-
-        $strategy->expects($this->any())->method('getData')->will($this->returnValue($terms[0][0]));
-
-        $dataConfig = new UTCW_DataConfig(array('max' => 5, 'strategy' => $strategy), $plugin);
-        $plugin->set('dataConfig', $dataConfig);
-        $plugin->set('wpdb', $this->mockFactory->getWPDBMock());
-        $data = new UTCW_Data($plugin);
-
-        $this->assertCount(5, $data->getTerms());
     }
 
     function helper_test_color_span($instance, $colors, $query_terms)
